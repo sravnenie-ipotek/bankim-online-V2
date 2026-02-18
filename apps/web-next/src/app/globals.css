@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Dark theme fallback - ensures page is never white even if Tailwind classes fail */
+  html,
+  body {
+    background-color: #161616;
+    color: #ffffff;
+  }
+
+  /* Hide scrollbars site-wide but keep scroll functionality */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  *::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  /* Remove ugly borders from modal/dropdown/select buttons */
+  button[class*='modal'],
+  button[class*='dropdown'],
+  button[class*='select'],
+  [role='button'][class*='modal'],
+  [role='button'][class*='dropdown'],
+  [role='button'][class*='select'] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  button:focus-visible {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+  }
+}
+
+input:focus {
+  outline: none;
+}
