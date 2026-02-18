@@ -3,45 +3,24 @@ import { NotFoundException } from '@nestjs/common';
 import { ContentController } from './content.controller';
 import { ContentService } from './content.service';
 import { DropdownService } from './dropdown.service';
+import type { ContentServiceMock } from './tests/interfaces/content-service-mock.interface';
+import { ContentControllerTestbed } from './tests/helpers/controller-testbed.helper';
 
 describe('ContentController', () => {
   let controller: ContentController;
-  let contentService: {
-    getContentByScreen: jest.Mock;
-    getContentByKey: jest.Mock;
-    getCategories: jest.Mock;
-    getLanguages: jest.Mock;
-    getValidationErrors: jest.Mock;
-    getContentItems: jest.Mock;
-    getCacheStats: jest.Mock;
-    clearCache: jest.Mock;
-  };
-
-  const mockContentService = () => ({
-    getContentByScreen: jest.fn(),
-    getContentByKey: jest.fn(),
-    getCategories: jest.fn(),
-    getLanguages: jest.fn(),
-    getValidationErrors: jest.fn(),
-    getContentItems: jest.fn(),
-    getCacheStats: jest.fn(),
-    clearCache: jest.fn(),
-  });
-
-  const mockDropdownService = () => ({
-    getDropdownsByScreen: jest.fn(),
-    getDropdownByField: jest.fn(),
-    getDropdownOptions: jest.fn(),
-  });
+  let contentService: ContentServiceMock;
 
   beforeEach(async () => {
-    contentService = mockContentService();
+    contentService = ContentControllerTestbed.createContentServiceMock();
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ContentController],
       providers: [
         { provide: ContentService, useValue: contentService },
-        { provide: DropdownService, useValue: mockDropdownService() },
+        {
+          provide: DropdownService,
+          useValue: ContentControllerTestbed.createDropdownServiceMock(),
+        },
       ],
     }).compile();
 
