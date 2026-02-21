@@ -1,10 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import { useAppDispatch, useAppSelector } from '@/hooks/store'
 import {
   verifySmsCode,
@@ -15,7 +12,7 @@ import {
 import type { AppDispatch } from '@/store'
 
 const SmsVerifyForm: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const dispatch: AppDispatch = useAppDispatch()
   const isLoading = useAppSelector(authLoadingSelector)
   const pendingPhone = useAppSelector(pendingPhoneSelector)
@@ -32,42 +29,39 @@ const SmsVerifyForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-        {t('confirm_phone_number_login')}
-      </Typography>
-      <Typography variant="body2" sx={{ mb: 2, fontWeight: 600 }} dir="ltr">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
+      <p className="text-sm text-textTheme-secondary">{getContent('confirm_phone_number_login')}</p>
+      <p className="text-sm font-semibold text-textTheme-primary" dir="ltr">
         {pendingPhone}
-      </Typography>
-      <TextField
-        fullWidth
-        label={t('enter_code', 'Enter code')}
-        placeholder="1234"
-        value={code}
-        onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 4))}
-        type="text"
-        autoFocus
-        margin="normal"
-        dir="ltr"
-        slotProps={{ htmlInput: { inputMode: 'numeric', maxLength: 4 } }}
-      />
-      <Button
+      </p>
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium text-textTheme-primary">{getContent('enter_code')}</span>
+        <input
+          type="text"
+          placeholder="1234"
+          value={code}
+          onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 4))}
+          inputMode="numeric"
+          maxLength={4}
+          dir="ltr"
+          autoFocus
+          className="w-full px-3 py-2.5 bg-base-inputs border border-base-secondaryDefaultButton rounded text-textTheme-primary placeholder:text-textTheme-disabled outline-none focus:border-accent-primary"
+        />
+      </label>
+      <button
         type="submit"
-        fullWidth
-        variant="contained"
         disabled={code.length < 4 || isLoading}
-        sx={{ mt: 2, py: 1.5 }}
+        className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
-        {isLoading ? t('auth_modal_processing') : t('auth_modal_continue')}
-      </Button>
-      <Button
-        fullWidth
-        variant="text"
+        {isLoading ? getContent('auth_modal_processing') : getContent('auth_modal_continue')}
+      </button>
+      <button
+        type="button"
         onClick={handleBack}
-        sx={{ mt: 1 }}
+        className="w-full py-2 text-textTheme-secondary hover:text-textTheme-primary transition-colors"
       >
-        {t('back', 'Back')}
-      </Button>
+        {getContent('back')}
+      </button>
     </form>
   )
 }

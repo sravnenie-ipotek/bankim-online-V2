@@ -49,9 +49,11 @@ describe('ContentService', () => {
         cached: false,
       });
       expect(result.content['home_page.title']).toBeDefined();
-      expect(result.content['home_page.title']).toEqual(ContentFixtures.contentEntry);
+      expect(result.content['home_page.title']).toEqual(
+        ContentFixtures.contentEntry,
+      );
       expect(cache.set).toHaveBeenCalledWith(
-        'content_home_page_he_all',
+        'content:home_page:he:all',
         expect.objectContaining({ cached: true }),
         300_000,
       );
@@ -270,7 +272,7 @@ describe('ContentService', () => {
       });
       expect(result.content['home_page.title']).toBeDefined();
       expect(cache.set).toHaveBeenCalledWith(
-        'validation_errors_he',
+        'content:validation_errors:he',
         expect.objectContaining({ cached: true }),
         600_000,
       );
@@ -396,11 +398,11 @@ describe('ContentService', () => {
       message: 'Content cache cleared successfully',
     };
 
-    it('returns success message and calls reset', async () => {
+    it('returns success message and calls clear', async () => {
       const result = await service.clearCache();
 
       expect(result).toEqual(clearCacheSuccessPayload);
-      expect(cache.stores?.[0]?.reset).toHaveBeenCalled();
+      expect(cache.stores?.[0]?.clear).toHaveBeenCalled();
     });
 
     it('returns success when stores[0] is missing (fault)', async () => {
@@ -411,12 +413,12 @@ describe('ContentService', () => {
       expect(result).toEqual(clearCacheSuccessPayload);
     });
 
-    it('rejects when reset throws (fault)', async () => {
+    it('rejects when clear throws (fault)', async () => {
       cache.stores = [
-        { reset: jest.fn().mockRejectedValue(new Error('Reset failed')) },
+        { clear: jest.fn().mockRejectedValue(new Error('Clear failed')) },
       ];
 
-      await expect(service.clearCache()).rejects.toThrow('Reset failed');
+      await expect(service.clearCache()).rejects.toThrow('Clear failed');
     });
   });
 });

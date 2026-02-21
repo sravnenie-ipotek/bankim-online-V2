@@ -22,11 +22,11 @@ const NavigationList: React.FC<NavigationListProps> = ({
   onClose,
 }) => {
   return (
-    <div className="mb-6">
-      <h3 className="text-accent-primary text-[16px] mb-3 text-left rtl:text-right">
+    <div className="mb-6 text-left rtl:text-right">
+      <h3 className="text-accent-primary text-[16px] mb-3">
         {title}
       </h3>
-      <ul className="flex flex-col gap-3 list-none p-0 m-0 text-left rtl:text-right items-start rtl:items-end">
+      <ul className="flex flex-col gap-3 list-none p-0 m-0 items-start rtl:items-end">
         {items.slice(0, 1).map((item) => (
           <li
             key={item.title}

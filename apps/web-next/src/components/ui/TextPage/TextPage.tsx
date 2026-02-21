@@ -4,10 +4,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 import type { TextPageProps } from './interfaces/TextPageProps'
 
 const TextPage: React.FC<TextPageProps> = ({ title, text, htmlContent = false }) => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const router = useRouter()
 
   const handleBack = () => {
@@ -38,13 +40,13 @@ const TextPage: React.FC<TextPageProps> = ({ title, text, htmlContent = false })
                   strokeLinejoin="round"
                 />
               </svg>
-              {t('back')}
+              {getContent('back')}
             </button>
-            <h1 className="text-5xl not-italic font-medium leading-normal text-textTheme-primary sm:text-[1.9375rem] sm:font-medium">
+            <h1 className="not-italic font-medium leading-normal text-textTheme-primary text-[clamp(1.9375rem,1.5rem+1.2vw,3rem)]">
               {title}
             </h1>
           </div>
-          <div className="text-[0.875rem] not-italic font-normal leading-[140%] text-textTheme-primary whitespace-pre-line">
+          <div className="not-italic font-normal leading-[140%] text-textTheme-primary whitespace-pre-line text-[clamp(0.8125rem,0.85rem+0.2vw,0.875rem)]">
             {htmlContent ? (
               <div dangerouslySetInnerHTML={{ __html: text }} />
             ) : (

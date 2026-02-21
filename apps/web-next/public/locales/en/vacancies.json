@@ -1,4 +1,5 @@
 {
+  "navigation": { "home": "Home" },
   "error_loading_vacancies": "Failed to load vacancies. Please try again later.",
   "retry": "Retry",
   "vacancies": {

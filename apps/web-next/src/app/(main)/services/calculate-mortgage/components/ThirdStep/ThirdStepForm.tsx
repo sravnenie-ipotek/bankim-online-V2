@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { useFormikContext } from 'formik'
-import { useTranslation } from 'react-i18next'
 import { useContentApi } from '@hooks/useContentApi'
 import FormContainer from '@/components/ui/FormContainer/FormContainer'
 import FormCaption from '@/components/ui/FormCaption/FormCaption'
@@ -15,37 +14,36 @@ import FormError from '@/components/ui/FormError/FormError'
 import { IncomeTypes } from '@/interfaces/FormTypes'
 
 const ThirdStepForm: React.FC = () => {
-  const { t } = useTranslation()
   const { getContent } = useContentApi('mortgage_step3')
   const { setFieldValue, values, errors, touched, setFieldTouched } =
     useFormikContext<IncomeTypes>()
 
   const incomeSourceOptions = [
-    { value: 'option_1', label: t('calculate_mortgage_main_source_option_1', 'Salaried employee') },
-    { value: 'option_2', label: t('calculate_mortgage_main_source_option_2', 'Self-employed') },
-    { value: 'option_3', label: t('calculate_mortgage_main_source_option_3', 'Business owner') },
-    { value: 'option_4', label: t('calculate_mortgage_main_source_option_4', 'Freelancer') },
-    { value: 'option_5', label: t('calculate_mortgage_main_source_option_5', 'Pension') },
-    { value: 'option_6', label: t('calculate_mortgage_main_source_option_6', 'Rental income') },
-    { value: 'option_7', label: t('calculate_mortgage_main_source_option_7', 'Unemployed') },
+    { value: 'option_1', label: getContent('calculate_mortgage_main_source_option_1') },
+    { value: 'option_2', label: getContent('calculate_mortgage_main_source_option_2') },
+    { value: 'option_3', label: getContent('calculate_mortgage_main_source_option_3') },
+    { value: 'option_4', label: getContent('calculate_mortgage_main_source_option_4') },
+    { value: 'option_5', label: getContent('calculate_mortgage_main_source_option_5') },
+    { value: 'option_6', label: getContent('calculate_mortgage_main_source_option_6') },
+    { value: 'option_7', label: getContent('calculate_mortgage_main_source_option_7') },
   ]
 
   const additionalIncomeOptions = [
-    { value: 'option_1', label: t('calculate_mortgage_has_additional_option_1', 'No additional income') },
-    { value: 'option_2', label: t('calculate_mortgage_has_additional_option_2', 'Rental income') },
-    { value: 'option_3', label: t('calculate_mortgage_has_additional_option_3', 'Freelance work') },
-    { value: 'option_4', label: t('calculate_mortgage_has_additional_option_4', 'Investments') },
-    { value: 'option_5', label: t('calculate_mortgage_has_additional_option_5', 'Pension') },
-    { value: 'option_6', label: t('calculate_mortgage_has_additional_option_6', 'Allowances') },
-    { value: 'option_7', label: t('calculate_mortgage_has_additional_option_7', 'Other') },
+    { value: 'option_1', label: getContent('calculate_mortgage_has_additional_option_1') },
+    { value: 'option_2', label: getContent('calculate_mortgage_has_additional_option_2') },
+    { value: 'option_3', label: getContent('calculate_mortgage_has_additional_option_3') },
+    { value: 'option_4', label: getContent('calculate_mortgage_has_additional_option_4') },
+    { value: 'option_5', label: getContent('calculate_mortgage_has_additional_option_5') },
+    { value: 'option_6', label: getContent('calculate_mortgage_has_additional_option_6') },
+    { value: 'option_7', label: getContent('calculate_mortgage_has_additional_option_7') },
   ]
 
   const obligationOptions = [
-    { value: 'option_1', label: t('calculate_mortgage_debt_types_option_1', 'No obligations') },
-    { value: 'option_2', label: t('calculate_mortgage_debt_types_option_2', 'Consumer loan') },
-    { value: 'option_3', label: t('calculate_mortgage_debt_types_option_3', 'Car loan') },
-    { value: 'option_4', label: t('calculate_mortgage_debt_types_option_4', 'Credit card debt') },
-    { value: 'option_5', label: t('calculate_mortgage_debt_types_option_5', 'Other') },
+    { value: 'option_1', label: getContent('calculate_mortgage_debt_types_option_1') },
+    { value: 'option_2', label: getContent('calculate_mortgage_debt_types_option_2') },
+    { value: 'option_3', label: getContent('calculate_mortgage_debt_types_option_3') },
+    { value: 'option_4', label: getContent('calculate_mortgage_debt_types_option_4') },
+    { value: 'option_5', label: getContent('calculate_mortgage_debt_types_option_5') },
   ]
 
   const isEmployed = values.mainSourceOfIncome && values.mainSourceOfIncome !== 'option_7'
@@ -54,16 +52,16 @@ const ThirdStepForm: React.FC = () => {
   return (
     <FormContainer>
       <FormCaption
-        title={getContent('calculate_mortgage_step3_title', 'calculate_mortgage_income')}
+        title={getContent('calculate_mortgage_step3_title')}
       />
 
       {/* Row 1: Main source, Monthly income, Start date */}
       <FormRow>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_main_source', 'calculate_mortgage_main_source')}
+            title={getContent('calculate_mortgage_main_source')}
             data={incomeSourceOptions}
-            placeholder={t('calculate_mortgage_main_source_ph', 'Select...')}
+            placeholder={getContent('calculate_mortgage_main_source_ph')}
             value={values.mainSourceOfIncome}
             onChange={(val) => setFieldValue('mainSourceOfIncome', val)}
             onBlur={() => setFieldTouched('mainSourceOfIncome', true)}
@@ -75,10 +73,10 @@ const ThirdStepForm: React.FC = () => {
             <>
               <FormattedInput
                 name="monthlyIncome"
-                title={getContent('calculate_mortgage_monthly_income', 'calculate_mortgage_monthly_income')}
+                title={getContent('calculate_mortgage_monthly_income')}
                 value={values.monthlyIncome}
                 onChange={(val) => setFieldValue('monthlyIncome', val || 0)}
-                placeholder={t('calculate_mortgage_monthly_income_ph', '0')}
+                placeholder={getContent('calculate_mortgage_monthly_income_ph')}
                 error={touched.monthlyIncome ? errors.monthlyIncome : undefined}
               />
               {touched.monthlyIncome && errors.monthlyIncome && <FormError error={errors.monthlyIncome} />}
@@ -89,7 +87,7 @@ const ThirdStepForm: React.FC = () => {
           {isEmployed && (
             <DateInput
               name="startDate"
-              title={getContent('calculate_mortgage_start_date', 'calculate_mortgage_start_date')}
+              title={getContent('calculate_mortgage_start_date')}
               value={values.startDate}
               onChange={(val) => setFieldValue('startDate', val)}
               onBlur={() => setFieldTouched('startDate', true)}
@@ -105,7 +103,7 @@ const ThirdStepForm: React.FC = () => {
           <FormColumn>
             <div className="flex flex-col gap-1 w-full">
               <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
-                {getContent('calculate_mortgage_sfere', 'calculate_mortgage_sfere')}
+                {getContent('calculate_mortgage_sfere')}
               </label>
               <input
                 type="text"
@@ -125,7 +123,7 @@ const ThirdStepForm: React.FC = () => {
           <FormColumn>
             <div className="flex flex-col gap-1 w-full">
               <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
-                {getContent('calculate_mortgage_profession', 'calculate_mortgage_profession')}
+                {getContent('calculate_mortgage_profession')}
               </label>
               <input
                 type="text"
@@ -133,7 +131,7 @@ const ThirdStepForm: React.FC = () => {
                 value={values.profession}
                 onChange={(e) => setFieldValue('profession', e.target.value)}
                 onBlur={() => setFieldTouched('profession', true)}
-                placeholder={t('calculate_mortgage_profession_ph', 'Profession')}
+                placeholder={getContent('calculate_mortgage_profession_ph')}
                 className={`h-14 rounded border bg-base-inputs px-4 text-white text-[1.125rem] font-normal outline-none transition-colors placeholder:text-[#848484] ${
                   touched.profession && errors.profession
                     ? 'border-red-500'
@@ -146,7 +144,7 @@ const ThirdStepForm: React.FC = () => {
           <FormColumn>
             <div className="flex flex-col gap-1 w-full">
               <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
-                {getContent('calculate_mortgage_company', 'calculate_mortgage_company')}
+                {getContent('calculate_mortgage_company')}
               </label>
               <input
                 type="text"
@@ -173,9 +171,9 @@ const ThirdStepForm: React.FC = () => {
       <FormRow>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_has_additional', 'calculate_mortgage_has_additional')}
+            title={getContent('calculate_mortgage_has_additional')}
             data={additionalIncomeOptions}
-            placeholder={t('calculate_mortgage_has_additional_ph', 'Select...')}
+            placeholder={getContent('calculate_mortgage_has_additional_ph')}
             value={values.additionalIncome}
             onChange={(val) => setFieldValue('additionalIncome', val)}
             onBlur={() => setFieldTouched('additionalIncome', true)}
@@ -187,7 +185,7 @@ const ThirdStepForm: React.FC = () => {
             <>
               <FormattedInput
                 name="additionalIncomeAmount"
-                title={t('additional_source_of_income', 'Additional income amount')}
+                title={getContent('additional_source_of_income')}
                 value={values.additionalIncomeAmount}
                 onChange={(val) => setFieldValue('additionalIncomeAmount', val || 0)}
               />
@@ -204,9 +202,9 @@ const ThirdStepForm: React.FC = () => {
       <FormRow>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_debt_types', 'calculate_mortgage_debt_types')}
+            title={getContent('calculate_mortgage_debt_types')}
             data={obligationOptions}
-            placeholder={t('calculate_mortgage_debt_types_ph', 'Select...')}
+            placeholder={getContent('calculate_mortgage_debt_types_ph')}
             value={values.obligation}
             onChange={(val) => setFieldValue('obligation', val)}
             onBlur={() => setFieldTouched('obligation', true)}
@@ -218,7 +216,7 @@ const ThirdStepForm: React.FC = () => {
             <>
               <div className="flex flex-col gap-1 w-full">
                 <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
-                  {t('bank', 'Bank')}
+                  {getContent('bank')}
                 </label>
                 <input
                   type="text"
@@ -242,7 +240,7 @@ const ThirdStepForm: React.FC = () => {
             <>
               <FormattedInput
                 name="monthlyPaymentForAnotherBank"
-                title={t('calculate_mortgage_monthly_income', 'Monthly payment')}
+                title={getContent('calculate_mortgage_monthly_income')}
                 value={values.monthlyPaymentForAnotherBank}
                 onChange={(val) => setFieldValue('monthlyPaymentForAnotherBank', val || 0)}
                 error={touched.monthlyPaymentForAnotherBank ? errors.monthlyPaymentForAnotherBank : undefined}
@@ -260,7 +258,7 @@ const ThirdStepForm: React.FC = () => {
           <FormColumn>
             <DateInput
               name="endDate"
-              title={t('end_date', 'End date')}
+              title={getContent('end_date')}
               value={values.endDate}
               onChange={(val) => setFieldValue('endDate', val)}
               onBlur={() => setFieldTouched('endDate', true)}

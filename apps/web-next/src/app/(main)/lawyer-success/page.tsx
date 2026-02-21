@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 
 export default function LawyerSuccess() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
 
   return (
     <Container>
@@ -17,16 +17,16 @@ export default function LawyerSuccess() {
           </svg>
         </div>
         <h1 className="text-3xl font-medium text-textTheme-primary">
-          {t('lawyer_success_title')}
+          {getContent('lawyer_success_title')}
         </h1>
         <p className="text-base text-textTheme-secondary max-w-md">
-          {t('lawyer_success_message')}
+          {getContent('lawyer_success_message')}
         </p>
         <Link
           href="/"
           className="mt-4 px-8 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
         >
-          {t('back_to_home')}
+          {getContent('back_to_home')}
         </Link>
       </div>
     </Container>

@@ -43,7 +43,8 @@ import { LoggerService, TypeOrmWinstonLogger } from '@bankimonline/logger';
       imports: [ConfigModule],
       inject: [ConfigService, LoggerService],
       useFactory: (config: ConfigService, logger: LoggerService) => {
-        const url = config.get<string>('CONTENT_DATABASE_URL');
+        const rawUrl = config.get<string>('CONTENT_DATABASE_URL');
+        const url = normalizeContentDatabaseUrl(rawUrl);
         const isProduction = config.get<string>('NODE_ENV') === 'production';
         const ssl = getSslConfig(url, isProduction);
 
@@ -66,6 +67,28 @@ import { LoggerService, TypeOrmWinstonLogger } from '@bankimonline/logger';
   ],
 })
 export class DbModule {}
+
+/**
+ * For local content DB, use OS username when URL has user "postgres" and host is localhost
+ * (macOS Homebrew PostgreSQL typically has no "postgres" role; the superuser is the OS user).
+ */
+function normalizeContentDatabaseUrl(url: string | undefined): string | undefined {
+  if (!url) return url;
+  try {
+    const parsed = new URL(url);
+    const host = (parsed.hostname || '').toLowerCase();
+    const isLocal = host === 'localhost' || host === '127.0.0.1';
+    const isPostgresUser = (parsed.username || '').toLowerCase() === 'postgres';
+    if (isLocal && isPostgresUser && process.env.USER) {
+      const user = encodeURIComponent(process.env.USER);
+      const path = parsed.pathname || '/bankim_online_content_new';
+      return `${parsed.protocol}//${user}:@${parsed.host}${path}${parsed.search}`;
+    }
+    return url;
+  } catch {
+    return url;
+  }
+}
 
 /**
  * Determine SSL configuration based on connection URL and environment.

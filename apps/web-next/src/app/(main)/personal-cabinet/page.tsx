@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 
 interface NavItem {
   href: string
@@ -24,13 +24,13 @@ const NAV_ITEMS: NavItem[] = [
 ]
 
 export default function PersonalCabinet() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
 
   return (
     <Container>
       <div className="flex flex-col gap-8 w-full my-8">
         <h1 className="text-3xl font-medium text-textTheme-primary">
-          {t('personal_cabinet_title')}
+          {getContent('personal_cabinet_title')}
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -41,7 +41,7 @@ export default function PersonalCabinet() {
               className="flex items-center gap-4 p-6 bg-base-secondary rounded-lg hover:bg-base-base800 transition-colors"
             >
               <span className="text-2xl">{item.icon}</span>
-              <span className="text-textTheme-primary font-medium">{t(item.labelKey)}</span>
+              <span className="text-textTheme-primary font-medium">{getContent(item.labelKey)}</span>
             </Link>
           ))}
         </div>

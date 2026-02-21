@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams, useRouter } from 'next/navigation'
+import { useContentApi } from '@hooks/useContentApi'
 
 interface RegistrationForm {
   bank: string
@@ -10,8 +10,8 @@ interface RegistrationForm {
   name: string
 }
 
-export default function BankWorkerRegister() {
-  const { t } = useTranslation()
+const BankWorkerRegister: React.FC = () => {
+  const { getContent } = useContentApi('common')
   const params = useParams()
   const router = useRouter()
   const token = params.token as string
@@ -90,7 +90,7 @@ export default function BankWorkerRegister() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[500px] p-8 bg-base-secondary rounded-lg">
         <h1 className="text-2xl font-medium text-textTheme-primary text-center mb-2">
-          {t('bank_worker_registration')}
+          {getContent('bank_worker_registration')}
         </h1>
         {registrationInfo && (
           <p className="text-textTheme-secondary text-center mb-6">
@@ -99,25 +99,27 @@ export default function BankWorkerRegister() {
         )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input name="name" value={formData.name} onChange={handleChange} placeholder={t('full_name')} required className={inputClass} />
-          <input name="position" value={formData.position} onChange={handleChange} placeholder={t('position')} required className={inputClass} />
-          <input name="branch" value={formData.branch} onChange={handleChange} placeholder={t('branch')} className={inputClass} />
-          <input name="employeeNumber" value={formData.employeeNumber} onChange={handleChange} placeholder={t('employee_number')} className={inputClass} />
-          <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder={t('password')} required className={inputClass} />
-          <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} placeholder={t('confirm_password')} required className={inputClass} />
+          <input name="name" value={formData.name} onChange={handleChange} placeholder={getContent('full_name')} required className={inputClass} />
+          <input name="position" value={formData.position} onChange={handleChange} placeholder={getContent('position')} required className={inputClass} />
+          <input name="branch" value={formData.branch} onChange={handleChange} placeholder={getContent('branch')} className={inputClass} />
+          <input name="employeeNumber" value={formData.employeeNumber} onChange={handleChange} placeholder={getContent('employee_number')} className={inputClass} />
+          <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder={getContent('password')} required className={inputClass} />
+          <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} placeholder={getContent('confirm_password')} required className={inputClass} />
 
           <label className="flex items-start gap-3 cursor-pointer">
             <input type="checkbox" name="agreeTerms" checked={formData.agreeTerms} onChange={handleChange} className="mt-1 accent-accent-primary" />
             <span className="text-sm text-textTheme-secondary">
-              {t('agree_to')} <a href="/terms" className="text-accent-primary hover:underline">{t('terms_of_service')}</a>
+              {getContent('agree_to')} <a href="/terms" className="text-accent-primary hover:underline">{getContent('terms_of_service')}</a>
             </span>
           </label>
 
           <button type="submit" disabled={submitting || !formData.agreeTerms} className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors disabled:opacity-50">
-            {submitting ? t('loading') : t('complete_registration')}
+            {submitting ? getContent('loading') : getContent('complete_registration')}
           </button>
         </form>
       </div>
     </div>
   )
 }
+
+export default BankWorkerRegister

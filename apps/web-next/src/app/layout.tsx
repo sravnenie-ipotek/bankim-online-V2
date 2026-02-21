@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Arimo, Roboto } from 'next/font/google'
+import { Arimo, Inter, Roboto } from 'next/font/google'
 import './globals.css'
 import AppProviders from '@/providers/AppProviders'
 
@@ -17,6 +17,13 @@ const roboto = Roboto({
   variable: '--font-roboto',
 })
 
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
 export const metadata: Metadata = {
   title: 'BankIM Online',
   description: 'Israeli banking services with multi-language support',
@@ -28,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="he" dir="rtl" className={`${arimo.variable} ${roboto.variable}`}>
+    <html lang="he" dir="rtl" className={`${arimo.variable} ${roboto.variable} ${inter.variable}`}>
       <body className="bg-base-primary text-textTheme-primary font-he">
         <AppProviders>{children}</AppProviders>
       </body>

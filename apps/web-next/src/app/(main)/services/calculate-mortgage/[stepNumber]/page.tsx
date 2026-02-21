@@ -24,10 +24,10 @@ export default function CalculateMortgage() {
   }
 
   const progressLabels = [
-    getContent('mobile_step_1', 'mobile_step_1'),
-    getContent('mobile_step_2', 'mobile_step_2'),
-    getContent('mobile_step_3', 'mobile_step_3'),
-    getContent('mobile_step_4', 'mobile_step_4'),
+    getContent('mobile_step_1'),
+    getContent('mobile_step_2'),
+    getContent('mobile_step_3'),
+    getContent('mobile_step_4'),
   ]
 
   const renderStep = (): React.ReactNode => {

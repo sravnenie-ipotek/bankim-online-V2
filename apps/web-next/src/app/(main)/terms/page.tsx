@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import TextPage from '@/components/ui/TextPage/TextPage'
+import { useContentApi } from '@hooks/useContentApi'
 
 export default function Terms() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('legal')
 
-  return <TextPage title={t('terms_title')} text={t('terms_text')} />
+  return <TextPage title={getContent('terms_title')} text={getContent('terms_text')} />
 }

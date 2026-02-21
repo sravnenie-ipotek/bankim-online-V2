@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import type { BankOffer } from './interfaces/BankOffer'
 import type { BankOffersProps } from './interfaces/BankOffersProps'
 
@@ -43,20 +43,20 @@ const SAMPLE_OFFERS: BankOffer[] = [
 ]
 
 const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('mortgage_step4')
   const [filter, setFilter] = useState<string>('all')
 
   const filterOptions = [
-    { value: 'all', label: t('calculate_mortgage_filter_1', 'All banks') },
-    { value: 'lowest_rate', label: t('calculate_mortgage_filter_2', 'Lowest rate') },
-    { value: 'lowest_payment', label: t('calculate_mortgage_filter_3', 'Lowest payment') },
-    { value: 'lowest_total', label: t('calculate_mortgage_filter_4', 'Lowest total') },
+    { value: 'all', label: getContent('calculate_mortgage_filter_1') },
+    { value: 'lowest_rate', label: getContent('calculate_mortgage_filter_2') },
+    { value: 'lowest_payment', label: getContent('calculate_mortgage_filter_3') },
+    { value: 'lowest_total', label: getContent('calculate_mortgage_filter_4') },
   ]
 
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-[1.25rem] font-semibold text-textTheme-primary">
-        {t('mortgage_select_bank', 'Select a Bank')}
+        {getContent('mortgage_select_bank')}
       </h3>
 
       {/* Filter buttons */}
@@ -104,15 +104,15 @@ const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
               <span className="text-[1rem] font-semibold text-white">{offer.bankName}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-textTheme-secondary text-sm">{t('bid', 'Interest rate')}</span>
+              <span className="text-textTheme-secondary text-sm">{getContent('bid')}</span>
               <span className="text-white font-medium">{offer.interestRate}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-textTheme-secondary text-sm">{t('mortgage_monthly', 'Monthly')}</span>
+              <span className="text-textTheme-secondary text-sm">{getContent('mortgage_monthly')}</span>
               <span className="text-white font-medium">{offer.monthlyPayment}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-textTheme-secondary text-sm">{t('mortgage_total_return', 'Total return')}</span>
+              <span className="text-textTheme-secondary text-sm">{getContent('mortgage_total_return')}</span>
               <span className="text-white font-medium">{offer.totalReturn}</span>
             </div>
           </div>

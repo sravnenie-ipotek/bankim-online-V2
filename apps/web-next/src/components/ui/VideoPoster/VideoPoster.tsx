@@ -52,22 +52,24 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
   const { isMobile } = useWindowResize()
   const isSmall = size === 'small'
 
+  // Sound is from static file /static/promo.mp3 (plays on all devices, no isMobile flag).
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.src = '/static/promo.mp3'
-      audioRef.current.loop = true
+    const el = audioRef.current
+    if (el) {
+      el.src = '/static/promo.mp3'
+      el.loop = true
     }
   }, [])
 
   useEffect(() => {
-    if (!audioRef.current || isMobile) return
+    if (!audioRef.current) return
     if (isPlaying && !isMuted) {
       audioRef.current.volume = volume
       audioRef.current.play().catch(() => {})
     } else {
       audioRef.current.pause()
     }
-  }, [isPlaying, isMuted, volume, isMobile])
+  }, [isPlaying, isMuted, volume])
 
   useEffect(() => {
     if (!isPlayerOpen) return
@@ -207,7 +209,7 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
 
   const containerClassName = isSmall
     ? 'h-[15.125rem] w-full rounded-[0.625rem] overflow-hidden'
-    : 'h-[22.4375rem] w-full rounded-[0.625rem] max-[768px]:h-[233px] overflow-hidden'
+    : 'h-[22.4375rem] w-full rounded-[0.625rem] max-[768px]:h-[233px] overflow-hidden sm:h-[233px] md:h-[22.4375rem]'
 
   const videoWrapperStyle: React.CSSProperties = isPlayerOpen
     ? isFullscreen
@@ -242,13 +244,14 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
     <>
       <div
         className={isSmall
-          ? 'my-[2.4rem] mb-[-0.2rem] relative w-full'
-          : 'mt-[2.6rem] relative w-full'
+          ? 'mt-[2px] max-sm:mb-0 sm:my-[2.4rem] sm:mb-[-0.2rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
+          : 'mt-[2px] sm:mt-[2.6rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
         }
         style={isPlayerOpen ? { position: 'relative', zIndex: 10001, pointerEvents: 'none' } : undefined}
         onMouseMove={isPlayerOpen ? undefined : showPosterControls}
         onMouseEnter={isPlayerOpen ? undefined : showPosterControls}
         onMouseLeave={isPlayerOpen ? undefined : () => setPosterControlsVisible(false)}
+        onTouchStart={isPlayerOpen ? undefined : showPosterControls}
       >
         <div
           className={`relative ${containerClassName}`}
@@ -272,8 +275,8 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
                 ref={singlePlayerRef}
                 url={VIDEO_URL}
                 playing={isPlaying}
-                muted={isMobile ? isMuted : true}
-                volume={isMobile ? volume : 0}
+                muted
+                volume={0}
                 loop
                 controls={false}
                 width="100%"
@@ -384,44 +387,44 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
           </div>
         </div>
 
-        <div className={`${isPlayerOpen ? 'hidden' : ''} ${isSmall
-          ? 'flex justify-between absolute top-0 w-full h-full rounded-[0.625rem] px-6 pl-[3.75rem] items-center max-[768px]:flex-col max-[768px]:justify-center max-[768px]:p-2.5 pointer-events-none'
-          : 'flex justify-between absolute top-0 w-full h-full rounded-[0.625rem] px-11 items-center max-[768px]:flex-col max-[768px]:justify-center max-[768px]:px-4 pointer-events-none'
+        <div className={`${isPlayerOpen ? 'hidden' : ''} z-10 ${isSmall
+          ? 'flex justify-between absolute top-0 w-full h-full rounded-[0.625rem] px-6 pl-[3.75rem] items-center max-[768px]:flex-col max-[768px]:justify-between max-[768px]:pt-4 max-xs:p-0 max-xs:pt-4 max-[768px]:p-2.5 max-[768px]:pb-20 pointer-events-none'
+          : 'flex justify-between absolute top-0 w-full h-full rounded-[0.625rem] px-0 xs:px-4 sm:px-11 items-center max-[768px]:flex-col max-[768px]:justify-between max-[768px]:pt-4 max-[768px]:pb-20 pointer-events-none'
         }`}>
           {isMobile && !videoLoaded && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/90 text-white py-4 px-6 rounded-xl text-base font-semibold z-10 text-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/90 text-white py-4 px-6 rounded-xl font-semibold z-10 text-center text-[clamp(0.875rem,0.85rem+0.25vw,1rem)]">
               Tap to start video
             </div>
           )}
 
           <div className={isSmall
-            ? 'flex flex-col gap-1 items-start h-[11.5rem] justify-center max-[768px]:mt-8 max-[768px]:items-center'
-            : 'flex flex-col gap-2 items-start -mt-2 max-[768px]:mt-2 max-[768px]:items-center'
+            ? 'flex flex-col gap-1 items-start h-[11.5rem] justify-center max-[768px]:mt-0 max-[768px]:items-center'
+            : 'flex flex-col gap-2 items-start -mt-2 max-[768px]:mt-0 max-[768px]:items-center'
           }>
             <h2 className={isSmall
-              ? 'text-5xl font-normal leading-normal w-[37.25rem] text-textTheme-primary max-[768px]:text-[1.9375rem] max-[768px]:text-center max-[768px]:w-full'
-              : 'text-[4rem] font-medium leading-normal uppercase text-textTheme-primary max-[768px]:text-[1.75rem] max-[768px]:normal-case max-[768px]:text-center'
+              ? 'font-normal leading-normal w-[37.25rem] text-textTheme-primary max-[768px]:text-center max-[768px]:w-full text-[1.75rem] sm:text-[31px] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem]'
+              : 'font-medium leading-normal uppercase text-textTheme-primary max-[768px]:normal-case max-[768px]:text-center text-[1.75rem] sm:text-[31px] md:text-[2rem] lg:text-[2.5rem] xl:text-[4rem]'
             }>
               {title}
             </h2>
-            <p className="text-[1.9375rem] font-normal text-accent-primary max-[768px]:text-[1.25rem] max-[768px]:text-center">
+            <p className="font-normal text-accent-primary max-[768px]:text-center text-[clamp(1.25rem,1.2rem+0.5vw,1.9375rem)]">
               {subtitle}
             </p>
             <span className={isSmall
-              ? 'text-[1.125rem] font-normal opacity-90 text-textTheme-primary whitespace-pre-line max-[768px]:text-center'
-              : 'text-[1.25rem] font-normal opacity-90 text-textTheme-primary whitespace-pre-line max-[768px]:text-[0.875rem] max-[768px]:text-center'
+              ? 'font-normal opacity-90 text-textTheme-primary whitespace-pre-line max-[768px]:text-center text-[clamp(0.875rem,0.9rem+0.3vw,1.125rem)]'
+              : 'font-normal opacity-90 text-textTheme-primary whitespace-pre-line max-[768px]:text-center text-[clamp(0.875rem,0.95rem+0.35vw,1.25rem)]'
             }>
               {text}
             </span>
           </div>
 
-          <div className={`pointer-events-auto ${isSmall
+          <div className={`pointer-events-auto md:hidden ${isSmall
             ? 'flex flex-col justify-between h-[11.5rem] items-center max-[768px]:flex-row max-[768px]:w-full'
             : 'flex flex-col justify-between h-[17.8125rem] items-center max-[768px]:flex-row max-[768px]:w-full'
           }`}
           >
-            <button onClick={handleOpenModal} className="cursor-pointer" aria-label="Open video player">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <button onClick={handleOpenModal} className="cursor-pointer w-6 h-6 sm:w-[32px] sm:h-[32px] flex items-center justify-center shrink-0 p-0 border-0 bg-transparent" aria-label="Open video player">
+              <svg className="w-full h-full" viewBox="0 0 32 32" fill="none">
                 <path d="M20 4H28V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M12 28H4V20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M28 4L19 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -434,9 +437,10 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
 
         {!isPlayerOpen && (
           <div
-            className={`absolute bottom-0 left-1/2 -translate-x-1/2 z-20 w-[50%] transition-opacity duration-300 ease-out ${posterControlsVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            className={`absolute bottom-0 left-1/2 -translate-x-1/2 z-30 w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-full hidden md:block transition-opacity duration-300 ease-out ${posterControlsVisible || isMobile ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             onMouseMove={showPosterControls}
             onMouseEnter={showPosterControls}
+            onTouchStart={showPosterControls}
             onClick={(e) => e.stopPropagation()}
           >
             <VideoControlBar
@@ -470,7 +474,7 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
                 setIsDraggingProgressBar(false)
                 if (wasPlayingBeforeDragRef.current) setIsPlaying(true)
               }}
-              order={['progress', 'seekBack', 'playPause', 'seekForward', 'mute', 'volume', 'time']}
+              order={['progress', 'seekBack', 'playPause', 'seekForward', 'mute', 'volume', 'time', 'fullscreen']}
               compact={false}
               centerControls
               dir={isRtl ? 'rtl' : 'ltr'}
@@ -479,9 +483,7 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
           </div>
         )}
 
-        {!isMobile && (
-          <audio loop preload="none" ref={audioRef} />
-        )}
+        <audio loop preload="none" ref={audioRef} />
       </div>
 
       {isPlayerOpen && (

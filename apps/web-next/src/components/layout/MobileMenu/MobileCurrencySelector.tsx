@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import { useAppDispatch, useAppSelector } from '@/hooks/store'
 import { setCurrency } from '@/store/slices/currencySlice'
 import CheckIcon from '@/components/icons/CheckIcon'
@@ -21,7 +21,7 @@ const CURRENCY_ITEMS: CurrencyItem[] = [
 ]
 
 const MobileCurrencySelector: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const dispatch = useAppDispatch()
   const currencyState = useAppSelector((state) => state.currency)
   const currency = currencyState?.currency || 'ILS'
@@ -33,7 +33,7 @@ const MobileCurrencySelector: React.FC = () => {
   return (
     <div className="mb-4">
       <div className="pb-2 text-[14px] font-semibold text-textTheme-secondary">
-        {t('select_currency', 'Select Currency')}
+        {getContent('select_currency')}
       </div>
       <div className="flex flex-col gap-1">
         {CURRENCY_ITEMS.map((item) => (
@@ -56,7 +56,7 @@ const MobileCurrencySelector: React.FC = () => {
               </div>
               <div className="flex flex-col items-start">
                 <span className="text-[0.875rem] font-normal leading-[140%] text-white">
-                  {t(item.translationKey)}
+                  {getContent(item.translationKey)}
                 </span>
                 <span className="text-3xs font-normal leading-[140%] text-textTheme-secondary">
                   {item.value}

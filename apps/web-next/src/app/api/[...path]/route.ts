@@ -4,11 +4,12 @@ export const dynamic = 'force-dynamic'
 
 /**
  * Backend API base URL including the /api prefix.
- * .env.local:      NEXT_PUBLIC_API_URL=http://localhost:8003/api
+ * Use 127.0.0.1 to avoid IPv6 localhost resolution issues when API runs on same machine.
+ * .env.local:      NEXT_PUBLIC_API_URL=http://127.0.0.1:8003/api
  * .env.production: NEXT_PUBLIC_API_URL=/api
  */
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8003/api'
+  process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8003/api'
 
 /**
  * Builds the target backend URL from the captured path segments.
@@ -58,7 +59,7 @@ async function forwardToBackend(
   } catch (err) {
     const msg = err instanceof Error ? err.message : 'Proxy request failed'
     const hint =
-      'Backend unreachable. Start the API (e.g. from repo root: npm run dev) and ensure NEXT_PUBLIC_API_URL points to it (default http://localhost:8003/api).'
+      'Backend unreachable. From repo root run: npm run dev (starts both API and web-next). Or start API in apps/api. Ensure NEXT_PUBLIC_API_URL matches (e.g. http://127.0.0.1:8003/api). Test API directly: curl http://127.0.0.1:8003/api/content/screen/home_page/he'
     return NextResponse.json(
       { status: 'error', message: msg, targetUrl, hint },
       { status: 502 },

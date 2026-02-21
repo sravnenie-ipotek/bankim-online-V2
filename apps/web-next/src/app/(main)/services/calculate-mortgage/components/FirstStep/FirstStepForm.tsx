@@ -30,7 +30,7 @@ function getMinInitialPayment(priceOfEstate: number, propertyOwnership: string, 
 }
 
 const FirstStepForm: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const { getContent } = useContentApi('mortgage_step1')
 
   const [cityOptions, setCityOptions] = useState<CityOption[]>([])
@@ -111,43 +111,43 @@ const FirstStepForm: React.FC = () => {
 
   // Dropdown options
   const whenNeededOptions = [
-    { value: 'option_1', label: t('calculate_mortgage_when_options_1', 'Within 3 months') },
-    { value: 'option_2', label: t('calculate_mortgage_when_options_2', '3-6 months') },
-    { value: 'option_3', label: t('calculate_mortgage_when_options_3', '6-12 months') },
-    { value: 'option_4', label: t('calculate_mortgage_when_options_4', 'More than 12 months') },
+    { value: 'option_1', label: getContent('calculate_mortgage_when_options_1') },
+    { value: 'option_2', label: getContent('calculate_mortgage_when_options_2') },
+    { value: 'option_3', label: getContent('calculate_mortgage_when_options_3') },
+    { value: 'option_4', label: getContent('calculate_mortgage_when_options_4') },
   ]
 
   const typeOptions = [
-    { value: 'option_1', label: t('calculate_mortgage_type_options_1', 'Apartment') },
-    { value: 'option_2', label: t('calculate_mortgage_type_options_2', 'House') },
-    { value: 'option_3', label: t('calculate_mortgage_type_options_3', 'Penthouse') },
-    { value: 'option_4', label: t('calculate_mortgage_type_options_4', 'Land') },
+    { value: 'option_1', label: getContent('calculate_mortgage_type_options_1') },
+    { value: 'option_2', label: getContent('calculate_mortgage_type_options_2') },
+    { value: 'option_3', label: getContent('calculate_mortgage_type_options_3') },
+    { value: 'option_4', label: getContent('calculate_mortgage_type_options_4') },
   ]
 
   const firstHomeOptions = [
-    { value: 'option_1', label: t('calculate_mortgage_first_options_1', 'Yes') },
-    { value: 'option_2', label: t('calculate_mortgage_first_options_2', 'No') },
-    { value: 'option_3', label: t('calculate_mortgage_first_options_3', 'Upgrading') },
+    { value: 'option_1', label: getContent('calculate_mortgage_first_options_1') },
+    { value: 'option_2', label: getContent('calculate_mortgage_first_options_2') },
+    { value: 'option_3', label: getContent('calculate_mortgage_first_options_3') },
   ]
 
   const propertyOwnershipOptions = [
-    { value: 'no_property', label: t('calculate_mortgage_property_ownership_option_1', "I don't own any property") },
-    { value: 'has_property', label: t('calculate_mortgage_property_ownership_option_2', 'I own a property') },
-    { value: 'selling_property', label: t('calculate_mortgage_property_ownership_option_3', "I'm selling a property") },
+    { value: 'no_property', label: getContent('calculate_mortgage_property_ownership_option_1') },
+    { value: 'has_property', label: getContent('calculate_mortgage_property_ownership_option_2') },
+    { value: 'selling_property', label: getContent('calculate_mortgage_property_ownership_option_3') },
   ]
 
   const minInitialPayment = getMinInitialPayment(values.priceOfEstate, values.propertyOwnership, ltvRatios)
 
   return (
     <FormContainer>
-      <FormCaption title={getContent('calculate_mortgage_title', 'calculate_mortgage_title')} />
+      <FormCaption title={getContent('calculate_mortgage_title')} />
 
       {/* Row 1: Price, City, When */}
       <FormRow>
         <FormColumn>
           <FormattedInput
             name="priceOfEstate"
-            title={getContent('calculate_mortgage_price', 'calculate_mortgage_price')}
+            title={getContent('calculate_mortgage_price')}
             value={values.priceOfEstate}
             onChange={(val) => setFieldValue('priceOfEstate', val || 0)}
             placeholder="1,000,000"
@@ -158,24 +158,24 @@ const FirstStepForm: React.FC = () => {
         </FormColumn>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_city', 'calculate_mortgage_city')}
+            title={getContent('calculate_mortgage_city')}
             data={cityOptions}
-            placeholder={t('Select city')}
+            placeholder={getContent('bank_worker_select_city')}
             value={values.cityWhereYouBuy}
             onChange={(val) => setFieldValue('cityWhereYouBuy', val)}
             onBlur={() => setFieldTouched('cityWhereYouBuy', true)}
             searchable
-            searchPlaceholder={t('search', 'Search...')}
-            nothingFoundText={t('nothing_found', 'Nothing found')}
+            searchPlaceholder={getContent('search')}
+            nothingFoundText={getContent('nothing_found')}
             error={touched.cityWhereYouBuy ? errors.cityWhereYouBuy : undefined}
             data-testid="city-dropdown"
           />
         </FormColumn>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_when', 'calculate_mortgage_when')}
+            title={getContent('calculate_mortgage_when')}
             data={whenNeededOptions}
-            placeholder={t('calculate_mortgage_when_options_ph', 'Select...')}
+            placeholder={getContent('calculate_mortgage_when_options_ph')}
             value={values.whenDoYouNeedMoney}
             onChange={(val) => setFieldValue('whenDoYouNeedMoney', val)}
             onBlur={() => setFieldTouched('whenDoYouNeedMoney', true)}
@@ -190,7 +190,7 @@ const FirstStepForm: React.FC = () => {
         <FormColumn>
           <SliderInput
             name="initialFee"
-            title={getContent('calculate_mortgage_initial_fee', 'calculate_mortgage_initial_fee')}
+            title={getContent('calculate_mortgage_initial_fee')}
             value={values.initialFee}
             min={minInitialPayment}
             max={values.priceOfEstate || 1}
@@ -203,9 +203,9 @@ const FirstStepForm: React.FC = () => {
         </FormColumn>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_type', 'calculate_mortgage_type')}
+            title={getContent('calculate_mortgage_type')}
             data={typeOptions}
-            placeholder={t('calculate_mortgage_type_ph', 'Select type')}
+            placeholder={getContent('calculate_mortgage_type_ph')}
             value={values.typeSelect}
             onChange={(val) => setFieldValue('typeSelect', val)}
             onBlur={() => setFieldTouched('typeSelect', true)}
@@ -215,9 +215,9 @@ const FirstStepForm: React.FC = () => {
         </FormColumn>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_first', 'calculate_mortgage_first')}
+            title={getContent('calculate_mortgage_first')}
             data={firstHomeOptions}
-            placeholder={t('calculate_mortgage_first_ph', 'Select...')}
+            placeholder={getContent('calculate_mortgage_first_ph')}
             value={values.willBeYourFirst}
             onChange={(val) => setFieldValue('willBeYourFirst', val)}
             onBlur={() => setFieldTouched('willBeYourFirst', true)}
@@ -231,9 +231,9 @@ const FirstStepForm: React.FC = () => {
       <FormRow>
         <FormColumn>
           <DropdownSelect
-            title={getContent('calculate_mortgage_property_ownership', 'calculate_mortgage_property_ownership')}
+            title={getContent('calculate_mortgage_property_ownership')}
             data={propertyOwnershipOptions}
-            placeholder={t('calculate_mortgage_property_ownership_ph', 'Select...')}
+            placeholder={getContent('calculate_mortgage_property_ownership_ph')}
             value={values.propertyOwnership}
             onChange={(val) => setFieldValue('propertyOwnership', val)}
             onBlur={() => setFieldTouched('propertyOwnership', true)}
@@ -253,14 +253,14 @@ const FirstStepForm: React.FC = () => {
         <FormColumn>
           <SliderInput
             name="period"
-            title={getContent('calculate_mortgage_period', 'calculate_mortgage_period')}
+            title={getContent('calculate_mortgage_period')}
             value={values.period}
             min={4}
             max={30}
             onChange={(val) => setFieldValue('period', val)}
             currencySymbol=""
-            unitsMin={t('calculate_mortgage_period_units_min', 'years')}
-            unitsMax={t('calculate_mortgage_period_units_max', 'years')}
+            unitsMin={getContent('calculate_mortgage_period_units_min')}
+            unitsMax={getContent('calculate_mortgage_period_units_max')}
             error={touched.period ? errors.period : undefined}
           />
           {touched.period && errors.period && <FormError error={errors.period} />}
@@ -268,7 +268,7 @@ const FirstStepForm: React.FC = () => {
         <FormColumn>
           <SliderInput
             name="monthlyPayment"
-            title={t('calculate_mortgage_initial_payment', 'Monthly Payment')}
+            title={getContent('calculate_mortgage_initial_payment')}
             value={values.monthlyPayment}
             min={2654}
             max={values.priceOfEstate || 1}

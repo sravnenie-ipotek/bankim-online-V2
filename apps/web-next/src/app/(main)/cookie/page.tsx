@@ -1,10 +1,10 @@
 'use client'
 
-import { useTranslation } from 'react-i18next'
 import TextPage from '@/components/ui/TextPage/TextPage'
+import { useContentApi } from '@hooks/useContentApi'
 
 export default function Cookie() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('legal')
 
-  return <TextPage title={t('cookie_title')} text={t('cookie_text')} />
+  return <TextPage title={getContent('cookie_title')} text={getContent('cookie_text')} />
 }

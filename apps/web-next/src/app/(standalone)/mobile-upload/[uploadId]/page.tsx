@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams } from 'next/navigation'
+import { useContentApi } from '@hooks/useContentApi'
 
 interface UploadedFile {
   name: string
@@ -11,8 +11,8 @@ interface UploadedFile {
   status: 'uploading' | 'success' | 'error'
 }
 
-export default function MobileDocumentUpload() {
-  const { t } = useTranslation()
+const MobileDocumentUpload: React.FC = () => {
+  const { getContent } = useContentApi('common')
   const params = useParams()
   const uploadId = params.uploadId as string
 
@@ -77,7 +77,7 @@ export default function MobileDocumentUpload() {
   return (
     <div className="min-h-screen bg-base-primary p-4 flex flex-col gap-6">
       <h1 className="text-xl font-medium text-textTheme-primary text-center">
-        {t('document_upload')}
+        {getContent('document_upload')}
       </h1>
 
       {/* Upload area */}
@@ -89,18 +89,18 @@ export default function MobileDocumentUpload() {
         onDragLeave={() => setDragActive(false)}
         onDrop={handleDrop}
       >
-        <p className="text-textTheme-secondary mb-4">{t('drag_drop_files')}</p>
+        <p className="text-textTheme-secondary mb-4">{getContent('drag_drop_files')}</p>
         <label className="inline-block px-6 py-3 bg-accent-primary text-base-primary rounded-lg font-medium cursor-pointer hover:bg-accent-primaryActiveButton transition-colors">
-          {t('choose_files')}
+          {getContent('choose_files')}
           <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onChange={handleInputChange} className="hidden" />
         </label>
-        <p className="text-xs text-textTheme-disabled mt-2">{t('supported_formats')}: PDF, JPG, PNG, DOC</p>
+        <p className="text-xs text-textTheme-disabled mt-2">{getContent('supported_formats')}: PDF, JPG, PNG, DOC</p>
       </div>
 
       {/* Uploaded files list */}
       {files.length > 0 && (
         <div className="flex flex-col gap-2">
-          <h2 className="text-sm font-medium text-textTheme-primary">{t('uploaded_files')}</h2>
+          <h2 className="text-sm font-medium text-textTheme-primary">{getContent('uploaded_files')}</h2>
           {files.map((file, idx) => (
             <div key={idx} className="flex items-center justify-between p-3 bg-base-secondary rounded-lg">
               <div className="flex flex-col">
@@ -115,3 +115,5 @@ export default function MobileDocumentUpload() {
     </div>
   )
 }
+
+export default MobileDocumentUpload

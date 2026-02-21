@@ -50,8 +50,8 @@ const SecondStep: React.FC = () => {
       <Form>
         <Container>
           <VideoPoster
-            title={getContent('video_calculate_mortgage_title', 'video_calculate_mortgage_title')}
-            text={getContent('show_offers', 'show_offers')}
+            title={getContent('video_calculate_mortgage_title')}
+            text={getContent('show_offers')}
             size="small"
           />
           <SecondStepForm />

@@ -1,16 +1,16 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import type { ApprovalItem } from './interfaces/ApprovalItem'
 import type { Invitation } from './interfaces/Invitation'
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 
 type TabType = 'invitations' | 'approvals'
 
 export default function BankWorkerManagement() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
   const [activeTab, setActiveTab] = useState<TabType>('invitations')
   const [invitations, setInvitations] = useState<Invitation[]>([])
   const [approvals, setApprovals] = useState<ApprovalItem[]>([])
@@ -85,31 +85,31 @@ export default function BankWorkerManagement() {
   return (
     <Container>
       <div className="flex flex-col gap-8 w-full my-8">
-        <h1 className="text-3xl font-medium text-textTheme-primary">{t('bank_worker_management')}</h1>
+        <h1 className="text-3xl font-medium text-textTheme-primary">{getContent('bank_worker_management')}</h1>
 
         <div className="flex gap-2">
           <button onClick={() => setActiveTab('invitations')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'invitations' ? 'bg-accent-primary text-base-primary' : 'bg-base-secondary text-textTheme-secondary'}`}>
-            {t('invitations')}
+            {getContent('invitations')}
           </button>
           <button onClick={() => setActiveTab('approvals')} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'approvals' ? 'bg-accent-primary text-base-primary' : 'bg-base-secondary text-textTheme-secondary'}`}>
-            {t('approval_queue')}
+            {getContent('approval_queue')}
           </button>
         </div>
 
         {activeTab === 'invitations' && (
           <div className="flex flex-col gap-6">
             <form onSubmit={handleSendInvitation} className="flex gap-4 items-end flex-wrap">
-              <input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} type="email" placeholder={t('email')} required className={inputClass} />
-              <input value={inviteBank} onChange={(e) => setInviteBank(e.target.value)} placeholder={t('bank_name')} required className={inputClass} />
+              <input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} type="email" placeholder={getContent('email')} required className={inputClass} />
+              <input value={inviteBank} onChange={(e) => setInviteBank(e.target.value)} placeholder={getContent('bank_name')} required className={inputClass} />
               <button type="submit" disabled={sending} className="px-6 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors disabled:opacity-50">
-                {sending ? t('sending') : t('send_invitation')}
+                {sending ? getContent('sending') : getContent('send_invitation')}
               </button>
             </form>
 
             {loading ? (
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-primary mx-auto" />
             ) : invitations.length === 0 ? (
-              <p className="text-textTheme-secondary">{t('no_invitations')}</p>
+              <p className="text-textTheme-secondary">{getContent('no_invitations')}</p>
             ) : (
               <div className="flex flex-col gap-2">
                 {invitations.map((inv) => (
@@ -133,7 +133,7 @@ export default function BankWorkerManagement() {
             {loading ? (
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-primary mx-auto" />
             ) : approvals.length === 0 ? (
-              <p className="text-textTheme-secondary">{t('no_pending_approvals')}</p>
+              <p className="text-textTheme-secondary">{getContent('no_pending_approvals')}</p>
             ) : (
               approvals.map((item) => (
                 <div key={item.id} className="flex justify-between items-center p-4 bg-base-secondary rounded-lg">
@@ -144,10 +144,10 @@ export default function BankWorkerManagement() {
                   {item.status === 'pending' ? (
                     <div className="flex gap-2">
                       <button onClick={() => handleApprove(item.id)} className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 transition-colors">
-                        {t('approve')}
+                        {getContent('approve')}
                       </button>
                       <button onClick={() => handleReject(item.id)} className="px-4 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors">
-                        {t('reject')}
+                        {getContent('reject')}
                       </button>
                     </div>
                   ) : (

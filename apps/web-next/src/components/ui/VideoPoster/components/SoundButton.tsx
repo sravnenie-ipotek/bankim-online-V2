@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Image from 'next/image'
-import IconButton from '@mui/material/IconButton'
 
 interface SoundButtonProps {
   isMuted: boolean
@@ -13,33 +12,22 @@ const SPEAKER_OFF_SRC = '/static/speaker-off.svg'
 const SPEAKER_ON_SRC = '/static/speaker-on.svg'
 
 const SoundButton: React.FC<SoundButtonProps> = ({ isMuted, onClick }) => (
-  <IconButton
+  <button
     type="button"
     onClick={onClick}
     aria-label={isMuted ? 'Unmute' : 'Mute'}
-    disableRipple
-    sx={{
-      width: 73,
-      height: 73,
-      padding: 0,
-      borderRadius: 0,
-      border: 'none',
-      outline: 'none',
-      '&:hover': { backgroundColor: 'transparent', opacity: 0.9 },
-      '&:focus': { outline: 'none' },
-      '&:focus-visible': { outline: 'none' },
-      '&.Mui-focusVisible': { outline: 'none' },
-    }}
+    className="w-10 h-10 sm:w-[73px] sm:h-[73px] p-0 rounded-none border-none outline-none bg-transparent hover:opacity-90 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066cc] shrink-0"
   >
     <Image
       src={isMuted ? SPEAKER_OFF_SRC : SPEAKER_ON_SRC}
       alt=""
       width={73}
       height={73}
+      className="w-full h-full object-contain"
       style={{ display: 'block', transform: 'rotate(180deg)' }}
       aria-hidden
     />
-  </IconButton>
+  </button>
 )
 
 export default SoundButton

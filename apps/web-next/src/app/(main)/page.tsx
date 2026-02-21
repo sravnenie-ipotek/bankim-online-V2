@@ -16,9 +16,9 @@ export default function Home() {
     <>
       <section className="w-full" aria-label="Video">
         <VideoPoster
-          title={getContent('title_compare', 'title_compare')}
-          subtitle={getContent('compare_in_5minutes', 'compare_in_5minutes')}
-          text={getContent('show_offers', 'show_offers')}
+          title={getContent('title_compare')}
+          subtitle={getContent('compare_in_5minutes')}
+          text={getContent('show_offers')}
         />
       </section>
       <div className="w-full flex flex-col gap-[56px]">

@@ -1,20 +1,12 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams, useRouter } from 'next/navigation'
-
-interface StatusData {
-  id: string
-  status: string
-  name: string
-  bank: string
-  nextSteps?: string[]
-  message?: string
-}
+import { useContentApi } from '@hooks/useContentApi'
+import type { StatusData } from '../interfaces/StatusData'
 
 export default function BankPartnerStatus() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
   const params = useParams()
   const router = useRouter()
   const id = params.id as string
@@ -53,21 +45,21 @@ export default function BankPartnerStatus() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[500px] p-8 bg-base-secondary rounded-lg">
         <h1 className="text-2xl font-medium text-textTheme-primary text-center mb-6">
-          {t('registration_status')}
+          {getContent('registration_status')}
         </h1>
 
         {statusData ? (
           <div className="flex flex-col gap-6">
             <div className="flex justify-between items-center">
-              <span className="text-textTheme-secondary">{t('status')}</span>
+              <span className="text-textTheme-secondary">{getContent('status')}</span>
               <span className={`px-3 py-1 rounded text-sm font-medium ${statusColors[statusData.status] || 'bg-base-base800 text-textTheme-secondary'}`}>
                 {statusData.status}
               </span>
             </div>
 
             <div className="flex flex-col gap-2">
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{t('name')}</span><span className="text-textTheme-primary">{statusData.name}</span></div>
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{t('bank')}</span><span className="text-textTheme-primary">{statusData.bank}</span></div>
+              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('name')}</span><span className="text-textTheme-primary">{statusData.name}</span></div>
+              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('bank')}</span><span className="text-textTheme-primary">{statusData.bank}</span></div>
             </div>
 
             {statusData.message && (
@@ -79,12 +71,12 @@ export default function BankPartnerStatus() {
                 onClick={() => router.push('/personal-cabinet')}
                 className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
               >
-                {t('go_to_personal_cabinet')}
+                {getContent('go_to_personal_cabinet')}
               </button>
             )}
           </div>
         ) : (
-          <p className="text-textTheme-secondary text-center">{t('status_not_found')}</p>
+          <p className="text-textTheme-secondary text-center">{getContent('status_not_found')}</p>
         )}
       </div>
     </div>

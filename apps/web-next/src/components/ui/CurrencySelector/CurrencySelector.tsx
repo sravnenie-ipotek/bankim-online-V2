@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useAppDispatch, useAppSelector } from '@/hooks/store'
+import { useContentApi } from '@hooks/useContentApi'
 import { setCurrency } from '@/store/slices/currencySlice'
 import useOutsideClick from '@/hooks/useOutsideClick'
 import CaretDownIcon from '@/components/icons/CaretDownIcon'
@@ -18,7 +18,7 @@ const CURRENCY_OPTIONS: CurrencyOption[] = [
 
 const CurrencySelector: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const dispatch = useAppDispatch()
   const currencyState = useAppSelector((state) => state.currency)
   const currency = currencyState?.currency || 'ILS'
@@ -48,7 +48,7 @@ const CurrencySelector: React.FC = () => {
           }
         }}
       >
-        <span>{t(selectedOption.translationKey)}</span>
+        <span>{getContent(selectedOption.translationKey)}</span>
         {isOpen ? (
           <CaretUpIcon className="shrink-0 w-4 h-4" />
         ) : (
@@ -75,7 +75,7 @@ const CurrencySelector: React.FC = () => {
                 }
               }}
             >
-              <span>{t(item.translationKey)}</span>
+              <span>{getContent(item.translationKey)}</span>
               {currency === item.value && <CheckIcon size={16} />}
             </div>
           ))}

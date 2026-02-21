@@ -2,8 +2,8 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
-import { useWindowResize } from '@/hooks/useWindowResize'
+import { useWindowResize } from '@hooks/useWindowResize'
+import { useContentApi } from '@hooks/useContentApi'
 import FooterAccordion from './FooterAccordion'
 
 const DOCUMENT_LINKS = [
@@ -16,19 +16,19 @@ const DOCUMENT_LINKS = [
 ] as const
 
 const Documents: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const { width } = useWindowResize()
 
   if (width > 1024) {
     return (
       <div className="flex flex-col">
-        <div className="text-[1rem] font-medium leading-normal text-textTheme-primary mb-6 text-left">
-          {t('footer_legal')}
+        <div className="font-medium leading-normal text-textTheme-primary mb-6 text-left text-[clamp(0.9rem,0.9rem+0.2vw,1rem)]">
+          {getContent('footer_legal')}
         </div>
-        <div className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary gap-[0.8rem] flex flex-col [&>a]:cursor-pointer [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:underline [&>a:hover]:text-textTheme-primary">
+        <div className="font-normal leading-[140%] text-textTheme-secondary gap-[0.8rem] flex flex-col text-[clamp(0.8125rem,0.85rem+0.2vw,0.875rem)] [&>a]:cursor-pointer [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:underline [&>a:hover]:text-textTheme-primary">
           {DOCUMENT_LINKS.map((link) => (
             <Link key={link.key} href={link.href} className="cursor-pointer hover:underline">
-              {t(link.key)}
+              {getContent(link.key)}
             </Link>
           ))}
         </div>
@@ -37,10 +37,10 @@ const Documents: React.FC = () => {
   }
 
   return (
-    <FooterAccordion title={t('footer_legal')}>
+    <FooterAccordion title={getContent('footer_legal')}>
       {DOCUMENT_LINKS.map((link) => (
         <Link key={link.key} href={link.href}>
-          {t(link.key)}
+          {getContent(link.key)}
         </Link>
       ))}
     </FooterAccordion>

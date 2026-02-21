@@ -1,13 +1,12 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import { useToggle } from '@/hooks/useToggle'
 import MobileMenuHeader from './MobileMenuHeader'
 import NavigationList from './NavigationList'
 import NavigationSubMenu from './NavigationSubMenu'
 import MobileLanguageSelector from './MobileLanguageSelector'
-import MobileCurrencySelector from './MobileCurrencySelector'
 import {
   useMenuItems,
   useBusinessMenuItems,
@@ -21,7 +20,7 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const menuItems = useMenuItems()
   const businessMenuItems = useBusinessMenuItems()
   const subMenuItems = useSubMenuItems()
@@ -42,29 +41,26 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
 
   return (
     <nav
-      className={`fixed top-0 h-full w-[85vw] max-w-[400px] bg-base-primary z-[10002] transition-all duration-300 ease-in-out overflow-y-auto
+      className={`fixed top-0 h-full w-full bg-base-primary z-[10002] transition-all duration-300 ease-in-out overflow-y-auto
         ${isOpen ? 'ltr:left-0 rtl:right-0' : 'ltr:-left-full rtl:-right-full rtl:left-auto'}
       `}
     >
       <MobileMenuHeader onClose={handleClose} />
 
-      <div className="px-6 py-4">
+      <div className="px-5 py-4 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6 text-left rtl:text-right">
         {/* Language selector with flags */}
         <MobileLanguageSelector />
-
-        {/* Currency selector */}
-        <MobileCurrencySelector />
 
         <div className="w-full border-t border-[#333535] my-4" />
 
         <NavigationList
-          title={t('sidebar_company', 'Company')}
+          title={getContent('sidebar_company')}
           items={menuItems}
           toggle={toggleSubMenu}
           onClose={handleClose}
         />
         <NavigationList
-          title={t('sidebar_business', 'Business')}
+          title={getContent('sidebar_business')}
           items={businessMenuItems}
           toggle={toggleBusinessSubMenu}
           onClose={handleClose}
@@ -72,7 +68,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
       </div>
 
       {/* Social links */}
-      <div className="px-6 py-4 flex gap-4 border-t border-base-stroke mt-4">
+      <div className="px-5 py-4 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6 flex gap-4 justify-start rtl:justify-end border-t border-base-stroke mt-4">
         {['Instagram', 'YouTube', 'Facebook', 'Telegram'].map((name) => (
           <a
             key={name}

@@ -1,29 +1,37 @@
 'use client'
 
 import React from 'react'
+import { useContentApi } from '@hooks/useContentApi'
+import SocialItem from './SocialItem'
 
 const SOCIAL_ITEMS = [
-  { href: 'https://www.instagram.com/bankimonline', icon: '/static/instagram.svg', label: 'Instagram' },
-  { href: 'https://www.youtube.com/@bankimonline', icon: '/static/youtube.svg', label: 'YouTube' },
-  { href: 'https://www.facebook.com/bankimonline', icon: '/static/facebook.svg', label: 'Facebook' },
-  { href: 'https://twitter.com/bankimonline', icon: '/static/twitter.svg', label: 'Twitter' },
+  { href: 'https://www.instagram.com/bankimonline', icon: '/static/instagram.svg', contentKey: 'social_instagram' },
+  { href: 'https://www.youtube.com/@bankimonline', icon: '/static/youtube.svg', contentKey: 'social_youtube' },
+  { href: 'https://www.facebook.com/bankimonline', icon: '/static/facebook.svg', contentKey: 'social_facebook' },
+  { href: 'https://twitter.com/bankimonline', icon: '/static/twitter.svg', contentKey: 'social_twitter' },
 ] as const
 
+/**
+ * Social bar: 23px visual width (each 113×23 item rotated 90°).
+ * Stacked vertically. LTR = left of menu, RTL = right of menu (parent controls).
+ */
 const SocialMedia: React.FC = () => {
+  const { getContent } = useContentApi('global_components')
+
   return (
-    <div className="absolute bottom-0 ltr:left-0 rtl:right-0 flex flex-col gap-6 p-4">
+    <nav
+      aria-label={getContent('footer_social_follow')}
+      className="flex flex-col items-center w-[30px] h-full pt-[calc(47.1px*(100vw/1440))] xl:pt-[47.1px]"
+    >
       {SOCIAL_ITEMS.map((item) => (
-        <a
-          key={item.label}
+        <SocialItem
+          key={item.contentKey}
           href={item.href}
-          target="_blank"
-          rel="noreferrer"
-          className="opacity-50 hover:opacity-100 transition-opacity"
-        >
-          <img alt={item.label} src={item.icon} width={20} height={20} />
-        </a>
+          icon={item.icon}
+          label={getContent(item.contentKey)}
+        />
       ))}
-    </div>
+    </nav>
   )
 }
 

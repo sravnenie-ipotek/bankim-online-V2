@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams, useRouter } from 'next/navigation'
+import { useContentApi } from '@hooks/useContentApi'
 
 interface StatusData {
   id: string
@@ -16,7 +16,7 @@ interface StatusData {
 }
 
 export default function BankWorkerStatus() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
   const params = useParams()
   const router = useRouter()
   const id = params.id as string
@@ -55,27 +55,27 @@ export default function BankWorkerStatus() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[500px] p-8 bg-base-secondary rounded-lg">
         <h1 className="text-2xl font-medium text-textTheme-primary text-center mb-6">
-          {t('registration_status')}
+          {getContent('registration_status')}
         </h1>
 
         {statusData ? (
           <div className="flex flex-col gap-6">
             <div className="flex justify-between items-center">
-              <span className="text-textTheme-secondary">{t('status')}</span>
+              <span className="text-textTheme-secondary">{getContent('status')}</span>
               <span className={`px-3 py-1 rounded text-sm font-medium ${statusColors[statusData.status] || 'bg-base-base800 text-textTheme-secondary'}`}>
                 {statusData.status}
               </span>
             </div>
 
             <div className="flex flex-col gap-2 text-sm">
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{t('name')}</span><span className="text-textTheme-primary">{statusData.name}</span></div>
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{t('bank')}</span><span className="text-textTheme-primary">{statusData.bank}</span></div>
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{t('position')}</span><span className="text-textTheme-primary">{statusData.position}</span></div>
+              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('name')}</span><span className="text-textTheme-primary">{statusData.name}</span></div>
+              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('bank')}</span><span className="text-textTheme-primary">{statusData.bank}</span></div>
+              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('position')}</span><span className="text-textTheme-primary">{statusData.position}</span></div>
             </div>
 
             {statusData.timeline && statusData.timeline.length > 0 && (
               <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-medium text-textTheme-primary">{t('timeline')}</h3>
+                <h3 className="text-sm font-medium text-textTheme-primary">{getContent('timeline')}</h3>
                 {statusData.timeline.map((item, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
                     <div className="w-2 h-2 rounded-full bg-accent-primary mt-1.5 flex-shrink-0" />
@@ -97,12 +97,12 @@ export default function BankWorkerStatus() {
                 onClick={() => router.push('/personal-cabinet')}
                 className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
               >
-                {t('go_to_personal_cabinet')}
+                {getContent('go_to_personal_cabinet')}
               </button>
             )}
           </div>
         ) : (
-          <p className="text-textTheme-secondary text-center">{t('status_not_found')}</p>
+          <p className="text-textTheme-secondary text-center">{getContent('status_not_found')}</p>
         )}
       </div>
     </div>

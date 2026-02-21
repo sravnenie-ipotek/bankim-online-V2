@@ -60,18 +60,16 @@ const LayoutShell: React.FC<LayoutShellProps> = ({ children, footer }) => {
 
   return (
     <>
-      <Header isMobile={!isDesktop} />
-
-      {/* Desktop sidebar overlay */}
-      {isOpen && (
+      {/* Desktop sidebar overlay: always in DOM when desktop so it can fade */}
+      {isDesktop && (
         <div
           onClick={() => {
             toggleOpen()
             setSubMenu(false)
             setBusinessSubMenu(false)
           }}
-          className="fixed inset-0 w-screen h-screen bg-black/75 transition-all duration-300 ease-in-out backdrop-blur-[2px] z-[9998]"
-          aria-hidden="true"
+          className={`fixed inset-0 w-screen h-screen bg-black/75 backdrop-blur-[2px] z-[9998] transition-opacity duration-300 ease-in-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          aria-hidden={!isOpen}
         />
       )}
 
@@ -79,8 +77,7 @@ const LayoutShell: React.FC<LayoutShellProps> = ({ children, footer }) => {
       {!isDesktop && isOpenMobileMenu && (
         <>
           <div
-            className="fixed inset-0 w-full h-full min-h-screen min-h-[100dvh] bg-black/60 z-[10001]"
-            style={{ width: '100vw' }}
+            className="fixed inset-0 w-screen h-full min-h-screen min-h-[100dvh] bg-black/60 z-[10001]"
             onClick={toggleMobileMenu}
             aria-hidden="true"
             role="presentation"
@@ -105,11 +102,29 @@ const LayoutShell: React.FC<LayoutShellProps> = ({ children, footer }) => {
         </div>
       )}
 
-      <main className="min-h-screen w-full ps-[153px] pe-[153px]">
-        <div className="w-full max-w-[1132px] min-h-[1154px] flex flex-col gap-[2px] mx-auto">
-          {children}
+      {/* Header: mobile = 20px black each side + 350px content; SD/MD = same 20px black, content fills; desktop = fluid */}
+      <header className="w-full border-b border-[#333535] min-h-[94px] flex items-center">
+        <div className="w-full max-[1240px]:px-[var(--mobile-content-gap)] min-[1241px]:ps-[46px] min-[1241px]:pe-6">
+          <div className="layout-content-fluid w-full min-w-0 max-w-[var(--content-width-fluid)] mx-[var(--content-margin-fluid)] max-[767px]:w-[var(--mobile-content-width-fluid)] max-[767px]:max-w-full max-[767px]:mx-auto min-[768px]:max-[1240px]:w-full min-[768px]:max-[1240px]:max-w-full min-[768px]:max-[1240px]:mx-0">
+            <Header
+              showBurger={!isDesktop}
+              onBurgerClick={toggleMobileMenu}
+              isMobileMenuOpen={isOpenMobileMenu}
+            />
+          </div>
         </div>
-      </main>
+      </header>
+
+      {/* Mobile = 20px black each side + 350px content; SD/MD = same 20px black, content fills; desktop = fluid */}
+      <div className="w-full max-w-full min-w-0 max-[1240px]:px-[var(--mobile-content-gap)] min-[1241px]:ps-[46px] min-[1241px]:pe-6">
+        <div className="layout-content-fluid w-full min-w-0 max-w-[var(--content-width-fluid)] mx-[var(--content-margin-fluid)] max-[767px]:px-0 max-[767px]:pt-[var(--mobile-content-top)] max-[767px]:w-[var(--mobile-content-width-fluid)] max-[767px]:max-w-full max-[767px]:mx-auto min-[768px]:max-[1240px]:w-full min-[768px]:max-[1240px]:max-w-full">
+          <div className="max-[767px]:w-[var(--mobile-content-width-fluid)] max-[767px]:max-w-full max-[767px]:mx-auto min-[768px]:contents">
+            <main className="w-full min-h-screen flex flex-col gap-[2px]">
+              {children}
+            </main>
+          </div>
+        </div>
+      </div>
 
       {footer}
 

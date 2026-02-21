@@ -1,17 +1,17 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 import type { PersonalCabinetSectionProps } from './interfaces/PersonalCabinetSectionProps'
 
 const PersonalCabinetSection: React.FC<PersonalCabinetSectionProps> = ({
   titleKey,
   descriptionKey,
 }) => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
 
   return (
     <Container>
@@ -21,18 +21,18 @@ const PersonalCabinetSection: React.FC<PersonalCabinetSectionProps> = ({
             href="/personal-cabinet"
             className="text-accent-primary hover:underline"
           >
-            {t('personal_cabinet_title')}
+            {getContent('personal_cabinet_title')}
           </Link>
           <span className="text-textTheme-secondary">/</span>
-          <span className="text-textTheme-primary">{t(titleKey)}</span>
+          <span className="text-textTheme-primary">{getContent(titleKey)}</span>
         </div>
 
         <h1 className="text-3xl font-medium text-textTheme-primary">
-          {t(titleKey)}
+          {getContent(titleKey)}
         </h1>
 
         <div className="p-8 bg-base-secondary rounded-lg">
-          <p className="text-textTheme-secondary">{t(descriptionKey)}</p>
+          <p className="text-textTheme-secondary">{getContent(descriptionKey)}</p>
         </div>
       </div>
     </Container>

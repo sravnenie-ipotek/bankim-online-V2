@@ -5,22 +5,9 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 import { trackClick } from '@/helpers/analytics'
-
-interface VacancyDetail {
-  id: string
-  title: string
-  category: string
-  employment_type: string
-  salary_from?: number
-  salary_to?: number
-  location: string
-  description: string
-  responsibilities?: string[]
-  requirements?: string[]
-  nice_to_have?: string[]
-  benefits?: string[]
-}
+import type { VacancyDetail } from '../interfaces/VacancyDetail'
 
 const EMPLOYMENT_LABELS: Record<string, string> = {
   fulltime: 'vacancy_employment_fulltime',
@@ -30,7 +17,8 @@ const EMPLOYMENT_LABELS: Record<string, string> = {
 }
 
 export default function VacancyDetailPage() {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
+  const { getContent } = useContentApi('vacancies')
   const params = useParams()
   const id = params.id as string
 
@@ -107,13 +95,13 @@ export default function VacancyDetailPage() {
     return (
       <Container>
         <div className="flex flex-col items-center gap-4 py-16">
-          <h2 className="text-xl text-textTheme-primary">{t('vacancy_not_found')}</h2>
-          <p className="text-textTheme-secondary">{t('vacancy_not_found_description')}</p>
+          <h2 className="text-xl text-textTheme-primary">{getContent('vacancy_not_found')}</h2>
+          <p className="text-textTheme-secondary">{getContent('vacancy_not_found_description')}</p>
           <Link
             href="/vacancies"
             className="px-4 py-2 bg-accent-primary text-base-primary rounded-lg hover:bg-accent-primaryActiveButton transition-colors"
           >
-            {t('back_to_vacancies')}
+            {getContent('vacancies.backToVacancies')}
           </Link>
         </div>
       </Container>
@@ -126,11 +114,11 @@ export default function VacancyDetailPage() {
         {/* Breadcrumbs */}
         <nav className="flex gap-2 text-sm text-textTheme-secondary">
           <Link href="/" className="hover:text-accent-primary transition-colors">
-            {t('navigation.home')}
+            {getContent('navigation.home')}
           </Link>
           <span>/</span>
           <Link href="/vacancies" className="hover:text-accent-primary transition-colors">
-            {t('vacancies.title')}
+            {getContent('vacancies.title')}
           </Link>
           <span>/</span>
           <span className="text-textTheme-primary">{vacancy.title}</span>
@@ -141,10 +129,10 @@ export default function VacancyDetailPage() {
           <h1 className="text-4xl font-medium text-textTheme-primary sm:text-2xl">{vacancy.title}</h1>
           <div className="flex gap-3 flex-wrap">
             <span className="px-3 py-1 text-sm rounded bg-base-secondary text-textTheme-secondary">
-              {t(`vacancies.categories.${vacancy.category}`)}
+              {getContent(`vacancies.categories.${vacancy.category}`)}
             </span>
             <span className="px-3 py-1 text-sm rounded bg-base-secondary text-textTheme-secondary">
-              {t(EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type)}
+              {getContent(EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type)}
             </span>
             {vacancy.location && (
               <span className="px-3 py-1 text-sm rounded bg-base-secondary text-textTheme-secondary flex items-center gap-1">
@@ -154,7 +142,7 @@ export default function VacancyDetailPage() {
           </div>
           {vacancy.salary_from && (
             <span className="text-accent-primary text-lg font-medium">
-              {t('vacancy_salary_from')} ₪{vacancy.salary_from.toLocaleString()}
+              {getContent('vacancy_salary_from')} ₪{vacancy.salary_from.toLocaleString()}
               {vacancy.salary_to ? ` - ₪${vacancy.salary_to.toLocaleString()}` : '+'}
             </span>
           )}
@@ -163,13 +151,13 @@ export default function VacancyDetailPage() {
         {/* Description */}
         <div className="flex flex-col gap-6">
           <div>
-            <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{t('vacancyDetail.generalInfo')}</h2>
+            <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{getContent('vacancyDetail.generalInfo')}</h2>
             <p className="text-textTheme-secondary leading-relaxed whitespace-pre-line">{vacancy.description}</p>
           </div>
 
           {vacancy.responsibilities && vacancy.responsibilities.length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{t('vacancyDetail.responsibilities')}</h2>
+              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{getContent('vacancyDetail.responsibilities')}</h2>
               <ul className="list-disc list-inside text-textTheme-secondary space-y-1">
                 {vacancy.responsibilities.map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -180,7 +168,7 @@ export default function VacancyDetailPage() {
 
           {vacancy.requirements && vacancy.requirements.length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{t('vacancyDetail.requirements')}</h2>
+              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{getContent('vacancyDetail.requirements')}</h2>
               <ul className="list-disc list-inside text-textTheme-secondary space-y-1">
                 {vacancy.requirements.map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -191,7 +179,7 @@ export default function VacancyDetailPage() {
 
           {vacancy.nice_to_have && vacancy.nice_to_have.length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{t('vacancyDetail.niceToHave')}</h2>
+              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{getContent('vacancyDetail.niceToHave')}</h2>
               <ul className="list-disc list-inside text-textTheme-secondary space-y-1">
                 {vacancy.nice_to_have.map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -202,7 +190,7 @@ export default function VacancyDetailPage() {
 
           {vacancy.benefits && vacancy.benefits.length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{t('vacancyDetail.benefits')}</h2>
+              <h2 className="text-xl font-semibold text-textTheme-primary mb-3">{getContent('vacancyDetail.benefits')}</h2>
               <ul className="list-disc list-inside text-textTheme-secondary space-y-1">
                 {vacancy.benefits.map((item, idx) => (
                   <li key={idx}>{item}</li>
@@ -216,23 +204,23 @@ export default function VacancyDetailPage() {
         {submitted ? (
           <div className="p-8 bg-base-secondary rounded-lg text-center">
             <h3 className="text-xl font-semibold text-green-400 mb-2">
-              {t('vacancyDetail.applicationForm.success')}
+              {getContent('vacancyDetail.applicationForm.success')}
             </h3>
             <p className="text-textTheme-secondary">
-              {t('vacancyDetail.applicationForm.successDescription')}
+              {getContent('vacancyDetail.applicationForm.successMessage')}
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 p-6 bg-base-secondary rounded-lg">
             <h3 className="text-xl font-semibold text-textTheme-primary">
-              {t('vacancyDetail.applicationForm.title')}
+              {getContent('vacancyDetail.applicationForm.title')}
             </h3>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              placeholder={t('vacancyDetail.applicationForm.namePlaceholder')}
+              placeholder={getContent('vacancyDetail.applicationForm.fullNamePlaceholder')}
               required
               className="px-4 py-3 bg-base-inputs rounded-lg text-textTheme-primary placeholder-textTheme-disabled outline-none focus:ring-2 focus:ring-accent-primary"
             />
@@ -241,7 +229,7 @@ export default function VacancyDetailPage() {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder={t('vacancyDetail.applicationForm.emailPlaceholder')}
+              placeholder={getContent('vacancyDetail.applicationForm.emailPlaceholder')}
               required
               className="px-4 py-3 bg-base-inputs rounded-lg text-textTheme-primary placeholder-textTheme-disabled outline-none focus:ring-2 focus:ring-accent-primary"
             />
@@ -250,20 +238,20 @@ export default function VacancyDetailPage() {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              placeholder={t('vacancyDetail.applicationForm.phonePlaceholder')}
+              placeholder={getContent('vacancyDetail.applicationForm.phonePlaceholder')}
               className="px-4 py-3 bg-base-inputs rounded-lg text-textTheme-primary placeholder-textTheme-disabled outline-none focus:ring-2 focus:ring-accent-primary"
             />
             <textarea
               name="coverLetter"
               value={formData.coverLetter}
               onChange={handleInputChange}
-              placeholder={t('vacancyDetail.applicationForm.coverLetterPlaceholder')}
+              placeholder={getContent('vacancyDetail.applicationForm.coverLetterPlaceholder')}
               rows={4}
               className="px-4 py-3 bg-base-inputs rounded-lg text-textTheme-primary placeholder-textTheme-disabled outline-none focus:ring-2 focus:ring-accent-primary resize-none"
             />
             <div className="flex flex-col gap-2">
               <label className="text-sm text-textTheme-secondary">
-                {t('vacancyDetail.applicationForm.resumeLabel')}
+                {getContent('vacancyDetail.applicationForm.resume')}
               </label>
               <input
                 type="file"
@@ -277,7 +265,7 @@ export default function VacancyDetailPage() {
               disabled={submitting}
               className="px-6 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {submitting ? t('loading') : t('vacancyDetail.applicationForm.submitButton')}
+              {submitting ? getContent('vacancyDetail.applicationForm.submitting') : getContent('vacancyDetail.applicationForm.submitApplication')}
             </button>
           </form>
         )}

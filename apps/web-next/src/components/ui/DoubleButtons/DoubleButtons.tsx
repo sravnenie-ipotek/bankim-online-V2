@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { useFormikContext } from 'formik'
-import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
+import { useContentApi } from '@hooks/useContentApi'
 
 const DoubleButtons: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const router = useRouter()
   const { isValid, handleSubmit, values, setFieldTouched } = useFormikContext<Record<string, unknown>>()
 
@@ -15,7 +15,6 @@ const DoubleButtons: React.FC = () => {
   }
 
   const handleNext = () => {
-    // Touch all fields to trigger validation display
     Object.keys(values).forEach((fieldName) => {
       setFieldTouched(fieldName, true, false)
     })
@@ -33,7 +32,7 @@ const DoubleButtons: React.FC = () => {
           onClick={handleBack}
           className="h-[3.5rem] px-8 rounded border border-base-secondaryDefaultButton bg-transparent text-textTheme-primary text-[1rem] font-semibold cursor-pointer transition-colors hover:bg-base-secondaryHoveredButton"
         >
-          {t('back')}
+          {getContent('back')}
         </button>
         <button
           type="button"
@@ -44,7 +43,7 @@ const DoubleButtons: React.FC = () => {
             cursor: isValid ? 'pointer' : 'not-allowed',
           }}
         >
-          {t('button_next')}
+          {getContent('button_next')}
         </button>
       </div>
     </div>

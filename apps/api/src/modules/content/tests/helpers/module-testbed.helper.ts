@@ -1,6 +1,8 @@
 import { Provider } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { CacheConfig } from '../../../../config/cache.config.js';
 import { ContentService } from '../../content.service';
 import { ContentItemEntity } from '../../../../entities/content-item.entity';
 import { ContentTranslationEntity } from '../../../../entities/content-translation.entity';
@@ -39,8 +41,9 @@ export class ContentModuleTestbed {
       cache: {
         get: jest.fn().mockResolvedValue(undefined),
         set: jest.fn().mockResolvedValue(undefined),
-        stores: [{ reset: jest.fn().mockResolvedValue(undefined) }],
+        stores: [{ clear: jest.fn().mockResolvedValue(undefined) }],
       },
+      cacheConfig: new CacheConfig(),
     };
   }
 
@@ -67,6 +70,11 @@ export class ContentModuleTestbed {
         useValue: mocks.languageRepo,
       },
       { provide: CACHE_MANAGER, useValue: mocks.cache },
+      {
+        provide: ConfigService,
+        useValue: { get: jest.fn() },
+      },
+      { provide: CacheConfig, useValue: mocks.cacheConfig },
     ];
   }
 }

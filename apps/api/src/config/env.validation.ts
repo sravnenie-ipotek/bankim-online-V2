@@ -43,6 +43,22 @@ export class EnvironmentVariables {
   @IsString()
   @IsOptional()
   ENABLE_MAINTENANCE_ROUTES?: string;
+
+  @IsString()
+  @IsOptional()
+  REDIS_HOST?: string;
+
+  @IsNumber()
+  @IsOptional()
+  REDIS_PORT?: number;
+
+  @IsString()
+  @IsOptional()
+  REDIS_PASSWORD?: string;
+
+  @IsNumber()
+  @IsOptional()
+  REDIS_TTL_CONTENT?: number;
 }
 
 export function validateEnv(config: Record<string, unknown>) {

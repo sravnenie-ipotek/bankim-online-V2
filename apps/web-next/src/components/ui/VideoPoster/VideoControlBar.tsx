@@ -6,6 +6,7 @@ import Slider from '@mui/material/Slider'
 import type { VideoControlBarProps } from './interfaces/VideoControlBarProps'
 import type { VideoControlBarItemKey } from './types/VideoControlBarItemKey'
 import { DEFAULT_CONTROL_ORDER } from './types/VideoControlBarItemKey'
+import { getIconButtonSx } from './styles/iconButtonSx'
 import FullscreenEnterIcon from './components/FullscreenEnterIcon'
 import FullscreenExitIcon from './components/FullscreenExitIcon'
 
@@ -78,6 +79,7 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
   }
 
   const size = iconSize(compact)
+  const iconButtonSx = getIconButtonSx(compact)
 
   const controlNodes: Record<VideoControlBarItemKey, React.ReactNode> = {
     progress: (
@@ -115,8 +117,7 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
       <IconButton
         size="small"
         onClick={onPlayPause}
-        className="text-white"
-        sx={compact ? { padding: 0.25 } : undefined}
+        sx={iconButtonSx}
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
         {isPlaying ? (
@@ -131,14 +132,14 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
       </IconButton>
     ),
     seekBack: (
-      <IconButton size="small" onClick={onSeekBack} className="text-white" sx={compact ? { padding: 0.25 } : undefined} aria-label="Seek backward">
+      <IconButton size="small" onClick={onSeekBack} sx={iconButtonSx} aria-label="Seek backward">
         <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
           <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" />
         </svg>
       </IconButton>
     ),
     seekForward: (
-      <IconButton size="small" onClick={onSeekForward} className="text-white" sx={compact ? { padding: 0.25 } : undefined} aria-label="Seek forward">
+      <IconButton size="small" onClick={onSeekForward} sx={iconButtonSx} aria-label="Seek forward">
         <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
           <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
         </svg>
@@ -148,8 +149,7 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
       <IconButton
         size="small"
         onClick={onMuteToggle}
-        className="text-white"
-        sx={compact ? { padding: 0.25 } : undefined}
+        sx={iconButtonSx}
         aria-label={isMuted ? 'Unmute' : 'Mute'}
       >
         {isMuted ? (
@@ -164,26 +164,28 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
       </IconButton>
     ),
     volume: (
-      <Slider
-        size="small"
-        value={isMuted ? 0 : volume * 100}
-        onChange={handleVolumeChange}
-        min={0}
-        max={100}
-        className="shrink-0"
-        sx={{
-          width: compact ? 36 : 80,
-          color: 'white',
-          '& .MuiSlider-thumb': { width: compact ? 8 : 12, height: compact ? 8 : 12 },
-        }}
-        aria-label="Volume"
-      />
+      <div className={compact ? '' : 'w-14 xs:w-16 sm:w-[72px] md:w-20 lg:w-20 xl:w-24 shrink-0'}>
+        <Slider
+          size="small"
+          value={isMuted ? 0 : volume * 100}
+          onChange={handleVolumeChange}
+          min={0}
+          max={100}
+          className="shrink-0"
+          sx={{
+            width: compact ? 36 : '100%',
+            color: 'white',
+            '& .MuiSlider-thumb': { width: compact ? 8 : 12, height: compact ? 8 : 12 },
+          }}
+          aria-label="Volume"
+        />
+      </div>
     ),
     time: (() => {
       const displayTime =
         isDraggingProgress && duration > 0 ? (dragProgressValue / 100) * duration : currentTime
       return (
-        <span className={`text-white tabular-nums shrink-0 ${compact ? 'text-[10px] ms-2' : 'text-sm ms-3'}`}>
+        <span className={`text-white tabular-nums shrink-0 ${compact ? 'text-[10px] ms-2' : 'ms-2 xs:ms-2 sm:ms-3 md:ms-3 lg:ms-3 xl:ms-4 text-[clamp(0.75rem,0.7rem+0.25vw,1rem)]'}`}>
           {formatTime(displayTime)} / {formatTime(duration)}
         </span>
       )
@@ -192,8 +194,8 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
       <IconButton
         size="small"
         onClick={onFullscreen}
-        className="text-white shrink-0 inline-flex items-center justify-center"
-        sx={compact ? { padding: 0.25 } : undefined}
+        className="shrink-0 inline-flex items-center justify-center"
+        sx={iconButtonSx}
         aria-label={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
       >
         {isFullscreen ? <FullscreenExitIcon /> : <FullscreenEnterIcon />}
@@ -205,7 +207,7 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
   const otherOrder = order.filter((k) => k !== 'progress')
 
   const progressRow = hasProgress && (
-    <div className={`w-full ${compact ? 'px-0.5 pt-0.5 min-h-4' : 'pt-0.5 min-h-4'}`}>
+    <div className={`w-full ${compact ? 'px-0.5 pt-0.5 min-h-4' : 'pt-0.5 min-h-4 xs:pt-0.5 sm:pt-1 md:min-h-4'}`}>
       {controlNodes.progress}
     </div>
   )
@@ -213,7 +215,7 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
   const controlsRow = otherOrder.length > 0 && (
     <div
       dir="ltr"
-      className={`flex flex-row items-center w-full ${hasProgress ? 'mt-[1px]' : ''} ${compact ? 'gap-1 px-0.5 py-0 min-h-6' : 'gap-2 py-1 min-h-6'} ${
+      className={`flex flex-row flex-nowrap items-center w-full min-w-0 ${hasProgress ? 'mt-[1px]' : ''} ${compact ? 'gap-1 px-0.5 py-0 min-h-6' : 'gap-1.5 py-1 min-h-7 xs:gap-1.5 xs:py-1 xs:min-h-7 sm:gap-2 sm:py-1.5 sm:min-h-8 md:gap-2 md:py-1.5 md:min-h-8 lg:gap-3 lg:min-h-8 xl:gap-3 xl:py-2 xl:min-h-9'} ${
         centerControls ? 'justify-center' : 'justify-start text-left'
       }`}
     >
@@ -229,9 +231,15 @@ const VideoControlBar: React.FC<VideoControlBarProps> = ({
     </div>
   )
 
+  const rootPaddingClass = compact
+    ? 'py-1 px-1.5'
+    : isFullscreen
+      ? 'px-4 py-1 sm:py-1.5 lg:py-2'
+      : 'rounded-b-[0.625rem] px-2 py-1 xs:px-2 xs:py-1 sm:px-3 sm:py-1.5 md:px-3 md:py-1.5 lg:px-4 lg:py-1.5 xl:px-4 xl:py-2'
+
   return (
     <div
-      className={`flex flex-col bg-black/60 ${compact ? 'w-[270px] rounded-lg py-1 px-1.5' : `w-full py-1 ${isFullscreen ? 'px-4' : 'rounded-b-[0.625rem] px-2'}`}`}
+      className={`flex flex-col min-w-0 bg-black/60 ${compact ? 'w-[270px] rounded-lg' : 'w-full'} ${rootPaddingClass}`}
       dir={dir}
     >
       {progressRow}

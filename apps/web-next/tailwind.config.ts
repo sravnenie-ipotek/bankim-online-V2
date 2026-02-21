@@ -16,8 +16,16 @@ const config: import('tailwindcss').Config = {
           secondary: 'hsla(45, 92%, 70%, 1)',
           primaryActiveButton: 'hsla(52, 100%, 50%, 1 )',
           tertiary: 'hsla(46, 93%, 95%, 1)',
+          /** Login button background */
+          loginButton: '#f8E54d',
         },
         base: {
+          /** #161616 - border reference from design */
+          border: '#161616',
+          /** #242529 - sidebar background */
+          sidebarBg: '#242529',
+          /** #333535 - base stroke for borders */
+          stroke: '#333535',
           primary: 'hsla(0, 0%, 9%, 1)',
           base800: 'hsla(228, 9%, 23%, 1)',
           primaryDisabledButton: 'hsl(0, 0%, 18%, 1)',
@@ -27,7 +35,6 @@ const config: import('tailwindcss').Config = {
           secondaryActiveButton: 'hsl(219, 10%, 27%, 1)',
           secondaryDisabledButton: 'hsl(180, 2%, 20%, 1)',
           inputs: 'hsla(220, 10%, 27%, 1)',
-          stroke: 'hsla(220, 10%, 27%, 1)',
           disabled: 'hsla(220, 10%, 27%, 1)',
           primaryIcon: 'hsla(0, 0%, 9%, 1)',
           disabledIcon: 'hsla(0, 0%, 52%, 1)',
@@ -58,11 +65,11 @@ const config: import('tailwindcss').Config = {
         },
       },
       screens: {
-        xs: '390px',
-        sm: '768px',
-        md: '1024px',
-        l: '1280px',
-        xl: '1440px',
+        xs: '375px',   // mobile (small)
+      sm: '768px',   // tablet
+      md: '1024px',  // small desktop / tablet landscape
+      lg: '1440px',  // your Figma desktop frame
+      xl: '1920px',  // large screens (only if you have a 1920 design)
       },
       fontSize: {
         '3xs': '0.75rem',
@@ -76,6 +83,8 @@ const config: import('tailwindcss').Config = {
         '4xl': '2.5rem',
         '5xl': '3.1rem',
         '6xl': '4.8rem',
+        hero: '4rem', /* 64px */
+        'hero-subtitle': '31px',
       },
       fontWeight: {
         hairline: '100',
@@ -91,6 +100,25 @@ const config: import('tailwindcss').Config = {
       fontFamily: {
         ru: ['var(--font-roboto)', 'Roboto', 'sans-serif'],
         he: ['var(--font-arimo)', 'Arimo', 'sans-serif'],
+        inter: ['var(--font-inter)', 'Inter', 'sans-serif'],
+      },
+      maxWidth: {
+        page: '1900px',
+        content: '1440px',
+      },
+      spacing: {
+        fluid: 'clamp(16px, 12vw, 230px)',
+      },
+      width: {
+        'sidebar-closed': '46px',
+        'sidebar-closed-sm': '35px',
+        /** Fluid sidebar: 1240px @ 1440vw → 1550px @ 1900vw. Variable defined in globals.css */
+        'sidebar-fluid': 'var(--sidebar-width-fluid)',
+      },
+      margin: {
+        'center-vw': 'max(0px, calc((100vw - 1440px) / 2))',
+        'center-vw-sidebar': 'max(0px, calc((100vw - 46px - 1440px) / 2))',
+        'center-vw-sidebar-sm': 'max(0px, calc((100vw - 35px - 1440px) / 2))',
       },
     },
   },

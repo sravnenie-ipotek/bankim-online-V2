@@ -3,19 +3,10 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
+import { useContentApi } from '@hooks/useContentApi'
 import Container from '@/components/ui/Container/Container'
 import { trackClick } from '@/helpers/analytics'
-
-interface Vacancy {
-  id: string
-  title: string
-  category: string
-  employment_type: string
-  salary_from?: number
-  salary_to?: number
-  location: string
-  description: string
-}
+import type { Vacancy } from './interfaces/Vacancy'
 
 const CATEGORIES = ['all', 'development', 'marketing', 'support', 'management', 'finance']
 
@@ -26,8 +17,9 @@ const EMPLOYMENT_LABELS: Record<string, string> = {
   temporary: 'vacancy_employment_temporary',
 }
 
-export default function Vacancies() {
-  const { t, i18n } = useTranslation()
+const Vacancies: React.FC = () => {
+  const { i18n } = useTranslation()
+  const { getContent } = useContentApi('vacancies')
   const [vacancies, setVacancies] = useState<Vacancy[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -42,7 +34,8 @@ export default function Vacancies() {
       const response = await fetch(`/api/vacancies?lang=${lang}&active_only=true${categoryParam}`)
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       const data = await response.json()
-      setVacancies(data.vacancies || data || [])
+      const list = Array.isArray(data?.vacancies) ? data.vacancies : Array.isArray(data) ? data : []
+      setVacancies(list)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error')
     } finally {
@@ -55,8 +48,9 @@ export default function Vacancies() {
   }, [selectedCategory, i18n.language])
 
   const filteredVacancies = useMemo(() => {
-    if (selectedCategory === 'all') return vacancies
-    return vacancies.filter((v) => v.category === selectedCategory)
+    const list = Array.isArray(vacancies) ? vacancies : []
+    if (selectedCategory === 'all') return list
+    return list.filter((v) => v.category === selectedCategory)
   }, [vacancies, selectedCategory])
 
   return (
@@ -64,9 +58,9 @@ export default function Vacancies() {
       <div className="flex flex-col gap-8 w-full my-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-medium text-textTheme-primary sm:text-[1.9375rem]">
-            {t('vacancies_title')}
+            {getContent('vacancies_title')}
           </h1>
-          <p className="text-base text-textTheme-secondary">{t('vacancies_subtitle')}</p>
+          <p className="text-base text-textTheme-secondary">{getContent('vacancies_subtitle')}</p>
         </div>
 
         {/* Category Filter */}
@@ -81,7 +75,7 @@ export default function Vacancies() {
                   : 'bg-base-secondary text-textTheme-secondary hover:bg-base-base800'
               }`}
             >
-              {category === 'all' ? t('all') : t(`vacancies_category_${category}`)}
+              {category === 'all' ? getContent('all') : getContent(`vacancies_category_${category}`)}
             </button>
           ))}
         </div>
@@ -95,18 +89,18 @@ export default function Vacancies() {
 
         {error && (
           <div className="flex flex-col items-center gap-4 py-16">
-            <p className="text-red-400">{t('error_loading_vacancies')}</p>
+            <p className="text-red-400">{getContent('error_loading_vacancies')}</p>
             <button
               onClick={fetchVacancies}
               className="px-4 py-2 bg-accent-primary text-base-primary rounded-lg hover:bg-accent-primaryActiveButton transition-colors"
             >
-              {t('retry')}
+              {getContent('retry')}
             </button>
           </div>
         )}
 
         {!loading && !error && filteredVacancies.length === 0 && (
-          <p className="text-textTheme-secondary text-center py-16">{t('vacancies_no_results')}</p>
+          <p className="text-textTheme-secondary text-center py-16">{getContent('vacancies_no_results')}</p>
         )}
 
         {!loading && !error && filteredVacancies.length > 0 && (
@@ -121,15 +115,15 @@ export default function Vacancies() {
                 <h3 className="text-lg font-semibold text-textTheme-primary">{vacancy.title}</h3>
                 <div className="flex gap-2 flex-wrap">
                   <span className="px-2 py-1 text-xs rounded bg-base-base800 text-textTheme-secondary">
-                    {t(`vacancies_category_${vacancy.category}`)}
+                    {getContent(`vacancies_category_${vacancy.category}`)}
                   </span>
                   <span className="px-2 py-1 text-xs rounded bg-base-base800 text-textTheme-secondary">
-                    {t(EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type)}
+                    {getContent(EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type)}
                   </span>
                 </div>
                 {vacancy.salary_from && (
                   <span className="text-accent-primary text-sm">
-                    {t('vacancy_salary_from')} ₪{vacancy.salary_from.toLocaleString()}
+                    {getContent('vacancy_salary_from')} ₪{vacancy.salary_from.toLocaleString()}
                     {vacancy.salary_to ? ` - ₪${vacancy.salary_to.toLocaleString()}` : '+'}
                   </span>
                 )}
@@ -142,3 +136,5 @@ export default function Vacancies() {
     </Container>
   )
 }
+
+export default Vacancies

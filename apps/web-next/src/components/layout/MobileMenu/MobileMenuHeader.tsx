@@ -9,7 +9,7 @@ interface MobileMenuHeaderProps {
 
 const MobileMenuHeader: React.FC<MobileMenuHeaderProps> = ({ onClose }) => {
   return (
-    <div className="flex justify-between items-center p-4">
+    <div className="flex justify-between items-center p-4 px-5 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6">
       <div onClick={onClose}>
         <LogoBox src="/static/primary-logo05-1.svg" alt="BankIM" href="/" />
       </div>

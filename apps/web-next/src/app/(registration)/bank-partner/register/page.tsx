@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
+import { useContentApi } from '@hooks/useContentApi'
 
 export default function BankPartnerRegister() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
   const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
@@ -56,24 +56,24 @@ export default function BankPartnerRegister() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[500px] p-8 bg-base-secondary rounded-lg">
         <h1 className="text-2xl font-medium text-textTheme-primary text-center mb-6">
-          {t('bank_partner_registration')}
+          {getContent('bank_partner_registration')}
         </h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <input name="name" value={formData.name} onChange={handleChange} placeholder={t('full_name')} required className={inputClass} />
-          <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={t('email')} required className={inputClass} />
-          <input name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder={t('phone')} required className={inputClass} />
+          <input name="name" value={formData.name} onChange={handleChange} placeholder={getContent('full_name')} required className={inputClass} />
+          <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={getContent('email')} required className={inputClass} />
+          <input name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder={getContent('phone')} required className={inputClass} />
           <select name="bank" value={formData.bank} onChange={handleChange} required className={inputClass}>
-            <option value="">{t('select_bank')}</option>
+            <option value="">{getContent('select_bank')}</option>
             {banks.map((b) => <option key={b.value} value={b.value}>{b.label}</option>)}
           </select>
-          <input name="position" value={formData.position} onChange={handleChange} placeholder={t('position')} required className={inputClass} />
-          <input name="serviceType" value={formData.serviceType} onChange={handleChange} placeholder={t('service_type')} className={inputClass} />
-          <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder={t('password')} required className={inputClass} />
-          <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} placeholder={t('confirm_password')} required className={inputClass} />
+          <input name="position" value={formData.position} onChange={handleChange} placeholder={getContent('position')} required className={inputClass} />
+          <input name="serviceType" value={formData.serviceType} onChange={handleChange} placeholder={getContent('service_type')} className={inputClass} />
+          <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder={getContent('password')} required className={inputClass} />
+          <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} placeholder={getContent('confirm_password')} required className={inputClass} />
 
           <button type="submit" disabled={submitting} className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors disabled:opacity-50">
-            {submitting ? t('loading') : t('register')}
+            {submitting ? getContent('loading') : getContent('register')}
           </button>
         </form>
       </div>

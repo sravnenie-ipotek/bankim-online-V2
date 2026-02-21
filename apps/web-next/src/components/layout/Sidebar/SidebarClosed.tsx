@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import DesktopMenuList from './DesktopMenuList'
 import SubSidebar from './SubSidebar'
 import SocialMedia from './SocialMedia'
@@ -33,7 +33,7 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
   toggleSubMenu,
   toggleBusinessSubMenu,
 }) => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const menuItems = useMenuItems()
   const businessMenuItems = useBusinessMenuItems()
   const subMenuItems = useSubMenuItems()
@@ -59,74 +59,79 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
 
   return (
     <div
-      className={`w-[550px] h-screen absolute top-0 bg-[#242529] z-[10000] transition-all duration-300 ease-in-out
-        ltr:left-[-515px] ltr:max-md:left-[-550px]
-        rtl:right-[-515px] rtl:max-md:right-[-550px]
-        ${isOpen ? 'ltr:!left-0 rtl:!right-0 shadow-[1.25px_0_1px_rgba(255,255,255,0.1)]' : ''}`}
+      className={`w-[468px] h-screen max-h-[100dvh] absolute top-0 z-[10000] transition-all duration-300 ease-in-out
+        ltr:left-[-422px] rtl:right-[-422px]
+        ${isOpen ? 'ltr:!left-0 rtl:!right-0' : ''}`}
     >
-      {/* Vertical divider: 35px from right (LTR) / left (RTL) */}
-      <div className="w-0.5 h-full bg-white absolute ltr:right-[35px] rtl:left-[35px] top-0" aria-hidden />
-
-      {/* Toggle handle (hidden when submenus are open) */}
-      {!isSubMenusOpen && (
-        <div
-          className={`absolute w-[46px] h-[220px] bg-[#242529] top-1/2 -translate-y-1/2 rounded-[5px] flex items-center cursor-pointer transition-all duration-300 ease-in-out sm:max-md:w-[35px] sm:max-md:h-[180px]
-            ltr:justify-end rtl:justify-start rtl:scale-x-[-1]
-            ${isOpen ? 'translate-x-0 shadow-[1px_0_1px_rgba(255,255,255,0.1)]' : 'ltr:translate-x-[75%] rtl:-translate-x-[75%]'}
-            ltr:right-0 rtl:left-0`}
-          onClick={handleClose}
-        >
-          <button
-            type="button"
-            className="w-[32px] h-[32px] flex items-center justify-center ltr:ml-auto rtl:mr-auto text-white"
-          >
-            {/* Icon: 24×24 inside 32×32 button — base white */}
-            <span
-              className={`relative inline-block w-6 h-6 text-white
-                before:content-[''] before:absolute before:left-0 before:top-0 before:w-0.5 before:h-full before:bg-white
-                after:content-[''] after:absolute after:right-0 after:top-0 after:w-0.5 after:h-full after:bg-white
-                ${isOpen ? '[&>span]:rotate-45 before:invisible before:opacity-0 before:rotate-45 after:-rotate-45 after:right-1.5' : ''}`}
-            >
-              <span className="absolute left-1/2 top-0 w-0.5 h-full bg-white -translate-x-1/2 transition-transform" />
-            </span>
-          </button>
+      <div
+        className={`relative w-full h-full bg-base-sidebarBg border border-base-stroke min-h-0
+          flex flex-col
+          ${isOpen ? 'shadow-[1.25px_0_1px_rgba(255,255,255,0.1)]' : ''}`}
+      >
+        {/* Social bar: absolutely positioned inside sidebar. LTR = left edge, RTL = right edge */}
+        <div className="absolute top-0 h-full w-[30px] ltr:left-0 rtl:right-0 overflow-visible z-10">
+          <SocialMedia />
         </div>
-      )}
 
-      {/* Menu content: start top 108px, left 226px */}
-      <nav className="ltr:ml-[226px] rtl:mr-[226px]">
-        <section className="pt-[108px] flex flex-col justify-center gap-20 w-full sm:max-md:pt-20 sm:max-md:gap-10 max-[480px]:pt-[60px] max-[480px]:gap-[30px]">
-          <DesktopMenuList
-            title={t('sidebar_company', 'Company')}
-            items={menuItems}
-            onFirstItemClick={handleToggleSubMenu}
-            onLinkClick={handleClose}
+        {/* Menu column: full width, with padding to avoid social bar overlap */}
+        <div className="relative flex-1 min-w-0 h-full flex flex-col min-h-0">
+
+          {/* Toggle handle (hidden when submenus are open) */}
+          {!isSubMenusOpen && (
+            <div
+              className={`absolute w-10 h-[220px] bg-base-sidebarBg border border-base-stroke ltr:border-l-0 rtl:border-l-0 top-1/2 -translate-y-1/2 rounded-none flex items-center overflow-hidden cursor-pointer transition-all duration-300 ease-in-out sm:max-md:w-[35px] sm:max-md:h-[180px]
+                ltr:right-0 ltr:translate-x-full justify-center
+                rtl:left-0 rtl:-translate-x-full rtl:scale-x-[-1]
+                ${isOpen ? 'translate-x-1/2 shadow-[1px_0_1px_rgba(255,255,255,0.1)] sm:max-md:translate-x-[30%] rtl:-translate-x-1/2' : ''}`}
+              onClick={handleClose}
+            >
+              <button
+                type="button"
+                className={`w-5 h-5 flex items-center justify-center relative border-0 outline-none p-0 bg-transparent
+                  before:content-[''] before:absolute before:left-0 before:top-0 before:w-0.5 before:h-full before:bg-white
+                  after:content-[''] after:absolute after:right-0 after:top-0 after:w-0.5 after:h-full after:bg-white
+                  ${isOpen ? '[&>span]:rotate-45 before:invisible before:opacity-0 before:rotate-45 after:-rotate-45 after:right-2' : ''}`}
+              >
+                <span className="w-0.5 h-full bg-white transition-transform">{''}</span>
+              </button>
+            </div>
+          )}
+
+          {/* Menu content */}
+          <nav className="flex-1 min-h-0 overflow-auto px-4">
+            <section className="pt-[108px] flex flex-col justify-start gap-10 w-full sm:max-md:pt-20 sm:max-md:gap-8 max-[480px]:pt-[60px] max-[480px]:gap-6">
+              <DesktopMenuList
+                title={getContent('sidebar_company')}
+                items={menuItems}
+                onFirstItemClick={handleToggleSubMenu}
+                onLinkClick={handleClose}
+                isExpanded={isSubMenuOpen}
+              />
+              <DesktopMenuList
+                title={getContent('sidebar_business')}
+                items={businessMenuItems}
+                onFirstItemClick={handleToggleBusinessSubMenu}
+                onLinkClick={handleClose}
+                isExpanded={isBusinessSubMenuOpen}
+              />
+            </section>
+          </nav>
+
+          {/* Sub-sidebars */}
+          <SubSidebar
+            isOpen={isSubMenuOpen}
+            isOpenMainMenu={isOpen}
+            items={subMenuItems}
+            onCloseMainMenu={handleClose}
           />
-          <DesktopMenuList
-            title={t('sidebar_business', 'Business')}
-            items={businessMenuItems}
-            onFirstItemClick={handleToggleBusinessSubMenu}
-            onLinkClick={handleClose}
+          <SubSidebar
+            isOpen={isBusinessSubMenuOpen}
+            isOpenMainMenu={isOpen}
+            items={businessSubMenuItems}
+            onCloseMainMenu={handleClose}
           />
-        </section>
-      </nav>
-
-      {/* Sub-sidebars */}
-      <SubSidebar
-        isOpen={isSubMenuOpen}
-        isOpenMainMenu={isOpen}
-        items={subMenuItems}
-        onCloseMainMenu={handleClose}
-      />
-      <SubSidebar
-        isOpen={isBusinessSubMenuOpen}
-        isOpenMainMenu={isOpen}
-        items={businessSubMenuItems}
-        onCloseMainMenu={handleClose}
-      />
-
-      {/* Social media icons */}
-      <SocialMedia />
+        </div>
+      </div>
     </div>
   )
 }

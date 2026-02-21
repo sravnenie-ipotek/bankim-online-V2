@@ -1,15 +1,15 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams, useRouter } from 'next/navigation'
 import Container from '@/components/ui/Container/Container'
 import ProgressBar from '@/components/ui/ProgressBar/ProgressBar'
+import { useContentApi } from '@hooks/useContentApi'
 
 const TOTAL_STEPS = 4
 
-export default function RefinanceCredit() {
-  const { t } = useTranslation()
+export default function RefinanceCredigetContent() {
+  const { getContent } = useContentApi('common')
   const params = useParams()
   const router = useRouter()
   const step = parseInt(params.stepNumber as string, 10)
@@ -39,54 +39,54 @@ export default function RefinanceCredit() {
     <Container>
       <div className="flex flex-col gap-8 w-full my-8 max-w-[700px] mx-auto">
         <h1 className="text-3xl font-medium text-textTheme-primary">
-          {t('mortgage_credit_why')}
+          {getContent('mortgage_credit_why')}
         </h1>
 
         <ProgressBar
           progress={String(step)}
           data={[
-            t('credit_refinance_step_1'),
-            t('credit_refinance_step_2'),
-            t('credit_refinance_step_3'),
-            t('credit_refinance_step_4'),
+            getContent('credit_refinance_step_1'),
+            getContent('credit_refinance_step_2'),
+            getContent('credit_refinance_step_3'),
+            getContent('credit_refinance_step_4'),
           ]}
         />
 
         <div className="p-8 bg-base-secondary rounded-lg">
           <h2 className="text-xl font-semibold text-textTheme-primary mb-6">
-            {t(`credit_refinance_step_${step}`)}
+            {getContent(`credit_refinance_step_${step}`)}
           </h2>
 
           <div className="flex flex-col gap-4 mb-8">
             {step === 1 && (
               <>
-                <label className="text-sm text-textTheme-secondary">{t('calculate_credit_amount')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('calculate_credit_amount')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
-                <label className="text-sm text-textTheme-secondary">{t('calculate_credit_target')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('calculate_credit_target')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
-                <label className="text-sm text-textTheme-secondary">{t('calculate_credit_prolong')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('calculate_credit_prolong')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
               </>
             )}
             {step === 2 && (
               <>
-                <label className="text-sm text-textTheme-secondary">{t('refinance_step2_name_surname')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('refinance_step2_name_surname')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
-                <label className="text-sm text-textTheme-secondary">{t('calculate_mortgage_birth_date')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('calculate_mortgage_birth_date')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
               </>
             )}
             {step === 3 && (
               <>
-                <label className="text-sm text-textTheme-secondary">{t('calculate_mortgage_main_source')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('calculate_mortgage_main_source')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
-                <label className="text-sm text-textTheme-secondary">{t('calculate_mortgage_monthly_income')}</label>
+                <label className="text-sm text-textTheme-secondary">{getContent('calculate_mortgage_monthly_income')}</label>
                 <div className="h-12 bg-base-inputs rounded-lg" />
               </>
             )}
             {step === 4 && (
               <>
-                <p className="text-textTheme-secondary">{t('calculate_credit_warning')}</p>
+                <p className="text-textTheme-secondary">{getContent('calculate_credit_warning')}</p>
                 <div className="h-12 bg-base-inputs rounded-lg" />
                 <div className="h-12 bg-base-inputs rounded-lg" />
               </>
@@ -96,10 +96,10 @@ export default function RefinanceCredit() {
 
         <div className="flex justify-between">
           <button onClick={handleBack} className="px-6 py-3 bg-base-secondary text-textTheme-primary rounded-lg font-medium hover:bg-base-base800 transition-colors">
-            {t('back')}
+            {getContent('back')}
           </button>
           <button onClick={handleNext} className="px-6 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors">
-            {step === TOTAL_STEPS ? t('common_button_submit') : t('button_next')}
+            {step === TOTAL_STEPS ? getContent('common_button_submit') : getContent('button_next')}
           </button>
         </div>
       </div>

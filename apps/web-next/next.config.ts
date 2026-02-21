@@ -5,26 +5,18 @@ const webSrc = path.resolve(__dirname, '../web/src')
 const nextHooks = path.resolve(__dirname, 'src/hooks')
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
+
   // Allow importing source files from the existing Vite app during migration
   // (still needed for Redux store import in StoreProvider)
   experimental: {
     externalDir: true,
-    optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
 
   // Ignore TS errors from legacy ../web/src imports during migration.
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  // Transpile packages that ship untranspiled code
-  transpilePackages: [
-    '@mui/material',
-    '@mui/system',
-    '@mui/icons-material',
-    '@emotion/react',
-    '@emotion/styled',
-  ],
 
   // Turbopack config (Next.js 16 default bundler)
   turbopack: {

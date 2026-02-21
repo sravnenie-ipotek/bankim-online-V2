@@ -7,4 +7,6 @@ export interface StepCardProps {
   descriptionTablet?: string
   imageSrc?: string
   imageAlt?: string
+  /** When true, card fills container (e.g. inside 1130px host with gap). */
+  fillWidth?: boolean
 }

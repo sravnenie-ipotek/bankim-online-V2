@@ -1,15 +1,13 @@
 'use client'
 
 import React, { useState } from 'react'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import { useAppDispatch, useAppSelector } from '@/hooks/store'
 import { emailLogin, authLoadingSelector } from '@/store/slices/authSlice'
 import type { AppDispatch } from '@/store'
 
 const EmailLoginForm: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const dispatch: AppDispatch = useAppDispatch()
   const isLoading = useAppSelector(authLoadingSelector)
   const [email, setEmail] = useState('')
@@ -22,36 +20,36 @@ const EmailLoginForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <TextField
-        fullWidth
-        label={t('enter_email')}
-        placeholder="email@example.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        type="email"
-        autoFocus
-        margin="normal"
-        dir="ltr"
-      />
-      <TextField
-        fullWidth
-        label={t('enter_password')}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        type="password"
-        margin="normal"
-        dir="ltr"
-      />
-      <Button
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium text-textTheme-primary">{getContent('enter_email')}</span>
+        <input
+          type="email"
+          placeholder="email@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          dir="ltr"
+          autoFocus
+          className="w-full px-3 py-2.5 bg-base-inputs border border-base-secondaryDefaultButton rounded text-textTheme-primary placeholder:text-textTheme-disabled outline-none focus:border-accent-primary"
+        />
+      </label>
+      <label className="flex flex-col gap-1">
+        <span className="text-sm font-medium text-textTheme-primary">{getContent('enter_password')}</span>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          dir="ltr"
+          className="w-full px-3 py-2.5 bg-base-inputs border border-base-secondaryDefaultButton rounded text-textTheme-primary placeholder:text-textTheme-disabled outline-none focus:border-accent-primary"
+        />
+      </label>
+      <button
         type="submit"
-        fullWidth
-        variant="contained"
         disabled={!email.trim() || !password || isLoading}
-        sx={{ mt: 2, py: 1.5 }}
+        className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
-        {isLoading ? t('auth_modal_processing') : t('login')}
-      </Button>
+        {isLoading ? getContent('auth_modal_processing') : getContent('login')}
+      </button>
     </form>
   )
 }

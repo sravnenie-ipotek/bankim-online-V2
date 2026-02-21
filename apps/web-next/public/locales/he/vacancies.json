@@ -1,4 +1,5 @@
 {
+  "navigation": { "home": "בית" },
   "error_loading_vacancies": "שגיאה בטעינת המשרות. אנא נסו שוב מאוחר יותר.",
   "retry": "נסה שוב",
   "vacancies": {

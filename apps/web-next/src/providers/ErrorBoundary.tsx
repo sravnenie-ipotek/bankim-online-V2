@@ -1,9 +1,6 @@
 'use client'
 
 import React, { Component } from 'react'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 
 interface ErrorBoundaryProps {
   children: React.ReactNode
@@ -39,26 +36,21 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): React.ReactNode {
     if (this.state.hasError) {
       return (
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-          gap={2}
-          px={3}
-          textAlign="center"
-        >
-          <Typography variant="h5" component="h1">
+        <div className="flex flex-col justify-center items-center min-h-screen gap-4 px-6 text-center">
+          <h1 className="text-2xl font-medium text-textTheme-primary">
             Something went wrong
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
+          </h1>
+          <p className="text-textTheme-secondary">
             An unexpected error occurred. Please try again.
-          </Typography>
-          <Button variant="contained" onClick={this.handleRetry}>
+          </p>
+          <button
+            type="button"
+            onClick={this.handleRetry}
+            className="px-4 py-2 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
+          >
             Reload page
-          </Button>
-        </Box>
+          </button>
+        </div>
       )
     }
 

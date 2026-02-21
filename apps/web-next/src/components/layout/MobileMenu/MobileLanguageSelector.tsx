@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import IsraelFlagIcon from '@/components/icons/IsraelFlagIcon'
 import RussiaFlagIcon from '@/components/icons/RussiaFlagIcon'
 import USFlagIcon from '@/components/icons/USFlagIcon'
@@ -33,7 +34,8 @@ function persistLanguage(lang: string): void {
 }
 
 const MobileLanguageSelector: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const currentLang = i18n.language || 'he'
 
   const handleLanguageChange = async (newLanguage: string) => {
@@ -47,15 +49,15 @@ const MobileLanguageSelector: React.FC = () => {
   }
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-left rtl:text-right">
       <div className="pb-2 text-[14px] font-semibold text-textTheme-secondary">
-        {t('sel_cntr')}
+        {getContent('sel_cntr')}
       </div>
       <div className="flex flex-col gap-1">
         {LANGUAGE_ITEMS.map((item) => (
           <div
             key={item.value}
-            className="flex items-center justify-between py-2 px-2 rounded-md cursor-pointer hover:bg-base-secondaryHoveredButton transition-colors"
+            className="flex items-center justify-between py-2 px-2 rounded-md cursor-pointer hover:bg-base-secondaryHoveredButton transition-colors rtl:flex-row-reverse"
             onClick={() => handleLanguageChange(item.value)}
             role="option"
             aria-selected={currentLang === item.value}
@@ -66,14 +68,14 @@ const MobileLanguageSelector: React.FC = () => {
               }
             }}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 rtl:flex-row-reverse">
               <div>{item.icon}</div>
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start rtl:items-end">
                 <span className="text-[0.875rem] font-normal leading-[140%] text-white">
-                  {t(item.countryKey)}
+                  {getContent(item.countryKey)}
                 </span>
                 <span className="text-3xs font-normal leading-[140%] text-textTheme-secondary">
-                  {t(item.languageKey)}
+                  {getContent(item.languageKey)}
                 </span>
               </div>
             </div>

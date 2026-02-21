@@ -3,6 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { LoggerService } from '@bankimonline/logger';
 import { AppModule } from './app.module';
+import { CacheWarmupService } from './modules/content/cache-warmup.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -57,6 +58,22 @@ async function bootstrap() {
   const port = configService.get<number>('PORT') || 8003;
   await app.listen(port);
   logger.log(`Bankimonline API running on port ${port}`, 'Bootstrap');
+
+  const redisHost = configService.get<string>('REDIS_HOST');
+  if (redisHost) {
+    logger.log(`Content cache: Redis (${redisHost}:${configService.get<number>('REDIS_PORT') ?? 6379})`, 'Bootstrap');
+  } else {
+    logger.log('Content cache: in-memory (set REDIS_HOST to use Redis)', 'Bootstrap');
+  }
+
+  const warmup = app.get(CacheWarmupService);
+  warmup.warm().catch((err: Error) => {
+    logger.error(
+      err?.message ?? 'Cache warmup failed',
+      err?.stack,
+      'Bootstrap',
+    );
+  });
 }
 
 bootstrap();

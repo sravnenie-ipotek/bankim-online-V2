@@ -1,6 +1,7 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import type { Cache } from 'cache-manager';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import { ContentItemEntity } from '../../entities/content-item.entity';
@@ -9,6 +10,11 @@ import { ContentCategoryEntity } from '../../entities/content-category.entity';
 import { LanguageEntity } from '../../entities/language.entity';
 import { ContentEntry } from './interfaces/content-entry.interface.js';
 import { ContentItemListRow } from './interfaces/content-item-list-row.interface.js';
+import type { GetContentByKeyResponse } from './interfaces/get-content-by-key-response.interface.js';
+import { CacheConfig } from '../../config/cache.config.js';
+
+const DEFAULT_TTL_MS = 300_000;
+const VALIDATION_ERRORS_TTL_MS = 600_000;
 
 @Injectable()
 export class ContentService {
@@ -22,13 +28,60 @@ export class ContentService {
     @InjectRepository(LanguageEntity, 'content')
     private readonly languageRepo: Repository<LanguageEntity>,
     @Inject(CACHE_MANAGER) private readonly cache: Cache,
+    private readonly config: ConfigService,
+    private readonly cacheConfig: CacheConfig,
   ) {}
 
   async getContentByScreen(screen: string, language: string, type?: string) {
-    const cacheKey = `content_${screen}_${language}_${type || 'all'}`;
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_CONTENT}${screen}:${language}:${type || 'all'}`;
     const cached = await this.cache.get(cacheKey);
     if (cached) return cached;
 
+    console.log(
+      `[ContentService] Cache miss for ${screen}:${language} - reading from SQL`,
+    );
+    const response = await this.loadContentByScreenFromDb(
+      screen,
+      language,
+      type,
+    );
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+    return response;
+  }
+
+  /**
+   * Warmup only: load from DB and set this key in Redis. Does not clear cache.
+   * Updates the single key so existing Redis keys are left intact.
+   */
+  async warmContentByScreen(
+    screen: string,
+    language: string,
+    type?: string,
+  ): Promise<void> {
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_CONTENT}${screen}:${language}:${type || 'all'}`;
+    const response = await this.loadContentByScreenFromDb(
+      screen,
+      language,
+      type,
+    );
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+  }
+
+  private async loadContentByScreenFromDb(
+    screen: string,
+    language: string,
+    type?: string,
+  ): Promise<{
+    status: 'success';
+    screen_location: string;
+    language_code: string;
+    content_count: number;
+    content: Record<string, ContentEntry>;
+    filtered_by_type?: string;
+    cached: boolean;
+  }> {
     const qb = this.contentItemRepo
       .createQueryBuilder('ci')
       .innerJoin(ContentTranslationEntity, 'ct', 'ci.id = ct.content_item_id')
@@ -68,7 +121,7 @@ export class ContentService {
       };
     }
 
-    const response = {
+    return {
       status: 'success',
       screen_location: screen,
       language_code: language,
@@ -77,12 +130,16 @@ export class ContentService {
       ...(type && { filtered_by_type: type }),
       cached: false,
     };
-
-    await this.cache.set(cacheKey, { ...response, cached: true }, 300_000);
-    return response;
   }
 
-  async getContentByKey(key: string, language: string) {
+  async getContentByKey(
+    key: string,
+    language: string,
+  ): Promise<GetContentByKeyResponse> {
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_ASSET}${key}:${language}`;
+    const cached = await this.cache.get<GetContentByKeyResponse>(cacheKey);
+    if (cached) return cached;
+
     const item = await this.contentItemRepo.findOne({
       where: { content_key: key, is_active: true },
     });
@@ -96,8 +153,8 @@ export class ContentService {
       language,
     );
 
-    return {
-      status: 'success',
+    const response = {
+      status: 'success' as const,
       content_key: key,
       requested_language: language,
       actual_language: translation?.language_code ?? language,
@@ -111,6 +168,10 @@ export class ContentService {
         screen_location: item.screen_location,
       },
     };
+
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    await this.cache.set(cacheKey, response, ttl);
+    return response;
   }
 
   async getCategories() {
@@ -133,11 +194,59 @@ export class ContentService {
     return { status: 'success', languages_count: languages.length, languages };
   }
 
+  /** Distinct (screen_location, language_code) for cache warmup. */
+  async getScreenLanguagePairs(): Promise<
+    Array<{ screen: string; language: string }>
+  > {
+    const rows = await this.contentItemRepo
+      .createQueryBuilder('ci')
+      .innerJoin(ContentTranslationEntity, 'ct', 'ci.id = ct.content_item_id')
+      .distinct(true)
+      .select('ci.screen_location', 'screen')
+      .addSelect('ct.language_code', 'language')
+      .where('ci.is_active = :active', { active: true })
+      .andWhere('ct.status = :status', { status: 'approved' })
+      .getRawMany();
+    // Normalize: drivers may return lowercase or raw column names
+    return rows
+      .map((row: Record<string, string>) => ({
+        screen: row.screen ?? row.screen_location ?? '',
+        language: row.language ?? row.language_code ?? '',
+      }))
+      .filter((p) => p.screen && p.language);
+  }
+
   async getValidationErrors(language: string) {
-    const cacheKey = `validation_errors_${language}`;
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_VALIDATION_ERRORS}${language}`;
     const cached = await this.cache.get(cacheKey);
     if (cached) return cached;
 
+    const response = await this.loadValidationErrorsFromDb(language);
+    const ttl =
+      this.config.get<number>('REDIS_TTL_CONTENT') ?? VALIDATION_ERRORS_TTL_MS;
+    await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+    return response;
+  }
+
+  /**
+   * Warmup only: load validation_errors from DB and set this key in Redis. Does not clear cache.
+   */
+  async warmValidationErrors(language: string): Promise<void> {
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_VALIDATION_ERRORS}${language}`;
+    const response = await this.loadValidationErrorsFromDb(language);
+    const ttl =
+      this.config.get<number>('REDIS_TTL_CONTENT') ?? VALIDATION_ERRORS_TTL_MS;
+    await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+  }
+
+  private async loadValidationErrorsFromDb(language: string): Promise<{
+    status: 'success';
+    screen_location: string;
+    language_code: string;
+    content_count: number;
+    content: Record<string, ContentEntry>;
+    cached: boolean;
+  }> {
     const rows: {
       content_key: string;
       component_type: string;
@@ -172,7 +281,7 @@ export class ContentService {
       };
     }
 
-    const response = {
+    return {
       status: 'success',
       screen_location: 'validation_errors',
       language_code: language,
@@ -180,9 +289,6 @@ export class ContentService {
       content,
       cached: false,
     };
-
-    await this.cache.set(cacheKey, { ...response, cached: true }, 600_000);
-    return response;
   }
 
   async getContentItems(
@@ -278,10 +384,13 @@ export class ContentService {
   }
 
   async clearCache() {
-    const stores = (
-      this.cache as unknown as { stores: { reset?: () => Promise<void> }[] }
-    ).stores;
-    if (stores?.[0]?.reset) await stores[0].reset();
+    const cacheWithStores = this.cache as unknown as {
+      stores?: Array<{ clear?: () => Promise<void> }>;
+    };
+    const stores = cacheWithStores.stores;
+    if (stores?.[0] && typeof stores[0].clear === 'function') {
+      await stores[0].clear();
+    }
     return { status: 'success', message: 'Content cache cleared successfully' };
   }
 

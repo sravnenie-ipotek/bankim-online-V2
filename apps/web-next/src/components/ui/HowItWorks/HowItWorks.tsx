@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { useContentApi } from '@hooks/useContentApi'
 import StepCard from '@/components/ui/StepCard/StepCard'
 import type { StepConfig } from './interfaces/StepConfig'
@@ -36,42 +35,53 @@ const STEPS: StepConfig[] = [
   },
 ]
 
+/**
+ * Breakpoint-based layout. Exact math per Tailwind screen.
+ * lg 1440: row 1130, card 364, gap 12.6 → 364×3 + 12.6×2 = 1117.2 ≤ 1130
+ * xl 1920: scale 1920/1440 → row 1507, card 485, gap 16.8 → 485×3 + 16.8×2 = 1488.6 ≤ 1507
+ */
+
 const HowItWorks: React.FC = () => {
-  const { t } = useTranslation()
   const { getContent } = useContentApi('home_page')
 
   const resolveContent = (step: StepConfig, field: 'title' | 'description' | 'descriptionTablet'): string => {
     if (field === 'title') {
-      return getContent(step.titleKey, step.titleFallback) || t(step.titleFallback)
+      return getContent(step.titleKey)
     }
     if (field === 'description') {
-      return getContent(step.descriptionKey, step.descriptionFallback) || t(step.descriptionFallback)
+      return getContent(step.descriptionKey)
     }
     if (step.descriptionTabletKey && step.descriptionTabletFallback) {
-      return getContent(step.descriptionTabletKey, step.descriptionTabletFallback) || t(step.descriptionTabletFallback)
+      return getContent(step.descriptionTabletKey)
     }
     return ''
   }
 
   return (
-    <div className="relative flex flex-col gap-8 items-center w-full h-full mb-[54px] mt-1.5 text-left whitespace-nowrap text-[#e7e9ea] max-[815px]:items-stretch max-[815px]:ps-5">
+    <div className="relative flex flex-col flex-nowrap justify-start items-start rtl:items-end w-full h-full mb-[54px] text-left whitespace-nowrap text-[#e7e9ea] xs:items-stretch xs:ps-5 md:items-start md:ps-0 xl:ps-0 xl:pe-0">
       <div
-        className="flex items-center w-full font-normal text-[2.4375rem] h-[26px] justify-start text-left max-[1200px]:px-5 rtl:font-medium rtl:text-right max-[815px]:font-medium max-[815px]:text-[1.9375rem] max-[815px]:rtl:font-semibold"
+        className="flex items-center w-full font-normal text-[clamp(1.9375rem,calc(1.9375rem+(100vw-23.4375rem)*0.0075),2.4375rem)] h-[26px] justify-start rtl:justify-end rtl:flex-row-reverse text-left md:px-5 rtl:font-medium rtl:text-right xs:font-medium xs:rtl:font-semibold"
         style={{ height: 26 }}
       >
-        {t('how_it_works')}
+        {getContent('how_it_works')}
       </div>
-      <div className="flex flex-row gap-[1.35rem] justify-between flex-wrap max-[815px]:flex-col max-[815px]:pe-[50px]">
+      {/* Row: same positioning as TopServices — flex, justify-between, same max-widths and gap. */}
+      <div className="w-full flex flex-col md:flex-row flex-wrap justify-between rtl:justify-end gap-2 sm:gap-[10px] md:gap-[12.6px] xl:gap-[16.8px] pe-0 ps-0 xs:pe-[50px] md:pe-0 xl:ps-0 xl:pe-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] rtl:ms-auto">
         {STEPS.map((step, index) => (
-          <StepCard
+          <div
             key={step.titleKey}
-            iconSrc={step.iconSrc}
-            iconAlt={resolveContent(step, 'title')}
-            stepNumber={index + 1}
-            title={resolveContent(step, 'title')}
-            description={resolveContent(step, 'description')}
-            descriptionTablet={resolveContent(step, 'descriptionTablet')}
-          />
+            className="min-w-0 w-full md:w-[333px] lg:w-[364px] lg:h-[222px] xl:w-[485px] xl:h-[296px] shrink-0 md:flex-none"
+          >
+            <StepCard
+              iconSrc={step.iconSrc}
+              iconAlt={resolveContent(step, 'title')}
+              stepNumber={index + 1}
+              title={resolveContent(step, 'title')}
+              description={resolveContent(step, 'description')}
+              descriptionTablet={resolveContent(step, 'descriptionTablet')}
+              fillWidth
+            />
+          </div>
         ))}
       </div>
     </div>

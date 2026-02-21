@@ -2,9 +2,9 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
 import { useWindowResize } from '@/hooks/useWindowResize'
-import FooterAccordion from './FooterAccordion'
+import { useContentApi } from '@hooks/useContentApi'
+import FooterAccordion from '../FooterAccordion'
 
 const COMPANY_LINKS = [
   { key: 'footer_contacts', href: '/contacts' },
@@ -14,19 +14,19 @@ const COMPANY_LINKS = [
 ] as const
 
 const Company: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const { width } = useWindowResize()
 
   if (width > 1024) {
     return (
       <div className="flex flex-col">
-        <div className="text-[1rem] font-medium leading-normal text-textTheme-primary mb-6">
-          {t('footer_company')}
+        <div className="font-medium leading-normal text-textTheme-primary mb-6 text-[clamp(0.9rem,0.9rem+0.2vw,1rem)]">
+          {getContent('footer_company')}
         </div>
-        <div className="flex flex-col gap-[0.8rem] text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary cursor-pointer [&>a]:cursor-pointer [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:underline [&>a:hover]:text-textTheme-primary">
+        <div className="flex flex-col gap-[0.8rem] font-normal leading-[140%] text-textTheme-secondary cursor-pointer text-[clamp(0.8125rem,0.85rem+0.2vw,0.875rem)] [&>a]:cursor-pointer [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:underline [&>a:hover]:text-textTheme-primary">
           {COMPANY_LINKS.map((link) => (
             <Link key={link.key} href={link.href} className="hover:underline">
-              {t(link.key)}
+              {getContent(link.key)}
             </Link>
           ))}
         </div>
@@ -35,10 +35,10 @@ const Company: React.FC = () => {
   }
 
   return (
-    <FooterAccordion title={t('footer_company')}>
+    <FooterAccordion title={getContent('footer_company')}>
       {COMPANY_LINKS.map((link) => (
         <Link key={link.key} href={link.href}>
-          {t(link.key)}
+          {getContent(link.key)}
         </Link>
       ))}
     </FooterAccordion>

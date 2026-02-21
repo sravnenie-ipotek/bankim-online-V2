@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CacheModule } from '@nestjs/cache-manager';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import {
@@ -8,6 +8,8 @@ import {
   HttpLoggingInterceptor,
 } from '@bankimonline/logger';
 import { validateEnv } from './config/env.validation';
+import { CacheConfig } from './config/cache.config.js';
+import { CacheConfigModule } from './config/cache-config.module.js';
 import { DbModule } from './db/db.module';
 import { HealthModule } from './modules/health/health.module';
 import { ContentModule } from './modules/content/content.module';
@@ -29,9 +31,12 @@ import { AdminModule } from './modules/admin/admin.module';
       validate: validateEnv,
     }),
     LoggerModule,
-    CacheModule.register({
+    CacheConfigModule,
+    CacheModule.registerAsync({
       isGlobal: true,
-      ttl: 300_000, // 5 min default
+      useFactory: (cacheConfig: CacheConfig, config: ConfigService) =>
+        cacheConfig.createOptions(config),
+      inject: [CacheConfig, ConfigService],
     }),
     DbModule,
     HealthModule,

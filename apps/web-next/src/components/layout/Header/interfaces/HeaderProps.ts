@@ -1,3 +1,5 @@
 export interface HeaderProps {
-  isMobile?: boolean
+  showBurger?: boolean
+  onBurgerClick?: () => void
+  isMobileMenuOpen?: boolean
 }

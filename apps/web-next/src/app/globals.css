@@ -2,6 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Content/sidebar width by breakpoint (no clamp). Tailwind: xs 375, sm 768, md 1024, lg 1440, xl 1920.
+ * Content: 1130px at lg, 1507px at xl. Sidebar: 1240px at lg, 1653px at xl. Margin = centering.
+ * Mobile: fluid content width (100vw - 2*gap, capped at 350px), 20px gap, 24px top.
+ */
+:root {
+  --content-width-fluid: 100%;
+  --content-margin-fluid: 0px;
+  --sidebar-width-fluid: 100%;
+  --mobile-content-gap: 20px;
+  --mobile-content-top: 24px;
+  --mobile-content-max-width: 350px;
+  /* Fluid on mobile: use 100% of padded area (avoids 100vw scrollbar shift in Chrome), capped at max-width */
+  --mobile-content-width-fluid: min(var(--mobile-content-max-width), 100%);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --content-width-fluid: 1130px;
+    --sidebar-width-fluid: 1240px;
+    --content-margin-fluid: max(0px, calc((100vw - 35px - var(--content-width-fluid)) / 2));
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --content-margin-fluid: max(0px, calc((100vw - 46px - var(--content-width-fluid)) / 2));
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --content-width-fluid: 1130px;
+    --sidebar-width-fluid: 1240px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --content-width-fluid: 1507px;
+    --sidebar-width-fluid: 1653px;
+  }
+}
+
 @layer base {
   *,
   *::before,
@@ -14,6 +58,15 @@
   body {
     background-color: #161616;
     color: #ffffff;
+  }
+
+  /* Prevent horizontal shift on narrow viewports (e.g. Galaxy Z5, foldables) in Chrome */
+  html {
+    overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden;
+    min-width: 0;
   }
 
   /* Hide scrollbars site-wide but keep scroll functionality */
@@ -46,3 +99,66 @@
 input:focus {
   outline: none;
 }
+
+/* Video hero text: ensure title (white), subtitle (yellow), body (white) are not overridden by body/base */
+.hero-text-block {
+  font-family: var(--font-arimo), Arimo, sans-serif;
+}
+.hero-text-block .hero-text-block__title {
+  color: hsla(0, 0%, 100%, 1) !important;
+  font-weight: 400;
+}
+.hero-text-block .hero-text-block__subtitle {
+  color: hsla(52, 96%, 64%, 1) !important;
+  font-weight: 400;
+}
+.hero-text-block .hero-text-block__body {
+  color: hsla(0, 0%, 100%, 1) !important;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Video control bar range inputs - white track/thumb */
+.video-control-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+.video-control-range::-webkit-slider-runnable-track {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.video-control-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  margin-top: -5px;
+  cursor: pointer;
+}
+.video-control-range.video-control-range--compact::-webkit-slider-thumb {
+  width: 8px;
+  height: 8px;
+  margin-top: -3px;
+}
+.video-control-range::-moz-range-track {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.video-control-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}
+.video-control-range.video-control-range--compact::-moz-range-thumb {
+  width: 8px;
+  height: 8px;
+}
+

@@ -31,6 +31,23 @@
 $ npm install
 ```
 
+## Local development (database required)
+
+The API uses **PostgreSQL** for both the main and content databases. If you see:
+
+```text
+[TypeOrmModule] Unable to connect to the database. Retrying (n)...
+```
+
+then the app cannot reach PostgreSQL and will not listen on port 8003 until the connection succeeds.
+
+1. **Install and start PostgreSQL** (e.g. via [Postgres.app](https://postgresapp.com/), Homebrew, or Docker).
+2. **Configure environment** in `apps/api/`:
+   - Copy `.env.example` to `.env`.
+   - Set `DATABASE_URL` and `CONTENT_DATABASE_URL` to valid PostgreSQL URLs (e.g. `postgresql://user:password@127.0.0.1:5432/dbname`). You can use the same database for both if needed.
+   - Set `JWT_SECRET` to any non-empty string for local dev.
+3. Ensure the database(s) exist and the user has access, then run from repo root: `npm run dev`.
+
 ## Compile and run the project
 
 ```bash

@@ -22,14 +22,14 @@ const HowItWorksStep: React.FC<HowItWorksStepProps> = ({
             width={48}
             height={48}
           />
-          <div className="relative w-full font-semibold text-xl text-left whitespace-pre-line leading-normal rtl:text-right">
+          <div className="relative w-full font-semibold text-left whitespace-pre-line leading-normal rtl:text-right text-[clamp(1rem,0.9rem+0.6vw,1.25rem)]">
             {title}
           </div>
-          <span className="flex items-start text-base leading-normal text-left whitespace-normal w-[19.6rem] text-[#d0d0d0] rtl:items-end rtl:text-right min-[815px]:hidden min-[1242px]:flex">
+          <span className="flex items-start leading-normal text-left whitespace-normal w-[19.6rem] text-[#d0d0d0] rtl:items-end rtl:text-right min-[815px]:hidden min-[1242px]:flex text-[clamp(0.875rem,0.85rem+0.25vw,1rem)]">
             {description}
           </span>
           {descriptionTablet && (
-            <span className="hidden min-[815px]:flex min-[1242px]:hidden items-start text-base leading-normal text-left whitespace-normal w-[19.6rem] text-[#d0d0d0] rtl:items-end rtl:text-right">
+            <span className="hidden min-[815px]:flex min-[1242px]:hidden items-start leading-normal text-left whitespace-normal w-[19.6rem] text-[#d0d0d0] rtl:items-end rtl:text-right text-[clamp(0.875rem,0.85rem+0.25vw,1rem)]">
               {descriptionTablet}
             </span>
           )}

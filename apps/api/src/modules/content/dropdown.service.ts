@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import type { Cache } from 'cache-manager';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DropdownFieldExtractor } from './helpers/dropdown-field-extractor';
@@ -10,6 +11,9 @@ import { ContentTranslationEntity } from '../../entities/content-translation.ent
 import { DropdownResponse } from '../../interfaces/dropdown-response.interface';
 import { DropdownEntry } from '../../interfaces/dropdown-entry.interface';
 import { DropdownRawRow } from './interfaces/dropdown-raw-row.interface.js';
+import { CacheConfig } from '../../config/cache.config.js';
+
+const DEFAULT_TTL_MS = 300_000;
 
 @Injectable()
 export class DropdownService {
@@ -20,13 +24,36 @@ export class DropdownService {
     @InjectRepository(ContentItemEntity, 'content')
     private readonly contentItemRepo: Repository<ContentItemEntity>,
     @Inject(CACHE_MANAGER) private readonly cache: Cache,
+    private readonly config: ConfigService,
+    private readonly cacheConfig: CacheConfig,
   ) {}
 
   async getDropdownsByScreen(screen: string, language: string) {
-    const cacheKey = `dropdowns_${screen}_${language}`;
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_DROPDOWNS}${screen}:${language}`;
     const cached = await this.cache.get<DropdownResponse>(cacheKey);
     if (cached) return cached;
 
+    const response = await this.loadDropdownsByScreenFromDb(screen, language);
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+    return response;
+  }
+
+  /**
+   * Warmup only: load from DB and set this key in Redis. Does not clear cache.
+   * Updates the single key so existing Redis keys are left intact.
+   */
+  async warmDropdownsByScreen(screen: string, language: string): Promise<void> {
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_DROPDOWNS}${screen}:${language}`;
+    const response = await this.loadDropdownsByScreenFromDb(screen, language);
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+  }
+
+  private async loadDropdownsByScreenFromDb(
+    screen: string,
+    language: string,
+  ): Promise<DropdownResponse> {
     const rows: DropdownRawRow[] = await this.contentItemRepo
       .createQueryBuilder('ci')
       .innerJoin(ContentTranslationEntity, 'ct', 'ci.id = ct.content_item_id')
@@ -89,7 +116,6 @@ export class DropdownService {
       query_time: new Date().toISOString(),
     };
 
-    await this.cache.set(cacheKey, { ...response, cached: true }, 300_000);
     return response;
   }
 

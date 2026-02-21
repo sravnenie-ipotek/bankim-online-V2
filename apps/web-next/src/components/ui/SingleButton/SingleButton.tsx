@@ -2,14 +2,13 @@
 
 import React from 'react'
 import { useFormikContext } from 'formik'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 
 const SingleButton: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('global_components')
   const { isValid, handleSubmit, values, setFieldTouched } = useFormikContext<Record<string, unknown>>()
 
   const handleClick = () => {
-    // Touch all fields to trigger validation display
     Object.keys(values).forEach((fieldName) => {
       setFieldTouched(fieldName, true, false)
     })
@@ -32,7 +31,7 @@ const SingleButton: React.FC = () => {
               cursor: isValid ? 'pointer' : 'not-allowed',
             }}
           >
-            {t('button_next')}
+            {getContent('button_next')}
           </button>
         </div>
       </div>

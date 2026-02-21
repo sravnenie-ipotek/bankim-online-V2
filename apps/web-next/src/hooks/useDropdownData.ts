@@ -22,9 +22,6 @@ interface StructuredDropdownResponse {
   labels: Record<string, string>
 }
 
-const dropdownCache = new Map<string, { data: StructuredDropdownResponse; expires: number }>()
-const CACHE_TTL = 5 * 60 * 1000
-
 export const useDropdownData = (
   screenLocation: string,
   fieldName: string,
@@ -52,21 +49,12 @@ export const useDropdownData = (
       if (abortControllerRef.current) abortControllerRef.current.abort()
       abortControllerRef.current = new AbortController()
 
-      const cacheKey = `dropdown_${screenLocation}_${language}`
-      const cached = dropdownCache.get(cacheKey)
-      let apiData: StructuredDropdownResponse
-
-      if (cached && Date.now() < cached.expires) {
-        apiData = cached.data
-      } else {
-        const response = await fetch(`/api/dropdowns/${screenLocation}/${language}`, {
-          signal: abortControllerRef.current.signal,
-        })
-        if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`)
-        apiData = await response.json()
-        if (apiData.status !== 'success') throw new Error(`API Error: ${apiData.status}`)
-        dropdownCache.set(cacheKey, { data: apiData, expires: Date.now() + CACHE_TTL })
-      }
+      const response = await fetch(`/api/dropdowns/${screenLocation}/${language}`, {
+        signal: abortControllerRef.current.signal,
+      })
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      const apiData: StructuredDropdownResponse = await response.json()
+      if (apiData.status !== 'success') throw new Error(`API Error: ${apiData.status}`)
 
       const dropdownKey = `${screenLocation}_${fieldName}`
       const options = apiData.options?.[dropdownKey] || []

@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
 import Container from '@/components/ui/Container/Container'
+import { useContentApi } from '@hooks/useContentApi'
 import { trackClick } from '@/helpers/analytics'
 
 interface ServiceItem {
@@ -21,14 +21,14 @@ const SERVICES: ServiceItem[] = [
 ]
 
 export default function ServicesOverview() {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('common')
   const router = useRouter()
 
   return (
     <Container>
       <div className="flex flex-col gap-8 w-full my-8">
         <h1 className="text-5xl font-medium text-textTheme-primary sm:text-[1.9375rem]">
-          {t('services_title')}
+          {getContent('services_title')}
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -44,11 +44,11 @@ export default function ServicesOverview() {
               <span className="text-4xl">{service.icon}</span>
               <div className="flex flex-col gap-2">
                 <h2 className="text-xl font-semibold text-textTheme-primary">
-                  {t(service.titleKey)}
+                  {getContent(service.titleKey)}
                 </h2>
-                <p className="text-sm text-textTheme-secondary">{t(service.descriptionKey)}</p>
+                <p className="text-sm text-textTheme-secondary">{getContent(service.descriptionKey)}</p>
                 <span className="text-accent-primary text-sm font-medium flex items-center gap-1">
-                  {t('start_calculation')}
+                  {getContent('start_calculation')}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

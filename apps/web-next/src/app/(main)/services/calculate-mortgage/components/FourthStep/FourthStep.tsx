@@ -3,7 +3,7 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
 import { useRouter } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
+import { useContentApi } from '@hooks/useContentApi'
 import { useAppDispatch, useAppSelector } from '@/hooks/store'
 import { updateMortgageData } from '@/store/slices/calculateMortgageSlice'
 import { BankSelectionTypes } from '@/interfaces/FormTypes'
@@ -15,7 +15,7 @@ import UserParams from './UserParams'
 import BankOffers from './BankOffers'
 
 const FourthStep: React.FC = () => {
-  const { t } = useTranslation()
+  const { getContent } = useContentApi('mortgage_step4')
   const dispatch = useAppDispatch()
   const router = useRouter()
   const savedValue = (useAppSelector((state) => state.mortgage) || {}) as Partial<BankSelectionTypes>
@@ -39,13 +39,13 @@ const FourthStep: React.FC = () => {
         <Form>
           <FormContainer>
             <FormCaption
-              title={t('calculate_mortgage_final', 'Bank Offers')}
+              title={getContent('calculate_mortgage_final')}
             />
 
             {/* Warning */}
             <div className="bg-[rgba(251,229,77,0.1)] border border-[rgba(251,229,77,0.3)] rounded-lg p-4">
               <p className="text-[0.875rem] text-[rgba(251,229,77,1)]">
-                {t('calculate_mortgage_warning', 'The offers shown are estimates based on your input. Final terms may vary.')}
+                {getContent('calculate_mortgage_warning')}
               </p>
             </div>
 
