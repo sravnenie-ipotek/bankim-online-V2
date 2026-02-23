@@ -1,6 +1,6 @@
-import type { BaseFormValues } from '@/interfaces/BaseFormValues'
+import type { BaseFormValues } from '@/interfaces/BaseFormValues';
 
 export interface LawyersFormValues extends BaseFormValues {
-  region: string
-  profession: string
+  region: string;
+  profession: string;
 }

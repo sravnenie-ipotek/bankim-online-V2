@@ -1,15 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 interface CheckIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
-const CheckIcon: React.FC<CheckIconProps> = ({
-  size = 20,
-  color = '#fff',
-  ...props
-}) => {
+const CheckIcon: React.FC<CheckIconProps> = ({ size = 20, color = '#fff', ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +20,7 @@ const CheckIcon: React.FC<CheckIconProps> = ({
         fill={color}
       />
     </svg>
-  )
-}
+  );
+};
 
-export default CheckIcon
+export default CheckIcon;

@@ -1,10 +1,15 @@
-'use client'
+'use client';
 
-import TextPage from '@/components/ui/TextPage/TextPage'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import TextPage from '@/components/ui/TextPage/TextPage';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
 
-export default function Cookie() {
-  const { getContent } = useContentApi('legal')
+const Cookie: React.FC = () => {
+  useContentFetch('legal');
+  const { getContent } = useContentApi('legal');
 
-  return <TextPage title={getContent('cookie_title')} text={getContent('cookie_text')} />
-}
+  return <TextPage title={getContent('cookie_title')} text={getContent('cookie_text')} />;
+};
+
+export default Cookie;

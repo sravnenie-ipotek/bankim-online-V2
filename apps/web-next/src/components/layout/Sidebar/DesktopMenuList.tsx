@@ -1,13 +1,10 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { DesktopMenuListProps } from './interfaces/DesktopMenuListProps'
-import DesktopMenuItem from './DesktopMenuItem'
-import DesktopMenuExpandableItem from './DesktopMenuExpandableItem'
-import {
-  DESKTOP_MENU_LIST_CLASS,
-  DESKTOP_MENU_HEADING_CLASS,
-} from './style/menuItemClasses'
+import React from 'react';
+import type { DesktopMenuListProps } from './interfaces/DesktopMenuListProps';
+import DesktopMenuItem from './DesktopMenuItem';
+import DesktopMenuExpandableItem from './DesktopMenuExpandableItem';
+import { DESKTOP_MENU_LIST_CLASS, DESKTOP_MENU_HEADING_CLASS } from './style/menuItemClasses';
 
 const DesktopMenuList: React.FC<DesktopMenuListProps> = ({
   title,
@@ -16,7 +13,7 @@ const DesktopMenuList: React.FC<DesktopMenuListProps> = ({
   onLinkClick,
   isExpanded = false,
 }) => {
-  const [expandableItem, ...linkItems] = items
+  const [expandableItem, ...linkItems] = items;
 
   return (
     <ul className={DESKTOP_MENU_LIST_CLASS}>
@@ -37,7 +34,7 @@ const DesktopMenuList: React.FC<DesktopMenuListProps> = ({
         />
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default DesktopMenuList
+export default DesktopMenuList;

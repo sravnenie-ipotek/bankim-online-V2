@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React, { Fragment } from 'react'
-import CheckIcon from '@/components/icons/CheckIcon'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import type { ProgressBarProps } from './interfaces/ProgressBarProps'
+import React, { Fragment } from 'react';
+import CheckIcon from '@/components/icons/CheckIcon';
+import { useWindowResize } from '@/hooks/useWindowResize';
+import type { ProgressBarProps } from './interfaces/ProgressBarProps';
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ progress, data }) => {
-  const { width } = useWindowResize()
-  const currentStep = Number(progress)
+  const { width } = useWindowResize();
+  const currentStep = Number(progress);
 
-  if (!data || data.length === 0) return null
+  if (!data || data.length === 0) return null;
 
   return (
     <div className="bg-[#1f2023] py-2.5 flex gap-4 w-full items-center justify-center h-[5.6875rem]">
@@ -18,10 +18,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, data }) => {
           <Fragment key={index}>
             <div className="flex items-center max-[1200px]:items-start">
               <div className="flex flex-row items-center gap-[0.62rem] max-[1200px]:flex-col max-[1200px]:gap-[0.4rem] max-[768px]:w-20 max-[550px]:w-12">
-                <StepCircle
-                  stepIndex={index}
-                  currentStep={currentStep}
-                />
+                <StepCircle stepIndex={index} currentStep={currentStep} />
                 <StepLabel
                   label={item}
                   stepIndex={index}
@@ -31,68 +28,66 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ progress, data }) => {
               </div>
             </div>
             {index < data.length - 1 && (
-              <StepConnector
-                stepIndex={index}
-                currentStep={currentStep}
-              />
+              <StepConnector stepIndex={index} currentStep={currentStep} />
             )}
           </Fragment>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 interface StepCircleProps {
-  stepIndex: number
-  currentStep: number
+  stepIndex: number;
+  currentStep: number;
 }
 
 const StepCircle: React.FC<StepCircleProps> = ({ stepIndex, currentStep }) => {
-  const stepNumber = stepIndex + 1
-  const isCurrent = currentStep === stepNumber
-  const isCompleted = currentStep > stepNumber
+  const stepNumber = stepIndex + 1;
+  const isCurrent = currentStep === stepNumber;
+  const isCompleted = currentStep > stepNumber;
 
-  const baseClasses = 'w-8 h-8 rounded-full text-[1.25rem] not-italic font-semibold leading-normal flex items-center justify-center'
+  const baseClasses =
+    'w-8 h-8 rounded-full text-[1.25rem] not-italic font-semibold leading-normal flex items-center justify-center';
 
-  let stateClasses: string
+  let stateClasses: string;
   if (isCurrent || isCompleted) {
-    stateClasses = 'bg-[rgba(251,229,77,1)] text-[#161616]'
+    stateClasses = 'bg-[rgba(251,229,77,1)] text-[#161616]';
   } else {
-    stateClasses = 'bg-[rgba(51,53,53,1)] text-[#848484]'
+    stateClasses = 'bg-[rgba(51,53,53,1)] text-[#848484]';
   }
 
   return (
     <span className={`${baseClasses} ${stateClasses}`}>
       {isCompleted ? <CheckIcon color="#161616" size={20} /> : stepNumber}
     </span>
-  )
-}
+  );
+};
 
 interface StepLabelProps {
-  label: string
-  stepIndex: number
-  currentStep: number
-  windowWidth: number
+  label: string;
+  stepIndex: number;
+  currentStep: number;
+  windowWidth: number;
 }
 
 const StepLabel: React.FC<StepLabelProps> = ({ label, stepIndex, currentStep, windowWidth }) => {
-  const stepNumber = stepIndex + 1
-  const isCurrent = currentStep === stepNumber
-  const isCompleted = currentStep > stepNumber
+  const stepNumber = stepIndex + 1;
+  const isCurrent = currentStep === stepNumber;
+  const isCompleted = currentStep > stepNumber;
 
-  let textColor: string
+  let textColor: string;
   if (isCurrent) {
-    textColor = 'text-white'
+    textColor = 'text-white';
   } else if (isCompleted) {
-    textColor = 'text-[rgba(251,229,77,1)]'
+    textColor = 'text-[rgba(251,229,77,1)]';
   } else {
-    textColor = 'text-[#848484]'
+    textColor = 'text-[#848484]';
   }
 
   // Truncate to first word on smaller screens
-  const safeLabel = label || ''
-  const displayLabel = windowWidth <= 1200 ? safeLabel.split(' ')[0] : safeLabel
+  const safeLabel = label || '';
+  const displayLabel = windowWidth <= 1200 ? safeLabel.split(' ')[0] : safeLabel;
 
   return (
     <p
@@ -100,16 +95,16 @@ const StepLabel: React.FC<StepLabelProps> = ({ label, stepIndex, currentStep, wi
     >
       {displayLabel}
     </p>
-  )
-}
+  );
+};
 
 interface StepConnectorProps {
-  stepIndex: number
-  currentStep: number
+  stepIndex: number;
+  currentStep: number;
 }
 
 const StepConnector: React.FC<StepConnectorProps> = ({ stepIndex, currentStep }) => {
-  const isCompleted = currentStep >= stepIndex + 2
+  const isCompleted = currentStep >= stepIndex + 2;
 
   return (
     <hr
@@ -117,7 +112,7 @@ const StepConnector: React.FC<StepConnectorProps> = ({ stepIndex, currentStep })
         isCompleted ? 'border-[rgba(251,229,77,1)]' : 'border-[#333535]'
       }`}
     />
-  )
-}
+  );
+};
 
-export default ProgressBar
+export default ProgressBar;

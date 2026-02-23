@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Form, Formik } from 'formik'
-import { useRouter } from 'next/navigation'
-import { useContentApi } from '@hooks/useContentApi'
-import { useAppDispatch, useAppSelector } from '@/hooks/store'
-import { IncomeTypes } from '@/interfaces/FormTypes'
-import { updateMortgageData } from '@/store/slices/calculateMortgageSlice'
-import { step3ValidationSchema } from '../../helpers/validationSchemas'
-import Container from '@/components/ui/Container/Container'
-import VideoPoster from '@/components/ui/VideoPoster/VideoPoster'
-import ThirdStepForm from './ThirdStepForm'
-import DoubleButtons from '@/components/ui/DoubleButtons/DoubleButtons'
+import React from 'react';
+import { Form, Formik } from 'formik';
+import { useRouter } from 'next/navigation';
+import { useContentApi } from '@hooks/useContentApi';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { IncomeTypes } from '@/interfaces/FormTypes';
+import { updateMortgageData } from '@/store/slices/calculateMortgageSlice';
+import { step3ValidationSchema } from '../../helpers/validationSchemas';
+import Container from '@/components/ui/Container/Container';
+import VideoPoster from '@/components/ui/VideoPoster/VideoPoster';
+import ThirdStepForm from './ThirdStepForm';
+import DoubleButtons from '@/components/ui/DoubleButtons/DoubleButtons';
 
 const ThirdStep: React.FC = () => {
-  const { getContent } = useContentApi('mortgage_step3')
-  const dispatch = useAppDispatch()
-  const router = useRouter()
-  const savedValue = (useAppSelector((state) => state.mortgage) || {}) as Partial<IncomeTypes>
+  const { getContent } = useContentApi('mortgage_step3');
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const savedValue = (useAppSelector((state) => state.mortgage) || {}) as Partial<IncomeTypes>;
 
-  const today = new Date().toISOString().split('T')[0]
+  const today = new Date().toISOString().split('T')[0];
 
   const initialValues = {
     mainSourceOfIncome: savedValue.mainSourceOfIncome || '',
@@ -34,7 +34,7 @@ const ThirdStep: React.FC = () => {
     bank: savedValue.bank || '',
     monthlyPaymentForAnotherBank: savedValue.monthlyPaymentForAnotherBank || 0,
     endDate: savedValue.endDate || today,
-  }
+  };
 
   return (
     <Formik
@@ -42,8 +42,8 @@ const ThirdStep: React.FC = () => {
       validationSchema={step3ValidationSchema}
       validateOnMount
       onSubmit={(values) => {
-        dispatch(updateMortgageData(values))
-        router.push('/services/calculate-mortgage/4')
+        dispatch(updateMortgageData(values));
+        router.push('/services/calculate-mortgage/4');
       }}
     >
       <Form>
@@ -58,7 +58,7 @@ const ThirdStep: React.FC = () => {
         <DoubleButtons />
       </Form>
     </Formik>
-  )
-}
+  );
+};
 
-export default ThirdStep
+export default ThirdStep;

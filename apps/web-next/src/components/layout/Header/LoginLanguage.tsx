@@ -1,38 +1,38 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { usePathname } from 'next/navigation'
-import { useContentApi } from '@hooks/useContentApi'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import { useAppDispatch, useAppSelector } from '@/hooks/store'
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import { useContentApi } from '@hooks/useContentApi';
+import { useWindowResize } from '@/hooks/useWindowResize';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import {
   openLoginDialog,
   logout,
   isAuthenticatedSelector,
   authUserSelector,
-} from '@/store/slices/authSlice'
-import ChangeLanguage from '@/components/ui/ChangeLanguage/ChangeLanguage'
-import SignOutIcon from '@/components/ui/SignOutIcon/SignOutIcon'
+} from '@/store/slices/authSlice';
+import ChangeLanguage from '@/components/ui/ChangeLanguage/ChangeLanguage';
+import SignOutIcon from '@/components/ui/SignOutIcon/SignOutIcon';
 
 const LoginLanguage: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const pathname = usePathname()
-  const dispatch = useAppDispatch()
-  const isAuthenticated = useAppSelector(isAuthenticatedSelector)
-  const user = useAppSelector(authUserSelector)
-  const pathMap = pathname.split('/')
-  const isService = pathMap.includes('services')
-  const { isDesktop } = useWindowResize()
+  const { getContent } = useContentApi('global_components');
+  const pathname = usePathname();
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(isAuthenticatedSelector);
+  const user = useAppSelector(authUserSelector);
+  const pathMap = pathname.split('/');
+  const isService = pathMap.includes('services');
+  const { isDesktop } = useWindowResize();
 
   const handleClick = (): void => {
     if (isAuthenticated) {
-      dispatch(logout())
+      dispatch(logout());
     } else {
-      dispatch(openLoginDialog())
+      dispatch(openLoginDialog());
     }
-  }
+  };
 
-  const label = isAuthenticated ? (user?.name ?? getContent('account')) : getContent('account')
+  const label = isAuthenticated ? (user?.name ?? getContent('account')) : getContent('account');
 
   return (
     <div className="flex gap-[42px] items-center max-[1240px]:flex-nowrap max-[1240px]:flex-row">
@@ -67,7 +67,7 @@ const LoginLanguage: React.FC = () => {
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default LoginLanguage
+export default LoginLanguage;

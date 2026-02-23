@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import { useContentApi } from '@hooks/useContentApi'
-import FooterAccordion from '../FooterAccordion'
+import React from 'react';
+import Link from 'next/link';
+import { useWindowResize } from '@/hooks/useWindowResize';
+import { useContentApi } from '@hooks/useContentApi';
+import FooterAccordion from '../FooterAccordion';
 
 const COMPANY_LINKS = [
   { key: 'footer_contacts', href: '/contacts' },
   { key: 'footer_about', href: '/about' },
   { key: 'footer_vacancy', href: '/vacancies' },
   { key: 'footer_partner', href: '/cooperation' },
-] as const
+] as const;
 
 const Company: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const { width } = useWindowResize()
+  const { getContent } = useContentApi('global_components');
+  const { width } = useWindowResize();
 
   if (width > 1024) {
     return (
@@ -31,7 +31,7 @@ const Company: React.FC = () => {
           ))}
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -42,7 +42,7 @@ const Company: React.FC = () => {
         </Link>
       ))}
     </FooterAccordion>
-  )
-}
+  );
+};
 
-export default Company
+export default Company;

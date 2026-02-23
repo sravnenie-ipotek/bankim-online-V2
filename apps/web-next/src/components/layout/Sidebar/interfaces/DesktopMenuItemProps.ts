@@ -1,5 +1,5 @@
 export interface DesktopMenuItemProps {
-  title: string
-  path?: string
-  onLinkClick: () => void
+  title: string;
+  path?: string;
+  onLinkClick: () => void;
 }

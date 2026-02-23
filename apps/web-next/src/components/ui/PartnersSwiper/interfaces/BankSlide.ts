@@ -1,5 +1,5 @@
 export interface BankSlide {
-  name: string
-  link: string
-  logo: string
+  name: string;
+  link: string;
+  logo: string;
 }

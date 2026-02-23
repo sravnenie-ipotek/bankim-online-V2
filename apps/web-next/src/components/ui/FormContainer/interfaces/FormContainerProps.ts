@@ -1,5 +1,5 @@
-import type React from 'react'
+import type React from 'react';
 
 export interface FormContainerProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }

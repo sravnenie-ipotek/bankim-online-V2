@@ -1,5 +1,5 @@
 export interface HeaderProps {
-  showBurger?: boolean
-  onBurgerClick?: () => void
-  isMobileMenuOpen?: boolean
+  showBurger?: boolean;
+  onBurgerClick?: () => void;
+  isMobileMenuOpen?: boolean;
 }

@@ -1,5 +1,5 @@
 export interface BurgerMenuProps {
-  onClick: () => void
-  isOpen?: boolean
-  ariaLabel?: string
+  onClick: () => void;
+  isOpen?: boolean;
+  ariaLabel?: string;
 }

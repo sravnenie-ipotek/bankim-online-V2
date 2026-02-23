@@ -1,15 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import Link from 'next/link';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
 
+/**
+ * Bank worker demo page: simple content and CTA for demo flow.
+ */
 const BankWorkerDemo: React.FC = () => {
-  const { getContent } = useContentApi('common')
+  useContentFetch('common');
+  const { getContent } = useContentApi('common');
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-[600px] p-8 bg-base-secondary rounded-lg text-center">
+      <div className="w-full max-w-authLg surface-card-p8 text-center">
         <h1 className="text-2xl font-medium text-textTheme-primary mb-4">
           {getContent('bank_worker_demo_title')}
         </h1>
@@ -23,15 +28,12 @@ const BankWorkerDemo: React.FC = () => {
             </div>
           ))}
         </div>
-        <Link
-          href="/bank-worker/register/demo-token"
-          className="inline-block px-8 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
-        >
+        <Link href="/bank-worker/register/demo-token" className="btn-primary-lg inline-block">
           {getContent('start_demo')}
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BankWorkerDemo
+export default BankWorkerDemo;

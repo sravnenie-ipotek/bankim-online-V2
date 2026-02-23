@@ -5,4 +5,4 @@ export type ControlBarItemKey =
   | 'mute'
   | 'volume'
   | 'time'
-  | 'fullscreen'
+  | 'fullscreen';

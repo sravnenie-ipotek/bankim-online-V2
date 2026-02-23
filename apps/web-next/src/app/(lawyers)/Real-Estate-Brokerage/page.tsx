@@ -1,13 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useRouter } from 'next/navigation'
-import Container from '@/components/ui/Container/Container'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import Container from '@/components/ui/Container/Container';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
 
-export default function RealEstateBrokerage() {
-  const { getContent } = useContentApi('common')
-  const router = useRouter()
+const RealEstateBrokerage: React.FC = () => {
+  useContentFetch('common');
+  const { getContent } = useContentApi('common');
+  const router = useRouter();
 
   return (
     <Container>
@@ -21,7 +23,7 @@ export default function RealEstateBrokerage() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-4 p-8 bg-base-secondary rounded-lg">
+        <div className="surface-card-p8 flex flex-col gap-4">
           <h2 className="text-2xl font-semibold text-textTheme-primary">
             {getContent('franchise_about_title')}
           </h2>
@@ -36,7 +38,7 @@ export default function RealEstateBrokerage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {['benefit_1', 'benefit_2', 'benefit_3', 'benefit_4'].map((key) => (
-              <div key={key} className="flex items-start gap-3 p-4 bg-base-secondary rounded-lg">
+              <div key={key} className="surface-card flex items-start gap-3 p-4">
                 <span className="text-accent-primary text-xl">&#10003;</span>
                 <span className="text-textTheme-primary">{getContent(`franchise_${key}`)}</span>
               </div>
@@ -44,18 +46,17 @@ export default function RealEstateBrokerage() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-6 p-8 bg-base-secondary rounded-lg text-center">
+        <div className="surface-card-p8 flex flex-col items-center gap-6 text-center">
           <h2 className="text-2xl font-semibold text-textTheme-primary">
             {getContent('franchise_cta_title')}
           </h2>
-          <button
-            onClick={() => router.push('/broker-questionnaire')}
-            className="px-8 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
-          >
+          <button onClick={() => router.push('/broker-questionnaire')} className="btn-primary-lg">
             {getContent('franchise_cta_button')}
           </button>
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
+
+export default RealEstateBrokerage;

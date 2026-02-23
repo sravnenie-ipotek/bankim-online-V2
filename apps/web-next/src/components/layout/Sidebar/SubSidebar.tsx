@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { MenuItem } from './types'
+import React from 'react';
+import Link from 'next/link';
+import { MenuItem } from './types';
 
 interface SubSidebarProps {
-  isOpen: boolean
-  isOpenMainMenu: boolean
-  items: MenuItem[]
-  onCloseMainMenu: () => void
+  isOpen: boolean;
+  isOpenMainMenu: boolean;
+  items: MenuItem[];
+  onCloseMainMenu: () => void;
 }
 
 const SubSidebar: React.FC<SubSidebarProps> = ({
@@ -17,11 +17,16 @@ const SubSidebar: React.FC<SubSidebarProps> = ({
   items,
   onCloseMainMenu,
 }) => {
-  const isVisible = isOpen && isOpenMainMenu
-  const isRtl = typeof document !== 'undefined' && document.documentElement.getAttribute('dir') === 'rtl'
-  const hideTransformClass = isVisible ? 'translate-x-0' : isRtl ? 'translate-x-6' : '-translate-x-6'
-  const opacityClass = isVisible ? 'opacity-100' : 'opacity-0'
-  const pointerEventsClass = isVisible ? 'pointer-events-auto' : 'pointer-events-none'
+  const isVisible = isOpen && isOpenMainMenu;
+  const isRtl =
+    typeof document !== 'undefined' && document.documentElement.getAttribute('dir') === 'rtl';
+  const hideTransformClass = isVisible
+    ? 'translate-x-0'
+    : isRtl
+      ? 'translate-x-6'
+      : '-translate-x-6';
+  const opacityClass = isVisible ? 'opacity-100' : 'opacity-0';
+  const pointerEventsClass = isVisible ? 'pointer-events-auto' : 'pointer-events-none';
 
   return (
     <nav
@@ -46,7 +51,7 @@ const SubSidebar: React.FC<SubSidebarProps> = ({
         ))}
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default SubSidebar
+export default SubSidebar;

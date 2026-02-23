@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useFormikContext } from 'formik'
-import { useContentApi } from '@hooks/useContentApi'
-import FormContainer from '@/components/ui/FormContainer/FormContainer'
-import FormCaption from '@/components/ui/FormCaption/FormCaption'
-import FormRow from '@/components/ui/FormRow/FormRow'
-import FormColumn from '@/components/ui/FormColumn/FormColumn'
-import DropdownSelect from '@/components/ui/DropdownSelect/DropdownSelect'
-import FormattedInput from '@/components/ui/FormattedInput/FormattedInput'
-import DateInput from '@/components/ui/DateInput/DateInput'
-import FormError from '@/components/ui/FormError/FormError'
-import { IncomeTypes } from '@/interfaces/FormTypes'
+import React from 'react';
+import { useFormikContext } from 'formik';
+import { useContentApi } from '@hooks/useContentApi';
+import FormContainer from '@/components/ui/FormContainer/FormContainer';
+import FormCaption from '@/components/ui/FormCaption/FormCaption';
+import FormRow from '@/components/ui/FormRow/FormRow';
+import FormColumn from '@/components/ui/FormColumn/FormColumn';
+import DropdownSelect from '@/components/ui/DropdownSelect/DropdownSelect';
+import FormattedInput from '@/components/ui/FormattedInput/FormattedInput';
+import DateInput from '@/components/ui/DateInput/DateInput';
+import FormError from '@/components/ui/FormError/FormError';
+import { IncomeTypes } from '@/interfaces/FormTypes';
 
 const ThirdStepForm: React.FC = () => {
-  const { getContent } = useContentApi('mortgage_step3')
+  const { getContent } = useContentApi('mortgage_step3');
   const { setFieldValue, values, errors, touched, setFieldTouched } =
-    useFormikContext<IncomeTypes>()
+    useFormikContext<IncomeTypes>();
 
   const incomeSourceOptions = [
     { value: 'option_1', label: getContent('calculate_mortgage_main_source_option_1') },
@@ -26,7 +26,7 @@ const ThirdStepForm: React.FC = () => {
     { value: 'option_5', label: getContent('calculate_mortgage_main_source_option_5') },
     { value: 'option_6', label: getContent('calculate_mortgage_main_source_option_6') },
     { value: 'option_7', label: getContent('calculate_mortgage_main_source_option_7') },
-  ]
+  ];
 
   const additionalIncomeOptions = [
     { value: 'option_1', label: getContent('calculate_mortgage_has_additional_option_1') },
@@ -36,7 +36,7 @@ const ThirdStepForm: React.FC = () => {
     { value: 'option_5', label: getContent('calculate_mortgage_has_additional_option_5') },
     { value: 'option_6', label: getContent('calculate_mortgage_has_additional_option_6') },
     { value: 'option_7', label: getContent('calculate_mortgage_has_additional_option_7') },
-  ]
+  ];
 
   const obligationOptions = [
     { value: 'option_1', label: getContent('calculate_mortgage_debt_types_option_1') },
@@ -44,16 +44,14 @@ const ThirdStepForm: React.FC = () => {
     { value: 'option_3', label: getContent('calculate_mortgage_debt_types_option_3') },
     { value: 'option_4', label: getContent('calculate_mortgage_debt_types_option_4') },
     { value: 'option_5', label: getContent('calculate_mortgage_debt_types_option_5') },
-  ]
+  ];
 
-  const isEmployed = values.mainSourceOfIncome && values.mainSourceOfIncome !== 'option_7'
-  const hasObligation = values.obligation && values.obligation !== 'option_1'
+  const isEmployed = values.mainSourceOfIncome && values.mainSourceOfIncome !== 'option_7';
+  const hasObligation = values.obligation && values.obligation !== 'option_1';
 
   return (
     <FormContainer>
-      <FormCaption
-        title={getContent('calculate_mortgage_step3_title')}
-      />
+      <FormCaption title={getContent('calculate_mortgage_step3_title')} />
 
       {/* Row 1: Main source, Monthly income, Start date */}
       <FormRow>
@@ -79,7 +77,9 @@ const ThirdStepForm: React.FC = () => {
                 placeholder={getContent('calculate_mortgage_monthly_income_ph')}
                 error={touched.monthlyIncome ? errors.monthlyIncome : undefined}
               />
-              {touched.monthlyIncome && errors.monthlyIncome && <FormError error={errors.monthlyIncome} />}
+              {touched.monthlyIncome && errors.monthlyIncome && (
+                <FormError error={errors.monthlyIncome} />
+              )}
             </>
           )}
         </FormColumn>
@@ -117,7 +117,9 @@ const ThirdStepForm: React.FC = () => {
                     : 'border-base-secondaryDefaultButton focus:border-accent-primary'
                 }`}
               />
-              {touched.fieldOfActivity && errors.fieldOfActivity && <FormError error={errors.fieldOfActivity} />}
+              {touched.fieldOfActivity && errors.fieldOfActivity && (
+                <FormError error={errors.fieldOfActivity} />
+              )}
             </div>
           </FormColumn>
           <FormColumn>
@@ -158,7 +160,9 @@ const ThirdStepForm: React.FC = () => {
                     : 'border-base-secondaryDefaultButton focus:border-accent-primary'
                 }`}
               />
-              {touched.companyName && errors.companyName && <FormError error={errors.companyName} />}
+              {touched.companyName && errors.companyName && (
+                <FormError error={errors.companyName} />
+              )}
             </div>
           </FormColumn>
         </FormRow>
@@ -243,7 +247,11 @@ const ThirdStepForm: React.FC = () => {
                 title={getContent('calculate_mortgage_monthly_income')}
                 value={values.monthlyPaymentForAnotherBank}
                 onChange={(val) => setFieldValue('monthlyPaymentForAnotherBank', val || 0)}
-                error={touched.monthlyPaymentForAnotherBank ? errors.monthlyPaymentForAnotherBank : undefined}
+                error={
+                  touched.monthlyPaymentForAnotherBank
+                    ? errors.monthlyPaymentForAnotherBank
+                    : undefined
+                }
               />
               {touched.monthlyPaymentForAnotherBank && errors.monthlyPaymentForAnotherBank && (
                 <FormError error={errors.monthlyPaymentForAnotherBank} />
@@ -270,7 +278,7 @@ const ThirdStepForm: React.FC = () => {
         </FormRow>
       )}
     </FormContainer>
-  )
-}
+  );
+};
 
-export default ThirdStepForm
+export default ThirdStepForm;

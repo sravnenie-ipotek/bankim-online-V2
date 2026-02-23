@@ -1,28 +1,29 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useFormikContext } from 'formik'
-import { useRouter } from 'next/navigation'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import { useFormikContext } from 'formik';
+import { useRouter } from 'next/navigation';
+import { useContentApi } from '@hooks/useContentApi';
 
 const DoubleButtons: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const router = useRouter()
-  const { isValid, handleSubmit, values, setFieldTouched } = useFormikContext<Record<string, unknown>>()
+  const { getContent } = useContentApi('global_components');
+  const router = useRouter();
+  const { isValid, handleSubmit, values, setFieldTouched } =
+    useFormikContext<Record<string, unknown>>();
 
   const handleBack = () => {
-    router.back()
-  }
+    router.back();
+  };
 
   const handleNext = () => {
     Object.keys(values).forEach((fieldName) => {
-      setFieldTouched(fieldName, true, false)
-    })
+      setFieldTouched(fieldName, true, false);
+    });
 
     if (isValid) {
-      handleSubmit()
+      handleSubmit();
     }
-  }
+  };
 
   return (
     <div className="flex flex-col items-end w-full py-8 pb-10 border-t border-[rgb(51,53,53)] mx-auto mt-10 max-[1200px]:p-0">
@@ -47,7 +48,7 @@ const DoubleButtons: React.FC = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoubleButtons
+export default DoubleButtons;

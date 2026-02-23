@@ -1,3 +1,3 @@
 export interface LtvRatios {
-  [key: string]: number
+  [key: string]: number;
 }

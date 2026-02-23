@@ -1,113 +1,81 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react'
-import { useFormikContext } from 'formik'
-import { useTranslation } from 'react-i18next'
-import { useContentApi } from '@hooks/useContentApi'
-import FormContainer from '@/components/ui/FormContainer/FormContainer'
-import FormCaption from '@/components/ui/FormCaption/FormCaption'
-import FormRow from '@/components/ui/FormRow/FormRow'
-import FormColumn from '@/components/ui/FormColumn/FormColumn'
-import FormattedInput from '@/components/ui/FormattedInput/FormattedInput'
-import SliderInput from '@/components/ui/SliderInput/SliderInput'
-import DropdownSelect from '@/components/ui/DropdownSelect/DropdownSelect'
-import FormError from '@/components/ui/FormError/FormError'
-import { CalculateMortgageTypes } from '@/interfaces/CalculateMortgageTypes'
-import type { CityOption } from './interfaces/CityOption'
-import type { LtvRatios } from './interfaces/LtvRatios'
+import React, { useState, useEffect } from 'react';
+import { useFormikContext } from 'formik';
+import { useTranslation } from 'react-i18next';
+import { useContentApi } from '@hooks/useContentApi';
+import FormContainer from '@/components/ui/FormContainer/FormContainer';
+import FormCaption from '@/components/ui/FormCaption/FormCaption';
+import FormRow from '@/components/ui/FormRow/FormRow';
+import FormColumn from '@/components/ui/FormColumn/FormColumn';
+import FormattedInput from '@/components/ui/FormattedInput/FormattedInput';
+import SliderInput from '@/components/ui/SliderInput/SliderInput';
+import DropdownSelect from '@/components/ui/DropdownSelect/DropdownSelect';
+import FormError from '@/components/ui/FormError/FormError';
+import { CalculateMortgageTypes } from '@/interfaces/CalculateMortgageTypes';
+import type { CityOption } from './interfaces/CityOption';
+import type { LtvRatios } from './interfaces/LtvRatios';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { fetchCities, selectReferenceEntry } from '@/store/slices/referenceSlice';
+import {
+  fetchMortgageLtvRatios,
+  selectMortgageLtvRatios,
+  selectMortgageLtvRatiosLoading,
+} from '@/store/slices/calculateMortgageSlice';
 
 const DEFAULT_LTV_RATIOS: LtvRatios = {
   no_property: 0.75,
-  has_property: 0.50,
-  selling_property: 0.70,
-}
+  has_property: 0.5,
+  selling_property: 0.7,
+};
 
-function getMinInitialPayment(priceOfEstate: number, propertyOwnership: string, ltvRatios: LtvRatios): number {
-  if (!priceOfEstate || priceOfEstate === 0) return 0
-  const ltvRatio = ltvRatios[propertyOwnership] || ltvRatios.no_property || 0.75
-  const maxLoanAmount = priceOfEstate * ltvRatio
-  return priceOfEstate - maxLoanAmount
+function getMinInitialPayment(
+  priceOfEstate: number,
+  propertyOwnership: string,
+  ltvRatios: LtvRatios
+): number {
+  if (!priceOfEstate || priceOfEstate === 0) return 0;
+  const ltvRatio = ltvRatios[propertyOwnership] || ltvRatios.no_property || 0.75;
+  const maxLoanAmount = priceOfEstate * ltvRatio;
+  return priceOfEstate - maxLoanAmount;
 }
 
 const FirstStepForm: React.FC = () => {
-  const { i18n } = useTranslation()
-  const { getContent } = useContentApi('mortgage_step1')
-
-  const [cityOptions, setCityOptions] = useState<CityOption[]>([])
-  const [ltvRatios, setLtvRatios] = useState<LtvRatios>(DEFAULT_LTV_RATIOS)
+  const { i18n } = useTranslation();
+  const { getContent } = useContentApi('mortgage_step1');
+  const dispatch = useAppDispatch();
+  const lang = i18n.language || 'en';
+  const citiesEntry = useAppSelector(selectReferenceEntry('cities', lang));
+  const cityOptions: CityOption[] = citiesEntry?.data ?? [];
+  const ltvRatiosFromStore = useAppSelector(selectMortgageLtvRatios);
+  const ltvRatios = ltvRatiosFromStore ?? DEFAULT_LTV_RATIOS;
 
   const { setFieldValue, values, errors, touched, setFieldTouched } =
-    useFormikContext<CalculateMortgageTypes>()
+    useFormikContext<CalculateMortgageTypes>();
 
-  // Fetch cities from API (get-cities returns { key, name }; fallback to v1/cities on failure)
   useEffect(() => {
-    const lang = i18n.language || 'en'
-    const fetchCities = async () => {
-      try {
-        const response = await fetch(`/api/get-cities?lang=${lang}`)
-        const data = await response.json()
-        if (data.status === 'success' && Array.isArray(data.data)) {
-          const formatted: CityOption[] = data.data.map((city: { key: string; name: string }) => ({
-            value: city.key,
-            label: city.name,
-          }))
-          setCityOptions(formatted)
-          return
-        }
-      } catch {
-        // Fallback: try hardcoded cities
-      }
-      try {
-        const response = await fetch('/api/v1/cities')
-        const data = await response.json()
-        if (data.status === 'success' && Array.isArray(data.data)) {
-          const langKey = lang === 'he' ? 'name_he' : lang === 'ru' ? 'name_ru' : 'name_en'
-          const formatted: CityOption[] = data.data.map(
-            (city: { id: number; name_en: string; name_he: string; name_ru: string }) => ({
-              value: String(city.id),
-              label: city[langKey as keyof typeof city] ?? city.name_en,
-            }),
-          )
-          setCityOptions(formatted)
-        }
-      } catch {
-        setCityOptions([])
-      }
-    }
-    fetchCities()
-  }, [i18n.language])
+    dispatch(fetchCities(lang));
+  }, [dispatch, lang]);
 
-  // Fetch LTV ratios from API
   useEffect(() => {
-    const fetchLtvRatios = async () => {
-      try {
-        const response = await fetch('/api/v1/calculation-parameters?business_path=mortgage')
-        const data = await response.json()
-        if (data.status === 'success' && data.data?.property_ownership_ltvs) {
-          const ratios: LtvRatios = {}
-          Object.keys(data.data.property_ownership_ltvs).forEach((key) => {
-            ratios[key] = data.data.property_ownership_ltvs[key].ltv / 100
-          })
-          setLtvRatios(ratios)
-        }
-      } catch {
-        setLtvRatios(DEFAULT_LTV_RATIOS)
-      }
-    }
-    fetchLtvRatios()
-  }, [])
+    dispatch(fetchMortgageLtvRatios());
+  }, [dispatch]);
 
   // Auto-adjust initial payment when property ownership changes
   useEffect(() => {
     if (values.propertyOwnership && values.priceOfEstate) {
-      const minPayment = getMinInitialPayment(values.priceOfEstate, values.propertyOwnership, ltvRatios)
+      const minPayment = getMinInitialPayment(
+        values.priceOfEstate,
+        values.propertyOwnership,
+        ltvRatios
+      );
       if (values.initialFee < minPayment) {
-        setFieldValue('initialFee', minPayment)
+        setFieldValue('initialFee', minPayment);
       } else if (values.initialFee > values.priceOfEstate) {
-        setFieldValue('initialFee', values.priceOfEstate)
+        setFieldValue('initialFee', values.priceOfEstate);
       }
     }
-  }, [values.propertyOwnership, values.priceOfEstate, ltvRatios, values.initialFee, setFieldValue])
+  }, [values.propertyOwnership, values.priceOfEstate, ltvRatios, values.initialFee, setFieldValue]);
 
   // Dropdown options
   const whenNeededOptions = [
@@ -115,28 +83,35 @@ const FirstStepForm: React.FC = () => {
     { value: 'option_2', label: getContent('calculate_mortgage_when_options_2') },
     { value: 'option_3', label: getContent('calculate_mortgage_when_options_3') },
     { value: 'option_4', label: getContent('calculate_mortgage_when_options_4') },
-  ]
+  ];
 
   const typeOptions = [
     { value: 'option_1', label: getContent('calculate_mortgage_type_options_1') },
     { value: 'option_2', label: getContent('calculate_mortgage_type_options_2') },
     { value: 'option_3', label: getContent('calculate_mortgage_type_options_3') },
     { value: 'option_4', label: getContent('calculate_mortgage_type_options_4') },
-  ]
+  ];
 
   const firstHomeOptions = [
     { value: 'option_1', label: getContent('calculate_mortgage_first_options_1') },
     { value: 'option_2', label: getContent('calculate_mortgage_first_options_2') },
     { value: 'option_3', label: getContent('calculate_mortgage_first_options_3') },
-  ]
+  ];
 
   const propertyOwnershipOptions = [
     { value: 'no_property', label: getContent('calculate_mortgage_property_ownership_option_1') },
     { value: 'has_property', label: getContent('calculate_mortgage_property_ownership_option_2') },
-    { value: 'selling_property', label: getContent('calculate_mortgage_property_ownership_option_3') },
-  ]
+    {
+      value: 'selling_property',
+      label: getContent('calculate_mortgage_property_ownership_option_3'),
+    },
+  ];
 
-  const minInitialPayment = getMinInitialPayment(values.priceOfEstate, values.propertyOwnership, ltvRatios)
+  const minInitialPayment = getMinInitialPayment(
+    values.priceOfEstate,
+    values.propertyOwnership,
+    ltvRatios
+  );
 
   return (
     <FormContainer>
@@ -154,7 +129,9 @@ const FirstStepForm: React.FC = () => {
             error={touched.priceOfEstate ? errors.priceOfEstate : undefined}
             data-testid="property-price-input"
           />
-          {touched.priceOfEstate && errors.priceOfEstate && <FormError error={errors.priceOfEstate} />}
+          {touched.priceOfEstate && errors.priceOfEstate && (
+            <FormError error={errors.priceOfEstate} />
+          )}
         </FormColumn>
         <FormColumn>
           <DropdownSelect
@@ -275,12 +252,14 @@ const FirstStepForm: React.FC = () => {
             onChange={(val) => setFieldValue('monthlyPayment', val)}
             error={touched.monthlyPayment ? errors.monthlyPayment : undefined}
           />
-          {touched.monthlyPayment && errors.monthlyPayment && <FormError error={errors.monthlyPayment} />}
+          {touched.monthlyPayment && errors.monthlyPayment && (
+            <FormError error={errors.monthlyPayment} />
+          )}
         </FormColumn>
         <FormColumn />
       </FormRow>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default FirstStepForm
+export default FirstStepForm;

@@ -13,11 +13,6 @@ const nextConfig: NextConfig = {
     externalDir: true,
   },
 
-  // Ignore TS errors from legacy ../web/src imports during migration.
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
   // Turbopack config (Next.js 16 default bundler)
   turbopack: {
     resolveAlias: {

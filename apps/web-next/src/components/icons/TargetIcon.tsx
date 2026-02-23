@@ -1,15 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 interface TargetIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
-const TargetIcon: React.FC<TargetIconProps> = ({
-  size = 32,
-  color = '#F5D547',
-  ...props
-}) => (
+const TargetIcon: React.FC<TargetIconProps> = ({ size = 32, color = '#F5D547', ...props }) => (
   <svg
     width={size}
     height={size}
@@ -22,6 +18,6 @@ const TargetIcon: React.FC<TargetIconProps> = ({
     <circle cx="16" cy="16" r="8" stroke={color} strokeWidth="2" />
     <circle cx="16" cy="16" r="4" stroke={color} strokeWidth="2" />
   </svg>
-)
+);
 
-export default TargetIcon
+export default TargetIcon;

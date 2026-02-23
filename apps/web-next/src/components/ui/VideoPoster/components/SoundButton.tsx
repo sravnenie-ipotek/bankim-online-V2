@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 
 interface SoundButtonProps {
-  isMuted: boolean
-  onClick: () => void
+  isMuted: boolean;
+  onClick: () => void;
 }
 
-const SPEAKER_OFF_SRC = '/static/speaker-off.svg'
-const SPEAKER_ON_SRC = '/static/speaker-on.svg'
+const SPEAKER_OFF_SRC = '/static/speaker-off.svg';
+const SPEAKER_ON_SRC = '/static/speaker-on.svg';
 
 const SoundButton: React.FC<SoundButtonProps> = ({ isMuted, onClick }) => (
   <button
@@ -28,6 +28,6 @@ const SoundButton: React.FC<SoundButtonProps> = ({ isMuted, onClick }) => (
       aria-hidden
     />
   </button>
-)
+);
 
-export default SoundButton
+export default SoundButton;

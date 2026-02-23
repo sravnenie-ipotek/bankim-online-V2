@@ -1,14 +1,16 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 
-import { FEATURES } from './constants'
-import Container from '@/components/ui/Container/Container'
-import { useContentApi } from '@hooks/useContentApi'
+import { FEATURES } from './constants';
+import Container from '@/components/ui/Container/Container';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
 
-export default function Cooperation() {
-  const { getContent } = useContentApi('cooperation')
+const Cooperation: React.FC = () => {
+  useContentFetch('cooperation');
+  const { getContent } = useContentApi('cooperation');
 
   return (
     <Container>
@@ -34,22 +36,14 @@ export default function Cooperation() {
             </p>
           </div>
           <div className="flex-shrink-0">
-            <Image
-              src="/static/primary-logo05-1.svg"
-              alt="BankimOnline"
-              width={200}
-              height={60}
-            />
+            <Image src="/static/primary-logo05-1.svg" alt="BankimOnline" width={200} height={60} />
           </div>
         </div>
 
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {FEATURES.map((feature) => (
-            <div
-              key={feature.key}
-              className="flex items-center gap-4 p-6 bg-base-secondary rounded-lg"
-            >
+            <div key={feature.key} className="surface-card-p6 flex items-center gap-4">
               <span className="text-3xl">{feature.icon}</span>
               <span className="text-base font-medium text-textTheme-primary">
                 {getContent(feature.key)}
@@ -92,7 +86,7 @@ export default function Cooperation() {
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col items-center gap-6 p-8 bg-base-secondary rounded-lg text-center">
+        <div className="surface-card-p8 flex flex-col items-center gap-6 text-center">
           <h2 className="text-2xl font-semibold text-textTheme-primary">
             {getContent('cooperation_cta_title')}
           </h2>
@@ -102,5 +96,7 @@ export default function Cooperation() {
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
+
+export default Cooperation;

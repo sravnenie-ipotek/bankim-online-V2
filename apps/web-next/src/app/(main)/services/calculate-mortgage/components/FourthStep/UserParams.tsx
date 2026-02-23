@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import { useAppSelector } from '@/hooks/store'
-import type { CalculateMortgageTypes } from '@/interfaces/CalculateMortgageTypes'
-import ParamRow from './ParamRow'
+import React from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import { useAppSelector } from '@/hooks/store';
+import type { CalculateMortgageTypes } from '@/interfaces/CalculateMortgageTypes';
+import ParamRow from './ParamRow';
 
 const UserParams: React.FC = () => {
-  const { getContent } = useContentApi('mortgage_step4')
-  const mortgage = (useAppSelector((state) => state.mortgage) ?? {}) as Partial<CalculateMortgageTypes>
+  const { getContent } = useContentApi('mortgage_step4');
+  const mortgage = (useAppSelector((state) => state.mortgage) ??
+    {}) as Partial<CalculateMortgageTypes>;
 
-  const formatCurrency = (val: number): string =>
-    val ? `${val.toLocaleString('en-US')} ₪` : '—'
+  const formatCurrency = (val: number): string => (val ? `${val.toLocaleString('en-US')} ₪` : '—');
 
   return (
-    <div className="bg-base-secondary rounded-lg p-6">
+    <div className="surface-card-p6">
       <h3 className="text-[1.25rem] font-semibold text-textTheme-primary mb-4">
         {getContent('calculate_mortgage_parameters')}
       </h3>
@@ -28,7 +28,11 @@ const UserParams: React.FC = () => {
       />
       <ParamRow
         label={getContent('calculate_mortgage_parameters_period')}
-        value={mortgage.period ? `${mortgage.period} ${getContent('calculate_mortgage_parameters_months')}` : '—'}
+        value={
+          mortgage.period
+            ? `${mortgage.period} ${getContent('calculate_mortgage_parameters_months')}`
+            : '—'
+        }
       />
       <ParamRow
         label={getContent('mortgage_monthly')}
@@ -39,7 +43,7 @@ const UserParams: React.FC = () => {
         value={formatCurrency((mortgage.priceOfEstate ?? 0) - (mortgage.initialFee ?? 0))}
       />
     </div>
-  )
-}
+  );
+};
 
-export default UserParams
+export default UserParams;

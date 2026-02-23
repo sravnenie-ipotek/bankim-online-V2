@@ -1,12 +1,15 @@
-'use client'
+'use client';
 
-import BankPageContent from '@/components/ui/BankPageContent/BankPageContent'
+import React from 'react';
+import BankPageContent from '@/components/ui/BankPageContent/BankPageContent';
 
-export default function Beinleumi() {
+const Beinleumi: React.FC = () => {
   return (
     <BankPageContent
       title="Bank Beinleumi"
       description="Bank Beinleumi page content coming soon."
     />
-  )
-}
+  );
+};
+
+export default Beinleumi;

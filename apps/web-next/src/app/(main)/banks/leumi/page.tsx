@@ -1,12 +1,10 @@
-'use client'
+'use client';
 
-import BankPageContent from '@/components/ui/BankPageContent/BankPageContent'
+import React from 'react';
+import BankPageContent from '@/components/ui/BankPageContent/BankPageContent';
 
-export default function Leumi() {
-  return (
-    <BankPageContent
-      title="Bank Leumi"
-      description="Bank Leumi page content coming soon."
-    />
-  )
-}
+const Leumi: React.FC = () => {
+  return <BankPageContent title="Bank Leumi" description="Bank Leumi page content coming soon." />;
+};
+
+export default Leumi;

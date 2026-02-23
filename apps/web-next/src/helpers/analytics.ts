@@ -1,42 +1,48 @@
-const COOKIE_CONSENT_KEY = 'cookie'
+import { StorageHelper } from './StorageHelper';
 
-function hasConsent(): boolean {
-  if (typeof window === 'undefined') return false
-  return localStorage.getItem(COOKIE_CONSENT_KEY) === '1'
-}
+const COOKIE_CONSENT_KEY = 'cookie';
 
-function getMeasurementId(): string | undefined {
-  return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || undefined
-}
-
-export type AnalyticsEventParams = Record<string, string | number | boolean>
+export type AnalyticsEventParams = Record<string, string | number | boolean>;
 
 /**
- * Send a custom event to GA4 when consent is given and gtag is loaded.
+ * Helper for GA4 analytics: consent check, measurement ID, and event tracking.
  */
-export function trackEvent(
-  eventName: string,
-  params?: AnalyticsEventParams
-): void {
-  if (!hasConsent()) return
-  const measurementId = getMeasurementId()
-  if (!measurementId || typeof window === 'undefined' || !window.gtag) return
-  window.gtag('event', eventName, params)
-}
-
-/**
- * Track a click / CTA for GA4. Sends event name "click" with button_name and page.
- */
-export function trackClick(
-  buttonName: string,
-  context?: string
-): void {
-  const page =
-    typeof window !== 'undefined' ? window.location.pathname : ''
-  const params: AnalyticsEventParams = {
-    button_name: buttonName,
-    page,
+export class AnalyticsHelper {
+  private static get hasConsent(): boolean {
+    return StorageHelper.getItem(COOKIE_CONSENT_KEY) === '1';
   }
-  if (context) params.context = context
-  trackEvent('click', params)
+
+  private static getMeasurementId(): string | undefined {
+    return process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || undefined;
+  }
+
+  /**
+   * Sends a custom event to GA4 when consent is given and gtag is loaded.
+   * @param eventName - GA4 event name.
+   * @param params - Optional event parameters (string, number, or boolean values).
+   */
+  static trackEvent(eventName: string, params?: AnalyticsEventParams): void {
+    if (!AnalyticsHelper.hasConsent) return;
+    const measurementId = AnalyticsHelper.getMeasurementId();
+    if (!measurementId || typeof window === 'undefined' || !window.gtag) return;
+    window.gtag('event', eventName, params);
+  }
+
+  /**
+   * Tracks a click / CTA for GA4. Sends event name "click" with button_name and page.
+   * @param buttonName - Name of the button/CTA for analytics.
+   * @param context - Optional context (e.g. entity id) added to event params.
+   */
+  static trackClick(buttonName: string, context?: string): void {
+    const page = typeof window !== 'undefined' ? window.location.pathname : '';
+    const params: AnalyticsEventParams = {
+      button_name: buttonName,
+      page,
+    };
+    if (context) params.context = context;
+    AnalyticsHelper.trackEvent('click', params);
+  }
 }
+
+export const trackEvent = AnalyticsHelper.trackEvent.bind(AnalyticsHelper);
+export const trackClick = AnalyticsHelper.trackClick.bind(AnalyticsHelper);

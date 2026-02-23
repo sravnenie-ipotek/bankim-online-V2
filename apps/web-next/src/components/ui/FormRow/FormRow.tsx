@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { FormRowProps } from './interfaces/FormRowProps'
+import React from 'react';
+import type { FormRowProps } from './interfaces/FormRowProps';
 
 const FormRow: React.FC<FormRowProps> = ({ children, className = '', ...props }) => {
   return (
@@ -11,7 +11,7 @@ const FormRow: React.FC<FormRowProps> = ({ children, className = '', ...props })
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default FormRow
+export default FormRow;

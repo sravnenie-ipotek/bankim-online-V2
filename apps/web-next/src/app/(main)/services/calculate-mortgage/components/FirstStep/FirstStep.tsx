@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Form, Formik } from 'formik'
-import { useRouter } from 'next/navigation'
+import React from 'react';
+import { Form, Formik } from 'formik';
+import { useRouter } from 'next/navigation';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/store'
-import type { CalculateMortgageTypes } from '@/interfaces/CalculateMortgageTypes'
-import { updateMortgageData } from '@/store/slices/calculateMortgageSlice'
-import Container from '@/components/ui/Container/Container'
-import VideoPoster from '@/components/ui/VideoPoster/VideoPoster'
-import SingleButton from '@/components/ui/SingleButton/SingleButton'
-import { useContentApi } from '@hooks/useContentApi'
-import { step1ValidationSchema } from '../../helpers/validationSchemas'
-import FirstStepForm from './FirstStepForm'
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import type { CalculateMortgageTypes } from '@/interfaces/CalculateMortgageTypes';
+import { updateMortgageData } from '@/store/slices/calculateMortgageSlice';
+import Container from '@/components/ui/Container/Container';
+import VideoPoster from '@/components/ui/VideoPoster/VideoPoster';
+import SingleButton from '@/components/ui/SingleButton/SingleButton';
+import { useContentApi } from '@hooks/useContentApi';
+import { step1ValidationSchema } from '../../helpers/validationSchemas';
+import FirstStepForm from './FirstStepForm';
 
 const DEFAULT_VALUES: CalculateMortgageTypes = {
   priceOfEstate: 1000000,
@@ -24,15 +24,16 @@ const DEFAULT_VALUES: CalculateMortgageTypes = {
   propertyOwnership: '',
   period: 4,
   monthlyPayment: 11514,
-}
+};
 
 const FirstStep: React.FC = () => {
-  const { getContent } = useContentApi('mortgage_step1')
-  const dispatch = useAppDispatch()
-  const router = useRouter()
+  const { getContent } = useContentApi('mortgage_step1');
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const savedValue = (useAppSelector((state) => state.mortgage) ?? {}) as Partial<CalculateMortgageTypes>
-  const isLogin = useAppSelector((state) => state.login?.isLogin)
+  const savedValue = (useAppSelector((state) => state.mortgage) ??
+    {}) as Partial<CalculateMortgageTypes>;
+  const isLogin = useAppSelector((state) => state.login?.isLogin);
 
   const initialValues: CalculateMortgageTypes = {
     priceOfEstate: savedValue.priceOfEstate ?? DEFAULT_VALUES.priceOfEstate,
@@ -44,7 +45,7 @@ const FirstStep: React.FC = () => {
     propertyOwnership: savedValue.propertyOwnership ?? DEFAULT_VALUES.propertyOwnership,
     period: savedValue.period ?? DEFAULT_VALUES.period,
     monthlyPayment: savedValue.monthlyPayment ?? DEFAULT_VALUES.monthlyPayment,
-  }
+  };
 
   return (
     <Formik
@@ -52,12 +53,12 @@ const FirstStep: React.FC = () => {
       validationSchema={step1ValidationSchema}
       validateOnMount
       onSubmit={(values) => {
-        dispatch(updateMortgageData(values as unknown as Record<string, unknown>))
+        dispatch(updateMortgageData(values as unknown as Record<string, unknown>));
         if (isLogin) {
-          router.push('/services/calculate-mortgage/2')
+          router.push('/services/calculate-mortgage/2');
         } else {
           // For now, proceed to step 2 anyway (login modal integration later)
-          router.push('/services/calculate-mortgage/2')
+          router.push('/services/calculate-mortgage/2');
         }
       }}
     >
@@ -73,7 +74,7 @@ const FirstStep: React.FC = () => {
         <SingleButton />
       </Form>
     </Formik>
-  )
-}
+  );
+};
 
-export default FirstStep
+export default FirstStep;

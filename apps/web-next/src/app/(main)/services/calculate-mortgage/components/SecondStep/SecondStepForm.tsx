@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useFormikContext } from 'formik'
-import { useContentApi } from '@hooks/useContentApi'
-import FormContainer from '@/components/ui/FormContainer/FormContainer'
-import FormCaption from '@/components/ui/FormCaption/FormCaption'
-import FormRow from '@/components/ui/FormRow/FormRow'
-import FormColumn from '@/components/ui/FormColumn/FormColumn'
-import DropdownSelect from '@/components/ui/DropdownSelect/DropdownSelect'
-import DateInput from '@/components/ui/DateInput/DateInput'
-import FormError from '@/components/ui/FormError/FormError'
-import FormattedInput from '@/components/ui/FormattedInput/FormattedInput'
-import { PersonalInfoTypes } from '@/interfaces/FormTypes'
+import React from 'react';
+import { useFormikContext } from 'formik';
+import { useContentApi } from '@hooks/useContentApi';
+import FormContainer from '@/components/ui/FormContainer/FormContainer';
+import FormCaption from '@/components/ui/FormCaption/FormCaption';
+import FormRow from '@/components/ui/FormRow/FormRow';
+import FormColumn from '@/components/ui/FormColumn/FormColumn';
+import DropdownSelect from '@/components/ui/DropdownSelect/DropdownSelect';
+import DateInput from '@/components/ui/DateInput/DateInput';
+import FormError from '@/components/ui/FormError/FormError';
+import FormattedInput from '@/components/ui/FormattedInput/FormattedInput';
+import { PersonalInfoTypes } from '@/interfaces/FormTypes';
 
 const SecondStepForm: React.FC = () => {
-  const { getContent } = useContentApi('mortgage_step2')
+  const { getContent } = useContentApi('mortgage_step2');
   const { setFieldValue, values, errors, touched, setFieldTouched } =
-    useFormikContext<PersonalInfoTypes>()
+    useFormikContext<PersonalInfoTypes>();
 
   const yesNoOptions = [
     { value: 'yes', label: getContent('yes') },
     { value: 'no', label: getContent('no') },
-  ]
+  ];
 
   const educationOptions = [
     { value: 'option_1', label: getContent('calculate_mortgage_education_option_1') },
@@ -31,7 +31,7 @@ const SecondStepForm: React.FC = () => {
     { value: 'option_5', label: getContent('calculate_mortgage_education_option_5') },
     { value: 'option_6', label: getContent('calculate_mortgage_education_option_6') },
     { value: 'option_7', label: getContent('calculate_mortgage_education_option_7') },
-  ]
+  ];
 
   const familyStatusOptions = [
     { value: 'single', label: getContent('calculate_mortgage_family_status_option_1') },
@@ -40,13 +40,13 @@ const SecondStepForm: React.FC = () => {
     { value: 'widowed', label: getContent('calculate_mortgage_family_status_option_4') },
     { value: 'separated', label: getContent('calculate_mortgage_family_status_option_5') },
     { value: 'common_law', label: getContent('calculate_mortgage_family_status_option_6') },
-  ]
+  ];
 
   // Date 18 years ago for max birthday
-  const today = new Date()
+  const today = new Date();
   const maxBirthday = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
     .toISOString()
-    .split('T')[0]
+    .split('T')[0];
 
   return (
     <FormContainer>
@@ -227,7 +227,7 @@ const SecondStepForm: React.FC = () => {
         </FormColumn>
       </FormRow>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default SecondStepForm
+export default SecondStepForm;

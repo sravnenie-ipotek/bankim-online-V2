@@ -1,15 +1,17 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 
-import { ABOUT_FEATURES } from './constants'
-import Container from '@/components/ui/Container/Container'
-import FeatureCard from '@/components/ui/FeatureCard/FeatureCard'
-import { useContentApi } from '@hooks/useContentApi'
+import { ABOUT_FEATURES } from './constants';
+import Container from '@/components/ui/Container/Container';
+import FeatureCard from '@/components/ui/FeatureCard/FeatureCard';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
 
-export default function About() {
-  const { getContent } = useContentApi('about')
+const About: React.FC = () => {
+  useContentFetch('about');
+  const { getContent } = useContentApi('about');
 
   return (
     <Container>
@@ -34,9 +36,7 @@ export default function About() {
               <p className="text-base leading-[160%] text-textTheme-secondary">
                 {getContent('about_how_it_work_text')}
               </p>
-              <p className="text-accent-primary font-semibold mt-4">
-                {getContent('bankimonline')}
-              </p>
+              <p className="text-accent-primary font-semibold mt-4">{getContent('bankimonline')}</p>
               <p className="text-base leading-[160%] text-textTheme-secondary mt-4">
                 {getContent('about_how_it_work_text_second')}
               </p>
@@ -72,5 +72,7 @@ export default function About() {
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
+
+export default About;

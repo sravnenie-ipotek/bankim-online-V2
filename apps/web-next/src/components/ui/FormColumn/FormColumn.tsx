@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { FormColumnProps } from './interfaces/FormColumnProps'
+import React from 'react';
+import type { FormColumnProps } from './interfaces/FormColumnProps';
 
 const FormColumn: React.FC<FormColumnProps> = ({ children, className = '', ...props }) => {
   return (
@@ -11,7 +11,7 @@ const FormColumn: React.FC<FormColumnProps> = ({ children, className = '', ...pr
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default FormColumn
+export default FormColumn;

@@ -1,43 +1,43 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import { useToggle } from '@/hooks/useToggle'
-import MobileMenuHeader from './MobileMenuHeader'
-import NavigationList from './NavigationList'
-import NavigationSubMenu from './NavigationSubMenu'
-import MobileLanguageSelector from './MobileLanguageSelector'
+import React from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import { useToggle } from '@/hooks/useToggle';
+import MobileMenuHeader from './MobileMenuHeader';
+import NavigationList from './NavigationList';
+import NavigationSubMenu from './NavigationSubMenu';
+import MobileLanguageSelector from './MobileLanguageSelector';
 import {
   useMenuItems,
   useBusinessMenuItems,
   useSubMenuItems,
   useBusinessSubMenuItems,
-} from '../Sidebar/useMenuItems'
+} from '../Sidebar/useMenuItems';
 
 interface MobileMenuProps {
-  onClick: () => void
-  isOpen: boolean
+  onClick: () => void;
+  isOpen: boolean;
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
-  const { getContent } = useContentApi('global_components')
-  const menuItems = useMenuItems()
-  const businessMenuItems = useBusinessMenuItems()
-  const subMenuItems = useSubMenuItems()
-  const businessSubMenuItems = useBusinessSubMenuItems()
+  const { getContent } = useContentApi('global_components');
+  const menuItems = useMenuItems();
+  const businessMenuItems = useBusinessMenuItems();
+  const subMenuItems = useSubMenuItems();
+  const businessSubMenuItems = useBusinessSubMenuItems();
 
-  const { isOn: isSubMenuOpen, toggle: toggleSubMenu, set: setSubMenu } = useToggle(false)
+  const { isOn: isSubMenuOpen, toggle: toggleSubMenu, set: setSubMenu } = useToggle(false);
   const {
     isOn: isBusinessSubMenuOpen,
     toggle: toggleBusinessSubMenu,
     set: setBusinessSubMenu,
-  } = useToggle(false)
+  } = useToggle(false);
 
   const handleClose = () => {
-    onClick()
-    setSubMenu(false)
-    setBusinessSubMenu(false)
-  }
+    onClick();
+    setSubMenu(false);
+    setBusinessSubMenu(false);
+  };
 
   return (
     <nav
@@ -77,12 +77,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
             rel="noreferrer"
             className="opacity-50 hover:opacity-100 transition-opacity"
           >
-            <img
-              alt={name}
-              src={`/static/${name.toLowerCase()}.svg`}
-              width={24}
-              height={24}
-            />
+            <img alt={name} src={`/static/${name.toLowerCase()}.svg`} width={24} height={24} />
           </a>
         ))}
       </div>
@@ -101,7 +96,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
         onCloseMenu={handleClose}
       />
     </nav>
-  )
-}
+  );
+};
 
-export default MobileMenu
+export default MobileMenu;

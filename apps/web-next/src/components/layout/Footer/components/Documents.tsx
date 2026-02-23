@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { useWindowResize } from '@hooks/useWindowResize'
-import { useContentApi } from '@hooks/useContentApi'
-import FooterAccordion from '../FooterAccordion'
+import React from 'react';
+import Link from 'next/link';
+import { useWindowResize } from '@hooks/useWindowResize';
+import { useContentApi } from '@hooks/useContentApi';
+import FooterAccordion from '../FooterAccordion';
 
 const DOCUMENT_LINKS = [
   { key: 'footer_tenders_brokers', href: '/tenders-for-brokers' },
@@ -13,11 +13,11 @@ const DOCUMENT_LINKS = [
   { key: 'footer_legal_2', href: '/privacy-policy' },
   { key: 'footer_legal_3', href: '/cookie' },
   { key: 'footer_legal_4', href: '/refund' },
-] as const
+] as const;
 
 const Documents: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const { width } = useWindowResize()
+  const { getContent } = useContentApi('global_components');
+  const { width } = useWindowResize();
 
   if (width > 1024) {
     return (
@@ -33,7 +33,7 @@ const Documents: React.FC = () => {
           ))}
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -44,7 +44,7 @@ const Documents: React.FC = () => {
         </Link>
       ))}
     </FooterAccordion>
-  )
-}
+  );
+};
 
-export default Documents
+export default Documents;

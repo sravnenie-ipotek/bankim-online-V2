@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import React, { useState, useCallback, useEffect } from 'react'
-import FormattedInput from '@/components/ui/FormattedInput/FormattedInput'
-import type { SliderInputProps } from './interfaces/SliderInputProps'
+import React, { useState, useCallback, useEffect } from 'react';
+import FormattedInput from '@/components/ui/FormattedInput/FormattedInput';
+import type { SliderInputProps } from './interfaces/SliderInputProps';
 
 function formatLabel(num: number, units?: string): string {
-  const formatted = num.toLocaleString('en-US')
-  return units ? `${formatted} ${units}` : formatted
+  const formatted = num.toLocaleString('en-US');
+  return units ? `${formatted} ${units}` : formatted;
 }
 
 const SliderInput: React.FC<SliderInputProps> = ({
@@ -25,34 +25,34 @@ const SliderInput: React.FC<SliderInputProps> = ({
   disabled = false,
   ...rest
 }) => {
-  const [localValue, setLocalValue] = useState(value)
+  const [localValue, setLocalValue] = useState(value);
 
   useEffect(() => {
-    setLocalValue(value)
-  }, [value])
+    setLocalValue(value);
+  }, [value]);
 
   const handleInputChange = useCallback(
     (val: number | null) => {
-      if (val === null) return
-      const clamped = Math.max(min, Math.min(max, val))
-      setLocalValue(clamped)
-      onChange(clamped)
+      if (val === null) return;
+      const clamped = Math.max(min, Math.min(max, val));
+      setLocalValue(clamped);
+      onChange(clamped);
     },
-    [min, max, onChange],
-  )
+    [min, max, onChange]
+  );
 
   const handleSliderChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = Number(e.target.value)
-      setLocalValue(val)
-      onChange(val)
+      const val = Number(e.target.value);
+      setLocalValue(val);
+      onChange(val);
     },
-    [onChange],
-  )
+    [onChange]
+  );
 
   // Calculate percentage for slider track fill
-  const safeMax = max > min ? max : min + 1
-  const percentage = ((localValue - min) / (safeMax - min)) * 100
+  const safeMax = max > min ? max : min + 1;
+  const percentage = ((localValue - min) / (safeMax - min)) * 100;
 
   return (
     <div className="flex flex-col gap-1 w-full">
@@ -88,7 +88,7 @@ const SliderInput: React.FC<SliderInputProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SliderInput
+export default SliderInput;

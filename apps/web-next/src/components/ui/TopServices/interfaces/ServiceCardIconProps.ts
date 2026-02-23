@@ -1,3 +1,3 @@
 export interface ServiceCardIconProps {
-  src: string
+  src: string;
 }

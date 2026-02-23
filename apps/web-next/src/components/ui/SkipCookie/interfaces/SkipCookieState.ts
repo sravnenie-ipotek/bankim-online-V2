@@ -1,4 +1,4 @@
 export interface SkipCookieState {
-  mounted: boolean
-  isVisible: boolean
+  mounted: boolean;
+  isVisible: boolean;
 }

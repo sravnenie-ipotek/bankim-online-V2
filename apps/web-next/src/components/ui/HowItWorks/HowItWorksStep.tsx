@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
-import type { HowItWorksStepProps } from './interfaces/HowItWorksStepProps'
+import React from 'react';
+import Image from 'next/image';
+import type { HowItWorksStepProps } from './interfaces/HowItWorksStepProps';
 
 const HowItWorksStep: React.FC<HowItWorksStepProps> = ({
   iconSrc,
@@ -36,7 +36,7 @@ const HowItWorksStep: React.FC<HowItWorksStepProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HowItWorksStep
+export default HowItWorksStep;

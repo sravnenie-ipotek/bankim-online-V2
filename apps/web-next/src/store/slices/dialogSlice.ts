@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import type { RootState } from '@/store'
-import type { IDialogState } from './interfaces/IDialogState'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import type { RootState } from '@/store';
+import type { IDialogState } from './interfaces/IDialogState';
 
 const initialState: IDialogState = {
   title: null,
@@ -13,7 +13,7 @@ const initialState: IDialogState = {
   content: null,
   isCloseIcon: false,
   maxWidth: null,
-}
+};
 
 const dialogSlice = createSlice({
   name: 'dialog',
@@ -24,14 +24,14 @@ const dialogSlice = createSlice({
         ...state,
         ...action.payload,
         isVisible: true,
-      }
+      };
     },
     cancelDialog: (state) => {
-      return { ...initialState }
+      return { ...initialState };
     },
   },
-})
+});
 
-export const { setDialog, cancelDialog } = dialogSlice.actions
-export const dialogSelector = (state: RootState) => state.dialog
-export default dialogSlice.reducer
+export const { setDialog, cancelDialog } = dialogSlice.actions;
+export const dialogSelector = (state: RootState) => state.dialog;
+export default dialogSlice.reducer;

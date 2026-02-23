@@ -3,27 +3,9 @@ import { LoggerService } from '@bankimonline/logger';
 import { ContentService } from './content.service';
 import { DropdownService } from './dropdown.service';
 
-const CONCURRENCY = 5;
-
-type ScreenLanguagePair = { screen: string; language: string };
-
-async function runBounded<T, R>(
-  items: T[],
-  concurrency: number,
-  fn: (item: T) => Promise<R>,
-): Promise<R[]> {
-  const results: R[] = [];
-  for (let i = 0; i < items.length; i += concurrency) {
-    const batch = items.slice(i, i + concurrency);
-    const batchResults = await Promise.all(batch.map(fn));
-    results.push(...batchResults);
-  }
-  return results;
-}
-
 /**
- * Warms Redis by updating only the content/dropdown/validation keys from DB.
- * Does not clear Redis: we set each key one by one so existing keys stay intact.
+ * Warms Redis with 3 bulk queries (content, validation_errors, dropdowns).
+ * Does not clear Redis: we set each key so existing keys stay intact.
  */
 @Injectable()
 export class CacheWarmupService {
@@ -35,51 +17,23 @@ export class CacheWarmupService {
 
   async warm(): Promise<void> {
     this.logger.log(
-      'Cache warmup started (update by key only, no clear)',
+      'Cache warmup started (bulk: content, validation_errors, dropdowns)',
       'CacheWarmupService',
     );
     try {
-      // ContentService.getScreenLanguagePairs() returns Promise<ScreenLanguagePair[]>; type not resolved by ESLint for injected service
-      /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
-      const pairs: ScreenLanguagePair[] =
-        await this.contentService.getScreenLanguagePairs();
-      /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
-      if (pairs.length === 0) {
-        this.logger.warn(
-          'Cache warmup skipped: no screen/language pairs (content_items with is_active and approved translations)',
-          'CacheWarmupService',
-        );
-        return;
-      }
-      const languages = [...new Set(pairs.map((p) => p.language))];
+      const t0 = Date.now();
 
-      // Injected service types not fully resolved by ESLint
-      /* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
-      await runBounded(pairs, CONCURRENCY, (p) =>
-        this.contentService.warmContentByScreen(p.screen, p.language),
-      );
+      const [contentMs, validationMs, dropdownMs] = await Promise.all([
+        this.warmContentWithTiming(),
+        this.warmValidationErrorsWithTiming(),
+        this.warmDropdownsWithTiming(),
+      ]);
+
+      const totalMs = Date.now() - t0;
       this.logger.log(
-        `Warmed content for ${pairs.length} screen/language pairs`,
+        `Warmed content (${contentMs}ms) + validation_errors (${validationMs}ms) + dropdowns (${dropdownMs}ms) in ${totalMs}ms`,
         'CacheWarmupService',
       );
-
-      await runBounded(languages, CONCURRENCY, (lang) =>
-        this.contentService.warmValidationErrors(lang),
-      );
-      this.logger.log(
-        `Warmed validation_errors for ${languages.length} languages`,
-        'CacheWarmupService',
-      );
-
-      await runBounded(pairs, CONCURRENCY, (p) =>
-        this.dropdownService.warmDropdownsByScreen(p.screen, p.language),
-      );
-      /* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return */
-      this.logger.log(
-        `Warmed dropdowns for ${pairs.length} screen/language pairs`,
-        'CacheWarmupService',
-      );
-
       this.logger.log('Cache warmup completed', 'CacheWarmupService');
     } catch (err) {
       this.logger.error(
@@ -89,5 +43,23 @@ export class CacheWarmupService {
       );
       throw err;
     }
+  }
+
+  private async warmContentWithTiming(): Promise<number> {
+    const t = Date.now();
+    await this.contentService.warmAllContentBulk();
+    return Date.now() - t;
+  }
+
+  private async warmValidationErrorsWithTiming(): Promise<number> {
+    const t = Date.now();
+    await this.contentService.warmAllValidationErrorsBulk();
+    return Date.now() - t;
+  }
+
+  private async warmDropdownsWithTiming(): Promise<number> {
+    const t = Date.now();
+    await this.dropdownService.warmAllDropdownsBulk();
+    return Date.now() - t;
   }
 }

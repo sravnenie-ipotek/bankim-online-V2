@@ -4,8 +4,8 @@ declare global {
       command: 'config' | 'event' | 'js',
       targetIdOrEventName: string,
       config?: Record<string, string | number | boolean>
-    ) => void
+    ) => void;
   }
 }
 
-export {}
+export {};

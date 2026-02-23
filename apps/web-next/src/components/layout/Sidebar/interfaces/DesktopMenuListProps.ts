@@ -1,9 +1,9 @@
-import type { MenuItem } from '../types'
+import type { MenuItem } from '../types';
 
 export interface DesktopMenuListProps {
-  title: string
-  items: MenuItem[]
-  onFirstItemClick: () => void
-  onLinkClick: () => void
-  isExpanded?: boolean
+  title: string;
+  items: MenuItem[];
+  onFirstItemClick: () => void;
+  onLinkClick: () => void;
+  isExpanded?: boolean;
 }

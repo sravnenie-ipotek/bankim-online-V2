@@ -1,22 +1,23 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useFormikContext } from 'formik'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import { useFormikContext } from 'formik';
+import { useContentApi } from '@hooks/useContentApi';
 
 const SingleButton: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const { isValid, handleSubmit, values, setFieldTouched } = useFormikContext<Record<string, unknown>>()
+  const { getContent } = useContentApi('global_components');
+  const { isValid, handleSubmit, values, setFieldTouched } =
+    useFormikContext<Record<string, unknown>>();
 
   const handleClick = () => {
     Object.keys(values).forEach((fieldName) => {
-      setFieldTouched(fieldName, true, false)
-    })
+      setFieldTouched(fieldName, true, false);
+    });
 
     if (isValid) {
-      handleSubmit()
+      handleSubmit();
     }
-  }
+  };
 
   return (
     <div className="flex flex-col items-end w-full py-8 pb-10 border-t border-[rgb(51,53,53)] mx-auto mt-10 max-[1200px]:p-0">
@@ -36,7 +37,7 @@ const SingleButton: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SingleButton
+export default SingleButton;

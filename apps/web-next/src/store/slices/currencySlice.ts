@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { Currency, CurrencyState } from './interfaces/CurrencyState'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { Currency, CurrencyState } from './interfaces/CurrencyState';
 
 const initialState: CurrencyState = {
   currency: 'ILS', // Default currency
-}
+};
 
 const currencySlice = createSlice({
   name: 'currency',
@@ -16,4 +16,4 @@ const currencySlice = createSlice({
 });
 
 export const { setCurrency } = currencySlice.actions;
-export default currencySlice.reducer; 
+export default currencySlice.reducer;

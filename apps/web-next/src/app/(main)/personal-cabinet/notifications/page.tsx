@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection'
+import React from 'react';
+import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection';
 
-export default function Notifications() {
+const Notifications: React.FC = () => {
   return (
-    <PersonalCabinetSection
-      titleKey="notifications"
-      descriptionKey="notifications_description"
-    />
-  )
-}
+    <PersonalCabinetSection titleKey="notifications" descriptionKey="notifications_description" />
+  );
+};
+
+export default Notifications;

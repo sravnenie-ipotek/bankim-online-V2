@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import StepCard from '@/components/ui/StepCard/StepCard'
-import type { StepConfig } from './interfaces/StepConfig'
+import React from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import StepCard from '@/components/ui/StepCard/StepCard';
+import type { StepConfig } from './interfaces/StepConfig';
 
 const STEPS: StepConfig[] = [
   {
@@ -33,7 +33,7 @@ const STEPS: StepConfig[] = [
     descriptionTabletKey: 'get_program_text_tablet',
     descriptionTabletFallback: 'get_program_text_tablet',
   },
-]
+];
 
 /**
  * Breakpoint-based layout. Exact math per Tailwind screen.
@@ -42,20 +42,23 @@ const STEPS: StepConfig[] = [
  */
 
 const HowItWorks: React.FC = () => {
-  const { getContent } = useContentApi('home_page')
+  const { getContent } = useContentApi('home_page');
 
-  const resolveContent = (step: StepConfig, field: 'title' | 'description' | 'descriptionTablet'): string => {
+  const resolveContent = (
+    step: StepConfig,
+    field: 'title' | 'description' | 'descriptionTablet'
+  ): string => {
     if (field === 'title') {
-      return getContent(step.titleKey)
+      return getContent(step.titleKey);
     }
     if (field === 'description') {
-      return getContent(step.descriptionKey)
+      return getContent(step.descriptionKey);
     }
     if (step.descriptionTabletKey && step.descriptionTabletFallback) {
-      return getContent(step.descriptionTabletKey)
+      return getContent(step.descriptionTabletKey);
     }
-    return ''
-  }
+    return '';
+  };
 
   return (
     <div className="relative flex flex-col flex-nowrap justify-start items-start rtl:items-end w-full h-full mb-[54px] text-left whitespace-nowrap text-[#e7e9ea] xs:items-stretch xs:ps-5 md:items-start md:ps-0 xl:ps-0 xl:pe-0">
@@ -85,7 +88,7 @@ const HowItWorks: React.FC = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HowItWorks
+export default HowItWorks;

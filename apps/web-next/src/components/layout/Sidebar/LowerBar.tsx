@@ -1,17 +1,25 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
 const SOCIAL_ITEMS = [
-  { href: 'https://www.instagram.com/bankimonline', icon: '/static/instagram.svg', label: 'Instagram' },
+  {
+    href: 'https://www.instagram.com/bankimonline',
+    icon: '/static/instagram.svg',
+    label: 'Instagram',
+  },
   { href: 'https://www.youtube.com/@bankimonline', icon: '/static/youtube.svg', label: 'YouTube' },
-  { href: 'https://www.facebook.com/bankimonline', icon: '/static/facebook.svg', label: 'Facebook' },
+  {
+    href: 'https://www.facebook.com/bankimonline',
+    icon: '/static/facebook.svg',
+    label: 'Facebook',
+  },
   { href: 'https://twitter.com/bankimonline', icon: '/static/twitter.svg', label: 'Twitter' },
-] as const
+] as const;
 
 interface LowerBarProps {
-  isOpen: boolean
-  onToggle: () => void
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
 const LowerBar: React.FC<LowerBarProps> = ({ isOpen, onToggle }) => {
@@ -48,7 +56,7 @@ const LowerBar: React.FC<LowerBarProps> = ({ isOpen, onToggle }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LowerBar
+export default LowerBar;

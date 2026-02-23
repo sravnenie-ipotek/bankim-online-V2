@@ -1,30 +1,46 @@
-'use client'
+'use client';
 
-import React from 'react'
-import useDisclosure from '@/hooks/useDisclosure'
+import React from 'react';
+import useDisclosure from '@/hooks/useDisclosure';
 
 interface FooterAccordionProps {
-  title: string
-  children: React.ReactNode
+  title: string;
+  children: React.ReactNode;
 }
 
 /**
  * Reusable accordion component for mobile footer sections.
  * Extracts the repeated accordion pattern from Company, Contacts, Documents.
+ * @param props.title - Section title; used as visible label and aria-label for the trigger.
+ * @param props.children - Content shown when expanded (e.g. links).
  */
 const FooterAccordion: React.FC<FooterAccordionProps> = ({ title, children }) => {
-  const [opened, { open, close }] = useDisclosure(false)
+  const [opened, { open, close }] = useDisclosure(false);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (opened) {
+        close();
+      } else {
+        open();
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col w-full">
       <div
+        role="button"
+        tabIndex={0}
         onClick={opened ? close : open}
+        onKeyDown={handleKeyDown}
+        aria-expanded={opened}
+        aria-label={title}
         className="text-[1rem] font-medium leading-normal text-textTheme-primary flex justify-between w-full border-b border-base-secondaryDefaultButton py-[0.9375rem] px-[1.4375rem] m-0 cursor-pointer items-center"
       >
         {title}
-        <div
-          className={`transition-all duration-100 ease-in-out ${opened ? 'rotate-180' : ''}`}
-        >
+        <div className={`transition-all duration-100 ease-in-out ${opened ? 'rotate-180' : ''}`}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
             <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" />
           </svg>
@@ -40,7 +56,7 @@ const FooterAccordion: React.FC<FooterAccordionProps> = ({ title, children }) =>
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FooterAccordion
+export default FooterAccordion;

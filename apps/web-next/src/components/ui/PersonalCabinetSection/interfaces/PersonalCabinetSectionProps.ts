@@ -1,4 +1,4 @@
 export interface PersonalCabinetSectionProps {
-  titleKey: string
-  descriptionKey: string
+  titleKey: string;
+  descriptionKey: string;
 }

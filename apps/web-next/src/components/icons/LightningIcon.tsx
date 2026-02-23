@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface LightningIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
 const LightningIcon: React.FC<LightningIconProps> = ({
@@ -26,6 +26,6 @@ const LightningIcon: React.FC<LightningIconProps> = ({
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default LightningIcon
+export default LightningIcon;

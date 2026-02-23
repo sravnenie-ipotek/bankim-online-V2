@@ -1,12 +1,15 @@
-'use client'
+'use client';
 
-import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection'
+import React from 'react';
+import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection';
 
-export default function BankAuthorization() {
+const BankAuthorization: React.FC = () => {
   return (
     <PersonalCabinetSection
       titleKey="bank_authorization"
       descriptionKey="bank_authorization_description"
     />
-  )
-}
+  );
+};
+
+export default BankAuthorization;

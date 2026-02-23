@@ -1,13 +1,14 @@
-'use client'
+'use client';
 
-import React from 'react'
-import ErrorBoundary from './ErrorBoundary'
-import StoreProvider from './StoreProvider'
-import I18nProviderWrapper from './I18nProvider'
-import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
+import React from 'react';
+import ErrorBoundary from './ErrorBoundary';
+import StoreProvider from './StoreProvider';
+import I18nProviderWrapper from './I18nProvider';
+import { ContentLoadingProvider } from './ContentLoadingContext';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 
 interface AppProvidersProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 /**
@@ -15,6 +16,7 @@ interface AppProvidersProps {
  * - Error boundary (catches render crashes)
  * - Redux store + persist gate
  * - i18next translations
+ * - Content loading (progress circle until translations received)
  * - Google Analytics (loads only after cookie consent)
  */
 const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
@@ -22,12 +24,14 @@ const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
     <ErrorBoundary>
       <StoreProvider>
         <I18nProviderWrapper>
-          <GoogleAnalytics />
-          {children}
+          <ContentLoadingProvider>
+            <GoogleAnalytics />
+            {children}
+          </ContentLoadingProvider>
         </I18nProviderWrapper>
       </StoreProvider>
     </ErrorBoundary>
-  )
-}
+  );
+};
 
-export default AppProviders
+export default AppProviders;

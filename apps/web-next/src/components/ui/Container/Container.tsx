@@ -1,11 +1,16 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
 interface ContainerProps extends React.HTMLProps<HTMLDivElement> {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
+/**
+ * Page content wrapper: max-width, horizontal padding, and optional safe-area bottom padding on mobile.
+ * @param props.children - Page content to wrap.
+ * @param props - Rest passed to the underlying div (e.g. className, style).
+ */
 const Container: React.FC<ContainerProps> = ({ children, ...rest }) => {
   return (
     <div
@@ -14,7 +19,7 @@ const Container: React.FC<ContainerProps> = ({ children, ...rest }) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;

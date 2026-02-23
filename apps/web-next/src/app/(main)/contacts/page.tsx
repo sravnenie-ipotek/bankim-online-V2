@@ -1,22 +1,27 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { CONTACT_SECTIONS, SOCIAL_LINKS } from './constants'
-import type { TabId } from './interfaces/ContactSection'
-import Container from '@/components/ui/Container/Container'
-import { useContentApi } from '@hooks/useContentApi'
-import { trackClick } from '@/helpers/analytics'
+import { CONTACT_SECTIONS, SOCIAL_LINKS } from './constants';
+import type { TabId } from './interfaces/ContactSection';
+import Container from '@/components/ui/Container/Container';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
+import { trackClick } from '@/helpers/analytics';
 
-export default function Contacts() {
-  const { getContent } = useContentApi('contacts')
-  const [activeTab, setActiveTab] = useState<TabId>('general')
+/**
+ * Contacts page: main office address, tabbed sections (general, etc.), and social links.
+ */
+const Contacts: React.FC = () => {
+  useContentFetch('contacts');
+  const { getContent } = useContentApi('contacts');
+  const [activeTab, setActiveTab] = useState<TabId>('general');
 
-  const activeSection = CONTACT_SECTIONS.find((s) => s.id === activeTab)
+  const activeSection = CONTACT_SECTIONS.find((s) => s.id === activeTab);
 
   return (
     <Container>
-      <div className="flex flex-col gap-8 w-full my-8">
+      <div className="page-stack">
         <h1 className="text-5xl font-medium text-textTheme-primary sm:text-[1.9375rem]">
           {getContent('contacts_title')}
         </h1>
@@ -34,12 +39,9 @@ export default function Contacts() {
           {CONTACT_SECTIONS.map((section) => (
             <button
               key={section.id}
+              type="button"
               onClick={() => setActiveTab(section.id)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === section.id
-                  ? 'bg-accent-primary text-base-primary'
-                  : 'bg-base-secondary text-textTheme-secondary hover:bg-base-base800'
-              }`}
+              className={`tab-btn ${activeTab === section.id ? 'tab-btn-active' : 'tab-btn-inactive'}`}
             >
               {getContent(section.labelKey)}
             </button>
@@ -48,12 +50,12 @@ export default function Contacts() {
 
         {/* Active tab content */}
         {activeSection && (
-          <div className="flex flex-col gap-4 p-6 bg-base-secondary rounded-lg">
+          <div className="surface-card-p6 flex flex-col gap-4">
             <h3 className="text-lg font-semibold text-textTheme-primary">
               {getContent(activeSection.labelKey)}
             </h3>
             {activeSection.items.map((item) => {
-              const value = getContent(item.valueKey)
+              const value = getContent(item.valueKey);
               return (
                 <div key={item.valueKey} className="flex flex-col gap-1">
                   <span className="text-sm text-textTheme-secondary">
@@ -79,7 +81,7 @@ export default function Contacts() {
                     <span className="text-textTheme-primary">{value}</span>
                   )}
                 </div>
-              )
+              );
             })}
           </div>
         )}
@@ -102,5 +104,7 @@ export default function Contacts() {
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
+
+export default Contacts;

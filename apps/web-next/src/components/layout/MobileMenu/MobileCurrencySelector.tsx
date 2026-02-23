@@ -1,34 +1,34 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import { useAppDispatch, useAppSelector } from '@/hooks/store'
-import { setCurrency } from '@/store/slices/currencySlice'
-import CheckIcon from '@/components/icons/CheckIcon'
+import React from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { setCurrency } from '@/store/slices/currencySlice';
+import CheckIcon from '@/components/icons/CheckIcon';
 
-type Currency = 'ILS' | 'USD' | 'EUR'
+type Currency = 'ILS' | 'USD' | 'EUR';
 
 interface CurrencyItem {
-  value: Currency
-  translationKey: string
-  symbol: string
+  value: Currency;
+  translationKey: string;
+  symbol: string;
 }
 
 const CURRENCY_ITEMS: CurrencyItem[] = [
   { value: 'ILS', translationKey: 'currency_ils', symbol: '₪' },
   { value: 'USD', translationKey: 'currency_usd', symbol: '$' },
   { value: 'EUR', translationKey: 'currency_eur', symbol: '€' },
-]
+];
 
 const MobileCurrencySelector: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const dispatch = useAppDispatch()
-  const currencyState = useAppSelector((state) => state.currency)
-  const currency = currencyState?.currency || 'ILS'
+  const { getContent } = useContentApi('global_components');
+  const dispatch = useAppDispatch();
+  const currencyState = useAppSelector((state) => state.currency);
+  const currency = currencyState?.currency || 'ILS';
 
   const handleCurrencyChange = (newCurrency: Currency) => {
-    dispatch(setCurrency(newCurrency))
-  }
+    dispatch(setCurrency(newCurrency));
+  };
 
   return (
     <div className="mb-4">
@@ -46,7 +46,7 @@ const MobileCurrencySelector: React.FC = () => {
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
-                handleCurrencyChange(item.value)
+                handleCurrencyChange(item.value);
               }
             }}
           >
@@ -68,7 +68,7 @@ const MobileCurrencySelector: React.FC = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MobileCurrencySelector
+export default MobileCurrencySelector;

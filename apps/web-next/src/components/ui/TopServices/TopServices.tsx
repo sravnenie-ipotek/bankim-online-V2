@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import ServiceCard from './ServiceCard'
-import ServiceCardIcon from './components/ServiceCardIcon'
+import React from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import ServiceCard from './ServiceCard';
+import ServiceCardIcon from './components/ServiceCardIcon';
 
 const TopServices: React.FC = () => {
-  const { getContent } = useContentApi('home_page')
+  const { getContent } = useContentApi('home_page');
 
   return (
     <div className="flex w-full max-w-full pt-[32px] flex-wrap max-[1280px]:flex-col max-[1280px]:gap-3 gap-[2px] min-[1280px]:flex-nowrap min-[1280px]:justify-start min-[1280px]:gap-[calc((1130px-265px*4)/3)] px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto xl:gap-[calc((1507px-338px*4)/3)]">
@@ -31,7 +31,7 @@ const TopServices: React.FC = () => {
         icon={<ServiceCardIcon src="/static/refinance-credit-icon.png" />}
       />
     </div>
-  )
-}
+  );
+};
 
-export default TopServices
+export default TopServices;

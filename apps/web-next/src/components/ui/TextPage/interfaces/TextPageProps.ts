@@ -1,5 +1,5 @@
 export interface TextPageProps {
-  title: string
-  text: string
-  htmlContent?: boolean
+  title: string;
+  text: string;
+  htmlContent?: boolean;
 }

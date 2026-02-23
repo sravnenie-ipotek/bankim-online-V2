@@ -1,38 +1,37 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { useAppDispatch, useAppSelector } from '@/hooks/store'
-import { useContentApi } from '@hooks/useContentApi'
-import { setCurrency } from '@/store/slices/currencySlice'
-import useOutsideClick from '@/hooks/useOutsideClick'
-import CaretDownIcon from '@/components/icons/CaretDownIcon'
-import CaretUpIcon from '@/components/icons/CaretUpIcon'
-import CheckIcon from '@/components/icons/CheckIcon'
-import type { Currency, CurrencyOption } from './interfaces/CurrencyOption'
+import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useContentApi } from '@hooks/useContentApi';
+import { setCurrency } from '@/store/slices/currencySlice';
+import useOutsideClick from '@/hooks/useOutsideClick';
+import CaretDownIcon from '@/components/icons/CaretDownIcon';
+import CaretUpIcon from '@/components/icons/CaretUpIcon';
+import CheckIcon from '@/components/icons/CheckIcon';
+import type { Currency, CurrencyOption } from './interfaces/CurrencyOption';
 
 const CURRENCY_OPTIONS: CurrencyOption[] = [
   { value: 'ILS', translationKey: 'currency_ils', symbol: '₪' },
   { value: 'USD', translationKey: 'currency_usd', symbol: '$' },
   { value: 'EUR', translationKey: 'currency_eur', symbol: '€' },
-]
+];
 
 const CurrencySelector: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const { getContent } = useContentApi('global_components')
-  const dispatch = useAppDispatch()
-  const currencyState = useAppSelector((state) => state.currency)
-  const currency = currencyState?.currency || 'ILS'
+  const [isOpen, setIsOpen] = useState(false);
+  const { getContent } = useContentApi('global_components');
+  const dispatch = useAppDispatch();
+  const currencyState = useAppSelector((state) => state.currency);
+  const currency = currencyState?.currency || 'ILS';
 
-  const wrapperRef = useOutsideClick(() => setIsOpen(false))
+  const wrapperRef = useOutsideClick(() => setIsOpen(false));
 
   const selectedOption =
-    CURRENCY_OPTIONS.find((opt) => opt.value === currency) ||
-    CURRENCY_OPTIONS[0]
+    CURRENCY_OPTIONS.find((opt) => opt.value === currency) || CURRENCY_OPTIONS[0];
 
   const handleCurrencyChange = (newCurrency: Currency) => {
-    dispatch(setCurrency(newCurrency))
-    setIsOpen(false)
-  }
+    dispatch(setCurrency(newCurrency));
+    setIsOpen(false);
+  };
 
   return (
     <div ref={wrapperRef} className="relative min-w-[120px]">
@@ -44,7 +43,7 @@ const CurrencySelector: React.FC = () => {
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            setIsOpen(!isOpen)
+            setIsOpen(!isOpen);
           }
         }}
       >
@@ -58,7 +57,7 @@ const CurrencySelector: React.FC = () => {
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute left-0 mt-1 z-[9999] rounded border-none p-0 flex flex-col max-h-[300px] overflow-auto bg-[#2a2b30] shadow-none min-w-full">
+        <div className="absolute left-0 mt-1 z-dropdown rounded border-none p-0 flex flex-col max-h-[300px] overflow-auto bg-[#2a2b30] shadow-none min-w-full">
           {CURRENCY_OPTIONS.map((item) => (
             <div
               key={item.value}
@@ -71,7 +70,7 @@ const CurrencySelector: React.FC = () => {
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  handleCurrencyChange(item.value)
+                  handleCurrencyChange(item.value);
                 }
               }}
             >
@@ -82,8 +81,7 @@ const CurrencySelector: React.FC = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default CurrencySelector
-
+export default CurrencySelector;

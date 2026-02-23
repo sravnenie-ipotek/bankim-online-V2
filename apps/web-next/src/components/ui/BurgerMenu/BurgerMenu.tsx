@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { BurgerMenuProps } from './interfaces/BurgerMenuProps'
+import React from 'react';
+import type { BurgerMenuProps } from './interfaces/BurgerMenuProps';
 
 /**
  * Tailwind-only burger menu button.
@@ -36,7 +36,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({
         }`}
       />
     </button>
-  )
-}
+  );
+};
 
-export default BurgerMenu
+export default BurgerMenu;

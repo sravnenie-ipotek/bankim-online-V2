@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React, { useRef, useState } from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import type { BankSlide } from './interfaces/BankSlide'
-import PartnerSlide from './PartnerSlide'
+import React, { useRef, useState } from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import type { BankSlide } from './interfaces/BankSlide';
+import PartnerSlide from './PartnerSlide';
 
 const BANK_SLIDES: BankSlide[] = [
   { name: 'Bank Leumi', link: '/banks/leumi', logo: '/static/bankleumilogo-1.svg' },
@@ -11,56 +11,86 @@ const BANK_SLIDES: BankSlide[] = [
   { name: 'Bank Beinleumi', link: '/banks/beinleumi', logo: '/static/bank-igud-logo.svg' },
   { name: 'Bank of Jerusalem', link: '/banks/jerusalem', logo: '/static/mobile/banki184-jers.svg' },
   { name: 'Bank Hapoalim', link: '/banks/apoalim', logo: '/static/bankhapoalim.svg' },
-  { name: 'Mercantile Discount', link: '/banks/mercantile-discount', logo: '/static/bank-of-israel-symbol.svg' },
-]
+  {
+    name: 'Mercantile Discount',
+    link: '/banks/mercantile-discount',
+    logo: '/static/bank-of-israel-symbol.svg',
+  },
+];
 
 /** Breakpoint-based: xs 375 | sm 768 | md 1024 | lg 1440 | xl 1920. Frame lg: 1128×145, xl: 1504×200. Box lg: 198×100, xl: 264×133. Icon lg: 150×42, xl: 200×56. Arrow lg: 32px, xl: 43px. */
-const GAP_PX = 16
-const BOX_WIDTH_LG = 198
+const GAP_PX = 16;
+const BOX_WIDTH_LG = 198;
 
 const ChevronLeftIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M20 24L12 16L20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M20 24L12 16L20 8"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
-)
+);
 
 const ChevronRightIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <path d="M12 8L20 16L12 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M12 8L20 16L12 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
-)
+);
 
 const PartnersSwiper: React.FC = () => {
-  const { getContent } = useContentApi('home_page')
-  const [failedImages, setFailedImages] = useState<Set<string>>(new Set())
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const firstCardRef = useRef<HTMLAnchorElement>(null)
+  const { getContent } = useContentApi('home_page');
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const firstCardRef = useRef<HTMLAnchorElement>(null);
 
   const handleImageError = (name: string) => {
-    setFailedImages((prev) => new Set(prev).add(name))
-  }
+    setFailedImages((prev) => new Set(prev).add(name));
+  };
 
   const getScrollStep = (): number => {
     if (firstCardRef.current) {
-      const width = firstCardRef.current.offsetWidth
-      return width + GAP_PX
+      const width = firstCardRef.current.offsetWidth;
+      return width + GAP_PX;
     }
-    return BOX_WIDTH_LG + GAP_PX
-  }
+    return BOX_WIDTH_LG + GAP_PX;
+  };
 
   const scrollPrev = () => {
-    if (!scrollRef.current) return
-    const isRtl = document.documentElement.dir === 'rtl'
-    const step = getScrollStep()
-    scrollRef.current.scrollBy({ left: isRtl ? step : -step, behavior: 'smooth' })
-  }
+    if (!scrollRef.current) return;
+    const isRtl = document.documentElement.dir === 'rtl';
+    const step = getScrollStep();
+    scrollRef.current.scrollBy({ left: isRtl ? step : -step, behavior: 'smooth' });
+  };
 
   const scrollNext = () => {
-    if (!scrollRef.current) return
-    const isRtl = document.documentElement.dir === 'rtl'
-    const step = getScrollStep()
-    scrollRef.current.scrollBy({ left: isRtl ? -step : step, behavior: 'smooth' })
-  }
+    if (!scrollRef.current) return;
+    const isRtl = document.documentElement.dir === 'rtl';
+    const step = getScrollStep();
+    scrollRef.current.scrollBy({ left: isRtl ? -step : step, behavior: 'smooth' });
+  };
 
   return (
     <div className="relative flex flex-col gap-8 w-full text-[#e7e9ea] overflow-hidden px-0 sm:px-5 text-[clamp(0.9rem,0.85rem+0.4vw,1.13rem)]">
@@ -105,7 +135,7 @@ const PartnersSwiper: React.FC = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PartnersSwiper
+export default PartnersSwiper;

@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection'
+import React from 'react';
+import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection';
 
-export default function CreditHistory() {
+const CreditHistory: React.FC = () => {
   return (
-    <PersonalCabinetSection
-      titleKey="credit_history"
-      descriptionKey="credit_history_description"
-    />
-  )
-}
+    <PersonalCabinetSection titleKey="credit_history" descriptionKey="credit_history_description" />
+  );
+};
+
+export default CreditHistory;

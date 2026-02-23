@@ -1,59 +1,52 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import { useContentApi } from '@hooks/useContentApi'
+import React, { useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import {
+  fetchBankWorkerStatus,
+  selectBankWorkerStatusEntry,
+  selectBankWorkerStatusLoading,
+} from '@/store/slices/bankWorkerSlice';
 
-interface StatusData {
-  id: string
-  status: string
-  name: string
-  bank: string
-  position: string
-  nextSteps?: string[]
-  message?: string
-  timeline?: Array<{ date: string; event: string }>
-}
-
-export default function BankWorkerStatus() {
-  const { getContent } = useContentApi('common')
-  const params = useParams()
-  const router = useRouter()
-  const id = params.id as string
-  const [statusData, setStatusData] = useState<StatusData | null>(null)
-  const [loading, setLoading] = useState(true)
+/**
+ * Bank worker status page: fetches status via RTK (fetchBankWorkerStatus), displays timeline and link to personal cabinet.
+ */
+const BankWorkerStatus: React.FC = () => {
+  useContentFetch('common');
+  const { getContent } = useContentApi('common');
+  const params = useParams();
+  const router = useRouter();
+  const id = params.id as string;
+  const dispatch = useAppDispatch();
+  const entry = useAppSelector(selectBankWorkerStatusEntry(id));
+  const loading = useAppSelector(selectBankWorkerStatusLoading(id));
+  const statusData = entry?.data ?? null;
 
   useEffect(() => {
-    const fetchStatus = async () => {
-      try {
-        const response = await fetch(`/api/bank-worker/status/${id}`)
-        if (response.ok) setStatusData(await response.json())
-      } catch (err) {
-        console.error('Failed to fetch status:', err)
-      } finally {
-        setLoading(false)
-      }
-    }
-    if (id) fetchStatus()
-  }, [id])
+    if (!id) return;
+    dispatch(fetchBankWorkerStatus(id));
+  }, [id, dispatch]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent-primary" />
       </div>
-    )
+    );
   }
 
   const statusColors: Record<string, string> = {
     pending: 'bg-yellow-500/20 text-yellow-400',
     approved: 'bg-green-500/20 text-green-400',
     rejected: 'bg-red-500/20 text-red-400',
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-[500px] p-8 bg-base-secondary rounded-lg">
+      <div className="w-full max-w-authMd surface-card-p8">
         <h1 className="text-2xl font-medium text-textTheme-primary text-center mb-6">
           {getContent('registration_status')}
         </h1>
@@ -62,20 +55,33 @@ export default function BankWorkerStatus() {
           <div className="flex flex-col gap-6">
             <div className="flex justify-between items-center">
               <span className="text-textTheme-secondary">{getContent('status')}</span>
-              <span className={`px-3 py-1 rounded text-sm font-medium ${statusColors[statusData.status] || 'bg-base-base800 text-textTheme-secondary'}`}>
+              <span
+                className={`px-3 py-1 rounded text-sm font-medium ${statusColors[statusData.status] || 'bg-base-base800 text-textTheme-secondary'}`}
+              >
                 {statusData.status}
               </span>
             </div>
 
             <div className="flex flex-col gap-2 text-sm">
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('name')}</span><span className="text-textTheme-primary">{statusData.name}</span></div>
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('bank')}</span><span className="text-textTheme-primary">{statusData.bank}</span></div>
-              <div className="flex justify-between"><span className="text-textTheme-secondary">{getContent('position')}</span><span className="text-textTheme-primary">{statusData.position}</span></div>
+              <div className="flex justify-between">
+                <span className="text-textTheme-secondary">{getContent('name')}</span>
+                <span className="text-textTheme-primary">{statusData.name}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-textTheme-secondary">{getContent('bank')}</span>
+                <span className="text-textTheme-primary">{statusData.bank}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-textTheme-secondary">{getContent('position')}</span>
+                <span className="text-textTheme-primary">{statusData.position}</span>
+              </div>
             </div>
 
             {statusData.timeline && statusData.timeline.length > 0 && (
               <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-medium text-textTheme-primary">{getContent('timeline')}</h3>
+                <h3 className="text-sm font-medium text-textTheme-primary">
+                  {getContent('timeline')}
+                </h3>
                 {statusData.timeline.map((item, idx) => (
                   <div key={idx} className="flex gap-3 items-start">
                     <div className="w-2 h-2 rounded-full bg-accent-primary mt-1.5 flex-shrink-0" />
@@ -89,14 +95,13 @@ export default function BankWorkerStatus() {
             )}
 
             {statusData.message && (
-              <p className="text-textTheme-secondary text-sm bg-base-base800 p-4 rounded-lg">{statusData.message}</p>
+              <p className="text-textTheme-secondary text-sm bg-base-base800 p-4 rounded-lg">
+                {statusData.message}
+              </p>
             )}
 
             {statusData.status === 'approved' && (
-              <button
-                onClick={() => router.push('/personal-cabinet')}
-                className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
-              >
+              <button onClick={() => router.push('/personal-cabinet')} className="btn-primary-full">
                 {getContent('go_to_personal_cabinet')}
               </button>
             )}
@@ -106,5 +111,7 @@ export default function BankWorkerStatus() {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default BankWorkerStatus;

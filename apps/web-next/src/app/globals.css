@@ -69,12 +69,12 @@
     min-width: 0;
   }
 
-  /* Hide scrollbars site-wide but keep scroll functionality */
-  * {
+  /* Hide scrollbars on main layout only (not globally) so users can rely on scrollbars elsewhere */
+  .hide-scrollbar {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
   }
-  *::-webkit-scrollbar {
+  .hide-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
 
@@ -96,27 +96,19 @@
   }
 }
 
-input:focus {
-  outline: none;
+/* Visible focus for keyboard/assistive tech (WCAG 2.4.7). Do not remove. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
 
 /* Video hero text: ensure title (white), subtitle (yellow), body (white) are not overridden by body/base */
 .hero-text-block {
   font-family: var(--font-arimo), Arimo, sans-serif;
 }
-.hero-text-block .hero-text-block__title {
-  color: hsla(0, 0%, 100%, 1) !important;
-  font-weight: 400;
-}
-.hero-text-block .hero-text-block__subtitle {
-  color: hsla(52, 96%, 64%, 1) !important;
-  font-weight: 400;
-}
-.hero-text-block .hero-text-block__body {
-  color: hsla(0, 0%, 100%, 1) !important;
-  font-weight: 400;
-  opacity: 0.9;
-}
+/* Hero text colors are applied via Tailwind in HeroTextBlock (text-textTheme-primary, text-accent-primary) */
 
 /* Video control bar range inputs - white track/thumb */
 .video-control-range {

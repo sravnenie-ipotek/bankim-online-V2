@@ -1,14 +1,19 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useRouter } from 'next/navigation'
-import { useContentApi } from '@hooks/useContentApi'
-import Container from '@/components/ui/Container/Container'
-import { trackClick } from '@/helpers/analytics'
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
+import Container from '@/components/ui/Container/Container';
+import { trackClick } from '@/helpers/analytics';
 
-export default function TendersForBrokers() {
-  const { getContent } = useContentApi('tenders_brokers')
-  const router = useRouter()
+/**
+ * Tenders for brokers page: steps, metrics, and CTA; content from useContentApi.
+ */
+const TendersForBrokers: React.FC = () => {
+  useContentFetch('tenders_brokers');
+  const { getContent } = useContentApi('tenders_brokers');
+  const router = useRouter();
 
   return (
     <Container>
@@ -23,10 +28,10 @@ export default function TendersForBrokers() {
           </p>
           <button
             onClick={() => {
-              trackClick('brokers_register', '/broker-questionnaire')
-              router.push('/broker-questionnaire')
+              trackClick('brokers_register', '/broker-questionnaire');
+              router.push('/broker-questionnaire');
             }}
-            className="mt-4 px-8 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors w-fit"
+            className="btn-primary-lg mt-4 w-fit"
           >
             {getContent('brokers_register_button')}
           </button>
@@ -34,7 +39,7 @@ export default function TendersForBrokers() {
 
         {/* Clients & Earnings */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-8 bg-base-secondary rounded-lg">
+          <div className="surface-card-p8">
             <h2 className="text-2xl font-semibold text-textTheme-primary mb-4">
               {getContent('brokers_clients_title')}
             </h2>
@@ -42,7 +47,7 @@ export default function TendersForBrokers() {
               {getContent('brokers_clients_text')}
             </p>
           </div>
-          <div className="p-8 bg-base-secondary rounded-lg">
+          <div className="surface-card-p8">
             <h2 className="text-2xl font-semibold text-textTheme-primary mb-4">
               {getContent('brokers_earnings_title')}
             </h2>
@@ -53,7 +58,7 @@ export default function TendersForBrokers() {
         </div>
 
         {/* License */}
-        <div className="flex flex-col gap-4 p-8 bg-base-secondary rounded-lg">
+        <div className="surface-card-p8 flex flex-col gap-4">
           <h2 className="text-2xl font-semibold text-textTheme-primary">
             {getContent('brokers_license_title')}
           </h2>
@@ -64,10 +69,12 @@ export default function TendersForBrokers() {
 
         {/* Steps */}
         <div className="flex flex-col gap-6">
-          <h2 className="text-2xl font-semibold text-textTheme-primary">{getContent('brokers_steps_title')}</h2>
+          <h2 className="text-2xl font-semibold text-textTheme-primary">
+            {getContent('brokers_steps_title')}
+          </h2>
           <div className="flex flex-col md:flex-row gap-6">
             {[1, 2, 3].map((num) => (
-              <div key={num} className="flex-1 p-6 bg-base-secondary rounded-lg">
+              <div key={num} className="surface-card-p6 flex-1">
                 <span className="text-4xl font-bold text-accent-primary">{`0${num}`}</span>
                 <p className="text-textTheme-primary mt-2">{getContent(`brokers_step_${num}`)}</p>
               </div>
@@ -78,29 +85,35 @@ export default function TendersForBrokers() {
         {/* Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {['deals', 'partners', 'cities', 'years'].map((metric) => (
-            <div key={metric} className="p-6 bg-base-secondary rounded-lg">
-              <span className="text-3xl font-bold text-accent-primary">{getContent(`brokers_metric_${metric}_value`)}</span>
-              <p className="text-sm text-textTheme-secondary mt-1">{getContent(`brokers_metric_${metric}_label`)}</p>
+            <div key={metric} className="surface-card-p6">
+              <span className="text-3xl font-bold text-accent-primary">
+                {getContent(`brokers_metric_${metric}_value`)}
+              </span>
+              <p className="text-sm text-textTheme-secondary mt-1">
+                {getContent(`brokers_metric_${metric}_label`)}
+              </p>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="flex flex-col items-center gap-6 p-8 bg-base-secondary rounded-lg text-center">
+        <div className="surface-card-p8 flex flex-col items-center gap-6 text-center">
           <h2 className="text-2xl font-semibold text-textTheme-primary">
             {getContent('brokers_cta_title')}
           </h2>
           <button
             onClick={() => {
-              trackClick('brokers_cta', '/broker-questionnaire')
-              router.push('/broker-questionnaire')
+              trackClick('brokers_cta', '/broker-questionnaire');
+              router.push('/broker-questionnaire');
             }}
-            className="px-8 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors"
+            className="btn-primary-lg"
           >
             {getContent('brokers_cta_button')}
           </button>
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
+
+export default TendersForBrokers;

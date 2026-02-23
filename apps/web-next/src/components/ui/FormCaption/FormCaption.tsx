@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { FormCaptionProps } from './interfaces/FormCaptionProps'
+import React from 'react';
+import type { FormCaptionProps } from './interfaces/FormCaptionProps';
 
 const FormCaption: React.FC<FormCaptionProps> = ({ title, subtitle }) => {
   return (
@@ -15,7 +15,7 @@ const FormCaption: React.FC<FormCaptionProps> = ({ title, subtitle }) => {
         </p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default FormCaption
+export default FormCaption;

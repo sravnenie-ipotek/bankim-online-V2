@@ -1,12 +1,15 @@
-'use client'
+'use client';
 
-import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection'
+import React from 'react';
+import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection';
 
-export default function QuestionnaireOverview() {
+const QuestionnaireOverview: React.FC = () => {
   return (
     <PersonalCabinetSection
       titleKey="questionnaire_overview"
       descriptionKey="questionnaire_overview_description"
     />
-  )
-}
+  );
+};
+
+export default QuestionnaireOverview;

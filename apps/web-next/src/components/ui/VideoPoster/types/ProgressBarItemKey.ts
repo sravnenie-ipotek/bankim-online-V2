@@ -1,1 +1,1 @@
-export type ProgressBarItemKey = 'progress'
+export type ProgressBarItemKey = 'progress';

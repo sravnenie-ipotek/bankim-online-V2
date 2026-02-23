@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { DateInputProps } from './interfaces/DateInputProps'
+import React from 'react';
+import type { DateInputProps } from './interfaces/DateInputProps';
 
 const DateInput: React.FC<DateInputProps> = ({
   value,
@@ -15,8 +15,8 @@ const DateInput: React.FC<DateInputProps> = ({
   min,
   ...rest
 }) => {
-  const hasError = !!error
-  const errorMessage = typeof error === 'string' ? error : null
+  const hasError = !!error;
+  const errorMessage = typeof error === 'string' ? error : null;
 
   return (
     <div className="flex flex-col gap-1 w-full">
@@ -41,11 +41,9 @@ const DateInput: React.FC<DateInputProps> = ({
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''} [color-scheme:dark]`}
         data-testid={rest['data-testid']}
       />
-      {errorMessage ? (
-        <span className="text-red-500 text-xs mt-0.5">{errorMessage}</span>
-      ) : null}
+      {errorMessage ? <span className="text-red-500 text-xs mt-0.5">{errorMessage}</span> : null}
     </div>
-  )
-}
+  );
+};
 
-export default DateInput
+export default DateInput;

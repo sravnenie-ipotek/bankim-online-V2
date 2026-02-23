@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface HandPointingIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
 const HandPointingIcon: React.FC<HandPointingIconProps> = ({
@@ -26,6 +26,6 @@ const HandPointingIcon: React.FC<HandPointingIconProps> = ({
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default HandPointingIcon
+export default HandPointingIcon;

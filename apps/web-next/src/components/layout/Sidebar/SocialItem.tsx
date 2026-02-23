@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { SocialItemProps } from './interfaces/SocialItemProps'
+import React from 'react';
+import { SocialItemProps } from './interfaces/SocialItemProps';
 
 /**
  * Single social network item: 270×30px rotated 90°.
@@ -33,7 +33,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label }) => {
         </span>
       </a>
     </div>
-  )
-}
+  );
+};
 
-export default SocialItem
+export default SocialItem;

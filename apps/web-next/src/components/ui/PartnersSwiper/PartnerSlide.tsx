@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import type { PartnerSlideProps } from './interfaces/PartnerSlideProps'
+import React from 'react';
+import Link from 'next/link';
+import type { PartnerSlideProps } from './interfaces/PartnerSlideProps';
 
 const PartnerSlide: React.FC<PartnerSlideProps> = ({
   partner,
@@ -36,7 +36,7 @@ const PartnerSlide: React.FC<PartnerSlideProps> = ({
         </span>
       )}
     </Link>
-  )
-}
+  );
+};
 
-export default PartnerSlide
+export default PartnerSlide;

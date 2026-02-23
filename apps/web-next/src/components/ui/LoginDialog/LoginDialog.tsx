@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { useContentApi } from '@hooks/useContentApi'
-import { useAppDispatch, useAppSelector } from '@/hooks/store'
+import React from 'react';
+import Link from 'next/link';
+import { useContentApi } from '@hooks/useContentApi';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import {
   closeLoginDialog,
   setActiveTab,
@@ -12,33 +12,37 @@ import {
   activeTabSelector,
   authErrorSelector,
   clearAuthError,
-} from '@/store/slices/authSlice'
-import type { Tab as AuthTab } from '@/store/slices/authSlice'
-import PhoneLoginForm from './PhoneLoginForm'
-import EmailLoginForm from './EmailLoginForm'
-import SmsVerifyForm from './SmsVerifyForm'
+} from '@/store/slices/authSlice';
+import type { Tab as AuthTab } from '@/store/slices/authSlice';
+import PhoneLoginForm from './PhoneLoginForm';
+import EmailLoginForm from './EmailLoginForm';
+import SmsVerifyForm from './SmsVerifyForm';
 
 const LoginDialog: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const dispatch = useAppDispatch()
-  const isOpen = useAppSelector(isLoginDialogOpenSelector)
-  const loginStep = useAppSelector(loginStepSelector)
-  const activeTab = useAppSelector(activeTabSelector)
-  const error = useAppSelector(authErrorSelector)
+  const { getContent } = useContentApi('global_components');
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector(isLoginDialogOpenSelector);
+  const loginStep = useAppSelector(loginStepSelector);
+  const activeTab = useAppSelector(activeTabSelector);
+  const error = useAppSelector(authErrorSelector);
 
   const handleClose = (): void => {
-    dispatch(closeLoginDialog())
-  }
+    dispatch(closeLoginDialog());
+  };
 
   const handleTabChange = (value: string): void => {
-    dispatch(setActiveTab(value as AuthTab))
-    dispatch(clearAuthError())
-  }
+    dispatch(setActiveTab(value as AuthTab));
+    dispatch(clearAuthError());
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[1300] flex items-center justify-center p-4" aria-modal role="dialog">
+    <div
+      className="fixed inset-0 z-[1300] flex items-center justify-center p-4"
+      aria-modal
+      role="dialog"
+    >
       <div className="absolute inset-0 bg-black/60" onClick={handleClose} aria-hidden />
       <div className="relative w-full max-w-xs rounded-xl bg-base-secondary shadow-lg flex flex-col max-h-[90vh]">
         <div className="flex justify-between items-center px-6 py-4 border-b border-base-stroke">
@@ -49,7 +53,14 @@ const LoginDialog: React.FC = () => {
             className="p-1 text-textTheme-secondary hover:text-textTheme-primary rounded transition-colors"
             aria-label="close"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
@@ -65,7 +76,14 @@ const LoginDialog: React.FC = () => {
                 className="shrink-0 p-1 hover:opacity-80"
                 aria-label="Dismiss"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
@@ -74,9 +92,15 @@ const LoginDialog: React.FC = () => {
 
           {loginStep === 'form' && (
             <>
-              <div className="flex border-b border-base-stroke mb-4">
+              <div
+                className="flex border-b border-base-stroke mb-4"
+                role="tablist"
+                aria-label="Login method"
+              >
                 <button
                   type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'phone'}
                   onClick={() => handleTabChange('phone')}
                   className={`flex-1 py-2 text-sm font-medium transition-colors ${
                     activeTab === 'phone'
@@ -88,6 +112,8 @@ const LoginDialog: React.FC = () => {
                 </button>
                 <button
                   type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'email'}
                   onClick={() => handleTabChange('email')}
                   className={`flex-1 py-2 text-sm font-medium transition-colors ${
                     activeTab === 'email'
@@ -121,7 +147,7 @@ const LoginDialog: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginDialog
+export default LoginDialog;

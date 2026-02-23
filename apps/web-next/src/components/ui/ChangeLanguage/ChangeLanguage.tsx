@@ -1,64 +1,64 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import useOutsideClick from '@/hooks/useOutsideClick'
-import { useContentApi } from '@hooks/useContentApi'
-import IsraelFlagIcon from '@/components/icons/IsraelFlagIcon'
-import RussiaFlagIcon from '@/components/icons/RussiaFlagIcon'
-import USFlagIcon from '@/components/icons/USFlagIcon'
-import CaretDownIcon from '@/components/icons/CaretDownIcon'
-import CaretUpIcon from '@/components/icons/CaretUpIcon'
-import CheckIcon from '@/components/icons/CheckIcon'
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import useOutsideClick from '@/hooks/useOutsideClick';
+import { LanguageHelper } from '@/helpers/languageHelper';
+import { useContentApi } from '@hooks/useContentApi';
+import IsraelFlagIcon from '@/components/icons/IsraelFlagIcon';
+import RussiaFlagIcon from '@/components/icons/RussiaFlagIcon';
+import USFlagIcon from '@/components/icons/USFlagIcon';
+import CaretDownIcon from '@/components/icons/CaretDownIcon';
+import CaretUpIcon from '@/components/icons/CaretUpIcon';
+import CheckIcon from '@/components/icons/CheckIcon';
 
 interface LanguageOption {
-  value: string
-  countryKey: string
-  languageKey: string
-  icon: React.ReactNode
+  value: string;
+  countryKey: string;
+  languageKey: string;
+  icon: React.ReactNode;
 }
 
 const LANGUAGE_OPTIONS: LanguageOption[] = [
   { value: 'en', countryKey: 'country_us', languageKey: 'language_english', icon: <USFlagIcon /> },
-  { value: 'he', countryKey: 'country_israel', languageKey: 'language_hebrew', icon: <IsraelFlagIcon /> },
-  { value: 'ru', countryKey: 'country_russia', languageKey: 'language_russian', icon: <RussiaFlagIcon /> },
-]
-
-function applyLanguageDirection(lang: string): void {
-  const dir = lang === 'he' ? 'rtl' : 'ltr'
-  document.documentElement.dir = dir
-  document.documentElement.setAttribute('dir', dir)
-  document.documentElement.lang = lang
-}
-
-function persistLanguage(lang: string): void {
-  localStorage.setItem('language', lang)
-  localStorage.setItem('i18nextLng', lang)
-}
+  {
+    value: 'he',
+    countryKey: 'country_israel',
+    languageKey: 'language_hebrew',
+    icon: <IsraelFlagIcon />,
+  },
+  {
+    value: 'ru',
+    countryKey: 'country_russia',
+    languageKey: 'language_russian',
+    icon: <RussiaFlagIcon />,
+  },
+];
 
 const ChangeLanguage: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const { i18n } = useTranslation()
-  const { getContent } = useContentApi('global_components')
+  const [isOpen, setIsOpen] = useState(false);
+  const { i18n } = useTranslation();
+  const { getContent } = useContentApi('global_components');
 
-  const wrapperRef = useOutsideClick(() => setIsOpen(false))
+  const wrapperRef = useOutsideClick(() => setIsOpen(false));
 
-  const currentLang = i18n.language || 'he'
-  const selectedOption = LANGUAGE_OPTIONS.find((opt) => opt.value === currentLang) || LANGUAGE_OPTIONS[1]
+  const currentLang = i18n.language || 'he';
+  const selectedOption =
+    LANGUAGE_OPTIONS.find((opt) => opt.value === currentLang) || LANGUAGE_OPTIONS[1];
 
   const handleLanguageChange = async (newLanguage: string) => {
     try {
-      await i18n.changeLanguage(newLanguage)
-      applyLanguageDirection(newLanguage)
-      persistLanguage(newLanguage)
-      setIsOpen(false)
+      await i18n.changeLanguage(newLanguage);
+      LanguageHelper.applyLanguageDirection(newLanguage);
+      LanguageHelper.persistLanguage(newLanguage);
+      setIsOpen(false);
     } catch (error) {
-      console.error('Error changing language:', error)
+      console.error('Error changing language:', error);
     }
-  }
+  };
 
   return (
-    <div ref={wrapperRef} className="shrink-0 relative" style={{ width: 230, height: 54 }}>
+    <div ref={wrapperRef} className="shrink-0 relative w-[230px] h-[54px]">
       {/* Trigger button */}
       <div
         className="rounded-md flex items-center justify-between px-4 border border-base-secondaryDefaultButton bg-base-primary cursor-pointer w-full h-full box-border text-left rtl:text-right"
@@ -67,7 +67,7 @@ const ChangeLanguage: React.FC = () => {
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            setIsOpen(!isOpen)
+            setIsOpen(!isOpen);
           }
         }}
       >
@@ -91,14 +91,11 @@ const ChangeLanguage: React.FC = () => {
 
       {/* Dropdown: same RTL layout as mobile — flag at flex-end, then text, then checkmark on end */}
       {isOpen && (
-        <div
-          className="absolute mt-2.5 z-[9999] rounded-md py-2 border border-base-secondaryDefaultButton bg-base-secondary shadow-[0px_8px_32px_0px_rgba(0,0,0,0.16)] overflow-auto text-left rtl:text-right"
-          style={{ width: 520, height: 540 }}
-        >
+        <div className="absolute mt-2.5 z-dropdown rounded-md py-2 w-[520px] h-[540px] border border-base-secondaryDefaultButton bg-base-secondary shadow-[0px_8px_32px_0px_rgba(0,0,0,0.16)] overflow-auto text-left rtl:text-right">
           <div className="text-3xs not-italic font-semibold leading-normal text-white py-2 px-4">
             <span>{getContent('sel_cntr')}</span>
           </div>
-          <div className="w-full border-t border-[#333535]" />
+          <div className="w-full border-t border-base-stroke" />
           {LANGUAGE_OPTIONS.map((item) => (
             <div
               key={item.value}
@@ -107,7 +104,7 @@ const ChangeLanguage: React.FC = () => {
               onClick={() => handleLanguageChange(item.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                  handleLanguageChange(item.value)
+                  handleLanguageChange(item.value);
                 }
               }}
               role="option"
@@ -130,7 +127,7 @@ const ChangeLanguage: React.FC = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ChangeLanguage
+export default ChangeLanguage;

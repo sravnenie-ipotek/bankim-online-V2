@@ -1,15 +1,10 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { FeatureCardProps } from './interfaces/FeatureCardProps'
-import { sizeMap } from './constants/sizeMap'
+import React from 'react';
+import type { FeatureCardProps } from './interfaces/FeatureCardProps';
+import { sizeMap } from './constants/sizeMap';
 
-const FeatureCard: React.FC<FeatureCardProps> = ({
-  icon,
-  title,
-  text,
-  size = 'default',
-}) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, text, size = 'default' }) => {
   return (
     <div
       className={`flex flex-col p-[2.4375rem] items-center gap-[1.3125rem] rounded-lg bg-base-secondary ${sizeMap[size] || ''}`}
@@ -24,7 +19,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         {text}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FeatureCard
+export default FeatureCard;

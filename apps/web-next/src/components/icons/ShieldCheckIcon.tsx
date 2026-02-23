@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface ShieldCheckIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
 const ShieldCheckIcon: React.FC<ShieldCheckIconProps> = ({
@@ -33,6 +33,6 @@ const ShieldCheckIcon: React.FC<ShieldCheckIconProps> = ({
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default ShieldCheckIcon
+export default ShieldCheckIcon;

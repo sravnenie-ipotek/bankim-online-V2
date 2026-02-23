@@ -1,26 +1,24 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
-import { trackClick } from '@/helpers/analytics'
-import type { ServiceCardProps } from './interfaces/ServiceCardProps'
-import ArrowIcon from './components/ArrowIcon'
+import React from 'react';
+import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
+import { trackClick } from '@/helpers/analytics';
+import type { ServiceCardProps } from './interfaces/ServiceCardProps';
+import ArrowIcon from './components/ArrowIcon';
 
 /** Card: full width × 100px on mobile (max-lg); 265×265 at lg (1440px), 338×338 at xl (1920px). */
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, to, icon }) => {
-  const { i18n } = useTranslation()
-  const lang = i18n.language?.split('-')[0] ?? 'en'
-  const isHebrew = lang === 'he'
+  const { i18n } = useTranslation();
+  const lang = i18n.language?.split('-')[0] ?? 'en';
+  const isHebrew = lang === 'he';
 
   const handleClick = (): void => {
-    trackClick('service_card', to)
-  }
+    trackClick('service_card', to);
+  };
 
-  const arrowPositionClasses = isHebrew
-    ? 'max-lg:order-3 max-lg:ml-auto'
-    : 'max-lg:order-0'
+  const arrowPositionClasses = isHebrew ? 'max-lg:order-3 max-lg:ml-auto' : 'max-lg:order-0';
 
   return (
     <Link
@@ -42,7 +40,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, to, icon }) => {
         <ArrowIcon />
       </span>
     </Link>
-  )
-}
+  );
+};
 
-export default ServiceCard
+export default ServiceCard;

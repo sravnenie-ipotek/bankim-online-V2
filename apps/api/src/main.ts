@@ -6,9 +6,11 @@ import { AppModule } from './app.module';
 import { CacheWarmupService } from './modules/content/cache-warmup.service';
 
 async function bootstrap() {
+  const t0 = Date.now();
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
   const logger = app.get(LoggerService);
   app.useLogger(logger);
+  logger.log(`NestFactory.create completed in ${Date.now() - t0}ms`, 'Bootstrap');
 
   const configService = app.get(ConfigService);
 
@@ -56,16 +58,29 @@ async function bootstrap() {
   );
 
   const port = configService.get<number>('PORT') || 8003;
+  const t1 = Date.now();
   await app.listen(port);
+  logger.log(
+    `app.listen completed in ${Date.now() - t1}ms (total: ${Date.now() - t0}ms)`,
+    'Bootstrap',
+  );
   logger.log(`Bankimonline API running on port ${port}`, 'Bootstrap');
 
   const redisHost = configService.get<string>('REDIS_HOST');
   if (redisHost) {
-    logger.log(`Content cache: Redis (${redisHost}:${configService.get<number>('REDIS_PORT') ?? 6379})`, 'Bootstrap');
+    logger.log(
+      `Content cache: Redis (${redisHost}:${configService.get<number>('REDIS_PORT') ?? 6379})`,
+      'Bootstrap',
+    );
   } else {
-    logger.log('Content cache: in-memory (set REDIS_HOST to use Redis)', 'Bootstrap');
+    logger.log(
+      'Content cache: in-memory (set REDIS_HOST to use Redis)',
+      'Bootstrap',
+    );
   }
 
+  // Warmup runs in background: pre-fills Redis. API already reads from Redis (cache-aside);
+  // on cache miss it loads from DB and sets Redis, so traffic is served with or without warmup.
   const warmup = app.get(CacheWarmupService);
   warmup.warm().catch((err: Error) => {
     logger.error(
@@ -76,4 +91,4 @@ async function bootstrap() {
   });
 }
 
-bootstrap();
+void bootstrap();

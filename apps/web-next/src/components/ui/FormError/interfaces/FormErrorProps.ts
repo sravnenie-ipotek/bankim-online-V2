@@ -1,3 +1,3 @@
 export interface FormErrorProps {
-  error?: boolean | string
+  error?: boolean | string;
 }

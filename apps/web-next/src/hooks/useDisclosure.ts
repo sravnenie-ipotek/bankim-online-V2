@@ -1,25 +1,30 @@
-'use client'
+'use client';
 
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo } from 'react';
 
 interface DisclosureHandlers {
-  open: () => void
-  close: () => void
-  toggle: () => void
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
 }
 
-type UseDisclosureReturn = [boolean, DisclosureHandlers]
+type UseDisclosureReturn = [boolean, DisclosureHandlers];
 
+/**
+ * Boolean open/close state with open, close, and toggle handlers (e.g. for accordions, modals).
+ * @param initial - Initial open state. Default false.
+ * @returns [opened, { open, close, toggle }].
+ */
 const useDisclosure = (initial = false): UseDisclosureReturn => {
-  const [opened, setOpened] = useState(initial)
+  const [opened, setOpened] = useState(initial);
 
-  const open = useCallback(() => setOpened(true), [])
-  const close = useCallback(() => setOpened(false), [])
-  const toggle = useCallback(() => setOpened((prev) => !prev), [])
+  const open = useCallback(() => setOpened(true), []);
+  const close = useCallback(() => setOpened(false), []);
+  const toggle = useCallback(() => setOpened((prev) => !prev), []);
 
-  const handlers = useMemo(() => ({ open, close, toggle }), [open, close, toggle])
+  const handlers = useMemo(() => ({ open, close, toggle }), [open, close, toggle]);
 
-  return [opened, handlers]
-}
+  return [opened, handlers];
+};
 
-export default useDisclosure
+export default useDisclosure;

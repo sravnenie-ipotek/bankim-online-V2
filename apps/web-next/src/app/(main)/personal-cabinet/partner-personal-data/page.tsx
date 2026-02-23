@@ -1,12 +1,15 @@
-'use client'
+'use client';
 
-import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection'
+import React from 'react';
+import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection';
 
-export default function PartnerPersonalData() {
+const PartnerPersonalData: React.FC = () => {
   return (
     <PersonalCabinetSection
       titleKey="partner_personal_data"
       descriptionKey="partner_data_description"
     />
-  )
-}
+  );
+};
+
+export default PartnerPersonalData;

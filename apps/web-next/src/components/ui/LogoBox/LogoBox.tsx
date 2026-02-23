@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import type { LogoBoxProps } from './interfaces/LogoBoxProps'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import type { LogoBoxProps } from './interfaces/LogoBoxProps';
 
 /** Match primary logo SVG aspect ratio (104×48) to avoid letterboxing. Default 91×42; overridable via className. */
-const LOGO_BOX_WIDTH = 91  // 42 * (104/48)
-const LOGO_BOX_HEIGHT = 42
+const LOGO_BOX_WIDTH = 91; // 42 * (104/48)
+const LOGO_BOX_HEIGHT = 42;
 
 const LogoBox: React.FC<LogoBoxProps> = ({ src, alt, href, className }) => {
   const img = (
@@ -18,7 +18,7 @@ const LogoBox: React.FC<LogoBoxProps> = ({ src, alt, href, className }) => {
       width={LOGO_BOX_WIDTH}
       height={LOGO_BOX_HEIGHT}
     />
-  )
+  );
 
   const box = (
     <span
@@ -26,17 +26,17 @@ const LogoBox: React.FC<LogoBoxProps> = ({ src, alt, href, className }) => {
     >
       {img}
     </span>
-  )
+  );
 
   if (href) {
     return (
       <Link href={href} className="cursor-pointer flex items-center rtl:justify-end">
         {box}
       </Link>
-    )
+    );
   }
 
-  return box
-}
+  return box;
+};
 
-export default LogoBox
+export default LogoBox;

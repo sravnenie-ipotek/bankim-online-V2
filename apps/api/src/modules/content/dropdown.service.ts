@@ -50,6 +50,111 @@ export class DropdownService {
     await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
   }
 
+  /**
+   * Warmup only: one bulk query for all dropdown items (all screens/languages), group in JS, set Redis keys.
+   * Replaces 357 individual warmDropdownsByScreen calls.
+   */
+  async warmAllDropdownsBulk(): Promise<void> {
+    type BulkRow = DropdownRawRow & {
+      screen_location: string;
+      language_code: string;
+    };
+    const rows: BulkRow[] = await this.contentItemRepo
+      .createQueryBuilder('ci')
+      .innerJoin(ContentTranslationEntity, 'ct', 'ci.id = ct.content_item_id')
+      .select('ci.content_key', 'content_key')
+      .addSelect('ci.component_type', 'component_type')
+      .addSelect('ct.content_value', 'content_value')
+      .addSelect('ci.screen_location', 'screen_location')
+      .addSelect('ct.language_code', 'language_code')
+      .where('ct.status = :status', { status: 'approved' })
+      .andWhere('ci.is_active = :active', { active: true })
+      .andWhere('ci.component_type IN (:...types)', {
+        types: [
+          'dropdown_container',
+          'dropdown_option',
+          'option',
+          'placeholder',
+          'label',
+        ],
+      })
+      .orderBy('ci.screen_location')
+      .addOrderBy('ct.language_code')
+      .addOrderBy('ci.content_key')
+      .addOrderBy('ci.component_type')
+      .getRawMany();
+
+    const byKey = new Map<
+      string,
+      {
+        screen: string;
+        language: string;
+        response: DropdownResponse;
+        dropdownMap: Map<string, DropdownEntry>;
+        rowCount: number;
+      }
+    >();
+
+    for (const row of rows) {
+      const screen = row.screen_location ?? '';
+      const language = row.language_code ?? '';
+      const key = `${screen}:${language}`;
+      if (!byKey.has(key)) {
+        const response: DropdownResponse = {
+          status: 'success',
+          screen_location: screen,
+          language_code: language,
+          dropdowns: [],
+          options: {},
+          placeholders: {},
+          labels: {},
+          cached: false,
+        };
+        byKey.set(key, {
+          screen,
+          language,
+          response,
+          dropdownMap: new Map<string, DropdownEntry>(),
+          rowCount: 0,
+        });
+      }
+      const group = byKey.get(key)!;
+      group.rowCount += 1;
+      const fieldName = this.fieldExtractor.extract(row.content_key);
+      const dropdownKey = `${screen}_${fieldName}`;
+      if (!group.dropdownMap.has(fieldName)) {
+        group.dropdownMap.set(fieldName, {
+          key: dropdownKey,
+          label: null,
+          options: [],
+          placeholder: null,
+        });
+      }
+      const dropdown = group.dropdownMap.get(fieldName)!;
+      this.applyRowToDropdown(row, dropdown, group.response);
+    }
+
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    const prefix = this.cacheConfig.CACHE_KEY_PREFIX_DROPDOWNS;
+    for (const {
+      screen,
+      language,
+      response,
+      dropdownMap,
+      rowCount,
+    } of byKey.values()) {
+      this.buildFinalResponse(dropdownMap, response);
+      this.aliasMapper.applyAliases(screen, language, response);
+      response.performance = {
+        total_items: rowCount,
+        dropdowns_found: response.dropdowns.length,
+        query_time: new Date().toISOString(),
+      };
+      const cacheKey = `${prefix}${screen}:${language}`;
+      await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+    }
+  }
+
   private async loadDropdownsByScreenFromDb(
     screen: string,
     language: string,

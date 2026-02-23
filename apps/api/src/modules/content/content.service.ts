@@ -69,6 +69,77 @@ export class ContentService {
     await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
   }
 
+  /**
+   * Warmup only: one bulk query for all active+approved content, group by (screen, language), set Redis keys.
+   * Replaces 357 individual warmContentByScreen calls.
+   */
+  async warmAllContentBulk(): Promise<void> {
+    const rows: {
+      content_key: string;
+      component_type: string;
+      category: string;
+      content_value: string;
+      language_code: string;
+      status: string;
+      screen_location: string;
+    }[] = await this.contentItemRepo
+      .createQueryBuilder('ci')
+      .innerJoin(ContentTranslationEntity, 'ct', 'ci.id = ct.content_item_id')
+      .select('ci.content_key', 'content_key')
+      .addSelect('ci.component_type', 'component_type')
+      .addSelect('ci.category', 'category')
+      .addSelect('ct.content_value', 'content_value')
+      .addSelect('ct.language_code', 'language_code')
+      .addSelect('ct.status', 'status')
+      .addSelect('ci.screen_location', 'screen_location')
+      .where('ct.status = :status', { status: 'approved' })
+      .andWhere('ci.is_active = :active', { active: true })
+      .orderBy('ci.screen_location')
+      .addOrderBy('ct.language_code')
+      .addOrderBy('ci.content_key')
+      .getRawMany();
+
+    const byKey = new Map<
+      string,
+      {
+        screen: string;
+        language: string;
+        content: Record<string, ContentEntry>;
+      }
+    >();
+    for (const row of rows) {
+      const screen = row.screen_location ?? '';
+      const language = row.language_code ?? '';
+      const key = `${screen}:${language}`;
+      if (!byKey.has(key)) {
+        byKey.set(key, { screen, language, content: {} });
+      }
+      const entry = byKey.get(key)!;
+      entry.content[row.content_key] = {
+        value: row.content_value,
+        component_type: row.component_type,
+        category: row.category,
+        language: row.language_code,
+        status: row.status,
+      };
+    }
+
+    const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
+    const prefix = this.cacheConfig.CACHE_KEY_PREFIX_CONTENT;
+    for (const { screen, language, content } of byKey.values()) {
+      const cacheKey = `${prefix}${screen}:${language}:all`;
+      const response = {
+        status: 'success' as const,
+        screen_location: screen,
+        language_code: language,
+        content_count: Object.keys(content).length,
+        content,
+        cached: true,
+      };
+      await this.cache.set(cacheKey, response, ttl);
+    }
+  }
+
   private async loadContentByScreenFromDb(
     screen: string,
     language: string,
@@ -237,6 +308,67 @@ export class ContentService {
     const ttl =
       this.config.get<number>('REDIS_TTL_CONTENT') ?? VALIDATION_ERRORS_TTL_MS;
     await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
+  }
+
+  /**
+   * Warmup only: one bulk query for all validation_errors (all languages), set Redis keys.
+   * Replaces 3 individual warmValidationErrors calls.
+   */
+  async warmAllValidationErrorsBulk(): Promise<void> {
+    const rows: {
+      content_key: string;
+      component_type: string;
+      category: string;
+      content_value: string;
+      language_code: string;
+      status: string;
+    }[] = await this.contentItemRepo
+      .createQueryBuilder('ci')
+      .innerJoin(ContentTranslationEntity, 'ct', 'ci.id = ct.content_item_id')
+      .select('ci.content_key', 'content_key')
+      .addSelect('ci.component_type', 'component_type')
+      .addSelect('ci.category', 'category')
+      .addSelect('ct.content_value', 'content_value')
+      .addSelect('ct.language_code', 'language_code')
+      .addSelect('ct.status', 'status')
+      .where('ci.screen_location = :screen', { screen: 'validation_errors' })
+      .andWhere('ct.status = :status', { status: 'approved' })
+      .andWhere('ci.is_active = :active', { active: true })
+      .orderBy('ct.language_code')
+      .addOrderBy('ci.content_key')
+      .getRawMany();
+
+    const byLanguage = new Map<string, Record<string, ContentEntry>>();
+    for (const row of rows) {
+      const language = row.language_code ?? '';
+      if (!byLanguage.has(language)) {
+        byLanguage.set(language, {});
+      }
+      const content = byLanguage.get(language)!;
+      content[row.content_key] = {
+        value: row.content_value,
+        component_type: row.component_type,
+        category: row.category,
+        language: row.language_code,
+        status: row.status,
+      };
+    }
+
+    const ttl =
+      this.config.get<number>('REDIS_TTL_CONTENT') ?? VALIDATION_ERRORS_TTL_MS;
+    const prefix = this.cacheConfig.CACHE_KEY_PREFIX_VALIDATION_ERRORS;
+    for (const [language, content] of byLanguage) {
+      const cacheKey = `${prefix}${language}`;
+      const response = {
+        status: 'success' as const,
+        screen_location: 'validation_errors',
+        language_code: language,
+        content_count: Object.keys(content).length,
+        content,
+        cached: true,
+      };
+      await this.cache.set(cacheKey, response, ttl);
+    }
   }
 
   private async loadValidationErrorsFromDb(language: string): Promise<{

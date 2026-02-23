@@ -1,4 +1,4 @@
-import type { ContactSection } from '../interfaces/ContactSection'
+import type { ContactSection } from '../interfaces/ContactSection';
 
 export const CONTACT_SECTIONS: ContactSection[] = [
   {
@@ -33,11 +33,11 @@ export const CONTACT_SECTIONS: ContactSection[] = [
       { labelKey: 'contacts_email_label', valueKey: 'contacts_cooperation_email', type: 'email' },
     ],
   },
-]
+];
 
 export const SOCIAL_LINKS = [
   { name: 'Facebook', href: 'https://facebook.com/bankimonline', icon: '/static/facebook.svg' },
   { name: 'Instagram', href: 'https://instagram.com/bankimonline', icon: '/static/instagram.svg' },
   { name: 'Twitter', href: 'https://twitter.com/bankimonline', icon: '/static/twitter.svg' },
   { name: 'WhatsApp', href: 'https://wa.me/972537162235', icon: '/static/whatsapp.svg' },
-]
+];

@@ -1,28 +1,30 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { useContentApi } from '@hooks/useContentApi'
-import Company from './components/Company'
-import Contacts from './Contacts'
-import Documents from './components/Documents'
-import InfoBlock from './components/InfoBlock'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useContentApi } from '@hooks/useContentApi';
+import Company from './components/Company';
+import Contacts from './Contacts';
+import Documents from './components/Documents';
+import InfoBlock from './components/InfoBlock';
 
 function formatCopyrightSentenceFirst(text: string): string {
-  const match = text.match(/^(\d{4})\s+(.*)$/)
-  if (match) return `${match[2].trim()} ${match[1]}`
-  return text
+  const match = text.match(/^(\d{4})\s+(.*)$/);
+  if (match) return `${match[2].trim()} ${match[1]}`;
+  return text;
 }
 
-const FOOTER_COPYRIGHT_LANGUAGES = ['he', 'en', 'ru'] as const
+const FOOTER_COPYRIGHT_LANGUAGES = ['he', 'en', 'ru'] as const;
 
 const Footer: React.FC = () => {
-  const { i18n } = useTranslation()
-  const { getContent } = useContentApi('global_components')
-  const copyrightRaw = getContent('footer_copyright')
-  const language = i18n.language?.split('-')[0] ?? 'en'
-  const useSentenceFirst = FOOTER_COPYRIGHT_LANGUAGES.includes(language as (typeof FOOTER_COPYRIGHT_LANGUAGES)[number])
-  const copyright = useSentenceFirst ? formatCopyrightSentenceFirst(copyrightRaw) : copyrightRaw
+  const { i18n } = useTranslation();
+  const { getContent } = useContentApi('global_components');
+  const copyrightRaw = getContent('footer_copyright');
+  const language = i18n.language?.split('-')[0] ?? 'en';
+  const useSentenceFirst = FOOTER_COPYRIGHT_LANGUAGES.includes(
+    language as (typeof FOOTER_COPYRIGHT_LANGUAGES)[number]
+  );
+  const copyright = useSentenceFirst ? formatCopyrightSentenceFirst(copyrightRaw) : copyrightRaw;
 
   return (
     <footer className="relative z-[10001] bg-base-secondary w-full pt-8 pb-4">
@@ -46,7 +48,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

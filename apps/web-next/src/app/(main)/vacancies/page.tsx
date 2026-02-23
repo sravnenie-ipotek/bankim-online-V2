@@ -1,61 +1,63 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import Link from 'next/link'
-import { useContentApi } from '@hooks/useContentApi'
-import Container from '@/components/ui/Container/Container'
-import { trackClick } from '@/helpers/analytics'
-import type { Vacancy } from './interfaces/Vacancy'
+import React, { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
+import Container from '@/components/ui/Container/Container';
+import { trackClick } from '@/helpers/analytics';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import {
+  fetchVacancyList,
+  selectVacancyListEntry,
+  selectVacancyListLoading,
+} from '@/store/slices/vacancySlice';
 
-const CATEGORIES = ['all', 'development', 'marketing', 'support', 'management', 'finance']
+const CATEGORIES = ['all', 'development', 'marketing', 'support', 'management', 'finance'];
 
 const EMPLOYMENT_LABELS: Record<string, string> = {
   fulltime: 'vacancy_employment_fulltime',
   parttime: 'vacancy_employment_parttime',
   contract: 'vacancy_employment_contract',
   temporary: 'vacancy_employment_temporary',
-}
+};
 
+/**
+ * Vacancies list page: category filter, RTK fetchVacancyList, vacancy cards with links to detail.
+ */
 const Vacancies: React.FC = () => {
-  const { i18n } = useTranslation()
-  const { getContent } = useContentApi('vacancies')
-  const [vacancies, setVacancies] = useState<Vacancy[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState('all')
+  const { i18n } = useTranslation();
+  useContentFetch('vacancies');
+  const { getContent } = useContentApi('vacancies');
+  const dispatch = useAppDispatch();
+  const lang = i18n.language || 'en';
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const fetchVacancies = async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      const lang = i18n.language || 'en'
-      const categoryParam = selectedCategory !== 'all' ? `&category=${selectedCategory}` : ''
-      const response = await fetch(`/api/vacancies?lang=${lang}&active_only=true${categoryParam}`)
-      if (!response.ok) throw new Error(`HTTP ${response.status}`)
-      const data = await response.json()
-      const list = Array.isArray(data?.vacancies) ? data.vacancies : Array.isArray(data) ? data : []
-      setVacancies(list)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    fetchVacancies()
-  }, [selectedCategory, i18n.language])
+  const listEntry = useAppSelector(selectVacancyListEntry(lang, selectedCategory));
+  const loading = useAppSelector(selectVacancyListLoading(lang, selectedCategory));
+  const vacancies = useMemo(
+    () => (Array.isArray(listEntry?.data) ? listEntry.data : []),
+    [listEntry?.data]
+  );
+  const error = listEntry?.error ?? null;
 
   const filteredVacancies = useMemo(() => {
-    const list = Array.isArray(vacancies) ? vacancies : []
-    if (selectedCategory === 'all') return list
-    return list.filter((v) => v.category === selectedCategory)
-  }, [vacancies, selectedCategory])
+    if (selectedCategory === 'all') return vacancies;
+    return vacancies.filter((v) => v.category === selectedCategory);
+  }, [vacancies, selectedCategory]);
+
+  useEffect(() => {
+    dispatch(fetchVacancyList({ language: lang, category: selectedCategory }));
+  }, [dispatch, lang, selectedCategory]);
+
+  const handleRetry = (): void => {
+    dispatch(fetchVacancyList({ language: lang, category: selectedCategory }));
+  };
 
   return (
     <Container>
-      <div className="flex flex-col gap-8 w-full my-8">
+      <div className="page-stack">
         <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-medium text-textTheme-primary sm:text-[1.9375rem]">
             {getContent('vacancies_title')}
@@ -68,14 +70,13 @@ const Vacancies: React.FC = () => {
           {CATEGORIES.map((category) => (
             <button
               key={category}
+              type="button"
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                selectedCategory === category
-                  ? 'bg-accent-primary text-base-primary'
-                  : 'bg-base-secondary text-textTheme-secondary hover:bg-base-base800'
-              }`}
+              className={`tab-btn ${selectedCategory === category ? 'tab-btn-active' : 'tab-btn-inactive'}`}
             >
-              {category === 'all' ? getContent('all') : getContent(`vacancies_category_${category}`)}
+              {category === 'all'
+                ? getContent('all')
+                : getContent(`vacancies_category_${category}`)}
             </button>
           ))}
         </div>
@@ -90,17 +91,16 @@ const Vacancies: React.FC = () => {
         {error && (
           <div className="flex flex-col items-center gap-4 py-16">
             <p className="text-red-400">{getContent('error_loading_vacancies')}</p>
-            <button
-              onClick={fetchVacancies}
-              className="px-4 py-2 bg-accent-primary text-base-primary rounded-lg hover:bg-accent-primaryActiveButton transition-colors"
-            >
+            <button type="button" onClick={handleRetry} className="btn-primary-sm">
               {getContent('retry')}
             </button>
           </div>
         )}
 
         {!loading && !error && filteredVacancies.length === 0 && (
-          <p className="text-textTheme-secondary text-center py-16">{getContent('vacancies_no_results')}</p>
+          <p className="text-textTheme-secondary text-center py-16">
+            {getContent('vacancies_no_results')}
+          </p>
         )}
 
         {!loading && !error && filteredVacancies.length > 0 && (
@@ -110,7 +110,7 @@ const Vacancies: React.FC = () => {
                 key={vacancy.id}
                 href={`/vacancies/${vacancy.id}`}
                 onClick={() => trackClick('vacancy_card', vacancy.id)}
-                className="flex flex-col gap-3 p-6 bg-base-secondary rounded-lg hover:bg-base-base800 transition-colors"
+                className="surface-card-hover flex flex-col gap-3 p-6"
               >
                 <h3 className="text-lg font-semibold text-textTheme-primary">{vacancy.title}</h3>
                 <div className="flex gap-2 flex-wrap">
@@ -118,7 +118,9 @@ const Vacancies: React.FC = () => {
                     {getContent(`vacancies_category_${vacancy.category}`)}
                   </span>
                   <span className="px-2 py-1 text-xs rounded bg-base-base800 text-textTheme-secondary">
-                    {getContent(EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type)}
+                    {getContent(
+                      EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type
+                    )}
                   </span>
                 </div>
                 {vacancy.salary_from && (
@@ -127,14 +129,16 @@ const Vacancies: React.FC = () => {
                     {vacancy.salary_to ? ` - ₪${vacancy.salary_to.toLocaleString()}` : '+'}
                   </span>
                 )}
-                <p className="text-sm text-textTheme-secondary line-clamp-2">{vacancy.description}</p>
+                <p className="text-sm text-textTheme-secondary line-clamp-2">
+                  {vacancy.description}
+                </p>
               </Link>
             ))}
           </div>
         )}
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Vacancies
+export default Vacancies;

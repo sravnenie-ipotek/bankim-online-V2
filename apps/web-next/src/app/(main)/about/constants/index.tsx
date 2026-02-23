@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import BankIcon from '@/components/icons/BankIcon'
-import HandCoinsIcon from '@/components/icons/HandCoinsIcon'
-import HandPointingIcon from '@/components/icons/HandPointingIcon'
-import LightningIcon from '@/components/icons/LightningIcon'
-import PlusMinusIcon from '@/components/icons/PlusMinusIcon'
-import ShieldCheckIcon from '@/components/icons/ShieldCheckIcon'
-import TargetIcon from '@/components/icons/TargetIcon'
+import BankIcon from '@/components/icons/BankIcon';
+import HandCoinsIcon from '@/components/icons/HandCoinsIcon';
+import HandPointingIcon from '@/components/icons/HandPointingIcon';
+import LightningIcon from '@/components/icons/LightningIcon';
+import PlusMinusIcon from '@/components/icons/PlusMinusIcon';
+import ShieldCheckIcon from '@/components/icons/ShieldCheckIcon';
+import TargetIcon from '@/components/icons/TargetIcon';
 
 export const ABOUT_FEATURES = [
   {
@@ -44,4 +44,4 @@ export const ABOUT_FEATURES = [
     titleKey: 'about_why_fast_title',
     textKey: 'about_why_fast',
   },
-]
+];

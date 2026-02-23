@@ -1,106 +1,162 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import Link from 'next/link'
-import Container from '@/components/ui/Container/Container'
-import { useContentApi } from '@hooks/useContentApi'
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Container from '@/components/ui/Container/Container';
+import FormField from '@/components/ui/FormField/FormField';
+import { useContentApi } from '@hooks/useContentApi';
+import { useContentFetch } from '@/hooks/useContentFetch';
 
-type TabType = 'phone' | 'email'
+type TabType = 'phone' | 'email';
 
-export default function RegistrationPage() {
-  const { getContent } = useContentApi('common')
-  const [activeTab, setActiveTab] = useState<TabType>('phone')
+/**
+ * Registration page: phone/email tab, form fields, and submit; uses useContentApi('common').
+ */
+const RegistrationPage: React.FC = () => {
+  useContentFetch('common');
+  const { getContent } = useContentApi('common');
+  const [activeTab, setActiveTab] = useState<TabType>('phone');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     password: '',
     confirmPassword: '',
-  })
-  const [submitting, setSubmitting] = useState(false)
+  });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitting(true)
+    e.preventDefault();
+    setSubmitting(true);
     try {
-      console.log('Registration:', formData)
+      // TODO: submit to API
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
-
-  const inputClass = 'px-4 py-3 bg-base-inputs rounded-lg text-textTheme-primary placeholder-textTheme-disabled outline-none focus:ring-2 focus:ring-accent-primary w-full'
+  };
 
   return (
     <Container>
       <div className="flex justify-center py-16">
-        <div className="w-full max-w-[400px] p-8 bg-base-secondary rounded-lg">
+        <div className="w-full max-w-authSm surface-card-p8">
           <h1 className="text-2xl font-medium text-textTheme-primary text-center mb-6">
             {getContent('registration_title')}
           </h1>
 
           <div className="flex gap-2 mb-6">
             <button
+              type="button"
               onClick={() => setActiveTab('phone')}
-              className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === 'phone'
-                  ? 'bg-accent-primary text-base-primary'
-                  : 'bg-base-base800 text-textTheme-secondary'
-              }`}
+              className={`tab-btn flex-1 ${activeTab === 'phone' ? 'tab-btn-active' : 'bg-base-base800 text-textTheme-secondary'}`}
             >
               {getContent('phone')}
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab('email')}
-              className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeTab === 'email'
-                  ? 'bg-accent-primary text-base-primary'
-                  : 'bg-base-base800 text-textTheme-secondary'
-              }`}
+              className={`tab-btn flex-1 ${activeTab === 'email' ? 'tab-btn-active' : 'bg-base-base800 text-textTheme-secondary'}`}
             >
               {getContent('email')}
             </button>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <input name="name" value={formData.name} onChange={handleChange} placeholder={getContent('full_name')} required className={inputClass} />
+            <FormField id="reg-name" label={getContent('full_name')}>
+              <input
+                id="reg-name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder={getContent('full_name')}
+                required
+                className="input-base"
+              />
+            </FormField>
 
             {activeTab === 'phone' ? (
-              <input name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder={getContent('phone_number')} required className={inputClass} />
+              <FormField id="reg-phone" label={getContent('phone_number')}>
+                <input
+                  id="reg-phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder={getContent('phone_number')}
+                  required
+                  className="input-base"
+                />
+              </FormField>
             ) : (
-              <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder={getContent('email')} required className={inputClass} />
+              <FormField id="reg-email" label={getContent('email')}>
+                <input
+                  id="reg-email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={getContent('email')}
+                  required
+                  className="input-base"
+                />
+              </FormField>
             )}
 
-            <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder={getContent('password')} required className={inputClass} />
-            <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} placeholder={getContent('confirm_password')} required className={inputClass} />
+            <FormField id="reg-password" label={getContent('password')}>
+              <input
+                id="reg-password"
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder={getContent('password')}
+                required
+                className="input-base"
+              />
+            </FormField>
+            <FormField id="reg-confirmPassword" label={getContent('confirm_password')}>
+              <input
+                id="reg-confirmPassword"
+                name="confirmPassword"
+                type="password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder={getContent('confirm_password')}
+                required
+                className="input-base"
+              />
+            </FormField>
 
             <p className="text-xs text-textTheme-secondary">
               {getContent('by_registering')}{' '}
-              <Link href="/terms" className="text-accent-primary hover:underline">{getContent('terms_of_service')}</Link>
-              {' '}{getContent('and')}{' '}
-              <Link href="/privacy-policy" className="text-accent-primary hover:underline">{getContent('privacy_policy')}</Link>
+              <Link href="/terms" className="text-accent-primary hover:underline">
+                {getContent('terms_of_service')}
+              </Link>{' '}
+              {getContent('and')}{' '}
+              <Link href="/privacy-policy" className="text-accent-primary hover:underline">
+                {getContent('privacy_policy')}
+              </Link>
             </p>
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors disabled:opacity-50"
-            >
+            <button type="submit" disabled={submitting} className="btn-primary-full">
               {submitting ? getContent('loading') : getContent('register')}
             </button>
           </form>
 
           <p className="text-sm text-textTheme-secondary text-center mt-4">
             {getContent('already_have_account')}{' '}
-            <Link href="/login" className="text-accent-primary hover:underline">{getContent('login')}</Link>
+            <Link href="/login" className="text-accent-primary hover:underline">
+              {getContent('login')}
+            </Link>
           </p>
         </div>
       </div>
     </Container>
-  )
-}
+  );
+};
+
+export default RegistrationPage;

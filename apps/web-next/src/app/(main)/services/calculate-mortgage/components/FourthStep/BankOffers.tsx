@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { useContentApi } from '@hooks/useContentApi'
-import type { BankOffer } from './interfaces/BankOffer'
-import type { BankOffersProps } from './interfaces/BankOffersProps'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { useContentApi } from '@hooks/useContentApi';
+import type { BankOffer } from './interfaces/BankOffer';
+import type { BankOffersProps } from './interfaces/BankOffersProps';
 
 // Placeholder bank offers until API integration
 const SAMPLE_OFFERS: BankOffer[] = [
@@ -40,18 +40,18 @@ const SAMPLE_OFFERS: BankOffer[] = [
     monthlyPayment: '4,310 ₪',
     totalReturn: '1,551,600 ₪',
   },
-]
+];
 
 const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
-  const { getContent } = useContentApi('mortgage_step4')
-  const [filter, setFilter] = useState<string>('all')
+  const { getContent } = useContentApi('mortgage_step4');
+  const [filter, setFilter] = useState<string>('all');
 
   const filterOptions = [
     { value: 'all', label: getContent('calculate_mortgage_filter_1') },
     { value: 'lowest_rate', label: getContent('calculate_mortgage_filter_2') },
     { value: 'lowest_payment', label: getContent('calculate_mortgage_filter_3') },
     { value: 'lowest_total', label: getContent('calculate_mortgage_filter_4') },
-  ]
+  ];
 
   return (
     <div className="flex flex-col gap-4">
@@ -82,7 +82,16 @@ const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
         {SAMPLE_OFFERS.map((offer) => (
           <div
             key={offer.id}
+            role="button"
+            tabIndex={0}
             onClick={() => onSelect(offer.id)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onSelect(offer.id);
+              }
+            }}
+            aria-label={`Select ${offer.bankName}, bid ${offer.interestRate}`}
             className={`flex flex-col gap-3 p-5 rounded-lg border-2 cursor-pointer transition-colors ${
               selectedBank === offer.id
                 ? 'border-accent-primary bg-base-secondary'
@@ -97,8 +106,8 @@ const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
                 height={40}
                 className="object-contain"
                 onError={(e) => {
-                  const target = e.target as HTMLImageElement
-                  target.style.display = 'none'
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
                 }}
               />
               <span className="text-[1rem] font-semibold text-white">{offer.bankName}</span>
@@ -108,18 +117,22 @@ const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
               <span className="text-white font-medium">{offer.interestRate}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-textTheme-secondary text-sm">{getContent('mortgage_monthly')}</span>
+              <span className="text-textTheme-secondary text-sm">
+                {getContent('mortgage_monthly')}
+              </span>
               <span className="text-white font-medium">{offer.monthlyPayment}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-textTheme-secondary text-sm">{getContent('mortgage_total_return')}</span>
+              <span className="text-textTheme-secondary text-sm">
+                {getContent('mortgage_total_return')}
+              </span>
               <span className="text-white font-medium">{offer.totalReturn}</span>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BankOffers
+export default BankOffers;

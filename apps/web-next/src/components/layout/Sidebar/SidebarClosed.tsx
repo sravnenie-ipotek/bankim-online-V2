@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useContentApi } from '@hooks/useContentApi'
-import DesktopMenuList from './DesktopMenuList'
-import SubSidebar from './SubSidebar'
-import SocialMedia from './SocialMedia'
+import React from 'react';
+import { useContentApi } from '@hooks/useContentApi';
+import DesktopMenuList from './DesktopMenuList';
+import SubSidebar from './SubSidebar';
+import SocialMedia from './SocialMedia';
 import {
   useMenuItems,
   useBusinessMenuItems,
   useSubMenuItems,
   useBusinessSubMenuItems,
-} from './useMenuItems'
+} from './useMenuItems';
 
 interface SidebarClosedProps {
-  onClick: () => void
-  isOpen: boolean
-  isSubMenuOpen: boolean
-  setSubMenu: (state: boolean) => void
-  isBusinessSubMenuOpen: boolean
-  setBusinessSubMenu: (state: boolean) => void
-  toggleSubMenu: () => void
-  toggleBusinessSubMenu: () => void
+  onClick: () => void;
+  isOpen: boolean;
+  isSubMenuOpen: boolean;
+  setSubMenu: (state: boolean) => void;
+  isBusinessSubMenuOpen: boolean;
+  setBusinessSubMenu: (state: boolean) => void;
+  toggleSubMenu: () => void;
+  toggleBusinessSubMenu: () => void;
 }
 
 const SidebarClosed: React.FC<SidebarClosedProps> = ({
@@ -33,29 +33,29 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
   toggleSubMenu,
   toggleBusinessSubMenu,
 }) => {
-  const { getContent } = useContentApi('global_components')
-  const menuItems = useMenuItems()
-  const businessMenuItems = useBusinessMenuItems()
-  const subMenuItems = useSubMenuItems()
-  const businessSubMenuItems = useBusinessSubMenuItems()
+  const { getContent } = useContentApi('global_components');
+  const menuItems = useMenuItems();
+  const businessMenuItems = useBusinessMenuItems();
+  const subMenuItems = useSubMenuItems();
+  const businessSubMenuItems = useBusinessSubMenuItems();
 
-  const isSubMenusOpen = isSubMenuOpen || isBusinessSubMenuOpen
+  const isSubMenusOpen = isSubMenuOpen || isBusinessSubMenuOpen;
 
   const handleClose = () => {
-    onClick()
-    setSubMenu(false)
-    setBusinessSubMenu(false)
-  }
+    onClick();
+    setSubMenu(false);
+    setBusinessSubMenu(false);
+  };
 
   const handleToggleSubMenu = () => {
-    toggleSubMenu()
-    setBusinessSubMenu(false)
-  }
+    toggleSubMenu();
+    setBusinessSubMenu(false);
+  };
 
   const handleToggleBusinessSubMenu = () => {
-    setSubMenu(false)
-    toggleBusinessSubMenu()
-  }
+    setSubMenu(false);
+    toggleBusinessSubMenu();
+  };
 
   return (
     <div
@@ -75,7 +75,6 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
 
         {/* Menu column: full width, with padding to avoid social bar overlap */}
         <div className="relative flex-1 min-w-0 h-full flex flex-col min-h-0">
-
           {/* Toggle handle (hidden when submenus are open) */}
           {!isSubMenusOpen && (
             <div
@@ -133,7 +132,7 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarClosed
+export default SidebarClosed;

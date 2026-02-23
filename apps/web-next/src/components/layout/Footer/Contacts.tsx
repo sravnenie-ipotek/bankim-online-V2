@@ -1,26 +1,39 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import { useContentApi } from '@hooks/useContentApi'
-import FooterAccordion from './FooterAccordion'
-import ContactItem from './components/ContactItem'
+import React from 'react';
+import Image from 'next/image';
+import { useWindowResize } from '@/hooks/useWindowResize';
+import { useContentApi } from '@hooks/useContentApi';
+import FooterAccordion from './FooterAccordion';
+import ContactItem from './components/ContactItem';
 
 const CONTACT_ITEMS = [
-  { icon: '/static/envelopesimple.svg', href: 'mailto:Bankimonline@mail.com', label: 'Bankimonline@mail.com' },
-  { icon: '/static/phone.svg', href: 'https://wa.me/972537162235', label: '+972 53-716-2235', forceLtr: true },
-  { icon: '/static/iconwhatsapp.svg', href: 'https://wa.me/972537162235', labelKey: 'footer_writeus' },
-] as const
+  {
+    icon: '/static/envelopesimple.svg',
+    href: 'mailto:Bankimonline@mail.com',
+    label: 'Bankimonline@mail.com',
+  },
+  {
+    icon: '/static/phone.svg',
+    href: 'https://wa.me/972537162235',
+    label: '+972 53-716-2235',
+    forceLtr: true,
+  },
+  {
+    icon: '/static/iconwhatsapp.svg',
+    href: 'https://wa.me/972537162235',
+    labelKey: 'footer_writeus',
+  },
+] as const;
 
 const Contacts: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
-  const { width } = useWindowResize()
+  const { getContent } = useContentApi('global_components');
+  const { width } = useWindowResize();
 
   const items = CONTACT_ITEMS.map((item) => ({
     ...item,
     label: 'labelKey' in item ? getContent(item.labelKey) : item.label,
-  }))
+  }));
 
   if (width > 1024) {
     return (
@@ -40,7 +53,7 @@ const Contacts: React.FC = () => {
           ))}
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -60,7 +73,7 @@ const Contacts: React.FC = () => {
         </div>
       ))}
     </FooterAccordion>
-  )
-}
+  );
+};
 
-export default Contacts
+export default Contacts;

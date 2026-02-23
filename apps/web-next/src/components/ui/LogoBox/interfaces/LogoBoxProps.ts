@@ -1,6 +1,6 @@
 export interface LogoBoxProps {
-  src: string
-  alt: string
-  href?: string
-  className?: string
+  src: string;
+  alt: string;
+  href?: string;
+  className?: string;
 }

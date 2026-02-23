@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
 const FullscreenExitIcon: React.FC = () => (
   <svg
@@ -26,6 +26,6 @@ const FullscreenExitIcon: React.FC = () => (
     <path d="M19 15l-4 0l0 4" />
     <path d="M15 15l6 6" />
   </svg>
-)
+);
 
-export default FullscreenExitIcon
+export default FullscreenExitIcon;

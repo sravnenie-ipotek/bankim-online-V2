@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import BankPageContent from '@/components/ui/BankPageContent/BankPageContent'
+import React from 'react';
+import BankPageContent from '@/components/ui/BankPageContent/BankPageContent';
 
-export default function Discount() {
+const Discount: React.FC = () => {
   return (
-    <BankPageContent
-      title="Bank Discount"
-      description="Bank Discount page content coming soon."
-    />
-  )
-}
+    <BankPageContent title="Bank Discount" description="Bank Discount page content coming soon." />
+  );
+};
+
+export default Discount;

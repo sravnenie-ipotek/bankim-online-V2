@@ -1,215 +1,211 @@
-'use client'
+'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
-import { useTranslation } from 'react-i18next'
-import { useWindowResize } from '@/hooks/useWindowResize'
-import { trackClick } from '@/helpers/analytics'
-import type { VideoPosterProps } from './interfaces/VideoPosterProps'
-import type { ReactPlayerRef } from 'react-player'
-import VideoControlBar from './VideoControlBar'
-import SoundButton from './components/SoundButton'
-import { SeekStepHelper } from './helpers/SeekStepHelper'
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useTranslation } from 'react-i18next';
+import { useWindowResize } from '@/hooks/useWindowResize';
+import { trackClick } from '@/helpers/analytics';
+import type { VideoPosterProps } from './interfaces/VideoPosterProps';
+import type { VideoControlBarProps } from './interfaces/VideoControlBarProps';
+import type { ReactPlayerRef } from 'react-player';
+import VideoControlBar from './VideoControlBar';
+import PosterOverlay from './components/PosterOverlay/PosterOverlay';
+import { SeekStepHelper } from './helpers/SeekStepHelper';
 
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 
-const VIDEO_URL = '/static/promo.mp4'
-const POSTER_URL = '/static/Background.png'
-const MODAL_VIDEO_ASPECT_RATIO = 1130 / 636
+const VIDEO_URL = '/static/promo.mp4';
+const POSTER_URL = '/static/Background.png';
+const MODAL_VIDEO_ASPECT_RATIO = 1130 / 636;
 
-const VideoPoster: React.FC<VideoPosterProps> = ({
-  title,
-  subtitle,
-  text,
-  size = 'normal',
-}) => {
-  const { i18n } = useTranslation()
-  const isRtl = (i18n.language || 'he') === 'he'
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const singlePlayerRef = useRef<ReactPlayerRef>(null)
-  const videoWrapperRef = useRef<HTMLDivElement>(null)
+const VideoPoster: React.FC<VideoPosterProps> = ({ title, subtitle, text, size = 'normal' }) => {
+  const { i18n } = useTranslation();
+  const isRtl = (i18n.language || 'he') === 'he';
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const singlePlayerRef = useRef<ReactPlayerRef>(null);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
 
-  const [isPlayerOpen, setIsPlayerOpen] = useState(false)
-  const [videoLoaded, setVideoLoaded] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [isMuted, setIsMuted] = useState(true)
-  const [volume, setVolume] = useState(1)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [showPlayPauseOverlay, setShowPlayPauseOverlay] = useState(false)
-  const [modalControlsVisible, setModalControlsVisible] = useState(true)
-  const [posterControlsVisible, setPosterControlsVisible] = useState(false)
-  const [isDraggingProgressBar, setIsDraggingProgressBar] = useState(false)
-  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(1);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [showPlayPauseOverlay, setShowPlayPauseOverlay] = useState(false);
+  const [modalControlsVisible, setModalControlsVisible] = useState(true);
+  const [posterControlsVisible, setPosterControlsVisible] = useState(false);
+  const [isDraggingProgressBar, setIsDraggingProgressBar] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const isDraggingRef = useRef(false)
-  const wasPlayingBeforeDragRef = useRef(false)
-  const overlayTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const controlsHideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const posterHideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const isDraggingRef = useRef(false);
+  const wasPlayingBeforeDragRef = useRef(false);
+  const overlayTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const controlsHideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const posterHideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const MODAL_CONTROLS_HIDE_MS = 3000
-  const { isMobile } = useWindowResize()
-  const isSmall = size === 'small'
+  const MODAL_CONTROLS_HIDE_MS = 3000;
+  const { isMobile } = useWindowResize();
+  const isSmall = size === 'small';
 
   // Sound is from static file /static/promo.mp3 (plays on all devices, no isMobile flag).
   useEffect(() => {
-    const el = audioRef.current
+    const el = audioRef.current;
     if (el) {
-      el.src = '/static/promo.mp3'
-      el.loop = true
+      el.src = '/static/promo.mp3';
+      el.loop = true;
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    if (!audioRef.current) return
+    if (!audioRef.current) return;
     if (isPlaying && !isMuted) {
-      audioRef.current.volume = volume
-      audioRef.current.play().catch(() => {})
+      audioRef.current.volume = volume;
+      audioRef.current.play().catch(() => {});
     } else {
-      audioRef.current.pause()
+      audioRef.current.pause();
     }
-  }, [isPlaying, isMuted, volume])
+  }, [isPlaying, isMuted, volume]);
 
   useEffect(() => {
-    if (!isPlayerOpen) return
+    if (!isPlayerOpen) return;
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (document.fullscreenElement) {
-          document.exitFullscreen?.()
+          document.exitFullscreen?.();
         } else {
-          setIsFullscreen(false)
-          setIsPlayerOpen(false)
+          setIsFullscreen(false);
+          setIsPlayerOpen(false);
         }
       }
-    }
+    };
     const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement)
-    }
-    document.addEventListener('fullscreenchange', handleFullscreenChange)
-    window.addEventListener('keydown', handleEscape)
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    window.addEventListener('keydown', handleEscape);
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange)
-      window.removeEventListener('keydown', handleEscape)
-    }
-  }, [isPlayerOpen])
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [isPlayerOpen]);
 
   const scheduleControlsHide = useCallback(() => {
-    if (controlsHideTimeoutRef.current) clearTimeout(controlsHideTimeoutRef.current)
+    if (controlsHideTimeoutRef.current) clearTimeout(controlsHideTimeoutRef.current);
     controlsHideTimeoutRef.current = setTimeout(() => {
-      setModalControlsVisible(false)
-      controlsHideTimeoutRef.current = null
-    }, MODAL_CONTROLS_HIDE_MS)
-  }, [])
+      setModalControlsVisible(false);
+      controlsHideTimeoutRef.current = null;
+    }, MODAL_CONTROLS_HIDE_MS);
+  }, []);
 
   const handleMute = useCallback(() => {
-    setIsMuted((prev) => !prev)
-  }, [])
+    setIsMuted((prev) => !prev);
+  }, []);
 
   const handleOpenModal = useCallback(() => {
-    trackClick('hero_video_open')
-    setIsFullscreen(false)
-    setIsPlayerOpen(true)
-    setPosterControlsVisible(false)
+    trackClick('hero_video_open');
+    setIsFullscreen(false);
+    setIsPlayerOpen(true);
+    setPosterControlsVisible(false);
     if (posterHideTimeoutRef.current) {
-      clearTimeout(posterHideTimeoutRef.current)
-      posterHideTimeoutRef.current = null
+      clearTimeout(posterHideTimeoutRef.current);
+      posterHideTimeoutRef.current = null;
     }
-    setModalControlsVisible(true)
-    scheduleControlsHide()
-  }, [scheduleControlsHide])
+    setModalControlsVisible(true);
+    scheduleControlsHide();
+  }, [scheduleControlsHide]);
 
   const handleCloseModal = useCallback(() => {
     if (document.fullscreenElement) {
-      document.exitFullscreen?.()
+      document.exitFullscreen?.();
     }
-    setIsFullscreen(false)
-    setIsPlayerOpen(false)
-  }, [])
+    setIsFullscreen(false);
+    setIsPlayerOpen(false);
+  }, []);
 
   const handleSeekBack = useCallback(() => {
-    const step = SeekStepHelper.getSeekStepSeconds(duration)
-    const t = Math.max(0, currentTime - step)
-    singlePlayerRef.current?.seekTo(t, 'seconds')
-    setCurrentTime(t)
-  }, [duration, currentTime])
+    const step = SeekStepHelper.getSeekStepSeconds(duration);
+    const t = Math.max(0, currentTime - step);
+    singlePlayerRef.current?.seekTo(t, 'seconds');
+    setCurrentTime(t);
+  }, [duration, currentTime]);
 
   const handleSeekForward = useCallback(() => {
-    const step = SeekStepHelper.getSeekStepSeconds(duration)
-    const t = Math.min(duration, currentTime + step)
-    singlePlayerRef.current?.seekTo(t, 'seconds')
-    setCurrentTime(t)
-  }, [duration, currentTime])
+    const step = SeekStepHelper.getSeekStepSeconds(duration);
+    const t = Math.min(duration, currentTime + step);
+    singlePlayerRef.current?.seekTo(t, 'seconds');
+    setCurrentTime(t);
+  }, [duration, currentTime]);
 
   const showModalControls = useCallback(() => {
-    setModalControlsVisible(true)
-    scheduleControlsHide()
-  }, [scheduleControlsHide])
+    setModalControlsVisible(true);
+    scheduleControlsHide();
+  }, [scheduleControlsHide]);
 
   const schedulePosterControlsHide = useCallback(() => {
-    if (posterHideTimeoutRef.current) clearTimeout(posterHideTimeoutRef.current)
+    if (posterHideTimeoutRef.current) clearTimeout(posterHideTimeoutRef.current);
     posterHideTimeoutRef.current = setTimeout(() => {
-      setPosterControlsVisible(false)
-      posterHideTimeoutRef.current = null
-    }, MODAL_CONTROLS_HIDE_MS)
-  }, [])
+      setPosterControlsVisible(false);
+      posterHideTimeoutRef.current = null;
+    }, MODAL_CONTROLS_HIDE_MS);
+  }, []);
 
   const showPosterControls = useCallback(() => {
-    setPosterControlsVisible(true)
-    schedulePosterControlsHide()
-  }, [schedulePosterControlsHide])
+    setPosterControlsVisible(true);
+    schedulePosterControlsHide();
+  }, [schedulePosterControlsHide]);
 
   const handleFullscreenToggle = useCallback(() => {
     if (document.fullscreenElement) {
-      document.exitFullscreen?.()
+      document.exitFullscreen?.();
     } else {
-      videoWrapperRef.current?.requestFullscreen?.()
+      videoWrapperRef.current?.requestFullscreen?.();
     }
-    showModalControls()
-  }, [showModalControls])
+    showModalControls();
+  }, [showModalControls]);
 
   const handleVideoAreaClick = useCallback(() => {
-    setIsPlaying((p) => !p)
-    setShowPlayPauseOverlay(true)
-    showModalControls()
-    if (overlayTimeoutRef.current) clearTimeout(overlayTimeoutRef.current)
+    setIsPlaying((p) => !p);
+    setShowPlayPauseOverlay(true);
+    showModalControls();
+    if (overlayTimeoutRef.current) clearTimeout(overlayTimeoutRef.current);
     overlayTimeoutRef.current = setTimeout(() => {
-      setShowPlayPauseOverlay(false)
-      overlayTimeoutRef.current = null
-    }, 800)
-  }, [showModalControls])
+      setShowPlayPauseOverlay(false);
+      overlayTimeoutRef.current = null;
+    }, 800);
+  }, [showModalControls]);
 
   useEffect(() => {
     return () => {
-      if (overlayTimeoutRef.current) clearTimeout(overlayTimeoutRef.current)
-      if (controlsHideTimeoutRef.current) clearTimeout(controlsHideTimeoutRef.current)
-      if (posterHideTimeoutRef.current) clearTimeout(posterHideTimeoutRef.current)
-    }
-  }, [])
+      if (overlayTimeoutRef.current) clearTimeout(overlayTimeoutRef.current);
+      if (controlsHideTimeoutRef.current) clearTimeout(controlsHideTimeoutRef.current);
+      if (posterHideTimeoutRef.current) clearTimeout(posterHideTimeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isPlayerOpen && controlsHideTimeoutRef.current) {
-      clearTimeout(controlsHideTimeoutRef.current)
-      controlsHideTimeoutRef.current = null
+      clearTimeout(controlsHideTimeoutRef.current);
+      controlsHideTimeoutRef.current = null;
     }
-  }, [isPlayerOpen])
+  }, [isPlayerOpen]);
 
   useEffect(() => {
-    if (!isPlaying || isDraggingProgressBar) return
+    if (!isPlaying || isDraggingProgressBar) return;
     const id = setInterval(() => {
-      const t = singlePlayerRef.current?.getCurrentTime()
-      if (typeof t === 'number') setCurrentTime(t)
-    }, 100)
-    return () => clearInterval(id)
-  }, [isPlaying, isDraggingProgressBar])
+      const t = singlePlayerRef.current?.getCurrentTime();
+      if (typeof t === 'number') setCurrentTime(t);
+    }, 100);
+    return () => clearInterval(id);
+  }, [isPlaying, isDraggingProgressBar]);
 
   const handleWrapperClick = useCallback(() => {
-    setIsPlaying((p) => !p)
-  }, [])
+    setIsPlaying((p) => !p);
+  }, []);
 
   const containerClassName = isSmall
     ? 'h-[15.125rem] w-full rounded-[0.625rem] overflow-hidden'
-    : 'h-[22.4375rem] w-full rounded-[0.625rem] max-[768px]:h-[233px] overflow-hidden sm:h-[233px] md:h-[22.4375rem]'
+    : 'h-[22.4375rem] w-full rounded-[0.625rem] max-[768px]:h-[233px] overflow-hidden sm:h-[233px] md:h-[22.4375rem]';
 
   const videoWrapperStyle: React.CSSProperties = isPlayerOpen
     ? isFullscreen
@@ -238,16 +234,19 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
         inset: 0,
         width: '100%',
         height: '100%',
-      }
+      };
 
   return (
     <>
       <div
-        className={isSmall
-          ? 'mt-[2px] max-sm:mb-0 sm:my-[2.4rem] sm:mb-[-0.2rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
-          : 'mt-[2px] sm:mt-[2.6rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
+        className={
+          isSmall
+            ? 'mt-[2px] max-sm:mb-0 sm:my-[2.4rem] sm:mb-[-0.2rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
+            : 'mt-[2px] sm:mt-[2.6rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
         }
-        style={isPlayerOpen ? { position: 'relative', zIndex: 10001, pointerEvents: 'none' } : undefined}
+        style={
+          isPlayerOpen ? { position: 'relative', zIndex: 10001, pointerEvents: 'none' } : undefined
+        }
         onMouseMove={isPlayerOpen ? undefined : showPosterControls}
         onMouseEnter={isPlayerOpen ? undefined : showPosterControls}
         onMouseLeave={isPlayerOpen ? undefined : () => setPosterControlsVisible(false)}
@@ -260,12 +259,17 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') handleWrapperClick()
+            if (e.key === 'Enter' || e.key === ' ') handleWrapperClick();
           }}
         >
           <div aria-hidden className="w-full h-full min-h-full" />
           <div
             ref={videoWrapperRef}
+            {...(isPlayerOpen && {
+              role: 'dialog',
+              'aria-modal': true,
+              'aria-label': 'Video player',
+            })}
             className={`overflow-hidden rounded-[0.625rem] [&_video]:!object-cover ${isPlayerOpen ? 'relative pointer-events-auto' : 'relative [&>div]:!w-full [&>div]:!h-full'}`}
             style={videoWrapperStyle}
             onClick={isPlayerOpen ? (e) => e.stopPropagation() : undefined}
@@ -284,7 +288,7 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 onReady={() => setVideoLoaded(true)}
                 onProgress={({ playedSeconds }) => {
-                  if (!isDraggingRef.current) setCurrentTime(playedSeconds)
+                  if (!isDraggingRef.current) setCurrentTime(playedSeconds);
                 }}
                 onDuration={setDuration}
                 config={{
@@ -304,7 +308,15 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
                     onClick={handleCloseModal}
                     aria-label="Close"
                   >
-                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <svg
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    >
                       <path d="M18 6L6 18M6 6l12 12" />
                     </svg>
                   </button>
@@ -326,11 +338,23 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
                     >
                       <span className="flex items-center justify-center w-20 h-20 rounded-full bg-black/50 text-white transition-opacity duration-150">
                         {isPlaying ? (
-                          <svg width={48} height={48} viewBox="0 0 24 24" fill="currentColor" className="shrink-0">
+                          <svg
+                            width={48}
+                            height={48}
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="shrink-0"
+                          >
                             <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                           </svg>
                         ) : (
-                          <svg width={48} height={48} viewBox="0 0 24 24" fill="currentColor" className="shrink-0 ml-1">
+                          <svg
+                            width={48}
+                            height={48}
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="shrink-0 ml-1"
+                          >
                             <path d="M8 5v14l11-7L8 5z" />
                           </svg>
                         )}
@@ -347,93 +371,60 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
                 onMouseEnter={showModalControls}
               >
                 <VideoControlBar
-                  isPlaying={isPlaying}
-                  onPlayPause={() => setIsPlaying((p) => !p)}
-                  onSeekBack={handleSeekBack}
-                  onSeekForward={handleSeekForward}
-                  isMuted={isMuted}
-                  volume={volume}
-                  onMuteToggle={() => setIsMuted((m) => !m)}
-                  onVolumeChange={(v) => {
-                    setVolume(v)
-                    setIsMuted(v === 0)
-                  }}
-                  currentTime={currentTime}
-                  duration={duration}
-                  onSeek={(fraction) => {
-                    const t = fraction * duration
-                    singlePlayerRef.current?.seekTo(fraction, 'fraction')
-                    setCurrentTime(t)
-                  }}
-                  onFullscreen={handleFullscreenToggle}
-                  onProgressDragStart={() => {
-                    isDraggingRef.current = true
-                    wasPlayingBeforeDragRef.current = isPlaying
-                    setIsPlaying(false)
-                    setIsDraggingProgressBar(true)
-                  }}
-                  onProgressDragEnd={() => {
-                    isDraggingRef.current = false
-                    setIsDraggingProgressBar(false)
-                    if (wasPlayingBeforeDragRef.current) setIsPlaying(true)
-                  }}
-                  compact={false}
-                  centerControls={false}
-                  dir={isRtl ? 'rtl' : 'ltr'}
-                  isFullscreen={isFullscreen}
+                  config={{
+                    isPlaying,
+                    onPlayPause: () => setIsPlaying((p) => !p),
+                    onSeekBack: handleSeekBack,
+                    onSeekForward: handleSeekForward,
+                    isMuted,
+                    volume,
+                    onMuteToggle: () => setIsMuted((m) => !m),
+                    onVolumeChange: (v) => {
+                      setVolume(v);
+                      setIsMuted(v === 0);
+                    },
+                    currentTime,
+                    duration,
+                    onSeek: (fraction) => {
+                      const t = fraction * duration;
+                      singlePlayerRef.current?.seekTo(fraction, 'fraction');
+                      setCurrentTime(t);
+                    },
+                    onFullscreen: handleFullscreenToggle,
+                    onProgressDragStart: () => {
+                      isDraggingRef.current = true;
+                      wasPlayingBeforeDragRef.current = isPlaying;
+                      setIsPlaying(false);
+                      setIsDraggingProgressBar(true);
+                    },
+                    onProgressDragEnd: () => {
+                      isDraggingRef.current = false;
+                      setIsDraggingProgressBar(false);
+                      if (wasPlayingBeforeDragRef.current) setIsPlaying(true);
+                    },
+                    compact: false,
+                    centerControls: false,
+                    dir: isRtl ? 'rtl' : 'ltr',
+                    isFullscreen,
+                  } as VideoControlBarProps}
                 />
               </div>
             )}
           </div>
         </div>
 
-        <div className={`${isPlayerOpen ? 'hidden' : ''} z-10 ${isSmall
-          ? 'flex justify-between absolute top-0 w-full h-full rounded-[0.625rem] px-6 pl-[3.75rem] items-center max-[768px]:flex-col max-[768px]:justify-between max-[768px]:pt-4 max-xs:p-0 max-xs:pt-4 max-[768px]:p-2.5 max-[768px]:pb-20 pointer-events-none'
-          : 'flex justify-between absolute top-0 w-full h-full rounded-[0.625rem] px-0 xs:px-4 sm:px-11 items-center max-[768px]:flex-col max-[768px]:justify-between max-[768px]:pt-4 max-[768px]:pb-20 pointer-events-none'
-        }`}>
-          {isMobile && !videoLoaded && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/90 text-white py-4 px-6 rounded-xl font-semibold z-10 text-center text-[clamp(0.875rem,0.85rem+0.25vw,1rem)]">
-              Tap to start video
-            </div>
-          )}
-
-          <div className={isSmall
-            ? 'flex flex-col gap-1 items-start h-[11.5rem] justify-center max-[768px]:mt-0 max-[768px]:items-center'
-            : 'flex flex-col gap-2 items-start -mt-2 max-[768px]:mt-0 max-[768px]:items-center'
-          }>
-            <h2 className={isSmall
-              ? 'font-normal leading-normal w-[37.25rem] text-textTheme-primary max-[768px]:text-center max-[768px]:w-full text-[1.75rem] sm:text-[31px] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem]'
-              : 'font-medium leading-normal uppercase text-textTheme-primary max-[768px]:normal-case max-[768px]:text-center text-[1.75rem] sm:text-[31px] md:text-[2rem] lg:text-[2.5rem] xl:text-[4rem]'
-            }>
-              {title}
-            </h2>
-            <p className="font-normal text-accent-primary max-[768px]:text-center text-[clamp(1.25rem,1.2rem+0.5vw,1.9375rem)]">
-              {subtitle}
-            </p>
-            <span className={isSmall
-              ? 'font-normal opacity-90 text-textTheme-primary whitespace-pre-line max-[768px]:text-center text-[clamp(0.875rem,0.9rem+0.3vw,1.125rem)]'
-              : 'font-normal opacity-90 text-textTheme-primary whitespace-pre-line max-[768px]:text-center text-[clamp(0.875rem,0.95rem+0.35vw,1.25rem)]'
-            }>
-              {text}
-            </span>
-          </div>
-
-          <div className={`pointer-events-auto md:hidden ${isSmall
-            ? 'flex flex-col justify-between h-[11.5rem] items-center max-[768px]:flex-row max-[768px]:w-full'
-            : 'flex flex-col justify-between h-[17.8125rem] items-center max-[768px]:flex-row max-[768px]:w-full'
-          }`}
-          >
-            <button onClick={handleOpenModal} className="cursor-pointer w-6 h-6 sm:w-[32px] sm:h-[32px] flex items-center justify-center shrink-0 p-0 border-0 bg-transparent" aria-label="Open video player">
-              <svg className="w-full h-full" viewBox="0 0 32 32" fill="none">
-                <path d="M20 4H28V12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 28H4V20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M28 4L19 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M4 28L13 19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <SoundButton isMuted={isMuted} onClick={handleMute} />
-          </div>
-        </div>
+        <PosterOverlay
+          title={title ?? ''}
+          subtitle={subtitle ?? ''}
+          text={text ?? ''}
+          isSmall={isSmall}
+          isMobile={isMobile}
+          videoLoaded={videoLoaded}
+          isPlayerOpen={isPlayerOpen}
+          onOpenVideo={handleOpenModal}
+          onMuteToggle={handleMute}
+          isMuted={isMuted}
+        />
 
         {!isPlayerOpen && (
           <div
@@ -444,41 +435,52 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <VideoControlBar
-              isPlaying={isPlaying}
-              onPlayPause={() => setIsPlaying((p) => !p)}
-              onSeekBack={handleSeekBack}
-              onSeekForward={handleSeekForward}
-              isMuted={isMuted}
-              volume={volume}
-              onMuteToggle={() => setIsMuted((m) => !m)}
-              onVolumeChange={(v) => {
-                setVolume(v)
-                setIsMuted(v === 0)
-              }}
-              currentTime={currentTime}
-              duration={duration}
-              onSeek={(fraction) => {
-                const t = fraction * duration
-                singlePlayerRef.current?.seekTo(fraction, 'fraction')
-                setCurrentTime(t)
-              }}
-              onFullscreen={handleOpenModal}
-              onProgressDragStart={() => {
-                isDraggingRef.current = true
-                wasPlayingBeforeDragRef.current = isPlaying
-                setIsPlaying(false)
-                setIsDraggingProgressBar(true)
-              }}
-              onProgressDragEnd={() => {
-                isDraggingRef.current = false
-                setIsDraggingProgressBar(false)
-                if (wasPlayingBeforeDragRef.current) setIsPlaying(true)
-              }}
-              order={['progress', 'seekBack', 'playPause', 'seekForward', 'mute', 'volume', 'time', 'fullscreen']}
-              compact={false}
-              centerControls
-              dir={isRtl ? 'rtl' : 'ltr'}
-              isFullscreen={false}
+              config={{
+                isPlaying,
+                onPlayPause: () => setIsPlaying((p) => !p),
+                onSeekBack: handleSeekBack,
+                onSeekForward: handleSeekForward,
+                isMuted,
+                volume,
+                onMuteToggle: () => setIsMuted((m) => !m),
+                onVolumeChange: (v) => {
+                  setVolume(v);
+                  setIsMuted(v === 0);
+                },
+                currentTime,
+                duration,
+                onSeek: (fraction) => {
+                  const t = fraction * duration;
+                  singlePlayerRef.current?.seekTo(fraction, 'fraction');
+                  setCurrentTime(t);
+                },
+                onFullscreen: handleOpenModal,
+                onProgressDragStart: () => {
+                  isDraggingRef.current = true;
+                  wasPlayingBeforeDragRef.current = isPlaying;
+                  setIsPlaying(false);
+                  setIsDraggingProgressBar(true);
+                },
+                onProgressDragEnd: () => {
+                  isDraggingRef.current = false;
+                  setIsDraggingProgressBar(false);
+                  if (wasPlayingBeforeDragRef.current) setIsPlaying(true);
+                },
+                order: [
+                  'progress',
+                  'seekBack',
+                  'playPause',
+                  'seekForward',
+                  'mute',
+                  'volume',
+                  'time',
+                  'fullscreen',
+                ],
+                compact: false,
+                centerControls: true,
+                dir: isRtl ? 'rtl' : 'ltr',
+                isFullscreen: false,
+              } as VideoControlBarProps}
             />
           </div>
         )}
@@ -488,13 +490,13 @@ const VideoPoster: React.FC<VideoPosterProps> = ({
 
       {isPlayerOpen && (
         <div
-          className="fixed inset-0 bg-black z-[10000]"
+          className="fixed inset-0 bg-black z-modal"
           onClick={handleCloseModal}
-          aria-hidden
+          aria-hidden="true"
         />
       )}
     </>
-  )
-}
+  );
+};
 
-export default VideoPoster
+export default VideoPoster;

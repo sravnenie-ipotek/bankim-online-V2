@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
 /**
  * Plain-HTML loading spinner.
@@ -28,6 +28,6 @@ const LoadingSpinner: React.FC = () => (
     />
     <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
   </div>
-)
+);
 
-export default LoadingSpinner
+export default LoadingSpinner;

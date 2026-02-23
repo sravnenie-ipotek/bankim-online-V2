@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useContentApi } from '@hooks/useContentApi';
 
 /**
  * Dedicated footer for lawyers/real-estate pages.
@@ -11,21 +11,21 @@ import { useContentApi } from '@hooks/useContentApi'
  * and TendersForLawyers pages that each rendered their own footer.
  */
 const LawyersFooter: React.FC = () => {
-  const { getContent } = useContentApi('global_components')
+  const { getContent } = useContentApi('global_components');
 
   const companyLinks = [
     { label: getContent('footer_about'), path: '/about' },
     { label: getContent('footer_contacts'), path: '/contacts' },
     { label: getContent('footer_vacancy'), path: '/vacancies' },
     { label: getContent('footer_partner'), path: '/cooperation' },
-  ]
+  ];
 
   const legalLinks = [
     { label: getContent('footer_legal_1'), path: '/terms' },
     { label: getContent('footer_legal_2'), path: '/privacy-policy' },
     { label: getContent('footer_legal_3'), path: '/cookie' },
     { label: getContent('footer_legal_4'), path: '/refund' },
-  ]
+  ];
 
   return (
     <footer className="bg-white py-8 pb-4 w-full border-t border-[#E5E5E5]">
@@ -94,7 +94,7 @@ const LawyersFooter: React.FC = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default LawyersFooter
+export default LawyersFooter;

@@ -1,15 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 interface BankIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
-const BankIcon: React.FC<BankIconProps> = ({
-  size = 32,
-  color = '#F5D547',
-  ...props
-}) => (
+const BankIcon: React.FC<BankIconProps> = ({ size = 32, color = '#F5D547', ...props }) => (
   <svg
     width={size}
     height={size}
@@ -37,6 +33,6 @@ const BankIcon: React.FC<BankIconProps> = ({
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
-export default BankIcon
+export default BankIcon;

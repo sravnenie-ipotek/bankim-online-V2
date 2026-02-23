@@ -1,20 +1,20 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { useRouter } from 'next/navigation'
-import Container from '@/components/ui/Container/Container'
-import { useContentApi } from '@hooks/useContentApi'
-import type { TextPageProps } from './interfaces/TextPageProps'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
+import Container from '@/components/ui/Container/Container';
+import { useContentApi } from '@hooks/useContentApi';
+import type { TextPageProps } from './interfaces/TextPageProps';
 
 const TextPage: React.FC<TextPageProps> = ({ title, text, htmlContent = false }) => {
-  const { i18n } = useTranslation()
-  const { getContent } = useContentApi('global_components')
-  const router = useRouter()
+  const { i18n } = useTranslation();
+  const { getContent } = useContentApi('global_components');
+  const router = useRouter();
 
   const handleBack = () => {
-    router.back()
-  }
+    router.back();
+  };
 
   return (
     <div data-testid="text-page">
@@ -47,16 +47,12 @@ const TextPage: React.FC<TextPageProps> = ({ title, text, htmlContent = false })
             </h1>
           </div>
           <div className="not-italic font-normal leading-[140%] text-textTheme-primary whitespace-pre-line text-[clamp(0.8125rem,0.85rem+0.2vw,0.875rem)]">
-            {htmlContent ? (
-              <div dangerouslySetInnerHTML={{ __html: text }} />
-            ) : (
-              text
-            )}
+            {htmlContent ? <div dangerouslySetInnerHTML={{ __html: text }} /> : text}
           </div>
         </div>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default TextPage
+export default TextPage;

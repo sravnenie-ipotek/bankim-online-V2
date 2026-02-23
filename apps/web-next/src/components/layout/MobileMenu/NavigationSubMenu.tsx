@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { MenuItem } from '../Sidebar/types'
+import React from 'react';
+import Link from 'next/link';
+import { MenuItem } from '../Sidebar/types';
 
 interface NavigationSubMenuProps {
-  items: MenuItem[]
-  isOpen: boolean
-  onClose: () => void
-  onCloseMenu?: () => void
+  items: MenuItem[];
+  isOpen: boolean;
+  onClose: () => void;
+  onCloseMenu?: () => void;
 }
 
 const NavigationSubMenu: React.FC<NavigationSubMenuProps> = ({
@@ -18,9 +18,9 @@ const NavigationSubMenu: React.FC<NavigationSubMenuProps> = ({
   onCloseMenu,
 }) => {
   const handleLinkClick = () => {
-    onClose()
-    onCloseMenu?.()
-  }
+    onClose();
+    onCloseMenu?.();
+  };
 
   return (
     <nav
@@ -34,15 +34,21 @@ const NavigationSubMenu: React.FC<NavigationSubMenuProps> = ({
           onClick={onClose}
           className="mb-6 text-accent-primary bg-transparent border-none cursor-pointer text-[16px] flex items-center gap-2 rtl:flex-row-reverse"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" className="rtl:rotate-180">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            className="rtl:rotate-180"
+          >
             <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" fill="none" />
           </svg>
           Back
         </button>
         <ul className="flex flex-col gap-4 list-none p-0 m-0 items-start rtl:items-end">
-          {items.map((item) => (
+          {items.map((item, idx) => (
             <li
-              key={item.title}
+              key={item.path || `sub-${idx}`}
               className="text-[18px] text-white hover:text-accent-primary transition-colors text-left rtl:text-right w-full"
             >
               <Link
@@ -57,7 +63,7 @@ const NavigationSubMenu: React.FC<NavigationSubMenuProps> = ({
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default NavigationSubMenu
+export default NavigationSubMenu;

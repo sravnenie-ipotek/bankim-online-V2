@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import React from 'react'
-import type { FormErrorProps } from './interfaces/FormErrorProps'
+import React from 'react';
+import type { FormErrorProps } from './interfaces/FormErrorProps';
 
 const FormError: React.FC<FormErrorProps> = ({ error }) => {
-  if (!error) return null
+  if (!error) return null;
 
-  const message = typeof error === 'string' ? error : 'An error occurred'
+  const message = typeof error === 'string' ? error : 'An error occurred';
 
   return (
     <div className="flex items-center gap-2 px-3 py-2 rounded bg-red-900/30 border border-red-700/50 mt-1">
@@ -18,7 +18,7 @@ const FormError: React.FC<FormErrorProps> = ({ error }) => {
       </svg>
       <span className="text-xs text-red-400 font-normal leading-[140%]">{message}</span>
     </div>
-  )
-}
+  );
+};
 
-export default FormError
+export default FormError;

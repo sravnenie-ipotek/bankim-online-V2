@@ -1,12 +1,15 @@
-'use client'
+'use client';
 
-import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection'
+import React from 'react';
+import PersonalCabinetSection from '@/components/ui/PersonalCabinetSection/PersonalCabinetSection';
 
-export default function CoBorrowerPersonalData() {
+const CoBorrowerPersonalData: React.FC = () => {
   return (
     <PersonalCabinetSection
       titleKey="co_borrower_personal_data"
       descriptionKey="co_borrower_description"
     />
-  )
-}
+  );
+};
+
+export default CoBorrowerPersonalData;

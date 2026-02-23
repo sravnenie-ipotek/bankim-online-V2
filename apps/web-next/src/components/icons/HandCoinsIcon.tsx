@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface HandCoinsIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
 const HandCoinsIcon: React.FC<HandCoinsIconProps> = ({
@@ -27,6 +27,6 @@ const HandCoinsIcon: React.FC<HandCoinsIconProps> = ({
     />
     <path d="M18 8H22" stroke={color} strokeWidth="2" strokeLinecap="round" />
   </svg>
-)
+);
 
-export default HandCoinsIcon
+export default HandCoinsIcon;

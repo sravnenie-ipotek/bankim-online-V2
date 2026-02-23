@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import React, { useState, useCallback, useEffect } from 'react'
-import type { FormattedInputProps } from './interfaces/FormattedInputProps'
+import React, { useState, useCallback, useEffect } from 'react';
+import type { FormattedInputProps } from './interfaces/FormattedInputProps';
 
 function formatNumberWithCommas(num: number | null): string {
-  if (num === null || num === undefined) return ''
-  return num.toLocaleString('en-US')
+  if (num === null || num === undefined) return '';
+  return num.toLocaleString('en-US');
 }
 
 function parseFormattedNumber(str: string): number | null {
-  const cleaned = str.replace(/,/g, '').replace(/[^\d.-]/g, '')
-  if (cleaned === '' || cleaned === '-') return null
-  const parsed = Number(cleaned)
-  return isNaN(parsed) ? null : parsed
+  const cleaned = str.replace(/,/g, '').replace(/[^\d.-]/g, '');
+  if (cleaned === '' || cleaned === '-') return null;
+  const parsed = Number(cleaned);
+  return isNaN(parsed) ? null : parsed;
 }
 
 const FormattedInput: React.FC<FormattedInputProps> = ({
@@ -27,32 +27,32 @@ const FormattedInput: React.FC<FormattedInputProps> = ({
   disabled = false,
   ...rest
 }) => {
-  const [displayValue, setDisplayValue] = useState<string>(formatNumberWithCommas(value))
+  const [displayValue, setDisplayValue] = useState<string>(formatNumberWithCommas(value));
 
   useEffect(() => {
-    setDisplayValue(formatNumberWithCommas(value))
-  }, [value])
+    setDisplayValue(formatNumberWithCommas(value));
+  }, [value]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const raw = e.target.value
+      const raw = e.target.value;
       // Allow only digits, commas, dots
-      const sanitized = raw.replace(/[^\d,.-]/g, '')
-      setDisplayValue(sanitized)
-      const parsed = parseFormattedNumber(sanitized)
-      onChange(parsed)
+      const sanitized = raw.replace(/[^\d,.-]/g, '');
+      setDisplayValue(sanitized);
+      const parsed = parseFormattedNumber(sanitized);
+      onChange(parsed);
     },
-    [onChange],
-  )
+    [onChange]
+  );
 
   const handleBlur = useCallback(() => {
     // Re-format on blur
-    setDisplayValue(formatNumberWithCommas(value))
-    onBlur?.()
-  }, [value, onBlur])
+    setDisplayValue(formatNumberWithCommas(value));
+    onBlur?.();
+  }, [value, onBlur]);
 
-  const hasError = !!error
-  const errorMessage = typeof error === 'string' ? error : null
+  const hasError = !!error;
+  const errorMessage = typeof error === 'string' ? error : null;
 
   return (
     <div className="flex flex-col gap-1 w-full">
@@ -82,11 +82,9 @@ const FormattedInput: React.FC<FormattedInputProps> = ({
           data-testid={rest['data-testid']}
         />
       </div>
-      {errorMessage ? (
-        <span className="text-red-500 text-xs mt-0.5">{errorMessage}</span>
-      ) : null}
+      {errorMessage ? <span className="text-red-500 text-xs mt-0.5">{errorMessage}</span> : null}
     </div>
-  )
-}
+  );
+};
 
-export default FormattedInput
+export default FormattedInput;

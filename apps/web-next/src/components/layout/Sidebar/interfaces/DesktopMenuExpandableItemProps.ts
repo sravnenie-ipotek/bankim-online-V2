@@ -1,5 +1,5 @@
 export interface DesktopMenuExpandableItemProps {
-  title: string
-  onFirstItemClick: () => void
-  isExpanded?: boolean
+  title: string;
+  onFirstItemClick: () => void;
+  isExpanded?: boolean;
 }

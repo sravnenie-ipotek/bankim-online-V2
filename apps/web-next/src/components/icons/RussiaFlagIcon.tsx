@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const RussiaFlagIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
@@ -30,7 +30,7 @@ const RussiaFlagIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
         </clipPath>
       </defs>
     </svg>
-  )
-}
+  );
+};
 
-export default RussiaFlagIcon
+export default RussiaFlagIcon;

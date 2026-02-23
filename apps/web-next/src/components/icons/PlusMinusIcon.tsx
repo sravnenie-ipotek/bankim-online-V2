@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface PlusMinusIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number
-  color?: string
+  size?: number;
+  color?: string;
 }
 
 const PlusMinusIcon: React.FC<PlusMinusIconProps> = ({
@@ -22,6 +22,6 @@ const PlusMinusIcon: React.FC<PlusMinusIconProps> = ({
     <path d="M6 14H14" stroke={color} strokeWidth="2" strokeLinecap="round" />
     <path d="M18 22H26" stroke={color} strokeWidth="2" strokeLinecap="round" />
   </svg>
-)
+);
 
-export default PlusMinusIcon
+export default PlusMinusIcon;

@@ -1,75 +1,27 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import Container from '@/components/ui/Container/Container'
-import ProgressBar from '@/components/ui/ProgressBar/ProgressBar'
-import { useContentApi } from '@hooks/useContentApi'
+import React from 'react';
+import ServiceStepPage from '@/components/ui/ServiceStepPage/ServiceStepPage';
 
-const TOTAL_STEPS = 2
+const config = {
+  basePath: '/services/other-borrowers',
+  totalSteps: 2,
+  titleContentKey: 'other_borrowers_title',
+  progressStepKeys: ['personal_data_borrowers_title', 'borrowers_income'],
+  getStepTitleContentKey: (step: number) =>
+    step === 1 ? 'personal_data_borrowers_title' : 'borrowers_income',
+  lastStepNextUrl: '/personal-cabinet',
+  firstStepBackUrl: null as string | null,
+  renderStepContent: () => (
+    <>
+      <div className="h-12 bg-base-inputs rounded-lg animate-pulse" />
+      <div className="h-12 bg-base-inputs rounded-lg animate-pulse" />
+      <div className="h-12 bg-base-inputs rounded-lg animate-pulse" />
+    </>
+  ),
+};
 
-export default function OtherBorrowers() {
-  const { getContent } = useContentApi('common')
-  const params = useParams()
-  const router = useRouter()
-  const step = parseInt(params.stepNumber as string, 10)
+/** Step-based other borrowers flow; delegates to ServiceStepPage. */
+const OtherBorrowers: React.FC = () => <ServiceStepPage config={config} />;
 
-  if (isNaN(step) || step < 1 || step > TOTAL_STEPS) {
-    router.replace('/services/other-borrowers/1')
-    return null
-  }
-
-  const handleNext = () => {
-    if (step < TOTAL_STEPS) {
-      router.push(`/services/other-borrowers/${step + 1}`)
-    } else {
-      router.push('/personal-cabinet')
-    }
-  }
-
-  const handleBack = () => {
-    if (step > 1) {
-      router.push(`/services/other-borrowers/${step - 1}`)
-    } else {
-      router.back()
-    }
-  }
-
-  return (
-    <Container>
-      <div className="flex flex-col gap-8 w-full my-8 max-w-[700px] mx-auto">
-        <h1 className="text-3xl font-medium text-textTheme-primary">
-          {getContent('other_borrowers_title')}
-        </h1>
-
-        <ProgressBar
-          progress={String(step)}
-          data={[
-            getContent('personal_data_borrowers_title'),
-            getContent('borrowers_income'),
-          ]}
-        />
-
-        <div className="p-8 bg-base-secondary rounded-lg">
-          <h2 className="text-xl font-semibold text-textTheme-primary mb-6">
-            {step === 1 ? getContent('personal_data_borrowers_title') : getContent('borrowers_income')}
-          </h2>
-          <div className="flex flex-col gap-4 mb-8">
-            <div className="h-12 bg-base-inputs rounded-lg animate-pulse" />
-            <div className="h-12 bg-base-inputs rounded-lg animate-pulse" />
-            <div className="h-12 bg-base-inputs rounded-lg animate-pulse" />
-          </div>
-        </div>
-
-        <div className="flex justify-between">
-          <button onClick={handleBack} className="px-6 py-3 bg-base-secondary text-textTheme-primary rounded-lg font-medium hover:bg-base-base800 transition-colors">
-            {getContent('back')}
-          </button>
-          <button onClick={handleNext} className="px-6 py-3 bg-accent-primary text-base-primary rounded-lg font-medium hover:bg-accent-primaryActiveButton transition-colors">
-            {step === TOTAL_STEPS ? getContent('submit') : getContent('next')}
-          </button>
-        </div>
-      </div>
-    </Container>
-  )
-}
+export default OtherBorrowers;

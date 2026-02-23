@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import React from 'react'
-import LoginLanguage from './LoginLanguage'
-import Logo from './Logo'
-import BurgerMenu from '@/components/ui/BurgerMenu/BurgerMenu'
-import type { HeaderProps } from './interfaces/HeaderProps'
+import React from 'react';
+import LoginLanguage from './LoginLanguage';
+import Logo from './Logo';
+import BurgerMenu from '@/components/ui/BurgerMenu/BurgerMenu';
+import type { HeaderProps } from './interfaces/HeaderProps';
 
 const Header: React.FC<HeaderProps> = ({
   showBurger = false,
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

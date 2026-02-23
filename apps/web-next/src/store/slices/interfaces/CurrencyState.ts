@@ -1,5 +1,5 @@
-export type Currency = 'ILS' | 'USD' | 'EUR'
+export type Currency = 'ILS' | 'USD' | 'EUR';
 
 export interface CurrencyState {
-  currency: Currency
+  currency: Currency;
 }

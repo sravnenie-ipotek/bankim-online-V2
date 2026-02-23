@@ -1,4 +1,4 @@
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 
 export const step1ValidationSchema = Yup.object().shape({
   priceOfEstate: Yup.number()
@@ -11,11 +11,11 @@ export const step1ValidationSchema = Yup.object().shape({
       'initial-payment-percentage',
       'Initial payment must be at least 25% of property value',
       function (value) {
-        const priceOfEstate: number = this.parent.priceOfEstate || 0
-        if (!value || !priceOfEstate) return false
-        const minPayment = priceOfEstate * 0.25
-        return value >= minPayment
-      },
+        const priceOfEstate: number = this.parent.priceOfEstate || 0;
+        if (!value || !priceOfEstate) return false;
+        const minPayment = priceOfEstate * 0.25;
+        return value >= minPayment;
+      }
     )
     .required('Initial payment is required'),
   typeSelect: Yup.string().required('Mortgage type is required'),
@@ -28,7 +28,7 @@ export const step1ValidationSchema = Yup.object().shape({
   monthlyPayment: Yup.number()
     .min(2654, 'Minimum monthly payment is 2,654')
     .required('Monthly payment is required'),
-})
+});
 
 export const step2ValidationSchema = Yup.object().shape({
   nameSurname: Yup.string().required('Name is required'),
@@ -51,14 +51,16 @@ export const step2ValidationSchema = Yup.object().shape({
   medicalInsurance: Yup.string().required('Medical insurance status is required'),
   isForeigner: Yup.string().required('Foreign resident status is required'),
   publicPerson: Yup.string().required('Public person status is required'),
-  borrowers: Yup.number().min(1, 'At least 1 borrower is required').required('Number of borrowers is required'),
+  borrowers: Yup.number()
+    .min(1, 'At least 1 borrower is required')
+    .required('Number of borrowers is required'),
   familyStatus: Yup.string().required('Family status is required'),
   partnerPayMortgage: Yup.string().when('familyStatus', {
     is: 'married',
     then: (schema) => schema.required('Please indicate partner payment'),
     otherwise: (schema) => schema,
   }),
-})
+});
 
 export const step3ValidationSchema = Yup.object().shape({
   mainSourceOfIncome: Yup.string().required('Source of income is required'),
@@ -104,9 +106,9 @@ export const step3ValidationSchema = Yup.object().shape({
     then: (schema) => schema.required('End date is required'),
     otherwise: (schema) => schema,
   }),
-})
+});
 
 export const step4ValidationSchema = Yup.object().shape({
   selectedBank: Yup.string(),
   selectedOffer: Yup.string().nullable(),
-})
+});

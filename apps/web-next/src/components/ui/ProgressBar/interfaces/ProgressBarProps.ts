@@ -1,4 +1,4 @@
 export interface ProgressBarProps {
-  progress: string
-  data: string[]
+  progress: string;
+  data: string[];
 }
