@@ -428,7 +428,7 @@ const VideoPoster: React.FC<VideoPosterProps> = ({ title, subtitle, text, size =
 
         {!isPlayerOpen && (
           <div
-            className={`absolute bottom-0 left-1/2 -translate-x-1/2 z-30 w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-full hidden md:block transition-opacity duration-300 ease-out ${posterControlsVisible || isMobile ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            className={`absolute bottom-0 left-1/2 -translate-x-1/2 z-30 w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-full hidden md:block transition-opacity duration-300 ease-out ${posterControlsVisible || isMobile ? 'opacity-100' : 'md:opacity-100 opacity-0 pointer-events-none md:pointer-events-auto'}`}
             onMouseMove={showPosterControls}
             onMouseEnter={showPosterControls}
             onTouchStart={showPosterControls}

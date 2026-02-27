@@ -84,6 +84,7 @@ const initialState: IAuthState = {
   isLoginDialogOpen: false,
   loginStep: 'form',
   pendingPhone: null,
+  forgotPasswordSource: null,
 
   user: null,
   token: StorageHelper.getItem('authToken'),
@@ -105,6 +106,7 @@ const authSlice = createSlice({
       state.isLoginDialogOpen = false;
       state.loginStep = 'form';
       state.pendingPhone = null;
+      state.forgotPasswordSource = null;
       state.error = null;
     },
     setActiveTab(state, action: PayloadAction<Tab>) {
@@ -113,6 +115,10 @@ const authSlice = createSlice({
     },
     setLoginStep(state, action: PayloadAction<LoginStep>) {
       state.loginStep = action.payload;
+      if (action.payload === 'form') state.forgotPasswordSource = null;
+    },
+    setForgotPasswordSource(state, action: PayloadAction<Tab | null>) {
+      state.forgotPasswordSource = action.payload;
     },
     setAuthSteps(state, action: PayloadAction<EAuthSteps>) {
       state.authStep = action.payload;
@@ -197,6 +203,7 @@ export const {
   closeLoginDialog,
   setActiveTab,
   setLoginStep,
+  setForgotPasswordSource,
   setAuthSteps,
   setRestorePasswordSteps,
   setSignUpSteps,
@@ -212,6 +219,7 @@ export const activeTabSelector = (state: RootState) => state.auth.activeTab;
 export const isLoginDialogOpenSelector = (state: RootState) => state.auth.isLoginDialogOpen;
 export const loginStepSelector = (state: RootState) => state.auth.loginStep;
 export const pendingPhoneSelector = (state: RootState) => state.auth.pendingPhone;
+export const forgotPasswordSourceSelector = (state: RootState) => state.auth.forgotPasswordSource;
 export const authUserSelector = (state: RootState) => state.auth.user;
 export const authTokenSelector = (state: RootState) => state.auth.token;
 export const isAuthenticatedSelector = (state: RootState) => state.auth.isAuthenticated;

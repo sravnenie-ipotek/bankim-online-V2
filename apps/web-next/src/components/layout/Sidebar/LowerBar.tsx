@@ -1,21 +1,24 @@
 'use client';
 
 import React from 'react';
+import { SocialDeepLinkHelper } from '@/helpers/SocialDeepLinkHelper';
+import { useSocialLink } from '@/hooks/useSocialLink';
+import type { SocialPlatformConfig } from '@/helpers/SocialDeepLinkHelper';
 
-const SOCIAL_ITEMS = [
-  {
-    href: 'https://www.instagram.com/bankimonline',
-    icon: '/static/instagram.svg',
-    label: 'Instagram',
-  },
-  { href: 'https://www.youtube.com/@bankimonline', icon: '/static/youtube.svg', label: 'YouTube' },
-  {
-    href: 'https://www.facebook.com/bankimonline',
-    icon: '/static/facebook.svg',
-    label: 'Facebook',
-  },
-  { href: 'https://twitter.com/bankimonline', icon: '/static/twitter.svg', label: 'Twitter' },
-] as const;
+const LowerBarSocialLinkItem: React.FC<{ config: SocialPlatformConfig }> = ({ config }) => {
+  const { href, onClick } = useSocialLink(config.platform);
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      onClick={onClick}
+      className="opacity-50 hover:opacity-100 transition-opacity w-[32px] h-[32px] flex items-center justify-center shrink-0"
+    >
+      <img alt={config.label} src={config.icon} width={32} height={32} className="w-8 h-8" />
+    </a>
+  );
+};
 
 interface LowerBarProps {
   isOpen: boolean;
@@ -23,6 +26,8 @@ interface LowerBarProps {
 }
 
 const LowerBar: React.FC<LowerBarProps> = ({ isOpen, onToggle }) => {
+  const socialPlatforms = SocialDeepLinkHelper.getPlatforms();
+
   return (
     <div className="w-full max-w-[1240px] h-[81px] bg-[#242529] flex flex-row items-center justify-between px-6 shrink-0 xl:w-sidebar-fluid">
       <div className="flex flex-row items-center gap-4">
@@ -42,16 +47,8 @@ const LowerBar: React.FC<LowerBarProps> = ({ isOpen, onToggle }) => {
           </span>
         </button>
         <div className="flex flex-row items-center gap-4">
-          {SOCIAL_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              target="_blank"
-              rel="noreferrer"
-              className="opacity-50 hover:opacity-100 transition-opacity w-[32px] h-[32px] flex items-center justify-center shrink-0"
-            >
-              <img alt={item.label} src={item.icon} width={32} height={32} className="w-8 h-8" />
-            </a>
+          {socialPlatforms.map((config) => (
+            <LowerBarSocialLinkItem key={config.platform} config={config} />
           ))}
         </div>
       </div>

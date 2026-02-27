@@ -4,7 +4,7 @@ import type { ESignUpSteps } from '@/types/enums/signUpSteps.enum';
 import type { IAuthUser } from './IAuthUser';
 
 export type Tab = 'phone' | 'email';
-export type LoginStep = 'form' | 'sms-verify';
+export type LoginStep = 'form' | 'sms-verify' | 'forgot-password';
 
 export interface IAuthState {
   authStep: EAuthSteps;
@@ -16,6 +16,8 @@ export interface IAuthState {
   isLoginDialogOpen: boolean;
   loginStep: LoginStep;
   pendingPhone: string | null;
+  /** When forgot-password step was opened from phone vs email tab */
+  forgotPasswordSource: Tab | null;
 
   /** Authenticated user */
   user: IAuthUser | null;

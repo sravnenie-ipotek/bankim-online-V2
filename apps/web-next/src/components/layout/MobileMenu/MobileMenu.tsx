@@ -7,17 +7,15 @@ import MobileMenuHeader from './MobileMenuHeader';
 import NavigationList from './NavigationList';
 import NavigationSubMenu from './NavigationSubMenu';
 import MobileLanguageSelector from './MobileLanguageSelector';
+import MobileMenuSocialLinkItem from './MobileMenuSocialLinkItem';
 import {
   useMenuItems,
   useBusinessMenuItems,
   useSubMenuItems,
   useBusinessSubMenuItems,
 } from '../Sidebar/useMenuItems';
-
-interface MobileMenuProps {
-  onClick: () => void;
-  isOpen: boolean;
-}
+import { SocialDeepLinkHelper } from '@/helpers/SocialDeepLinkHelper';
+import type { MobileMenuProps } from './interfaces/MobileMenuProps';
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
   const { getContent } = useContentApi('global_components');
@@ -69,16 +67,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
 
       {/* Social links */}
       <div className="px-5 py-4 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6 flex gap-4 justify-start rtl:justify-end border-t border-base-stroke mt-4">
-        {['Instagram', 'YouTube', 'Facebook', 'Telegram'].map((name) => (
-          <a
-            key={name}
-            href={`https://www.${name.toLowerCase()}.com/bankimonline`}
-            target="_blank"
-            rel="noreferrer"
-            className="opacity-50 hover:opacity-100 transition-opacity"
-          >
-            <img alt={name} src={`/static/${name.toLowerCase()}.svg`} width={24} height={24} />
-          </a>
+        {SocialDeepLinkHelper.getPlatforms().map((config) => (
+          <MobileMenuSocialLinkItem key={config.platform} config={config} />
         ))}
       </div>
 

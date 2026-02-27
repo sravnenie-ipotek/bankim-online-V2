@@ -4,29 +4,20 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageHelper } from '@/helpers/languageHelper';
 import { useContentApi } from '@hooks/useContentApi';
-import IsraelFlagIcon from '@/components/icons/IsraelFlagIcon';
-import RussiaFlagIcon from '@/components/icons/RussiaFlagIcon';
-import USFlagIcon from '@/components/icons/USFlagIcon';
+import { LanguageFlagHelper } from '@/helpers/LanguageFlagHelper';
 import CheckIcon from '@/components/icons/CheckIcon';
+import { useAppDispatch } from '@/hooks/store';
+import { changeLanguage } from '@/store/slices/languageSlice';
 import type { LanguageItem } from './interfaces/LanguageItem';
 
 const LANGUAGE_ITEMS: LanguageItem[] = [
-  { value: 'en', countryKey: 'country_us', languageKey: 'language_english', icon: <USFlagIcon /> },
-  {
-    value: 'he',
-    countryKey: 'country_israel',
-    languageKey: 'language_hebrew',
-    icon: <IsraelFlagIcon />,
-  },
-  {
-    value: 'ru',
-    countryKey: 'country_russia',
-    languageKey: 'language_russian',
-    icon: <RussiaFlagIcon />,
-  },
+  { value: 'en', countryKey: 'country_us', languageKey: 'language_english' },
+  { value: 'he', countryKey: 'country_israel', languageKey: 'language_hebrew' },
+  { value: 'ru', countryKey: 'country_russia', languageKey: 'language_russian' },
 ];
 
 const MobileLanguageSelector: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { i18n } = useTranslation();
   const { getContent } = useContentApi('global_components');
   const currentLang = i18n.language || 'he';
@@ -34,6 +25,7 @@ const MobileLanguageSelector: React.FC = () => {
   const handleLanguageChange = async (newLanguage: string) => {
     try {
       await i18n.changeLanguage(newLanguage);
+      dispatch(changeLanguage(newLanguage));
       LanguageHelper.applyLanguageDirection(newLanguage);
       LanguageHelper.persistLanguage(newLanguage);
     } catch (error) {
@@ -62,7 +54,7 @@ const MobileLanguageSelector: React.FC = () => {
             }}
           >
             <div className="flex items-center gap-2 min-w-0 flex-1">
-              <div className="shrink-0">{item.icon}</div>
+              <div className="shrink-0">{LanguageFlagHelper.getFlag(item.value)}</div>
               <div className="flex flex-col items-start min-w-0 flex-1">
                 <span className="text-[0.875rem] font-normal leading-[140%] text-white">
                   {getContent(item.countryKey)}

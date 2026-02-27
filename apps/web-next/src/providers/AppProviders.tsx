@@ -6,6 +6,7 @@ import StoreProvider from './StoreProvider';
 import I18nProviderWrapper from './I18nProvider';
 import { ContentLoadingProvider } from './ContentLoadingContext';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import BodyFontSync from './BodyFontSync';
 
 interface AppProvidersProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ const AppProviders: React.FC<AppProvidersProps> = ({ children }) => {
   return (
     <ErrorBoundary>
       <StoreProvider>
+        <BodyFontSync />
         <I18nProviderWrapper>
           <ContentLoadingProvider>
             <GoogleAnalytics />
