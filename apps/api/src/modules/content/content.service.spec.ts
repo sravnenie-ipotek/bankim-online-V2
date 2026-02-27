@@ -116,6 +116,56 @@ describe('ContentService', () => {
         service.getContentByScreen('home_page', 'he'),
       ).rejects.toThrow(ContentFixtures.dbError.message);
     });
+
+    it('returns expected shape for legal screen and uses correct cache key', async () => {
+      const result = await service.getContentByScreen('legal', 'he');
+
+      expect(result).toMatchObject({
+        status: 'success',
+        screen_location: 'legal',
+        language_code: 'he',
+        cached: false,
+      });
+      expect(contentItemRepo.createQueryBuilder).toHaveBeenCalled();
+      const chain = contentItemRepo.createQueryBuilder() as Record<
+        string,
+        unknown
+      >;
+      expect(chain.where).toHaveBeenCalledWith(
+        'ci.screen_location = :screen',
+        { screen: 'legal' },
+      );
+      expect(cache.set).toHaveBeenCalledWith(
+        'content:legal:he:all',
+        expect.objectContaining({ cached: true }),
+        300_000,
+      );
+    });
+
+    it('returns expected shape for global_components screen and uses correct cache key', async () => {
+      const result = await service.getContentByScreen('global_components', 'en');
+
+      expect(result).toMatchObject({
+        status: 'success',
+        screen_location: 'global_components',
+        language_code: 'en',
+        cached: false,
+      });
+      expect(contentItemRepo.createQueryBuilder).toHaveBeenCalled();
+      const chain = contentItemRepo.createQueryBuilder() as Record<
+        string,
+        unknown
+      >;
+      expect(chain.where).toHaveBeenCalledWith(
+        'ci.screen_location = :screen',
+        { screen: 'global_components' },
+      );
+      expect(cache.set).toHaveBeenCalledWith(
+        'content:global_components:en:all',
+        expect.objectContaining({ cached: true }),
+        300_000,
+      );
+    });
   });
 
   describe('getContentByKey', () => {
