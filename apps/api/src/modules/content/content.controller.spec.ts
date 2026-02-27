@@ -4,23 +4,23 @@ import { ContentController } from './content.controller';
 import { ContentService } from './content.service';
 import { DropdownService } from './dropdown.service';
 import type { ContentServiceMock } from './tests/interfaces/content-service-mock.interface';
+import type { DropdownServiceMock } from './tests/interfaces/dropdown-service-mock.interface';
 import { ContentControllerTestbed } from './tests/helpers/controller-testbed.helper';
 
 describe('ContentController', () => {
   let controller: ContentController;
   let contentService: ContentServiceMock;
+  let dropdownService: DropdownServiceMock;
 
   beforeEach(async () => {
     contentService = ContentControllerTestbed.createContentServiceMock();
+    dropdownService = ContentControllerTestbed.createDropdownServiceMock();
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ContentController],
       providers: [
         { provide: ContentService, useValue: contentService },
-        {
-          provide: DropdownService,
-          useValue: ContentControllerTestbed.createDropdownServiceMock(),
-        },
+        { provide: DropdownService, useValue: dropdownService },
       ],
     }).compile();
 
@@ -72,6 +72,56 @@ describe('ContentController', () => {
         'home_page',
         'he',
         'heading',
+      );
+    });
+
+    it('getContentByScreen returns service result for global_components screen', async () => {
+      const payload = {
+        status: 'success',
+        screen_location: 'global_components',
+        language_code: 'en',
+        content_count: 2,
+        content: {
+          back: { value: 'Back' },
+          footer_about: { value: 'About us' },
+        },
+        cached: false,
+      };
+      contentService.getContentByScreen.mockResolvedValue(payload);
+
+      const result = await controller.getContentByScreen(
+        'global_components',
+        'en',
+      );
+
+      expect(result).toEqual(payload);
+      expect(contentService.getContentByScreen).toHaveBeenCalledWith(
+        'global_components',
+        'en',
+        undefined,
+      );
+    });
+
+    it('getContentByScreen returns service result for legal screen', async () => {
+      const payload = {
+        status: 'success',
+        screen_location: 'legal',
+        language_code: 'he',
+        content_count: 1,
+        content: {
+          cookie_policy_title: { value: 'מדיניות עוגיות' },
+        },
+        cached: false,
+      };
+      contentService.getContentByScreen.mockResolvedValue(payload);
+
+      const result = await controller.getContentByScreen('legal', 'he');
+
+      expect(result).toEqual(payload);
+      expect(contentService.getContentByScreen).toHaveBeenCalledWith(
+        'legal',
+        'he',
+        undefined,
       );
     });
 
@@ -253,6 +303,148 @@ describe('ContentController', () => {
       await expect(
         controller.getContentByKey('some_key', 'he'),
       ).rejects.toThrow('DB connection failed');
+    });
+  });
+
+  describe('dropdown routes – pass-through to DropdownService', () => {
+    it('getDropdownsByScreenPath returns service result', async () => {
+      const payload = {
+        status: 'success',
+        screen: 'mortgage_step1',
+        language: 'he',
+        dropdowns: {},
+      };
+      dropdownService.getDropdownsByScreen.mockResolvedValue(payload);
+
+      const result = await controller.getDropdownsByScreenPath(
+        'mortgage_step1',
+        'he',
+      );
+
+      expect(result).toEqual(payload);
+      expect(dropdownService.getDropdownsByScreen).toHaveBeenCalledWith(
+        'mortgage_step1',
+        'he',
+      );
+    });
+
+    it('getDropdowns with query params returns service result (default language en)', async () => {
+      const payload = {
+        status: 'success',
+        screen: 'mortgage_step1',
+        language: 'en',
+        dropdowns: {},
+      };
+      dropdownService.getDropdownsByScreen.mockResolvedValue(payload);
+
+      const result = await controller.getDropdowns('mortgage_step1');
+
+      expect(result).toEqual(payload);
+      expect(dropdownService.getDropdownsByScreen).toHaveBeenCalledWith(
+        'mortgage_step1',
+        'en',
+      );
+    });
+
+    it('getDropdowns with screen and language query returns service result', async () => {
+      const payload = {
+        status: 'success',
+        screen: 'mortgage_step2',
+        language: 'ru',
+        dropdowns: {},
+      };
+      dropdownService.getDropdownsByScreen.mockResolvedValue(payload);
+
+      const result = await controller.getDropdowns('mortgage_step2', 'ru');
+
+      expect(result).toEqual(payload);
+      expect(dropdownService.getDropdownsByScreen).toHaveBeenCalledWith(
+        'mortgage_step2',
+        'ru',
+      );
+    });
+
+    it('getDropdownByField returns service result', async () => {
+      const payload = {
+        status: 'success',
+        fieldName: 'city',
+        screen: 'mortgage_step1',
+        language: 'he',
+        options: [{ value: 'tel_aviv', label: 'תל אביב' }],
+      };
+      dropdownService.getDropdownByField.mockResolvedValue(payload);
+
+      const result = await controller.getDropdownByField(
+        'city',
+        'mortgage_step1',
+        'he',
+      );
+
+      expect(result).toEqual(payload);
+      expect(dropdownService.getDropdownByField).toHaveBeenCalledWith(
+        'city',
+        'mortgage_step1',
+        'he',
+      );
+    });
+
+    it('getDropdownByField with default language en', async () => {
+      const payload = {
+        status: 'success',
+        fieldName: 'bank',
+        screen: 'mortgage_step1',
+        language: 'en',
+        options: [],
+      };
+      dropdownService.getDropdownByField.mockResolvedValue(payload);
+
+      await controller.getDropdownByField('bank', 'mortgage_step1');
+
+      expect(dropdownService.getDropdownByField).toHaveBeenCalledWith(
+        'bank',
+        'mortgage_step1',
+        'en',
+      );
+    });
+
+    it('getDropdownOptions returns service result', async () => {
+      const payload = {
+        status: 'success',
+        screen_location: 'mortgage_step1',
+        language: 'he',
+        dropdowns: {},
+      };
+      dropdownService.getDropdownOptions.mockResolvedValue(payload);
+
+      const result = await controller.getDropdownOptions(
+        'mortgage_step1',
+        'he',
+      );
+
+      expect(result).toEqual(payload);
+      expect(dropdownService.getDropdownOptions).toHaveBeenCalledWith(
+        'mortgage_step1',
+        'he',
+        undefined,
+      );
+    });
+
+    it('getDropdownOptions with business_path passes to service', async () => {
+      const payload = {
+        status: 'success',
+        screen_location: 'mortgage_step1',
+        language: 'en',
+        dropdowns: {},
+      };
+      dropdownService.getDropdownOptions.mockResolvedValue(payload);
+
+      await controller.getDropdownOptions('mortgage_step1', 'en', 'refinance');
+
+      expect(dropdownService.getDropdownOptions).toHaveBeenCalledWith(
+        'mortgage_step1',
+        'en',
+        'refinance',
+      );
     });
   });
 });
