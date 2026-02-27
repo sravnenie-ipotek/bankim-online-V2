@@ -61,18 +61,18 @@ const HowItWorks: React.FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col flex-nowrap justify-start items-start rtl:items-end w-full h-full mb-[clamp(32px,3.75vw,54px)] text-left whitespace-nowrap text-[#e7e9ea] xs:items-stretch xs:ps-[clamp(12px,4vw,20px)] md:items-start md:ps-0 xl:ps-0 xl:pe-0">
+    <div className="relative flex flex-col flex-nowrap justify-start items-start rtl:items-end w-full h-full mb-[clamp(32px,3.75vw,54px)] text-left whitespace-nowrap text-[#e7e9ea] xs:items-stretch xs:ps-[clamp(12px,4vw,20px)] sm:items-start sm:ps-0 xl:ps-0 xl:pe-0">
       <div
-        className="flex items-center w-full font-normal text-[clamp(1.9375rem,calc(1.9375rem+(100vw-23.4375rem)*0.0075),2.4375rem)] leading-[clamp(1.2,1.15+0.1vw,1.4)] min-h-[clamp(22px,1.8vh,26px)] justify-start rtl:justify-end rtl:flex-row-reverse text-left md:px-[clamp(16px,1.39vw,20px)] rtl:font-medium rtl:text-right xs:font-medium xs:rtl:font-semibold"
+        className="flex items-center w-full font-normal text-[clamp(1.9375rem,calc(1.9375rem+(100vw-23.4375rem)*0.0075),2.4375rem)] leading-[clamp(1.2,1.15+0.1vw,1.4)] min-h-[clamp(22px,1.8vh,26px)] justify-start rtl:justify-end rtl:flex-row-reverse text-left sm:px-[clamp(16px,1.39vw,20px)] rtl:font-medium rtl:text-right xs:font-medium xs:rtl:font-semibold"
       >
         {getContent('how_it_works')}
       </div>
       {/* Row: full viewport width on mobile/tablet (max-lg); same positioning as TopServices from lg up. */}
-      <div className="w-full max-lg:w-screen max-lg:max-w-[100vw] max-lg:relative max-lg:left-1/2 max-lg:-translate-x-1/2 flex flex-col md:flex-row flex-wrap justify-between rtl:justify-end gap-2 sm:gap-[10px] md:gap-[12.6px] xl:gap-[16.8px] pe-0 ps-0 xs:pe-[50px] md:pe-0 xl:ps-0 xl:pe-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] rtl:ms-auto">
+      <div className="w-full max-sm:w-screen max-sm:max-w-[100vw] max-sm:relative max-sm:left-1/2 max-sm:-translate-x-1/2 flex flex-col sm:flex-row sm:flex-wrap justify-between rtl:justify-end gap-2 sm:gap-[10px] md:gap-[12.6px] xl:gap-[16.8px] pe-0 ps-0 xs:pe-[50px] sm:ps-[clamp(16px,1.39vw,20px)] sm:pe-0 xl:ps-0 xl:pe-0 max-w-full sm:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] rtl:ms-auto">
         {STEPS.map((step, index) => (
           <div
             key={step.titleKey}
-            className="min-w-0 w-full md:w-[333px] lg:w-[364px] lg:h-[222px] xl:w-[485px] xl:h-[296px] shrink-0 md:flex-none"
+            className="min-w-0 w-full max-w-[333px] sm:w-[333px] sm:flex-none sm:shrink-0 sm:h-[222px] md:h-[222px] lg:w-[364px] lg:h-[222px] xl:w-[485px] xl:h-[296px] shrink-0"
           >
             <StepCard
               iconSrc={step.iconSrc}

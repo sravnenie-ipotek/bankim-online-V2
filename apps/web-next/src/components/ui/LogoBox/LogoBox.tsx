@@ -9,14 +9,19 @@ import type { LogoBoxProps } from './interfaces/LogoBoxProps';
 const LOGO_BOX_WIDTH = 91; // 42 * (104/48)
 const LOGO_BOX_HEIGHT = 42;
 
-const LogoBox: React.FC<LogoBoxProps> = ({ src, alt, href, className }) => {
+const PRIMARY_LOGO_SRC = '/static/primary-logo05-1.svg';
+
+const LogoBox: React.FC<LogoBoxProps> = ({ src, alt, href, className, loading }) => {
+  const effectiveLoading = loading ?? (src === PRIMARY_LOGO_SRC ? 'eager' : undefined);
   const img = (
     <Image
       src={src}
       alt={alt}
+      loading={effectiveLoading}
       className="w-full h-full object-contain"
       width={LOGO_BOX_WIDTH}
       height={LOGO_BOX_HEIGHT}
+      style={{ width: 'auto', height: 'auto' }}
     />
   );
 

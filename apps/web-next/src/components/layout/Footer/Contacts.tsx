@@ -69,7 +69,14 @@ const Contacts: React.FC = () => {
     <FooterAccordion title={getContent('footer_contacts')}>
       {items.map((item) => (
         <div key={item.icon} className="flex gap-2 py-2">
-          <Image alt="" src={item.icon} width={20} height={20} className="shrink-0" />
+          <Image
+            alt=""
+            src={item.icon}
+            width={20}
+            height={20}
+            className="shrink-0"
+            style={{ width: 'auto', height: 'auto' }}
+          />
           <a
             href={getItemHref(item)}
             target={getItemHref(item).startsWith('http') ? '_blank' : undefined}

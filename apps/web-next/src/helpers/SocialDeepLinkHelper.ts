@@ -56,7 +56,7 @@ export class SocialDeepLinkHelper {
       appScheme: 'twitter://user?screen_name=bankimonline',
       storeUrlIos: 'https://apps.apple.com/app/twitter/id333903271',
       storeUrlAndroid: 'https://play.google.com/store/apps/details?id=com.twitter.android',
-      label: 'X',
+      label: 'X (Twitter)',
       icon: '/static/x.svg',
       tooltipKey: 'footer_social_tooltip_twitter',
     },
@@ -78,6 +78,13 @@ export class SocialDeepLinkHelper {
     'telegram',
     'twitter',
     'whatsapp',
+  ];
+
+  private static readonly SIDEBAR_PLATFORMS: SocialPlatformKey[] = [
+    'instagram',
+    'youtube',
+    'facebook',
+    'twitter',
   ];
 
   private static isIos(): boolean {
@@ -120,6 +127,12 @@ export class SocialDeepLinkHelper {
 
   static getPlatforms(): SocialPlatformConfig[] {
     return SocialDeepLinkHelper.SOCIAL_PLATFORMS.map((key) =>
+      this.getPlatformConfig(key)!
+    );
+  }
+
+  static getSidebarPlatforms(): SocialPlatformConfig[] {
+    return SocialDeepLinkHelper.SIDEBAR_PLATFORMS.map((key) =>
       this.getPlatformConfig(key)!
     );
   }

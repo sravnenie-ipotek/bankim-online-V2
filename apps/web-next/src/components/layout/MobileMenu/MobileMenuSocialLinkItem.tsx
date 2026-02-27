@@ -13,9 +13,16 @@ const MobileMenuSocialLinkItem: React.FC<MobileMenuSocialLinkItemProps> = ({ con
       target="_blank"
       rel="noreferrer"
       onClick={onClick}
-      className="opacity-50 hover:opacity-100 transition-opacity"
+      className="w-10 h-10 flex items-center justify-center shrink-0 opacity-50 hover:opacity-100 transition-opacity"
     >
-      <Image alt={config.label} src={config.icon} width={24} height={24} />
+      <Image
+        alt={config.label}
+        src={config.icon}
+        width={24}
+        height={24}
+        className="object-contain"
+        style={{ width: 'auto', height: 'auto' }}
+      />
     </a>
   );
 };

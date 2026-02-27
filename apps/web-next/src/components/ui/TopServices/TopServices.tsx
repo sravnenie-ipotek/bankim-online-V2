@@ -13,7 +13,7 @@ const TopServices: React.FC = () => {
       <ServiceCard
         to="/services/calculate-mortgage/1"
         title={getContent('calculate_mortgage')}
-        icon={<ServiceCardIcon src="/static/calculate-mortgage-icon.png" />}
+        icon={<ServiceCardIcon src="/static/calculate-mortgage-icon.png" loading="eager" />}
       />
       <ServiceCard
         to="/services/refinance-mortgage/1"

@@ -10,4 +10,6 @@ export interface MenuItem {
   path?: string;
   icon?: React.FC<IconProps>;
   isExternal?: boolean;
+  /** On desktop main menu, open this link in a new window/tab. */
+  openInNewWindowOnDesktop?: boolean;
 }

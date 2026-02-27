@@ -4,7 +4,7 @@ import React from 'react';
 import LogoBox from '@/components/ui/LogoBox/LogoBox';
 
 const Logo: React.FC = () => {
-  return <LogoBox src="/static/primary-logo05-1.svg" alt="BankIM" href="/" />;
+  return <LogoBox src="/static/primary-logo05-1.svg" alt="BankIM" href="/" loading="eager" />;
 };
 
 export default Logo;

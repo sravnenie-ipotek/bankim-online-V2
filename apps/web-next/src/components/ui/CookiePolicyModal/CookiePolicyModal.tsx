@@ -65,6 +65,7 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ isOpen, onClose }
               height={24}
               alt=""
               className="brightness-0 invert"
+              style={{ width: 'auto', height: 'auto' }}
             />
           </button>
         </div>

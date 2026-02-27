@@ -36,7 +36,13 @@ const Cooperation: React.FC = () => {
             </p>
           </div>
           <div className="flex-shrink-0">
-            <Image src="/static/primary-logo05-1.svg" alt="BankimOnline" width={200} height={60} />
+            <Image
+              src="/static/primary-logo05-1.svg"
+              alt="BankimOnline"
+              width={200}
+              height={60}
+              style={{ width: 'auto', height: 'auto' }}
+            />
           </div>
         </div>
 
