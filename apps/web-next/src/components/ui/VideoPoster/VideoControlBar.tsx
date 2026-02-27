@@ -171,6 +171,7 @@ const VideoControlBar: React.FC<VideoControlBarComponentProps> = ({ config }) =>
 
   const progressRow = hasProgress && (
     <div
+      dir="ltr"
       className={`w-full ${compact ? 'px-0.5 pt-0.5 min-h-4' : 'pt-0.5 min-h-4 xs:pt-0.5 sm:pt-1 md:min-h-4'}`}
     >
       {controlNodes.progress}

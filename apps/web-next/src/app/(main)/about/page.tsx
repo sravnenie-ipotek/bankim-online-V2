@@ -18,12 +18,22 @@ const About: React.FC = () => {
       <div className="flex flex-col gap-16 items-start w-full my-8">
         {/* Hero Section */}
         <div className="flex flex-col gap-4 w-full">
-          <h1 className="text-5xl not-italic font-medium leading-normal text-textTheme-primary sm:text-[1.9375rem]">
+          <h1
+            className="font-bold not-italic leading-normal text-textTheme-primary text-center w-full"
+            style={{ fontSize: 'clamp(1.5rem, 3.33vw, 48px)' }}
+          >
             {getContent('about_title')}
           </h1>
-          <p className="text-base not-italic font-normal leading-[140%] text-textTheme-secondary max-w-[48rem]">
-            {getContent('about_desc')}
-          </p>
+          <div
+            className="w-full rounded-lg overflow-hidden bg-cover bg-center bg-no-repeat flex items-center justify-end px-[10%] py-[clamp(1rem,3vw,1.5rem)] min-h-[clamp(80px,9vw,130px)]"
+            style={{
+              backgroundImage: 'url(/static/about/about-description-banner.svg)',
+            }}
+          >
+            <p className="text-base not-italic font-normal leading-[140%] text-textTheme-primary text-right max-w-[48rem] rtl:text-right">
+              {getContent('about_desc')}
+            </p>
+          </div>
         </div>
 
         {/* How it works section */}
@@ -41,13 +51,19 @@ const About: React.FC = () => {
                 {getContent('about_how_it_work_text_second')}
               </p>
             </div>
-            <div className="flex-shrink-0">
+            <div
+              className="flex-shrink-0 relative rounded-lg overflow-hidden"
+              style={{
+                width: 'clamp(200px, 35.76vw, 515px)',
+                height: 'clamp(75px, 13.4vw, 193px)',
+              }}
+            >
               <Image
                 src="/static/about/frame-1410093763@3x.png"
                 alt="About BankimOnline"
-                width={400}
-                height={300}
-                className="rounded-lg"
+                fill
+                className="object-cover rounded-lg"
+                sizes="(max-width: 1440px) 35.76vw, 515px"
               />
             </div>
           </div>

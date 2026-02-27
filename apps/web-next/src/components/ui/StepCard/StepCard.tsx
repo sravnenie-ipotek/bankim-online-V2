@@ -20,43 +20,47 @@ const StepCard: React.FC<StepCardProps> = React.memo(
     imageAlt,
     fillWidth = false,
   }) => {
+    const rootMinHeight = 'min-h-[clamp(158px,18vh,296px)]';
     const rootClassName = fillWidth
-      ? 'relative overflow-hidden w-full h-full min-h-[180px] sm:min-h-[190px] md:min-h-[158px] lg:min-h-[222px] lg:h-[222px] xl:min-h-[296px] xl:h-[296px] xs:w-full'
-      : 'relative overflow-hidden w-full xs:w-full sm:w-[247px] md:w-[333px] lg:w-[364px] lg:min-h-[222px] lg:h-[222px] xl:w-[485px] xl:min-h-[296px] xl:h-[296px] min-h-[180px] sm:min-h-[190px] md:min-h-[158px]';
+      ? `relative overflow-hidden w-full h-full ${rootMinHeight} lg:h-[clamp(222px,15.4vw,296px)] xs:w-full`
+      : `relative overflow-hidden w-full xs:w-full sm:w-[clamp(247px,32vw,333px)] md:w-[333px] lg:w-[clamp(364px,25.3vw,485px)] lg:min-h-[222px] lg:h-[clamp(222px,15.4vw,296px)] xl:w-[485px] xl:h-[296px] ${rootMinHeight}`;
 
     return (
       <div className={rootClassName}>
-        <div className="relative box-border h-full py-[10%] px-[6%] xs:w-full xs:px-4 md:px-[6%] lg:px-0 lg:py-0">
-          <div className="w-full h-full lg:w-[364px] lg:min-w-[364px] lg:h-[222px] xl:w-[485px] xl:min-w-[485px] xl:h-[296px] lg:relative lg:flex lg:items-center lg:justify-center">
-            {/* Inner content box 316×150: text area full 316px width; vertical padding 10px only at lg. */}
-            <div className="w-full h-full lg:w-[316px] lg:h-[150px] lg:py-[10px] lg:px-0 lg:box-border lg:relative lg:overflow-visible">
+        <div className="relative box-border h-full py-[clamp(12px,10%,24px)] px-[clamp(12px,6%,24px)] xs:w-full lg:px-0 lg:py-0">
+              <div className="w-full h-full lg:w-[clamp(364px,25.3vw,485px)] lg:min-w-0 lg:h-[clamp(222px,15.4vw,296px)] xl:h-[296px] lg:relative lg:flex lg:items-center lg:justify-center">
+            {/* Inner content box: 316×135 on mobile/tablet (e.g. 390px); clamp at lg+. */}
+            <div className="w-[316px] max-w-full min-w-0 h-[135px] min-h-[135px] lg:w-[clamp(260px,21.9vw,316px)] lg:h-[clamp(120px,10.4vh,150px)] lg:py-[clamp(6px,0.69vh,10px)] lg:px-0 lg:box-border lg:relative lg:overflow-visible">
+              {/* Step number: mobile/tablet 90×135 box, desktop 90×203 box; 100% of container; vertically centered, side in width. */}
               <span
                 aria-hidden
-                className="absolute z-0 pointer-events-none select-none top-auto bottom-0 left-0 right-auto rtl:left-auto rtl:right-0 md:left-auto md:right-0 md:rtl:left-0 md:rtl:right-auto flex items-end justify-center font-inter leading-[0.7] font-medium text-[rgba(51,53,53,0.55)] lg:left-[246px] lg:right-auto rtl:lg:right-[246px] rtl:lg:left-auto lg:top-auto lg:bottom-0 lg:w-[70px] lg:h-[130px] lg:leading-[0.75] xl:h-[130px] text-[clamp(5rem,3.9rem+4.69vw,8.125rem)]"
+                className="absolute z-0 pointer-events-none select-none flex items-center justify-end rtl:justify-start top-1/2 -translate-y-1/2 right-0 left-auto rtl:right-auto rtl:left-0 w-[90px] h-[135px] lg:w-[90px] lg:h-[203px] lg:right-0 lg:left-auto rtl:lg:left-0 rtl:lg:right-auto [container-type:size]"
               >
-                {stepNumber}
+                <span className="font-inter font-medium text-[rgba(51,53,53,0.55)] leading-[0.7] text-[100cqh]">
+                  {stepNumber}
+                </span>
               </span>
-              <div className="relative z-10 w-full max-w-full h-full min-w-0 font-he text-left text-white rtl:text-right flex flex-col items-start rtl:items-end">
+              <div className="relative z-10 w-full max-w-full h-full min-w-0 font-he text-left text-white rtl:text-right flex flex-col justify-end items-start rtl:items-end">
                 <Image
-                  className="block w-12 h-12 shrink-0 ml-0 mr-auto rtl:ml-auto rtl:mr-0"
+                  className="block shrink-0 ml-0 mr-auto rtl:ml-auto rtl:mr-0 w-[clamp(2rem,2rem+0.5vw,3rem)] h-[clamp(2rem,2rem+0.5vw,3rem)]"
                   alt={iconAlt}
                   src={iconSrc}
                   width={48}
                   height={48}
                 />
-                <div className="relative mt-5 w-full min-w-0 max-w-full font-semibold text-left whitespace-pre-line leading-normal rtl:text-right break-words text-[clamp(1rem,calc(1.25rem+(100vw-90rem)*0.0146),1.6875rem)]">
+                <div className="relative w-full min-w-0 max-w-full font-semibold text-left whitespace-pre-line rtl:text-right break-words text-[clamp(1rem,calc(1.25rem+(100vw-90rem)*0.0146),1.6875rem)] leading-[clamp(1.25,1.2+0.15vw,1.5)] mt-[clamp(12px,1.39vw,20px)]">
                   {title}
                 </div>
-                <span className="flex items-start mt-2 leading-normal text-left whitespace-normal break-words w-full max-w-full min-w-0 rtl:items-end rtl:text-right min-[815px]:hidden min-[1242px]:flex text-[clamp(0.875rem,0.85rem+0.25vw,1rem)] font-medium text-[#D0D0D0]">
+                <span className="flex items-start text-left whitespace-normal break-words w-full max-w-full min-w-0 rtl:items-end rtl:text-right min-[815px]:hidden min-[1242px]:flex text-[clamp(0.875rem,0.85rem+0.25vw,1rem)] leading-[clamp(1.25,1.2+0.12vw,1.5)] font-medium text-[#D0D0D0] mt-[clamp(4px,0.56vw,8px)]">
                   {description}
                 </span>
                 {descriptionTablet && (
-                  <span className="hidden min-[815px]:flex min-[1242px]:hidden items-start mt-2 leading-normal text-left whitespace-normal break-words w-full max-w-full min-w-0 rtl:items-end rtl:text-right text-[clamp(0.875rem,0.85rem+0.25vw,1rem)] font-medium text-[#D0D0D0]">
+                  <span className="hidden min-[815px]:flex min-[1242px]:hidden items-start text-left whitespace-normal break-words w-full max-w-full min-w-0 rtl:items-end rtl:text-right text-[clamp(0.875rem,0.85rem+0.25vw,1rem)] leading-[clamp(1.25,1.2+0.12vw,1.5)] font-medium text-[#D0D0D0] mt-[clamp(4px,0.56vw,8px)]">
                     {descriptionTablet}
                   </span>
                 )}
                 {imageSrc && (
-                  <span className="block mt-2">
+                  <span className="block mt-[clamp(4px,0.56vw,8px)]">
                     <Image
                       src={imageSrc}
                       alt={imageAlt ?? ''}

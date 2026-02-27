@@ -60,10 +60,10 @@ const PosterOverlay: React.FC<PosterOverlayProps> = ({
     </div>
 
     <div
-      className={`pointer-events-auto md:hidden ${
+      className={`pointer-events-auto flex flex-col justify-between items-center ${
         isSmall
-          ? 'flex flex-col justify-between h-[11.5rem] items-center max-[768px]:flex-row max-[768px]:w-full'
-          : 'flex flex-col justify-between h-[17.8125rem] items-center max-[768px]:flex-row max-[768px]:w-full'
+          ? 'h-[11.5rem] max-[768px]:flex-row max-[768px]:w-full'
+          : 'h-[17.8125rem] max-[768px]:flex-row max-[768px]:w-full'
       }`}
     >
       <button

@@ -16,7 +16,7 @@ const SoundButton: React.FC<SoundButtonProps> = ({ isMuted, onClick }) => (
     type="button"
     onClick={onClick}
     aria-label={isMuted ? 'Unmute' : 'Mute'}
-    className="w-10 h-10 sm:w-[73px] sm:h-[73px] p-0 rounded-none border-none outline-none bg-transparent hover:opacity-90 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066cc] shrink-0"
+    className="w-10 h-10 sm:w-[73px] sm:h-[73px] p-0 rounded-none border-none outline-none bg-transparent opacity-70 hover:opacity-90 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0066cc] shrink-0 transition-opacity"
   >
     <Image
       src={isMuted ? SPEAKER_OFF_SRC : SPEAKER_ON_SRC}

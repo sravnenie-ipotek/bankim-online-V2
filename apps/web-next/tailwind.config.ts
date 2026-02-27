@@ -11,6 +11,7 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       primaryActiveButton: 'hsla(52, 100%, 50%, 1 )',
       tertiary: 'hsla(46, 93%, 95%, 1)',
       loginButton: '#f8E54d',
+      forgotPasswordLink: '#FBE54D',
     },
     base: {
       border: '#161616',
@@ -58,6 +59,7 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
   screens: {
     xs: '375px',
     sm: '768px',
+    tablet: '890px',
     md: '1024px',
     lg: '1440px',
     xl: '1920px',
@@ -69,6 +71,7 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
     xs: '1rem',
     sm: '1.2rem',
     base: '0.75rem',
+    cookie: '14px',
     xl: '1.6rem',
     '2xl': '1.8rem',
     '3xl': '2rem',
@@ -77,6 +80,11 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
     '6xl': '4.8rem',
     hero: '4rem',
     'hero-subtitle': '31px',
+    form: '16px',
+    formLabel: 'clamp(12px, 2.5vw, 16px)',
+  },
+  lineHeight: {
+    cookie: '140%',
   },
   fontWeight: {
     hairline: '100',
@@ -115,6 +123,16 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
     'sidebar-closed': '46px',
     'sidebar-closed-sm': '35px',
     'sidebar-fluid': 'var(--sidebar-width-fluid)',
+    'cookie-banner': '850px',
+    'cookie-button': '182px',
+    'cookie-close': '32px',
+    'cookie-icon': '52px',
+  },
+  height: {
+    'cookie-banner': '111px',
+    'cookie-button': '40px',
+    'cookie-close': '32px',
+    'cookie-icon': '52px',
   },
   margin: {
     'center-vw': 'max(0px, calc((100vw - 1440px) / 2))',
@@ -169,6 +187,9 @@ function uiComponentsPlugin(api: { addComponents: (components: Record<string, un
     },
     '.page-stack': {
       '@apply flex flex-col gap-8 w-full my-8': {},
+    },
+    '.form-label': {
+      '@apply font-medium text-textTheme-primary bg-transparent text-formLabel min-w-0 break-words text-left rtl:text-right': {},
     },
   });
 }

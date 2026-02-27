@@ -5,38 +5,28 @@ import { useTranslation } from 'react-i18next';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { LanguageHelper } from '@/helpers/languageHelper';
 import { useContentApi } from '@hooks/useContentApi';
-import IsraelFlagIcon from '@/components/icons/IsraelFlagIcon';
-import RussiaFlagIcon from '@/components/icons/RussiaFlagIcon';
-import USFlagIcon from '@/components/icons/USFlagIcon';
+import { LanguageFlagHelper } from '@/helpers/LanguageFlagHelper';
 import CaretDownIcon from '@/components/icons/CaretDownIcon';
 import CaretUpIcon from '@/components/icons/CaretUpIcon';
 import CheckIcon from '@/components/icons/CheckIcon';
+import { useAppDispatch } from '@/hooks/store';
+import { changeLanguage } from '@/store/slices/languageSlice';
 
 interface LanguageOption {
   value: string;
   countryKey: string;
   languageKey: string;
-  icon: React.ReactNode;
 }
 
 const LANGUAGE_OPTIONS: LanguageOption[] = [
-  { value: 'en', countryKey: 'country_us', languageKey: 'language_english', icon: <USFlagIcon /> },
-  {
-    value: 'he',
-    countryKey: 'country_israel',
-    languageKey: 'language_hebrew',
-    icon: <IsraelFlagIcon />,
-  },
-  {
-    value: 'ru',
-    countryKey: 'country_russia',
-    languageKey: 'language_russian',
-    icon: <RussiaFlagIcon />,
-  },
+  { value: 'en', countryKey: 'country_us', languageKey: 'language_english' },
+  { value: 'he', countryKey: 'country_israel', languageKey: 'language_hebrew' },
+  { value: 'ru', countryKey: 'country_russia', languageKey: 'language_russian' },
 ];
 
 const ChangeLanguage: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
   const { i18n } = useTranslation();
   const { getContent } = useContentApi('global_components');
 
@@ -49,6 +39,7 @@ const ChangeLanguage: React.FC = () => {
   const handleLanguageChange = async (newLanguage: string) => {
     try {
       await i18n.changeLanguage(newLanguage);
+      dispatch(changeLanguage(newLanguage));
       LanguageHelper.applyLanguageDirection(newLanguage);
       LanguageHelper.persistLanguage(newLanguage);
       setIsOpen(false);
@@ -72,7 +63,7 @@ const ChangeLanguage: React.FC = () => {
         }}
       >
         <div className="bg-transparent flex gap-2 items-center justify-start rtl:justify-end flex-1 min-w-0 rtl:flex-initial rtl:min-w-0 rtl:flex-row-reverse">
-          <div>{selectedOption.icon}</div>
+          <div>{LanguageFlagHelper.getFlag(selectedOption.value)}</div>
           <div className="flex flex-col items-start rtl:items-end justify-center gap-0.5 flex-1 min-w-0 rtl:flex-initial">
             <span className="text-3xs not-italic font-semibold leading-normal text-[#d0d0d0] whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
               {getContent('country')}
@@ -111,7 +102,7 @@ const ChangeLanguage: React.FC = () => {
               aria-selected={currentLang === item.value}
             >
               <div className="flex items-center gap-2 cursor-pointer rtl:flex-row-reverse">
-                <div>{item.icon}</div>
+                <div>{LanguageFlagHelper.getFlag(item.value)}</div>
                 <div className="flex flex-col items-start rtl:items-end">
                   <span className="text-[0.875rem] not-italic font-normal leading-[140%] text-white">
                     {getContent(item.countryKey)}

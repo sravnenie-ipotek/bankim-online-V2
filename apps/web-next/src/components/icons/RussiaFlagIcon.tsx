@@ -1,6 +1,35 @@
 import React from 'react';
 
-const RussiaFlagIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+export interface RussiaFlagIconProps extends React.SVGProps<SVGSVGElement> {
+  circle?: boolean;
+  transparentBackground?: boolean;
+}
+
+const RussiaFlagIcon: React.FC<RussiaFlagIconProps> = ({
+  circle = true,
+  transparentBackground = false,
+  ...props
+}) => {
+  const bgFill = transparentBackground ? 'transparent' : '#F0F0F0';
+
+  if (!circle) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={22}
+        height={12}
+        viewBox="0 0 22 12"
+        fill="none"
+        {...props}
+      >
+        <rect width={22} height={12} fill={bgFill} rx={2} />
+        <rect width={22} height={4} fill={bgFill} />
+        <rect y={4} width={22} height={4} fill="#0052B4" />
+        <rect y={8} width={22} height={4} fill="#D80027" />
+      </svg>
+    );
+  }
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,9 +39,14 @@ const RussiaFlagIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
       transform="scale(0.8)"
       {...props}
     >
+      <defs>
+        <clipPath id="russia-clip">
+          <path fill="#fff" d="M0 0h40v40H0z" />
+        </clipPath>
+      </defs>
       <g clipPath="url(#russia-clip)">
         <path
-          fill="#F0F0F0"
+          fill={bgFill}
           d="M20 40c11.046 0 20-8.954 20-20S31.046 0 20 0 0 8.954 0 20s8.954 20 20 20Z"
         />
         <path
@@ -24,11 +58,6 @@ const RussiaFlagIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
           d="M20 40c8.6 0 15.93-5.427 18.756-13.044H1.244C4.07 34.573 11.401 40 20 40Z"
         />
       </g>
-      <defs>
-        <clipPath id="russia-clip">
-          <path fill="#fff" d="M0 0h40v40H0z" />
-        </clipPath>
-      </defs>
     </svg>
   );
 };

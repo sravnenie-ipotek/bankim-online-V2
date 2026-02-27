@@ -3,11 +3,32 @@
 import React, { useState } from 'react';
 
 import { CONTACT_SECTIONS, SOCIAL_LINKS } from './constants';
+import type { ContactSocialLink } from './constants';
 import type { TabId } from './interfaces/ContactSection';
 import Container from '@/components/ui/Container/Container';
 import { useContentApi } from '@hooks/useContentApi';
 import { useContentFetch } from '@/hooks/useContentFetch';
 import { trackClick } from '@/helpers/analytics';
+import { useSocialLink } from '@/hooks/useSocialLink';
+
+const ContactsPageSocialLinkItem: React.FC<{ link: ContactSocialLink }> = ({ link }) => {
+  const { href, onClick } = useSocialLink(link.platform);
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-12 h-12 flex items-center justify-center rounded-full bg-base-secondary hover:bg-base-base800 transition-colors"
+      aria-label={link.name}
+      onClick={(e) => {
+        onClick?.(e);
+        trackClick('contact_social', link.name);
+      }}
+    >
+      <img src={link.icon} alt={link.name} width={24} height={24} />
+    </a>
+  );
+};
 
 /**
  * Contacts page: main office address, tabbed sections (general, etc.), and social links.
@@ -89,17 +110,7 @@ const Contacts: React.FC = () => {
         {/* Social Links */}
         <div className="flex gap-4 mt-4">
           {SOCIAL_LINKS.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-base-secondary hover:bg-base-base800 transition-colors"
-              aria-label={link.name}
-              onClick={() => trackClick('contact_social', link.name)}
-            >
-              <img src={link.icon} alt={link.name} width={24} height={24} />
-            </a>
+            <ContactsPageSocialLinkItem key={link.name} link={link} />
           ))}
         </div>
       </div>

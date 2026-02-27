@@ -10,7 +10,7 @@ import { SocialItemProps } from './interfaces/SocialItemProps';
  * Fluid: scales proportionally below 1440px, capped at 270px on xl+.
  * Icon: 24×24px. Label: 20px normal uppercase white.
  */
-const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label }) => {
+const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label, onClick }) => {
   return (
     <div className="w-[30px] flex-1 max-h-[270px] flex items-center justify-center overflow-visible">
       <a
@@ -19,6 +19,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label }) => {
         rel="noreferrer"
         aria-label={label}
         dir="ltr"
+        onClick={onClick}
         className="flex flex-row items-center gap-2 w-[calc((100vh-47.1px)/4)] max-w-[270px] h-[30px] shrink-0 opacity-70 hover:opacity-100 transition-opacity rotate-90 origin-center"
       >
         <img

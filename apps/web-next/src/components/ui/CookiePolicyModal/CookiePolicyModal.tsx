@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { useContentApi } from '@hooks/useContentApi';
+import { MarkdownHelper } from '@/helpers/MarkdownHelper';
 import type { CookiePolicyModalProps } from './interfaces/CookiePolicyModalProps';
 
 const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ isOpen, onClose }) => {
@@ -69,43 +70,67 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ isOpen, onClose }
         </div>
 
         <div className="flex-1 overflow-y-auto p-8 max-[768px]:p-6">
-          <p className="text-white mb-8 leading-relaxed text-[clamp(0.875rem,0.85rem+0.25vw,1rem)]">
-            {getContent('cookie_policy_intro')}
-          </p>
+          <p
+            className="text-white mb-8 leading-relaxed text-[clamp(0.875rem,0.85rem+0.25vw,1rem)]"
+            dangerouslySetInnerHTML={{
+              __html: MarkdownHelper.simpleToHtml(getContent('cookie_policy_intro')),
+            }}
+          />
 
           <div className="mb-8">
-            <h3 className="font-medium text-white mb-4 text-[clamp(1.125rem,1rem+0.35vw,1.25rem)]">
-              {getContent('cookie_policy_what_are')}
-            </h3>
-            <p className="text-white leading-relaxed text-[clamp(0.8125rem,0.8rem+0.2vw,0.875rem)]">
-              {getContent('cookie_policy_what_are_text')}
-            </p>
+            <h3
+              className="font-medium text-white mb-4 text-[clamp(1.125rem,1rem+0.35vw,1.25rem)]"
+              dangerouslySetInnerHTML={{
+                __html: MarkdownHelper.simpleToHtml(getContent('cookie_policy_what_are')),
+              }}
+            />
+            <p
+              className="text-white leading-relaxed text-[clamp(0.8125rem,0.8rem+0.2vw,0.875rem)]"
+              dangerouslySetInnerHTML={{
+                __html: MarkdownHelper.simpleToHtml(getContent('cookie_policy_what_are_text')),
+              }}
+            />
           </div>
 
           <div className="mb-8">
-            <h3 className="font-medium text-white mb-4 text-[clamp(1.125rem,1rem+0.35vw,1.25rem)]">
-              {getContent('cookie_policy_types')}
-            </h3>
+            <h3
+              className="font-medium text-white mb-4 text-[clamp(1.125rem,1rem+0.35vw,1.25rem)]"
+              dangerouslySetInnerHTML={{
+                __html: MarkdownHelper.simpleToHtml(getContent('cookie_policy_types')),
+              }}
+            />
             {COOKIE_TYPES.map((type) => (
               <div className="mb-6 pl-4" key={type}>
-                <h4 className="font-medium text-white mb-3 text-[clamp(1rem,0.95rem+0.3vw,1.125rem)]">
-                  {getContent(`cookie_policy_${type}`)}
-                </h4>
-                <p className="text-white leading-relaxed text-[clamp(0.8125rem,0.8rem+0.2vw,0.875rem)]">
-                  {getContent(`cookie_policy_${type}_text`)}
-                </p>
+                <h4
+                  className="font-medium text-white mb-3 text-[clamp(1rem,0.95rem+0.3vw,1.125rem)]"
+                  dangerouslySetInnerHTML={{
+                    __html: MarkdownHelper.simpleToHtml(getContent(`cookie_policy_${type}`)),
+                  }}
+                />
+                <p
+                  className="text-white leading-relaxed text-[clamp(0.8125rem,0.8rem+0.2vw,0.875rem)]"
+                  dangerouslySetInnerHTML={{
+                    __html: MarkdownHelper.simpleToHtml(getContent(`cookie_policy_${type}_text`)),
+                  }}
+                />
               </div>
             ))}
           </div>
 
           {SECTIONS.map((section) => (
             <div className="mb-8" key={section}>
-              <h3 className="font-medium text-white mb-4 text-[clamp(1.125rem,1rem+0.35vw,1.25rem)]">
-                {getContent(`cookie_policy_${section}`)}
-              </h3>
-              <p className="text-white leading-relaxed text-[clamp(0.8125rem,0.8rem+0.2vw,0.875rem)]">
-                {getContent(`cookie_policy_${section}_text`)}
-              </p>
+              <h3
+                className="font-medium text-white mb-4 text-[clamp(1.125rem,1rem+0.35vw,1.25rem)]"
+                dangerouslySetInnerHTML={{
+                  __html: MarkdownHelper.simpleToHtml(getContent(`cookie_policy_${section}`)),
+                }}
+              />
+              <p
+                className="text-white leading-relaxed text-[clamp(0.8125rem,0.8rem+0.2vw,0.875rem)]"
+                dangerouslySetInnerHTML={{
+                  __html: MarkdownHelper.simpleToHtml(getContent(`cookie_policy_${section}_text`)),
+                }}
+              />
             </div>
           ))}
         </div>

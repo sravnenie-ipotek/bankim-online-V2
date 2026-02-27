@@ -1,4 +1,5 @@
 import type { ContactSection } from '../interfaces/ContactSection';
+import type { SocialPlatformKey } from '@/helpers/SocialDeepLinkHelper';
 
 export const CONTACT_SECTIONS: ContactSection[] = [
   {
@@ -35,9 +36,15 @@ export const CONTACT_SECTIONS: ContactSection[] = [
   },
 ];
 
-export const SOCIAL_LINKS = [
-  { name: 'Facebook', href: 'https://facebook.com/bankimonline', icon: '/static/facebook.svg' },
-  { name: 'Instagram', href: 'https://instagram.com/bankimonline', icon: '/static/instagram.svg' },
-  { name: 'Twitter', href: 'https://twitter.com/bankimonline', icon: '/static/twitter.svg' },
-  { name: 'WhatsApp', href: 'https://wa.me/972537162235', icon: '/static/whatsapp.svg' },
+export interface ContactSocialLink {
+  name: string;
+  platform: SocialPlatformKey;
+  icon: string;
+}
+
+export const SOCIAL_LINKS: ContactSocialLink[] = [
+  { name: 'Facebook', platform: 'facebook', icon: '/static/facebook.svg' },
+  { name: 'Instagram', platform: 'instagram', icon: '/static/instagram.svg' },
+  { name: 'X', platform: 'twitter', icon: '/static/x.svg' },
+  { name: 'WhatsApp', platform: 'whatsapp', icon: '/static/whatsapp.svg' },
 ];
