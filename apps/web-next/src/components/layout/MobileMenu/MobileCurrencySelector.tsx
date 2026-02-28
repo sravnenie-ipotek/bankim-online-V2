@@ -32,7 +32,7 @@ const MobileCurrencySelector: React.FC = () => {
 
   return (
     <div className="mb-4">
-      <div className="pb-2 text-[14px] font-semibold text-textTheme-secondary">
+      <div className="pb-2 text-[clamp(0.75rem,0.8rem+0.2vw,0.875rem)] font-semibold text-textTheme-secondary">
         {getContent('select_currency')}
       </div>
       <div className="flex flex-col gap-1">
@@ -51,11 +51,11 @@ const MobileCurrencySelector: React.FC = () => {
             }}
           >
             <div className="flex items-center gap-2">
-              <div className="text-[24px] font-semibold min-w-[30px] text-center">
+              <div className="text-[clamp(1.25rem,1.2rem+0.5vw,1.5rem)] font-semibold min-w-[30px] text-center">
                 {item.symbol}
               </div>
               <div className="flex flex-col items-start">
-                <span className="text-[0.875rem] font-normal leading-[140%] text-white">
+                <span className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-white">
                   {getContent(item.translationKey)}
                 </span>
                 <span className="text-3xs font-normal leading-[140%] text-textTheme-secondary">

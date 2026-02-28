@@ -19,8 +19,7 @@ const About: React.FC = () => {
         {/* Hero Section */}
         <div className="flex flex-col gap-4 w-full">
           <h1
-            className="font-bold not-italic leading-normal text-textTheme-primary text-center w-full"
-            style={{ fontSize: 'clamp(1.5rem, 3.33vw, 48px)' }}
+            className="text-[clamp(1.5rem,3.33vw,3rem)] font-bold not-italic leading-normal text-textTheme-primary text-center w-full"
           >
             {getContent('about_title')}
           </h1>
@@ -30,7 +29,7 @@ const About: React.FC = () => {
               backgroundImage: 'url(/static/about/about-description-banner.svg)',
             }}
           >
-            <p className="text-base not-italic font-normal leading-[140%] text-textTheme-primary text-right max-w-[48rem] rtl:text-right">
+            <p className="text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] not-italic font-normal leading-[140%] text-textTheme-primary text-right max-w-[48rem] rtl:text-right">
               {getContent('about_desc')}
             </p>
           </div>
@@ -38,16 +37,16 @@ const About: React.FC = () => {
 
         {/* How it works section */}
         <div className="flex flex-col gap-6 w-full">
-          <h2 className="text-3xl font-medium text-textTheme-primary">
+          <h2 className="text-[clamp(1.25rem,1.5rem+0.5vw,1.875rem)] font-medium text-textTheme-primary">
             {getContent('about_how_it_work')}
           </h2>
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="flex-1">
-              <p className="text-base leading-[160%] text-textTheme-secondary">
+              <p className="text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] leading-[160%] text-textTheme-secondary">
                 {getContent('about_how_it_work_text')}
               </p>
               <p className="text-accent-primary font-semibold mt-4">{getContent('bankimonline')}</p>
-              <p className="text-base leading-[160%] text-textTheme-secondary mt-4">
+              <p className="text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] leading-[160%] text-textTheme-secondary mt-4">
                 {getContent('about_how_it_work_text_second')}
               </p>
             </div>
@@ -71,7 +70,7 @@ const About: React.FC = () => {
 
         {/* Why us section */}
         <div className="flex flex-col gap-8 w-full">
-          <h2 className="text-3xl font-medium text-textTheme-primary">
+          <h2 className="text-[clamp(1.25rem,1.5rem+0.5vw,1.875rem)] font-medium text-textTheme-primary">
             {getContent('about_why_title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

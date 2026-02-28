@@ -15,7 +15,7 @@ const UserParams: React.FC = () => {
 
   return (
     <div className="surface-card-p6">
-      <h3 className="text-[1.25rem] font-semibold text-textTheme-primary mb-4">
+      <h3 className="text-[clamp(1rem,1.1rem+0.3vw,1.25rem)] font-semibold text-textTheme-primary mb-4">
         {getContent('calculate_mortgage_parameters')}
       </h3>
       <ParamRow

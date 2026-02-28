@@ -57,7 +57,7 @@ const FormattedInput: React.FC<FormattedInputProps> = ({
   return (
     <div className="flex flex-col gap-1 w-full">
       {title ? (
-        <label className="text-[0.875rem] not-italic font-normal leading-[140%] text-textTheme-secondary">
+        <label className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] not-italic font-normal leading-[140%] text-textTheme-secondary">
           {title}
         </label>
       ) : null}
@@ -68,7 +68,7 @@ const FormattedInput: React.FC<FormattedInputProps> = ({
             : 'border-base-secondaryDefaultButton focus-within:border-accent-primary'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
-        <span className="text-textTheme-secondary text-[1rem] mr-2 shrink-0">{currencySymbol}</span>
+        <span className="text-textTheme-secondary text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] mr-2 shrink-0">{currencySymbol}</span>
         <input
           type="text"
           inputMode="numeric"
@@ -78,7 +78,7 @@ const FormattedInput: React.FC<FormattedInputProps> = ({
           onBlur={handleBlur}
           placeholder={placeholder}
           disabled={disabled}
-          className="flex-1 bg-transparent border-none outline-none text-white text-[1.125rem] font-normal placeholder:text-[#848484]"
+          className="flex-1 bg-transparent border-none outline-none text-white text-[clamp(0.9375rem,0.95rem+0.3vw,1.125rem)] font-normal placeholder:text-[#848484]"
           data-testid={rest['data-testid']}
         />
       </div>

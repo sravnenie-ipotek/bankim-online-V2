@@ -9,7 +9,7 @@ export const useMenuItems = (): MenuItem[] => {
   return [
     { title: getContent('sidebar_company_1'), path: '/services' },
     { title: getContent('sidebar_company_2'), path: '/about' },
-    { title: getContent('sidebar_company_5'), path: '/Real-Estate-Brokerage' },
+    { title: getContent('sidebar_company_5'), path: '/Real-Estate-Brokerage', openInNewWindowOnDesktop: true },
     { title: getContent('sidebar_company_3'), path: '/vacancies' },
     { title: getContent('sidebar_company_4'), path: '/contacts' },
   ];
@@ -20,10 +20,10 @@ export const useBusinessMenuItems = (): MenuItem[] => {
 
   return [
     { title: getContent('sidebar_business_1'), path: '/' },
-    { title: getContent('sidebar_business_2'), path: '/cooperation' },
+    { title: getContent('sidebar_business_2'), path: '/cooperation', openInNewWindowOnDesktop: true },
     { title: getContent('sidebar_business_3'), path: '/tenders-for-brokers' },
-    { title: getContent('sidebar_company_6'), path: '/Real-Estate-Brokerage' },
-    { title: getContent('sidebar_business_4'), path: '/tenders-for-lawyers' },
+    { title: getContent('sidebar_company_6'), path: '/Real-Estate-Brokerage', openInNewWindowOnDesktop: true },
+    { title: getContent('sidebar_business_4'), path: '/tenders-for-lawyers', openInNewWindowOnDesktop: true },
   ];
 };
 

@@ -35,7 +35,7 @@ const MobileLanguageSelector: React.FC = () => {
 
   return (
     <div className="mb-4 text-left rtl:flex-row-reverse">
-      <div className="pb-2 text-[14px] font-semibold text-textTheme-secondary text-left rtl:text-right">
+      <div className="pb-2 text-[clamp(0.75rem,0.8rem+0.2vw,0.875rem)] font-semibold text-textTheme-secondary text-left rtl:text-right">
         {getContent('sel_cntr')}
       </div>
       <div className="flex flex-col gap-1">
@@ -56,7 +56,7 @@ const MobileLanguageSelector: React.FC = () => {
             <div className="flex items-center gap-2 min-w-0 flex-1">
               <div className="shrink-0">{LanguageFlagHelper.getFlag(item.value)}</div>
               <div className="flex flex-col items-start min-w-0 flex-1">
-                <span className="text-[0.875rem] font-normal leading-[140%] text-white">
+                <span className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-white">
                   {getContent(item.countryKey)}
                 </span>
                 <span className="text-3xs font-normal leading-[140%] text-textTheme-secondary">

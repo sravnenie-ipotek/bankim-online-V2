@@ -55,7 +55,7 @@ const LayoutShell: React.FC<LayoutShellProps> = ({ children, footer }) => {
 
   return (
     <>
-      {/* Desktop sidebar overlay: always in DOM when desktop so it can fade */}
+      {/* Desktop sidebar overlay */}
       {isDesktop && (
         <div
           onClick={() => {
@@ -68,7 +68,7 @@ const LayoutShell: React.FC<LayoutShellProps> = ({ children, footer }) => {
         />
       )}
 
-      {/* Mobile menu overlay + component */}
+      {/* Mobile menu overlay + component (mobile and tablet / iPad) */}
       {!isDesktop && isOpenMobileMenu && (
         <>
           <div
@@ -81,7 +81,7 @@ const LayoutShell: React.FC<LayoutShellProps> = ({ children, footer }) => {
         </>
       )}
 
-      {/* Desktop sidebar - wrapped in relative so sidebar uses absolute and scrolls with page */}
+      {/* Desktop sidebar only (vertical panel) */}
       {isDesktop && (
         <div className="relative">
           <SidebarClosed

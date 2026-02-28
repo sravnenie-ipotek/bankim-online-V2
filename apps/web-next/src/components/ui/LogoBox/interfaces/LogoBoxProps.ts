@@ -3,4 +3,5 @@ export interface LogoBoxProps {
   alt: string;
   href?: string;
   className?: string;
+  loading?: 'eager' | 'lazy';
 }

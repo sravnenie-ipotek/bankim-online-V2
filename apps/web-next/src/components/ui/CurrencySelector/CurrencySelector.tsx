@@ -37,7 +37,7 @@ const CurrencySelector: React.FC = () => {
     <div ref={wrapperRef} className="relative min-w-[120px]">
       {/* Trigger */}
       <div
-        className="flex items-center justify-center rounded border border-[rgb(51,53,53)] bg-[#161616] text-white text-[18px] text-center h-[56px] min-w-[120px] px-4 cursor-pointer select-none gap-2"
+        className="flex items-center justify-center rounded border border-[rgb(51,53,53)] bg-[#161616] text-white text-[clamp(1rem,0.95rem+0.3vw,1.125rem)] text-center h-[56px] min-w-[120px] px-4 cursor-pointer select-none gap-2"
         onClick={() => setIsOpen(!isOpen)}
         role="button"
         tabIndex={0}

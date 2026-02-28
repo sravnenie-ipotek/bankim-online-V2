@@ -5,4 +5,5 @@ export interface SocialItemProps {
   icon: string;
   label: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  variant?: 'vertical' | 'horizontal';
 }

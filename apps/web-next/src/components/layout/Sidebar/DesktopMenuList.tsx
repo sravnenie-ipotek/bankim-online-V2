@@ -31,6 +31,7 @@ const DesktopMenuList: React.FC<DesktopMenuListProps> = ({
           title={item.title}
           path={item.path || '/'}
           onLinkClick={onLinkClick}
+          openInNewWindowOnDesktop={item.openInNewWindowOnDesktop}
         />
       ))}
     </ul>

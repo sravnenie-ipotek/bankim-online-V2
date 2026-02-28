@@ -48,7 +48,7 @@ const StepCircle: React.FC<StepCircleProps> = ({ stepIndex, currentStep }) => {
   const isCompleted = currentStep > stepNumber;
 
   const baseClasses =
-    'w-8 h-8 rounded-full text-[1.25rem] not-italic font-semibold leading-normal flex items-center justify-center';
+    'w-8 h-8 rounded-full text-[clamp(1rem,1.1rem+0.3vw,1.25rem)] not-italic font-semibold leading-normal flex items-center justify-center';
 
   let stateClasses: string;
   if (isCurrent || isCompleted) {
@@ -91,7 +91,7 @@ const StepLabel: React.FC<StepLabelProps> = ({ label, stepIndex, currentStep, wi
 
   return (
     <p
-      className={`text-[1.25rem] not-italic font-normal leading-normal max-[768px]:text-xs max-[550px]:text-3xs ${textColor}`}
+      className={`text-[clamp(1rem,1.1rem+0.3vw,1.25rem)] not-italic font-normal leading-normal max-[768px]:text-xs max-[550px]:text-3xs ${textColor}`}
     >
       {displayLabel}
     </p>

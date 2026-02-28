@@ -43,7 +43,7 @@ const Contacts: React.FC = () => {
   return (
     <Container>
       <div className="page-stack">
-        <h1 className="text-5xl font-medium text-textTheme-primary sm:text-[1.9375rem]">
+        <h1 className="text-[clamp(1.9375rem,2rem+1vw,3rem)] font-medium text-textTheme-primary">
           {getContent('contacts_title')}
         </h1>
 

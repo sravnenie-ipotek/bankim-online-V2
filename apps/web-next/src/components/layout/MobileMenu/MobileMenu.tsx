@@ -6,8 +6,10 @@ import { useToggle } from '@/hooks/useToggle';
 import MobileMenuHeader from './MobileMenuHeader';
 import NavigationList from './NavigationList';
 import NavigationSubMenu from './NavigationSubMenu';
-import MobileLanguageSelector from './MobileLanguageSelector';
 import MobileMenuSocialLinkItem from './MobileMenuSocialLinkItem';
+import SocialMedia from '../Sidebar/SocialMedia';
+import LanguageTrigger from './LanguageTrigger';
+import LanguageSubMenu from './LanguageSubMenu';
 import {
   useMenuItems,
   useBusinessMenuItems,
@@ -30,27 +32,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
     toggle: toggleBusinessSubMenu,
     set: setBusinessSubMenu,
   } = useToggle(false);
+  const { isOn: isLanguageMenuOpen, set: setLanguageMenu } = useToggle(false);
 
   const handleClose = () => {
     onClick();
     setSubMenu(false);
     setBusinessSubMenu(false);
+    setLanguageMenu(false);
   };
 
   return (
     <nav
-      className={`fixed top-0 h-full w-full bg-base-primary z-[10002] transition-all duration-300 ease-in-out overflow-y-auto
+      className={`fixed top-0 h-full w-full bg-base-primary z-[10002] transition-all duration-300 ease-in-out flex flex-col overflow-hidden
         ${isOpen ? 'ltr:left-0 rtl:right-0' : 'ltr:-left-full rtl:-right-full rtl:left-auto'}
       `}
     >
       <MobileMenuHeader onClose={handleClose} />
 
-      <div className="px-5 py-4 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6 text-left rtl:text-right">
-        {/* Language selector with flags */}
-        <MobileLanguageSelector />
-
-        <div className="w-full border-t border-[#333535] my-4" />
-
+      <div className="flex-1 overflow-y-auto px-5 py-4 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6 text-left rtl:text-right">
         <NavigationList
           title={getContent('sidebar_company')}
           items={menuItems}
@@ -63,14 +62,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClick, isOpen }) => {
           toggle={toggleBusinessSubMenu}
           onClose={handleClose}
         />
+
+        <LanguageTrigger onOpen={() => setLanguageMenu(true)} />
+
+        {/* Social links — mobile only (<768px): compact icon-only row */}
+        <div className="min-[768px]:hidden flex flex-wrap items-center gap-4 justify-start rtl:justify-end border-t border-base-stroke mt-4 pt-4">
+          {SocialDeepLinkHelper.getSidebarPlatforms().map((config) => (
+            <MobileMenuSocialLinkItem key={config.platform} config={config} />
+          ))}
+        </div>
       </div>
 
-      {/* Social links */}
-      <div className="px-5 py-4 min-[768px]:ps-[35px] min-[768px]:pe-6 md:ps-[46px] md:pe-6 flex gap-4 justify-start rtl:justify-end border-t border-base-stroke mt-4">
-        {SocialDeepLinkHelper.getPlatforms().map((config) => (
-          <MobileMenuSocialLinkItem key={config.platform} config={config} />
-        ))}
+      {/* Social links — iPad only (768px–1024px): pinned at bottom with sidebar background */}
+      <div className="hidden min-[768px]:flex min-[1025px]:hidden bg-base-sidebarBg py-4 shrink-0">
+        <SocialMedia variant="horizontal" />
       </div>
+
+      {/* Language submenu */}
+      <LanguageSubMenu isOpen={isLanguageMenuOpen} onClose={() => setLanguageMenu(false)} />
 
       {/* Sub menus */}
       <NavigationSubMenu

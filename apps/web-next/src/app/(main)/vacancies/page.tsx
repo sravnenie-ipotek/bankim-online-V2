@@ -59,7 +59,7 @@ const Vacancies: React.FC = () => {
     <Container>
       <div className="page-stack">
         <div className="flex flex-col gap-2">
-          <h1 className="text-5xl font-medium text-textTheme-primary sm:text-[1.9375rem]">
+          <h1 className="text-[clamp(1.9375rem,2rem+1vw,3rem)] font-medium text-textTheme-primary">
             {getContent('vacancies_title')}
           </h1>
           <p className="text-base text-textTheme-secondary">{getContent('vacancies_subtitle')}</p>

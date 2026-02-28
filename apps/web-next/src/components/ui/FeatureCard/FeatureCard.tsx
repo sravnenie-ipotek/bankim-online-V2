@@ -12,7 +12,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, text, size = 'de
       <div className="bg-base-base800 rounded-full w-[4.25rem] h-[4.25rem] flex justify-center items-center">
         {icon}
       </div>
-      <div className="text-[1.25rem] not-italic font-semibold leading-normal text-textTheme-primary">
+      <div className="text-[clamp(1rem,1.1rem+0.3vw,1.25rem)] not-italic font-semibold leading-normal text-textTheme-primary">
         {title}
       </div>
       <div className="text-xs not-italic font-normal leading-normal text-textTheme-secondary">

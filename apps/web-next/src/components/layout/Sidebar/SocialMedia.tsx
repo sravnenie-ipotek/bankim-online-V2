@@ -5,13 +5,36 @@ import { useContentApi } from '@hooks/useContentApi';
 import { SocialDeepLinkHelper } from '@/helpers/SocialDeepLinkHelper';
 import SidebarSocialLinkItem from './SidebarSocialLinkItem';
 
+interface SocialMediaProps {
+  variant?: 'vertical' | 'horizontal';
+}
+
 /**
- * Social bar: 23px visual width (each 113×23 item rotated 90°).
- * Stacked vertically. LTR = left of menu, RTL = right of menu (parent controls).
+ * Social bar.
+ * Vertical (default): stacked vertically on desktop sidebar.
+ * Horizontal: row of 285×54px containers for sm/md tablet bar.
  */
-const SocialMedia: React.FC = () => {
+const SocialMedia: React.FC<SocialMediaProps> = ({ variant = 'vertical' }) => {
   const { getContent } = useContentApi('global_components');
-  const socialPlatforms = SocialDeepLinkHelper.getPlatforms();
+  const socialPlatforms = SocialDeepLinkHelper.getSidebarPlatforms();
+
+  if (variant === 'horizontal') {
+    return (
+      <nav
+        aria-label={getContent('footer_social_follow')}
+        className="flex flex-row items-center justify-center gap-0 flex-wrap w-full"
+      >
+        {socialPlatforms.map((config) => (
+          <SidebarSocialLinkItem
+            key={config.platform}
+            config={config}
+            getContent={getContent}
+            variant="horizontal"
+          />
+        ))}
+      </nav>
+    );
+  }
 
   return (
     <nav

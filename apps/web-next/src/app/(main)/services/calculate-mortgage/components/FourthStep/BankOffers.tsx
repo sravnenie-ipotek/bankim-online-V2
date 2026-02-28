@@ -55,7 +55,7 @@ const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-[1.25rem] font-semibold text-textTheme-primary">
+      <h3 className="text-[clamp(1rem,1.1rem+0.3vw,1.25rem)] font-semibold text-textTheme-primary">
         {getContent('mortgage_select_bank')}
       </h3>
 
@@ -110,7 +110,7 @@ const BankOffers: React.FC<BankOffersProps> = ({ selectedBank, onSelect }) => {
                   target.style.display = 'none';
                 }}
               />
-              <span className="text-[1rem] font-semibold text-white">{offer.bankName}</span>
+              <span className="text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] font-semibold text-white">{offer.bankName}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-textTheme-secondary text-sm">{getContent('bid')}</span>

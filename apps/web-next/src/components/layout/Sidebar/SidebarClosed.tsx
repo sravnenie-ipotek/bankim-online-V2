@@ -60,18 +60,18 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
   return (
     <div
       className={`w-[468px] h-screen max-h-[100dvh] absolute top-0 z-[10000] transition-all duration-300 ease-in-out
-        ltr:left-[-422px] rtl:right-[-422px]
-        ${isOpen ? 'ltr:!left-0 rtl:!right-0' : ''}`}
-    >
-      <div
-        className={`relative w-full h-full bg-base-sidebarBg border border-base-stroke min-h-0
-          flex flex-col
-          ${isOpen ? 'shadow-[1.25px_0_1px_rgba(255,255,255,0.1)]' : ''}`}
+          ltr:left-[-422px] rtl:right-[-422px]
+          ${isOpen ? 'ltr:!left-0 rtl:!right-0' : ''}`}
       >
-        {/* Social bar: absolutely positioned inside sidebar. LTR = left edge, RTL = right edge */}
-        <div className="absolute top-0 h-full w-[30px] ltr:left-0 rtl:right-0 overflow-visible z-10">
-          <SocialMedia />
-        </div>
+        <div
+          className={`relative w-full h-full bg-base-sidebarBg border border-base-stroke min-h-0
+            flex flex-col
+            ${isOpen ? 'shadow-[1.25px_0_1px_rgba(255,255,255,0.1)]' : ''}`}
+        >
+          {/* Social bar: absolutely positioned inside sidebar. LTR = left edge, RTL = right edge */}
+          <div className="absolute top-0 h-full w-[30px] ltr:left-0 rtl:right-0 overflow-visible z-10">
+            <SocialMedia />
+          </div>
 
         {/* Menu column: full width, with padding to avoid social bar overlap */}
         <div className="relative flex-1 min-w-0 h-full flex flex-col min-h-0">

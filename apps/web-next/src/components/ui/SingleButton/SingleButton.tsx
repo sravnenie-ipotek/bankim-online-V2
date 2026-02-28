@@ -26,7 +26,7 @@ const SingleButton: React.FC = () => {
           <button
             type="button"
             onClick={handleClick}
-            className="w-full h-[3.5rem] rounded bg-accent-primary text-[#161616] text-[1rem] font-semibold cursor-pointer transition-opacity hover:opacity-90"
+            className="w-full h-[3.5rem] rounded bg-accent-primary text-[#161616] text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] font-semibold cursor-pointer transition-opacity hover:opacity-90"
             style={{
               opacity: isValid ? 1 : 0.7,
               cursor: isValid ? 'pointer' : 'not-allowed',
