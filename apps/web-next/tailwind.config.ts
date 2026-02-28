@@ -100,6 +100,7 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
   fontFamily: {
     ru: ['var(--font-roboto)', 'Roboto', 'sans-serif'],
     he: ['var(--font-arimo)', 'Arimo', 'sans-serif'],
+    /** Inter: step numbers (StepCard), UI labels; use with class font-inter */
     inter: ['var(--font-inter)', 'Inter', 'sans-serif'],
   },
   zIndex: {
@@ -198,6 +199,9 @@ const config: Config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     '../web/src/**/*.{js,ts,jsx,tsx}',
+  ],
+  safelist: [
+    { pattern: /^font-(inter|he|ru)$/ }, // ensure font utilities are always generated
   ],
   theme: {
     extend: themeExtend,

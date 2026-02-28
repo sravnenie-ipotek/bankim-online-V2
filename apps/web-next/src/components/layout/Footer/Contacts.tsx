@@ -74,8 +74,8 @@ const Contacts: React.FC = () => {
             src={item.icon}
             width={20}
             height={20}
-            className="shrink-0"
-            style={{ width: 'auto', height: 'auto' }}
+            className="shrink-0 w-5 h-5 object-contain"
+            style={{ width: '20px', height: 'auto' }}
           />
           <a
             href={getItemHref(item)}

@@ -34,7 +34,7 @@ const SubSidebar: React.FC<SubSidebarProps> = ({
         ltr:left-full rtl:right-full
         transition-all duration-300 ease-in-out ${hideTransformClass} ${opacityClass} ${pointerEventsClass}`}
     >
-      <ul className="pt-[100px] flex flex-col text-[25px]">
+      <ul className="pt-[100px] flex flex-col text-[clamp(1.25rem,1.2rem+0.5vw,1.5625rem)]">
         {items.map((item, index) => (
           <li
             key={item.path || `submenu-${index}`}

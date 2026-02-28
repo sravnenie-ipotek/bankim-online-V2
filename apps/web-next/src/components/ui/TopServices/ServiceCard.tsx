@@ -28,7 +28,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, to, icon }) => {
         max-lg:w-full max-lg:h-[100px] max-lg:flex-row max-lg:justify-start max-lg:items-center max-lg:gap-4 max-lg:p-4
         w-[265px] h-[265px] xl:w-[338px] xl:h-[338px] rounded-[7px] xl:rounded-[9px] cursor-default hover:cursor-pointer"
     >
-      <span className="text-[18px] xs:text-[1.25rem] xl:text-[1.75rem] not-italic font-semibold leading-normal text-textTheme-primary text-center shrink-0 max-lg:order-2 max-lg:text-left max-lg:rtl:text-right max-lg:font-semibold max-lg:min-w-0 max-lg:flex-1 max-lg:shrink max-lg:whitespace-normal max-lg:break-words">
+      <span className="text-[clamp(1rem,0.95rem+0.95vw,1.75rem)] not-italic font-semibold leading-normal text-textTheme-primary text-center shrink-0 max-lg:order-2 max-lg:text-left max-lg:rtl:text-right max-lg:font-semibold max-lg:min-w-0 max-lg:flex-1 max-lg:shrink max-lg:whitespace-normal max-lg:break-words">
         {title}
       </span>
       <span className="rtl:-scale-x-100 flex items-center justify-center mt-auto max-lg:mt-0 max-lg:order-1 max-lg:shrink-0 max-lg:w-16 max-lg:h-16 w-[140px] h-[140px] xl:w-[178px] xl:h-[178px] [&>img]:object-contain [&>img]:w-full [&>img]:h-full">

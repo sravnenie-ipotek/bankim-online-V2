@@ -31,14 +31,14 @@ const DoubleButtons: React.FC = () => {
         <button
           type="button"
           onClick={handleBack}
-          className="h-[3.5rem] px-8 rounded border border-base-secondaryDefaultButton bg-transparent text-textTheme-primary text-[1rem] font-semibold cursor-pointer transition-colors hover:bg-base-secondaryHoveredButton"
+          className="h-[3.5rem] px-8 rounded border border-base-secondaryDefaultButton bg-transparent text-textTheme-primary text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] font-semibold cursor-pointer transition-colors hover:bg-base-secondaryHoveredButton"
         >
           {getContent('back')}
         </button>
         <button
           type="button"
           onClick={handleNext}
-          className="h-[3.5rem] px-8 rounded bg-accent-primary text-[#161616] text-[1rem] font-semibold cursor-pointer transition-opacity hover:opacity-90"
+          className="h-[3.5rem] px-8 rounded bg-accent-primary text-[#161616] text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] font-semibold cursor-pointer transition-opacity hover:opacity-90"
           style={{
             opacity: isValid ? 1 : 0.7,
             cursor: isValid ? 'pointer' : 'not-allowed',

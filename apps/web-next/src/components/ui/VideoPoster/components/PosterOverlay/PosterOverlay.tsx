@@ -39,8 +39,8 @@ const PosterOverlay: React.FC<PosterOverlayProps> = ({
       <h2
         className={
           isSmall
-            ? 'font-normal leading-normal w-[37.25rem] text-textTheme-primary max-[768px]:text-center max-[768px]:w-full text-[1.75rem] sm:text-[31px] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem]'
-            : 'font-medium leading-normal uppercase text-textTheme-primary max-[768px]:normal-case max-[768px]:text-center text-[1.75rem] sm:text-[31px] md:text-[2rem] lg:text-[2.5rem] xl:text-[4rem]'
+            ? 'font-normal leading-normal w-[37.25rem] text-textTheme-primary max-[768px]:text-center max-[768px]:w-full text-[clamp(1.75rem,1.5rem+1.5vw,3rem)]'
+            : 'font-medium leading-normal uppercase text-textTheme-primary max-[768px]:normal-case max-[768px]:text-center text-[clamp(1.75rem,1.5rem+2.5vw,4rem)]'
         }
       >
         {title}

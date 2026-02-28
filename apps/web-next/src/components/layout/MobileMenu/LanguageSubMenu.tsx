@@ -62,10 +62,10 @@ const LanguageSubMenu: React.FC<LanguageSubMenuProps> = ({ isOpen, onClose }) =>
               <div className="flex items-center gap-3 min-w-0 flex-1">
                 <div className="shrink-0">{LanguageFlagHelper.getFlag(item.value)}</div>
                 <div className="flex flex-col items-start min-w-0 flex-1">
-                  <span className="text-[1rem] font-normal leading-[140%] text-white">
+                  <span className="text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] font-normal leading-[140%] text-white">
                     {getContent(item.countryKey)}
                   </span>
-                  <span className="text-[0.75rem] font-normal leading-[140%] text-textTheme-secondary">
+                  <span className="text-[clamp(0.625rem,0.65rem+0.2vw,0.75rem)] font-normal leading-[140%] text-textTheme-secondary">
                     {getContent(item.languageKey)}
                   </span>
                 </div>

@@ -35,45 +35,62 @@ const STEPS: StepConfig[] = [
   },
 ];
 
+/** Outer section wrapper — full width, stacked column; children at logical start (LTR left, RTL right). */
+const SECTION_CLASS =
+  'relative flex flex-col w-full mb-[clamp(32px,3.75vw,54px)] text-[#e7e9ea] items-start';
+
+/** Section heading — flush at position 0; LTR left, RTL right (logical start). */
+const TITLE_CLASS = [
+  'flex items-center w-full',
+  'justify-start',
+  'text-left rtl:text-right',
+  'font-normal rtl:font-medium xs:font-medium xs:rtl:font-semibold',
+  'text-[clamp(1.9375rem,calc(1.9375rem+(100vw-23.4375rem)*0.0075),2.4375rem)]',
+  'leading-[clamp(1.2,1.15+0.1vw,1.4)]',
+  'min-h-[clamp(22px,1.8vh,26px)]',
+].join(' ');
+
 /**
- * Breakpoint-based layout. Exact math per Tailwind screen.
- * lg 1440: row 1130, card 364, gap 12.6 → 364×3 + 12.6×2 = 1117.2 ≤ 1130
- * xl 1920: scale 1920/1440 → row 1507, card 485, gap 16.8 → 485×3 + 16.8×2 = 1488.6 ≤ 1507
+ * Cards row — full vw on mobile (translate trick), then flex-row with justify-between.
+ * No start/end padding from sm up so cards are flush with the content edge.
  */
+const CARDS_ROW_CLASS = [
+  'w-full',
+  'max-sm:w-screen max-sm:relative max-sm:left-1/2 max-sm:-translate-x-1/2',
+  'flex flex-col sm:flex-row sm:flex-wrap',
+  'sm:justify-between rtl:sm:justify-between',
+  'gap-2 sm:gap-[10px] md:gap-[12.6px] lg:gap-0',
+  'xs:pe-[50px] sm:pe-0',
+].join(' ');
+
+/** Per-card wrapper — fixed size per breakpoint; xl cards grow to fill remaining space equally. */
+const CARD_WRAPPER_CLASS = [
+  'min-w-0 shrink-0 w-full max-w-[333px]',
+  'sm:w-[333px] sm:flex-none sm:h-[222px]',
+  'md:h-[222px]',
+  'lg:w-[364px] lg:flex-none lg:h-[222px]',
+  'xl:flex-1 xl:w-auto xl:h-[296px]',
+].join(' ');
+
+type ContentField = 'title' | 'description' | 'descriptionTablet';
 
 const HowItWorks: React.FC = () => {
   const { getContent } = useContentApi('home_page');
 
-  const resolveContent = (
-    step: StepConfig,
-    field: 'title' | 'description' | 'descriptionTablet'
-  ): string => {
-    if (field === 'title') {
-      return getContent(step.titleKey);
-    }
-    if (field === 'description') {
-      return getContent(step.descriptionKey);
-    }
-    if (step.descriptionTabletKey && step.descriptionTabletFallback) {
-      return getContent(step.descriptionTabletKey);
-    }
+  const resolveContent = (step: StepConfig, field: ContentField): string => {
+    if (field === 'title') return getContent(step.titleKey);
+    if (field === 'description') return getContent(step.descriptionKey);
+    if (step.descriptionTabletKey) return getContent(step.descriptionTabletKey);
     return '';
   };
 
   return (
-    <div className="relative flex flex-col flex-nowrap justify-start items-start rtl:items-end w-full h-full mb-[clamp(32px,3.75vw,54px)] text-left whitespace-nowrap text-[#e7e9ea] xs:items-stretch xs:ps-[clamp(12px,4vw,20px)] sm:items-start sm:ps-0 xl:ps-0 xl:pe-0">
-      <div
-        className="flex items-center w-full font-normal text-[clamp(1.9375rem,calc(1.9375rem+(100vw-23.4375rem)*0.0075),2.4375rem)] leading-[clamp(1.2,1.15+0.1vw,1.4)] min-h-[clamp(22px,1.8vh,26px)] justify-start rtl:justify-end rtl:flex-row-reverse text-left sm:px-[clamp(16px,1.39vw,20px)] rtl:font-medium rtl:text-right xs:font-medium xs:rtl:font-semibold"
-      >
-        {getContent('how_it_works')}
-      </div>
-      {/* Row: full viewport width on mobile/tablet (max-lg); same positioning as TopServices from lg up. */}
-      <div className="w-full max-sm:w-screen max-sm:max-w-[100vw] max-sm:relative max-sm:left-1/2 max-sm:-translate-x-1/2 flex flex-col sm:flex-row sm:flex-wrap justify-between rtl:justify-end gap-2 sm:gap-[10px] md:gap-[12.6px] xl:gap-[16.8px] pe-0 ps-0 xs:pe-[50px] sm:ps-[clamp(16px,1.39vw,20px)] sm:pe-0 xl:ps-0 xl:pe-0 max-w-full sm:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] rtl:ms-auto">
+    <div className={SECTION_CLASS}>
+      <div className={TITLE_CLASS}>{getContent('how_it_works')}</div>
+
+      <div className={CARDS_ROW_CLASS}>
         {STEPS.map((step, index) => (
-          <div
-            key={step.titleKey}
-            className="min-w-0 w-full max-w-[333px] sm:w-[333px] sm:flex-none sm:shrink-0 sm:h-[222px] md:h-[222px] lg:w-[364px] lg:h-[222px] xl:w-[485px] xl:h-[296px] shrink-0"
-          >
+          <div key={step.titleKey} className={CARD_WRAPPER_CLASS}>
             <StepCard
               iconSrc={step.iconSrc}
               iconAlt={resolveContent(step, 'title')}

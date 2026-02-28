@@ -59,7 +59,7 @@ const SecondStepForm: React.FC = () => {
       <FormRow>
         <FormColumn>
           <div className="flex flex-col gap-1 w-full">
-            <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
+            <label className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-textTheme-secondary">
               {getContent('calculate_mortgage_name_surname')}
             </label>
             <input
@@ -69,7 +69,7 @@ const SecondStepForm: React.FC = () => {
               onChange={(e) => setFieldValue('nameSurname', e.target.value)}
               onBlur={() => setFieldTouched('nameSurname', true)}
               placeholder={getContent('calculate_mortgage_name_surname_ph')}
-              className={`h-14 rounded border bg-base-inputs px-4 text-white text-[1.125rem] font-normal outline-none transition-colors placeholder:text-[#848484] ${
+              className={`h-14 rounded border bg-base-inputs px-4 text-white text-[clamp(0.9375rem,0.95rem+0.3vw,1.125rem)] font-normal outline-none transition-colors placeholder:text-[#848484] ${
                 touched.nameSurname && errors.nameSurname
                   ? 'border-red-500'
                   : 'border-base-secondaryDefaultButton focus:border-accent-primary'

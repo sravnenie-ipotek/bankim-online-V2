@@ -33,7 +33,7 @@ const LanguageTrigger: React.FC<LanguageTriggerProps> = ({ onOpen }) => {
       <div className="flex items-center gap-2 min-w-0 flex-1">
         <div className="shrink-0">{LanguageFlagHelper.getFlag(currentItem.value)}</div>
         <div className="flex flex-col items-start min-w-0 flex-1">
-          <span className="text-[0.875rem] font-normal leading-[140%] text-white">
+          <span className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-white">
             {getContent(currentItem.countryKey)}
           </span>
           <span className="text-3xs font-normal leading-[140%] text-textTheme-secondary">
@@ -41,7 +41,7 @@ const LanguageTrigger: React.FC<LanguageTriggerProps> = ({ onOpen }) => {
           </span>
         </div>
       </div>
-      <span className="text-white shrink-0 ms-2 text-[1rem]" aria-hidden="true">
+      <span className="text-white shrink-0 ms-2 text-[clamp(0.875rem,0.9rem+0.2vw,1rem)]" aria-hidden="true">
         &gt;
       </span>
     </div>

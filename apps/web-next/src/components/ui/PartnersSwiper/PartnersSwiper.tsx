@@ -93,8 +93,8 @@ const PartnersSwiper: React.FC = () => {
   };
 
   return (
-    <div className="relative flex flex-col gap-8 w-full text-[#e7e9ea] overflow-hidden px-0 sm:px-5 text-[clamp(0.9rem,0.85rem+0.4vw,1.13rem)]">
-      <div className="font-medium text-[#e7e9ea] text-[clamp(0.9rem,0.85rem+0.35vw,1.125rem)]">
+    <div className="relative flex flex-col gap-8 w-full text-[#e7e9ea] overflow-hidden px-0 text-[clamp(0.9rem,0.85rem+0.4vw,1.13rem)]">
+      <div className="flex items-center w-full justify-start text-left rtl:text-right font-medium text-[#e7e9ea] text-[clamp(0.9rem,0.85rem+0.35vw,1.125rem)]">
         <span>{getContent('banks_partners')}</span>
       </div>
 

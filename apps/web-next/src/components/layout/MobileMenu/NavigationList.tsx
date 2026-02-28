@@ -15,7 +15,7 @@ interface NavigationListProps {
 const NavigationList: React.FC<NavigationListProps> = ({ items, title, toggle, onClose }) => {
   return (
     <div className="mb-6 text-left rtl:text-right">
-      <h3 className="text-accent-primary text-[16px] mb-3">{title}</h3>
+      <h3 className="text-accent-primary text-[clamp(0.875rem,0.9rem+0.2vw,1rem)] mb-3">{title}</h3>
       <ul className="flex flex-col gap-3 list-none p-0 m-0 items-start rtl:items-end">
         {items.slice(0, 1).map((item) => (
           <li

@@ -143,7 +143,7 @@ const VideoControlBar: React.FC<VideoControlBarComponentProps> = ({ config }) =>
           : config.currentTime;
       return (
         <span
-          className={`text-white tabular-nums shrink-0 ${compact ? 'text-[10px] ms-2' : 'ms-2 xs:ms-2 sm:ms-3 md:ms-3 lg:ms-3 xl:ms-4 text-[clamp(0.75rem,0.7rem+0.25vw,1rem)]'}`}
+          className={`text-white tabular-nums shrink-0 ${compact ? 'text-[clamp(0.5rem,0.5rem+0.3vw,0.625rem)] ms-2' : 'ms-2 xs:ms-2 sm:ms-3 md:ms-3 lg:ms-3 xl:ms-4 text-[clamp(0.75rem,0.7rem+0.25vw,1rem)]'}`}
         >
           {FormatTimeHelper.formatTime(displayTime)} /{' '}
           {FormatTimeHelper.formatTime(config.duration)}

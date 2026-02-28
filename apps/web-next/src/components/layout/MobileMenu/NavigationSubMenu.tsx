@@ -35,7 +35,7 @@ const NavigationSubMenu: React.FC<NavigationSubMenuProps> = ({
           {items.map((item, idx) => (
             <li
               key={item.path || `sub-${idx}`}
-              className="text-[18px] text-white hover:text-accent-primary transition-colors text-left rtl:text-right w-full"
+              className="text-[clamp(1rem,0.95rem+0.3vw,1.125rem)] text-white hover:text-accent-primary transition-colors text-left rtl:text-right w-full"
             >
               <Link
                 href={item.path || '/'}

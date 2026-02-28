@@ -102,7 +102,7 @@ const ThirdStepForm: React.FC = () => {
         <FormRow>
           <FormColumn>
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
+              <label className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-textTheme-secondary">
                 {getContent('calculate_mortgage_sfere')}
               </label>
               <input
@@ -111,7 +111,7 @@ const ThirdStepForm: React.FC = () => {
                 value={values.fieldOfActivity}
                 onChange={(e) => setFieldValue('fieldOfActivity', e.target.value)}
                 onBlur={() => setFieldTouched('fieldOfActivity', true)}
-                className={`h-14 rounded border bg-base-inputs px-4 text-white text-[1.125rem] font-normal outline-none transition-colors placeholder:text-[#848484] ${
+                className={`h-14 rounded border bg-base-inputs px-4 text-white text-[clamp(0.9375rem,0.95rem+0.3vw,1.125rem)] font-normal outline-none transition-colors placeholder:text-[#848484] ${
                   touched.fieldOfActivity && errors.fieldOfActivity
                     ? 'border-red-500'
                     : 'border-base-secondaryDefaultButton focus:border-accent-primary'
@@ -124,7 +124,7 @@ const ThirdStepForm: React.FC = () => {
           </FormColumn>
           <FormColumn>
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
+              <label className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-textTheme-secondary">
                 {getContent('calculate_mortgage_profession')}
               </label>
               <input
@@ -134,7 +134,7 @@ const ThirdStepForm: React.FC = () => {
                 onChange={(e) => setFieldValue('profession', e.target.value)}
                 onBlur={() => setFieldTouched('profession', true)}
                 placeholder={getContent('calculate_mortgage_profession_ph')}
-                className={`h-14 rounded border bg-base-inputs px-4 text-white text-[1.125rem] font-normal outline-none transition-colors placeholder:text-[#848484] ${
+                className={`h-14 rounded border bg-base-inputs px-4 text-white text-[clamp(0.9375rem,0.95rem+0.3vw,1.125rem)] font-normal outline-none transition-colors placeholder:text-[#848484] ${
                   touched.profession && errors.profession
                     ? 'border-red-500'
                     : 'border-base-secondaryDefaultButton focus:border-accent-primary'
@@ -145,7 +145,7 @@ const ThirdStepForm: React.FC = () => {
           </FormColumn>
           <FormColumn>
             <div className="flex flex-col gap-1 w-full">
-              <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
+              <label className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-textTheme-secondary">
                 {getContent('calculate_mortgage_company')}
               </label>
               <input
@@ -154,7 +154,7 @@ const ThirdStepForm: React.FC = () => {
                 value={values.companyName}
                 onChange={(e) => setFieldValue('companyName', e.target.value)}
                 onBlur={() => setFieldTouched('companyName', true)}
-                className={`h-14 rounded border bg-base-inputs px-4 text-white text-[1.125rem] font-normal outline-none transition-colors placeholder:text-[#848484] ${
+                className={`h-14 rounded border bg-base-inputs px-4 text-white text-[clamp(0.9375rem,0.95rem+0.3vw,1.125rem)] font-normal outline-none transition-colors placeholder:text-[#848484] ${
                   touched.companyName && errors.companyName
                     ? 'border-red-500'
                     : 'border-base-secondaryDefaultButton focus:border-accent-primary'
@@ -219,7 +219,7 @@ const ThirdStepForm: React.FC = () => {
           {hasObligation && (
             <>
               <div className="flex flex-col gap-1 w-full">
-                <label className="text-[0.875rem] font-normal leading-[140%] text-textTheme-secondary">
+                <label className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] font-normal leading-[140%] text-textTheme-secondary">
                   {getContent('bank')}
                 </label>
                 <input
@@ -228,7 +228,7 @@ const ThirdStepForm: React.FC = () => {
                   value={values.bank}
                   onChange={(e) => setFieldValue('bank', e.target.value)}
                   onBlur={() => setFieldTouched('bank', true)}
-                  className={`h-14 rounded border bg-base-inputs px-4 text-white text-[1.125rem] font-normal outline-none transition-colors placeholder:text-[#848484] ${
+                  className={`h-14 rounded border bg-base-inputs px-4 text-white text-[clamp(0.9375rem,0.95rem+0.3vw,1.125rem)] font-normal outline-none transition-colors placeholder:text-[#848484] ${
                     touched.bank && errors.bank
                       ? 'border-red-500'
                       : 'border-base-secondaryDefaultButton focus:border-accent-primary'

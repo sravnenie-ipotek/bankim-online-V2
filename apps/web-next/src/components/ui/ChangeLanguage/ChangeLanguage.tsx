@@ -68,7 +68,7 @@ const ChangeLanguage: React.FC = () => {
             <span className="text-3xs not-italic font-semibold leading-normal text-[#d0d0d0] whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
               {getContent('country')}
             </span>
-            <span className="text-white text-[18px] not-italic font-normal leading-normal whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+            <span className="text-white text-[clamp(1rem,0.95rem+0.3vw,1.125rem)] not-italic font-normal leading-normal whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
               {getContent(selectedOption.countryKey)}
             </span>
           </div>
@@ -104,7 +104,7 @@ const ChangeLanguage: React.FC = () => {
               <div className="flex items-center gap-2 cursor-pointer rtl:flex-row-reverse">
                 <div>{LanguageFlagHelper.getFlag(item.value)}</div>
                 <div className="flex flex-col items-start rtl:items-end">
-                  <span className="text-[0.875rem] not-italic font-normal leading-[140%] text-white">
+                  <span className="text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] not-italic font-normal leading-[140%] text-white">
                     {getContent(item.countryKey)}
                   </span>
                   <span className="text-3xs not-italic font-normal leading-[140%] text-white">
