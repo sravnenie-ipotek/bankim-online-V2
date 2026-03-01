@@ -3,4 +3,6 @@ export interface VideoPosterProps {
   subtitle?: string;
   text?: string;
   size?: 'normal' | 'small';
+  autoPlay?: boolean;
+  showControls?: boolean;
 }

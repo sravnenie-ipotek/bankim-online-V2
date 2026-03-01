@@ -1,46 +1,46 @@
 import React from 'react';
+import Image from 'next/image';
 
 import BankIcon from '@/components/icons/BankIcon';
-import HandCoinsIcon from '@/components/icons/HandCoinsIcon';
 import HandPointingIcon from '@/components/icons/HandPointingIcon';
 import LightningIcon from '@/components/icons/LightningIcon';
-import PlusMinusIcon from '@/components/icons/PlusMinusIcon';
 import ShieldCheckIcon from '@/components/icons/ShieldCheckIcon';
-import TargetIcon from '@/components/icons/TargetIcon';
 
 export const ABOUT_FEATURES = [
   {
-    icon: <TargetIcon />,
-    titleKey: 'about_why_solve_problem_title',
-    textKey: 'about_why_solve_problem',
-  },
-  {
-    icon: <BankIcon />,
+    icon: <BankIcon color="white" />,
     titleKey: 'about_why_bank_title',
     textKey: 'about_why_bank',
   },
   {
-    icon: <HandCoinsIcon />,
+    icon: <LightningIcon color="white" />,
     titleKey: 'about_why_mortgage_complete_title',
     textKey: 'about_why_mortgage_complete',
   },
   {
-    icon: <HandPointingIcon />,
-    titleKey: 'about_why_simple_title',
-    textKey: 'about_why_simple',
-  },
-  {
-    icon: <PlusMinusIcon />,
-    titleKey: 'about_why_credit_title',
-    textKey: 'about_why_credit',
-  },
-  {
-    icon: <ShieldCheckIcon />,
+    icon: <ShieldCheckIcon color="white" />,
     titleKey: 'about_why_security_title',
     textKey: 'about_why_security',
   },
   {
-    icon: <LightningIcon />,
+    icon: <Image src="/static/about/frame-14100937611.svg" width={68} height={68} alt="" />,
+    titleKey: 'about_why_solve_problem_title',
+    textKey: 'about_why_solve_problem',
+  },
+  
+  {
+    icon: <HandPointingIcon color="white" />,
+    titleKey: 'about_why_simple_title',
+    textKey: 'about_why_simple',
+  },
+  {
+    icon: <Image src="/static/about/frame-hand-coins.svg" width={68} height={68} alt="" />,
+    titleKey: 'about_why_credit_title',
+    textKey: 'about_why_credit',
+  },
+  
+  {
+    icon: <LightningIcon color="white" />,
     titleKey: 'about_why_fast_title',
     textKey: 'about_why_fast',
   },

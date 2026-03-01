@@ -26,24 +26,22 @@ const Cooperation: React.FC = () => {
         </div>
 
         {/* Marketplace section */}
-        <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="flex-1">
-            <h2 className="text-2xl font-semibold text-textTheme-primary mb-4">
-              {getContent('marketplace_title')}
-            </h2>
-            <p className="text-base text-textTheme-secondary leading-relaxed">
-              {getContent('marketplace_description')}
-            </p>
-          </div>
-          <div className="flex-shrink-0">
-            <Image
-              src="/static/primary-logo05-1.svg"
-              alt="BankimOnline"
-              width={200}
-              height={60}
-              style={{ width: 'auto', height: 'auto' }}
-            />
-          </div>
+        <div
+          className="relative flex flex-col gap-6 rounded-lg overflow-hidden px-[10%] py-[clamp(1.5rem,4vw,2.5rem)] min-h-[clamp(100px,12vw,160px)]"
+          style={{
+            backgroundColor: '#1a1a1a',
+            backgroundImage: 'url(/static/about/vector-32.svg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: '100% 100%',
+            backgroundSize: '50% auto',
+          }}
+        >
+          <h2 className="text-2xl font-semibold text-white">
+            {getContent('marketplace_title')}
+          </h2>
+          <p className="text-base text-white leading-relaxed max-w-[70%]">
+            {getContent('marketplace_description')}
+          </p>
         </div>
 
         {/* Features */}
