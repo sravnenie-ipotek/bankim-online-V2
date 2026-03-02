@@ -1,5 +1,5 @@
 {
-  "navigation": { "home": "בית" },
+  "navigation": { "home": "דף הבית" },
   "error_loading_vacancies": "שגיאה בטעינת המשרות. אנא נסו שוב מאוחר יותר.",
   "retry": "נסה שוב",
   "vacancies": {
@@ -32,11 +32,11 @@
     "benefits": "הטבות ובונוסים",
     "applicationForm": {
       "title": "הגש מועמדות לתפקיד זה",
-      "fullName": "שם מלא",
+      "fullName": "שם פרטי ושם משפחה",
       "fullNamePlaceholder": "הכנס את שמך המלא",
       "phone": "מספר טלפון",
       "phonePlaceholder": "הכנס את מספר הטלפון שלך",
-      "email": "כתובת אימייל",
+      "email": "Email",
       "emailPlaceholder": "הכנס את כתובת האימייל שלך",
       "city": "עיר",
       "cityPlaceholder": "הכנס את העיר שלך",
@@ -44,10 +44,14 @@
       "expectedSalaryPlaceholder": "הכנס שכר צפוי (אופציונלי)",
       "portfolioLink": "קישור לתיק עבודות",
       "portfolioLinkPlaceholder": "קישור לתיק העבודות שלך (אופציונלי)",
+      "portfolioUrl": "קישור לתיק עבודות",
+      "portfolioUrlPlaceholder": "קישור לתיק העבודות שלך (אופציונלי)",
       "coverLetter": "מכתב מקדים",
       "coverLetterPlaceholder": "ספר לנו למה אתה מושלם לתפקיד הזה...",
+      "resume": "קורות חיים",
       "uploadResume": "העלה קורות חיים",
       "uploadResumeText": "גרור ושחרר את קורות החיים כאן, או לחץ לעיון",
+      "fileInstruction": "גרור את הקובץ לכאן או השתמש במחשב",
       "allowedFiles": "פורמטים נתמכים: PDF, DOC, DOCX (מקס' 5MB)",
       "submit": "שלח מועמדות",
       "submitting": "שולח...",
@@ -57,12 +61,14 @@
       "alreadyApplied": "המועמדות כבר נשלחה",
       "alreadyAppliedMessage": "כבר הגשת מועמדות לתפקיד זה. נחזור אליך בקרוב!",
       "viewOtherPositions": "צפה במשרות אחרות",
+      "submitError": "שליחת הטופס נכשלה. אנא בדוק את הפרטים ונסה שוב.",
       "validation": {
-        "required": "שדה חובה",
+        "required": "מלא את השדה",
         "nameMinLength": "השם חייב להכיל לפחות 2 תווים",
         "nameMaxLength": "השם יכול להכיל עד 100 תווים",
         "phoneFormat": "מספר הטלפון אינו תקין. אנא הזינו מספר בפורמט: 050-123-4567",
         "invalidEmail": "כתובת אימייל לא תקינה",
+        "invalidUrl": "נא להזין כתובת URL תקינה",
         "cityMinLength": "העיר חייבת להכיל לפחות 2 תווים",
         "salaryMinValue": "השכר חייב להיות מספר חיובי",
         "salaryMaxValue": "השכר המקסימלי הוא 100,000 ₪",
@@ -70,6 +76,11 @@
         "fileRequired": "חובה להעלות קורות חיים",
         "fileSize": "הקובץ גדול מדי. גודל מקסימלי: 5MB",
         "fileType": "סוג קובץ לא נתמך. אנא העלה PDF, DOC או DOCX"
+      },
+      "icons": {
+        "tag": "/static/tags/tag-icon.svg",
+        "location": "/static/tags/location-icon.svg",
+        "nis": "/static/tags/nis-icon.svg"
       }
     }
   },
@@ -81,5 +92,7 @@
   "vacancy_not_found_description": "המשרה שאתה מחפש לא קיימת או הוסרה.",
   "vacancy_salary_from": "החל מ",
   "vacancies_category_support": "תמיכה",
-  "all": "הכל"
+  "all": "הכל",
+  "search": "חיפוש",
+  "nothing_found": "לא נמצאו תוצאות"
 }

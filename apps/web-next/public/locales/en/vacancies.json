@@ -1,5 +1,5 @@
 {
-  "navigation": { "home": "Home" },
+  "navigation": { "home": "Home page" },
   "error_loading_vacancies": "Failed to load vacancies. Please try again later.",
   "retry": "Retry",
   "vacancies": {
@@ -32,11 +32,11 @@
     "benefits": "Benefits & Perks",
     "applicationForm": {
       "title": "Apply for this Position",
-      "fullName": "Full Name",
+      "fullName": "First Name and Last Name",
       "fullNamePlaceholder": "Enter your full name",
       "phone": "Phone Number",
       "phonePlaceholder": "Enter your phone number",
-      "email": "Email Address",
+      "email": "Email",
       "emailPlaceholder": "Enter your email address",
       "city": "City",
       "cityPlaceholder": "Enter your city",
@@ -50,14 +50,26 @@
       "resumeUpload": "Upload Resume",
       "resumeUploadText": "Drag and drop your resume here, or click to browse",
       "resumeFormats": "Supported formats: PDF, DOC, DOCX (max 5MB)",
-      "submitApplication": "Submit Application",
+      "fileInstruction": "Drag the file here or use the computer",
+      "submit": "Submit Application",
       "submitting": "Submitting...",
       "success": "Application Submitted Successfully!",
       "successMessage": "Thank you for your interest! We'll review your application and get back to you soon.",
       "goHome": "Go to Homepage",
       "alreadyApplied": "Application Already Submitted",
       "alreadyAppliedMessage": "You have already applied for this position. We'll be in touch soon!",
-      "viewOtherPositions": "View Other Positions"
+      "viewOtherPositions": "View Other Positions",
+      "submitError": "Submission failed. Please check your details and try again.",
+      "validation": {
+        "required": "Fill the field",
+        "invalidEmail": "Invalid email address",
+        "invalidUrl": "Please enter a valid URL"
+      },
+      "icons": {
+        "tag": "/static/tags/tag-icon.svg",
+        "location": "/static/tags/location-icon.svg",
+        "nis": "/static/tags/nis-icon.svg"
+      }
     }
   },
   "vacancy_employment_contract": "Contract",
@@ -68,5 +80,7 @@
   "vacancy_not_found_description": "The vacancy you are looking for does not exist or has been removed.",
   "vacancy_salary_from": "From",
   "vacancies_category_support": "Support",
-  "all": "All"
+  "all": "All",
+  "search": "Search",
+  "nothing_found": "Nothing found"
 }

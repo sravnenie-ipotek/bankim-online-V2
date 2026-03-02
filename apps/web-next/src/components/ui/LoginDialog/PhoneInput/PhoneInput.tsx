@@ -20,13 +20,15 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
   onChange,
   countryCode,
   onCountryCodeChange,
+  onBlur,
   placeholder = '+ 935-234-3344',
   id,
   'aria-label': ariaLabel,
+  className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useOutsideClick(() => setIsOpen(false));
-  const phoneTextClassName = 'text-[clamp(14px,1.11vw,16px)]';
+  const phoneTextClassName = 'text-[clamp(14px,1.11vw,16px)] leading-[16px]';
 
   const digits = PhoneFormatHelper.digitsOnly(value);
   const formatted = PhoneFormatHelper.formatWithDashes(digits);
@@ -45,26 +47,30 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
   return (
     <div
       ref={wrapperRef}
-      className="flex items-center w-full min-w-0 max-w-[562px] h-[clamp(40px,3.33vw,48px)] rounded border border-base-secondaryDefaultButton bg-base-inputs focus-within:border-accent-primary rtl:flex-row-reverse"
+      className={`flex items-center w-full min-w-0 max-w-full rounded-lg border border-base-secondaryDefaultButton bg-base-inputs focus-within:border-accent-primary rtl:flex-row-reverse ${className?.includes('h-') ? '' : 'h-[clamp(40px,3.33vw,48px)]'} ${className ?? ''}`.trim()}
       style={{ gap: 'clamp(8px, 1.5vw, 12px)' }}
     >
-      <div className="relative shrink-0 w-[clamp(56px,4.86vw,70px)] h-[clamp(40px,3.33vw,48px)] flex items-center justify-center border-r border-base-secondaryDefaultButton bg-transparent rtl:border-r-0 rtl:border-l rtl:border-base-secondaryDefaultButton overflow-visible z-50">
+      <div className="relative shrink-0 w-[clamp(56px,4.86vw,92px)] h-full min-h-[clamp(40px,3.33vw,48px)] flex items-center justify-center border-r border-base-secondaryDefaultButton bg-transparent rtl:border-r-0 rtl:border-l rtl:border-base-secondaryDefaultButton overflow-visible z-50">
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="w-full h-full flex items-center justify-center gap-0.5 rounded-l rtl:rounded-l-none rtl:rounded-r bg-transparent transition-colors rtl:flex-row-reverse overflow-visible"
+          className="w-full h-full flex items-center justify-center rounded-l rtl:rounded-l-none rtl:rounded-r bg-transparent transition-colors rtl:flex-row-reverse overflow-visible"
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           aria-label="Select country code"
         >
-          <span className="flex items-center justify-center shrink-0 w-[clamp(14px,1.53vw,22px)] h-[clamp(10px,1.11vw,16px)] overflow-hidden rounded">
-            {LanguageFlagHelper.getFlag(currentOption.lang, {
-              circle: false,
-              transparentBackground: false,
-              className: 'shrink-0 block w-full h-full',
-            })}
+          <span className="flex items-center gap-[clamp(4px,0.5vw,8px)] shrink-0 h-full">
+            <span className="flex items-center justify-center shrink-0 w-[clamp(14px,1.571vw,30px)] h-[clamp(10px,1.143vw,22px)] overflow-hidden rounded">
+              {LanguageFlagHelper.getFlag(currentOption.lang, {
+                circle: false,
+                transparentBackground: false,
+                className: 'shrink-0 block w-full h-full',
+              })}
+            </span>
+            <span className="flex items-center justify-center shrink-0 h-[clamp(10px,1.143vw,22px)]">
+              <CaretDownIcon className="w-[clamp(12px,1.67vw,32px)] h-[clamp(12px,1.67vw,32px)] text-textTheme-primary" aria-hidden />
+            </span>
           </span>
-          <CaretDownIcon className="w-[clamp(12px,1.67vw,24px)] h-[clamp(12px,1.67vw,24px)] shrink-0 text-textTheme-primary" aria-hidden />
         </button>
         {isOpen && (
           <ul
@@ -79,7 +85,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
                   className={`w-full flex items-center gap-2 text-left rtl:text-right text-textTheme-primary hover:bg-base-secondaryHoveredButton transition-colors ${phoneTextClassName}`}
                   style={{ paddingLeft: 'clamp(8px, 2vw, 12px)', paddingRight: 'clamp(8px, 2vw, 12px)', paddingTop: 'clamp(6px, 1.11vw, 8px)', paddingBottom: 'clamp(6px, 1.11vw, 8px)' }}
                 >
-                  <span className="flex items-center justify-center shrink-0 w-[clamp(14px,1.53vw,22px)] h-[clamp(10px,1.11vw,16px)] overflow-hidden rounded pointer-events-none">
+                  <span className="flex items-center justify-center shrink-0 w-[clamp(14px,1.571vw,30px)] h-[clamp(10px,1.143vw,22px)] overflow-hidden rounded pointer-events-none">
                     {LanguageFlagHelper.getFlag(opt.lang, {
                       circle: false,
                       transparentBackground: false,
@@ -120,6 +126,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({
             input.setSelectionRange(prefix.length, Math.max(prefix.length, input.selectionEnd ?? prefix.length));
           }
         }}
+        onBlur={onBlur}
         placeholder={placeholder}
         dir="ltr"
         aria-label={ariaLabel}

@@ -27,8 +27,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label, onClick, var
             alt=""
             width={24}
             height={24}
-            className="shrink-0 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
-            style={{ width: 'clamp(16px, 2.34vw, 24px)', height: 'auto' }}
+            className="shrink-0 object-contain opacity-70 group-hover:opacity-100 transition-opacity w-[clamp(16px,2.34vw,24px)] h-[clamp(16px,2.34vw,24px)]"
             sizes="24px"
           />
           <span className="text-[clamp(13px,1.56vw,20px)] font-normal leading-none tracking-normal uppercase text-white whitespace-nowrap">
@@ -55,8 +54,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label, onClick, var
           alt=""
           width={24}
           height={24}
-          className="shrink-0 object-contain"
-          style={{ width: 'clamp(20px, 2.22vw, 24px)', height: 'auto' }}
+          className="shrink-0 object-contain w-[clamp(20px,2.22vw,24px)] h-[clamp(20px,2.22vw,24px)]"
           sizes="24px"
         />
         <span className="text-[calc(20px*(100vw/1440))] xl:text-[20px] font-normal leading-none tracking-normal capitalize text-white whitespace-nowrap">

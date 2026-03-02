@@ -15,6 +15,12 @@ import { CacheConfig } from '../../config/cache.config.js';
 
 const DEFAULT_TTL_MS = 300_000;
 const VALIDATION_ERRORS_TTL_MS = 600_000;
+const SUPPORTED_LANGUAGES = ['en', 'he', 'ru'] as const;
+
+function normalizeLanguage(lang: string): string {
+  const base = lang.split('-')[0].toLowerCase();
+  return (SUPPORTED_LANGUAGES as readonly string[]).includes(base) ? base : 'en';
+}
 
 @Injectable()
 export class ContentService {
@@ -33,16 +39,17 @@ export class ContentService {
   ) {}
 
   async getContentByScreen(screen: string, language: string, type?: string) {
-    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_CONTENT}${screen}:${language}:${type || 'all'}`;
+    const lang = normalizeLanguage(language);
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_CONTENT}${screen}:${lang}:${type || 'all'}`;
     const cached = await this.cache.get(cacheKey);
     if (cached) return cached;
 
     console.log(
-      `[ContentService] Cache miss for ${screen}:${language} - reading from SQL`,
+      `[ContentService] Cache miss for ${screen}:${lang} - reading from SQL`,
     );
     const response = await this.loadContentByScreenFromDb(
       screen,
-      language,
+      lang,
       type,
     );
     const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
@@ -207,7 +214,8 @@ export class ContentService {
     key: string,
     language: string,
   ): Promise<GetContentByKeyResponse> {
-    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_ASSET}${key}:${language}`;
+    const lang = normalizeLanguage(language);
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_ASSET}${key}:${lang}`;
     const cached = await this.cache.get<GetContentByKeyResponse>(cacheKey);
     if (cached) return cached;
 
@@ -221,7 +229,7 @@ export class ContentService {
 
     const translation = await this.findTranslationWithFallback(
       item.id,
-      language,
+      lang,
     );
 
     const response = {
@@ -288,11 +296,12 @@ export class ContentService {
   }
 
   async getValidationErrors(language: string) {
-    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_VALIDATION_ERRORS}${language}`;
+    const lang = normalizeLanguage(language);
+    const cacheKey = `${this.cacheConfig.CACHE_KEY_PREFIX_VALIDATION_ERRORS}${lang}`;
     const cached = await this.cache.get(cacheKey);
     if (cached) return cached;
 
-    const response = await this.loadValidationErrorsFromDb(language);
+    const response = await this.loadValidationErrorsFromDb(lang);
     const ttl =
       this.config.get<number>('REDIS_TTL_CONTENT') ?? VALIDATION_ERRORS_TTL_MS;
     await this.cache.set(cacheKey, { ...response, cached: true }, ttl);

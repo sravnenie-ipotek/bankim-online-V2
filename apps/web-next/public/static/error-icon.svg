@@ -1,0 +1,12 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Octagon outline (stop-sign shape): white stroke, no fill -->
+  <path
+    d="M3.5 2h9L14 5.5v5L12.5 14h-9L2 10.5v-5L3.5 2z"
+    stroke="white"
+    stroke-width="1"
+    fill="none"
+  />
+  <!-- Exclamation: stem + dot in white -->
+  <line x1="8" y1="4.5" x2="8" y2="8" stroke="white" stroke-width="0.9" stroke-linecap="round"/>
+  <circle cx="8" cy="10.5" r="0.6" stroke="white" stroke-width="0.5" fill="none"/>
+</svg>
