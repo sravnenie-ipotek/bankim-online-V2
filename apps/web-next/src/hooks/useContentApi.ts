@@ -40,6 +40,7 @@ export const useContentApi = (screenLocation: string) => {
     };
   }, [screenLocation, loading, contentLoadingContext]);
 
+  /** Resolves content from API/DB only. Does not fall back to i18n. */
   const getContent = useCallback(
     (key: string): string => {
       if (content[key]) return content[key];

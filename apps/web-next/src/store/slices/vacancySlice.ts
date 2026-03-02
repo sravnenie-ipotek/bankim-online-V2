@@ -9,6 +9,10 @@ function listKey(language: string, category: string): ListKey {
   return `${language}:${category}`;
 }
 
+function detailKey(id: string, language: string): string {
+  return `${id}:${language}`;
+}
+
 type ListEntry = { data: Vacancy[]; error: string | null };
 type DetailEntry = { data: VacancyDetail | null; error: string | null };
 
@@ -33,9 +37,11 @@ export const fetchVacancyList = createAsyncThunk<
     const data = await res.json();
     const list = Array.isArray(data?.vacancies)
       ? data.vacancies
-      : Array.isArray(data)
-        ? data
-        : [];
+      : Array.isArray(data?.data)
+        ? data.data
+        : Array.isArray(data)
+          ? data
+          : [];
     return { data: list, error: null };
   }
 );
@@ -47,7 +53,8 @@ export const fetchVacancyById = createAsyncThunk<
 >(
   'vacancy/fetchById',
   async (payload, { getState, rejectWithValue }) => {
-    const existing = getState().vacancy.byId[payload.id];
+    const key = detailKey(payload.id, payload.language);
+    const existing = getState().vacancy.byId[key];
     if (existing?.data) {
       return existing;
     }
@@ -55,14 +62,24 @@ export const fetchVacancyById = createAsyncThunk<
       `/api/vacancies/${payload.id}?lang=${payload.language}`
     );
     if (!res.ok) return rejectWithValue(`HTTP ${res.status}`);
-    const data: VacancyDetail = await res.json();
+    const json = await res.json();
+    const data: VacancyDetail = json.data ?? json;
     return { data, error: null };
   }
 );
 
+/** Payload shape expected by API POST /api/vacancies/:id/apply */
 export type ApplyVacancyPayload = {
   id: string;
-  formData: FormData;
+  body: {
+    applicant_name: string;
+    applicant_email: string;
+    applicant_phone: string;
+    applicant_city: string;
+    cover_letter?: string;
+    expected_salary?: number;
+    portfolio_url?: string;
+  };
 };
 
 export const applyToVacancy = createAsyncThunk<
@@ -74,9 +91,17 @@ export const applyToVacancy = createAsyncThunk<
   async (payload, { rejectWithValue }) => {
     const res = await fetch(`/api/vacancies/${payload.id}/apply`, {
       method: 'POST',
-      body: payload.formData,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload.body),
     });
-    if (!res.ok) return rejectWithValue('Submit failed');
+    if (!res.ok) {
+      try {
+        const body = await res.json() as { message?: string };
+        return rejectWithValue(body.message ?? 'Submit failed');
+      } catch {
+        return rejectWithValue('Submit failed');
+      }
+    }
   }
 );
 
@@ -107,10 +132,10 @@ const vacancySlice = createSlice({
       delete state.listByKey[key];
       delete state.loadingListByKey[key];
     },
-    clearVacancyId(state, action: { payload: string }) {
-      const id = action.payload;
-      delete state.byId[id];
-      delete state.loadingById[id];
+    clearVacancyId(state, action: { payload: { id: string; language: string } }) {
+      const key = detailKey(action.payload.id, action.payload.language);
+      delete state.byId[key];
+      delete state.loadingById[key];
     },
     clearAllVacancy() {
       return {
@@ -147,17 +172,18 @@ const vacancySlice = createSlice({
         };
       })
       .addCase(fetchVacancyById.pending, (state, action) => {
-        state.loadingById[action.meta.arg.id] = true;
+        const key = detailKey(action.meta.arg.id, action.meta.arg.language);
+        state.loadingById[key] = true;
       })
       .addCase(fetchVacancyById.fulfilled, (state, action) => {
-        const id = action.meta.arg.id;
-        state.byId[id] = action.payload;
-        state.loadingById[id] = false;
+        const key = detailKey(action.meta.arg.id, action.meta.arg.language);
+        state.byId[key] = action.payload;
+        state.loadingById[key] = false;
       })
       .addCase(fetchVacancyById.rejected, (state, action) => {
-        const id = action.meta.arg.id;
-        state.loadingById[id] = false;
-        state.byId[id] = {
+        const key = detailKey(action.meta.arg.id, action.meta.arg.language);
+        state.loadingById[key] = false;
+        state.byId[key] = {
           data: null,
           error:
             (action.payload as string) ??
@@ -182,13 +208,13 @@ export const selectVacancyListLoading =
     state.vacancy.loadingListByKey[listKey(language, category)] ?? false;
 
 export const selectVacancyDetailEntry =
-  (id: string) =>
+  (id: string, language: string) =>
   (state: RootState): DetailEntry | undefined =>
-    state.vacancy.byId[id];
+    state.vacancy.byId[detailKey(id, language)];
 
 export const selectVacancyDetailLoading =
-  (id: string) =>
+  (id: string, language: string) =>
   (state: RootState): boolean =>
-    state.vacancy.loadingById[id] ?? false;
+    state.vacancy.loadingById[detailKey(id, language)] ?? false;
 
 export default vacancySlice.reducer;

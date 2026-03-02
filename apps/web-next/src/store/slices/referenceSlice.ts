@@ -45,7 +45,7 @@ function normalizeV1CitiesResponse(raw: unknown, lang: string): ReferenceOption[
   const data = (raw as { data: Array<{ id: number; name_en?: string; name_he?: string; name_ru?: string }> }).data;
   const langKey = lang === 'he' ? 'name_he' : lang === 'ru' ? 'name_ru' : 'name_en';
   return data.map((city) => ({
-    value: String(city.id),
+    value: city.name_en?.toLowerCase().replace(/\s+/g, '_') ?? String(city.id),
     label: (city[langKey as keyof typeof city] as string) ?? city.name_en ?? '',
   }));
 }

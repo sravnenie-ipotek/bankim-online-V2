@@ -99,7 +99,7 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
       ) : null}
 
       <div
-        className={`flex items-center justify-between h-14 rounded border bg-base-inputs px-4 cursor-pointer transition-colors ${triggerBorderClass} ${disabledClass}`}
+        className={`flex items-center justify-between h-[clamp(2.75rem,3.89vw,4.5rem)] rounded-lg border bg-base-inputs px-4 cursor-pointer transition-colors ${triggerBorderClass} ${disabledClass}`}
         onClick={handleToggle}
         role="button"
         tabIndex={0}

@@ -56,8 +56,7 @@ const SkipCookie: React.FC = () => {
               height={32}
               alt=""
               aria-hidden
-              className="w-full h-full object-contain"
-              style={{ width: '100%', height: 'auto' }}
+              className="w-8 h-8 object-contain"
             />
           </button>
           <div className="relative shrink-0 w-[52px] h-[52px]">
@@ -104,8 +103,7 @@ const SkipCookie: React.FC = () => {
               height={32}
               alt=""
               aria-hidden
-              className="w-full h-full object-contain"
-              style={{ width: '100%', height: 'auto' }}
+              className="w-8 h-8 object-contain"
             />
           </button>
         </div>

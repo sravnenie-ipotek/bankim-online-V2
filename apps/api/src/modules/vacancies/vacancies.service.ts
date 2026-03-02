@@ -8,7 +8,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { VacancyEntity } from '../../entities/vacancy.entity';
 import { VacancyApplicationEntity } from '../../entities/vacancy-application.entity';
-import { resolveLanguage } from '../../helpers/language.helper';
+import { CityEntity } from '../../entities/city.entity';
+import { resolveLanguage, type SupportedLanguage } from '../../helpers/language.helper';
+import type { VacancyListRow } from './interfaces/VacancyListRow.js';
+import type { VacancyCategoryRow } from './interfaces/VacancyCategoryRow.js';
+import { VacancyMapper } from './helpers/VacancyMapper.js';
 
 @Injectable()
 export class VacanciesService {
@@ -17,28 +21,35 @@ export class VacanciesService {
     private readonly vacancyRepo: Repository<VacancyEntity>,
     @InjectRepository(VacancyApplicationEntity)
     private readonly applicationRepo: Repository<VacancyApplicationEntity>,
+    @InjectRepository(CityEntity, 'content')
+    private readonly cityRepo: Repository<CityEntity>,
   ) {}
+
+  private async buildLocationMap(keys: string[], lang: SupportedLanguage): Promise<Map<string, string>> {
+    if (!keys.length) return new Map();
+
+    const nameCol = `name_${lang}` as keyof CityEntity;
+    const cities = await this.cityRepo
+      .createQueryBuilder('c')
+      .select('c.key', 'key')
+      .addSelect(`c.${nameCol}`, 'name')
+      .where('c.key IN (:...keys)', { keys })
+      .getRawMany<{ key: string; name: string }>();
+
+    return new Map(cities.map((c) => [c.key, c.name]));
+  }
+
+  private resolveLocation(key: string | null, locationMap: Map<string, string>): string | null {
+    if (!key) return null;
+    return locationMap.get(key) ?? key;
+  }
 
   async getAll(category: string | undefined, lang: string, activeOnly: string) {
     const selectedLang = resolveLanguage(lang);
 
     const qb = this.vacancyRepo
       .createQueryBuilder('v')
-      .select('v.id', 'id')
-      .addSelect('v.title', 'title')
-      .addSelect('v.category', 'category')
-      .addSelect('v.subcategory', 'subcategory')
-      .addSelect('v.location', 'location')
-      .addSelect('v.employment_type', 'employment_type')
-      .addSelect('v.salary_min', 'salary_min')
-      .addSelect('v.salary_max', 'salary_max')
-      .addSelect('v.salary_currency', 'salary_currency')
-      .addSelect(`v.description_${selectedLang}`, 'description')
-      .addSelect(`v.requirements_${selectedLang}`, 'requirements')
-      .addSelect(`v.benefits_${selectedLang}`, 'benefits')
-      .addSelect('v.is_featured', 'is_featured')
-      .addSelect('v.posted_date', 'posted_date')
-      .addSelect('v.closing_date', 'closing_date');
+      .where('(v.closing_date IS NULL OR v.closing_date >= CURRENT_DATE)');
 
     if (activeOnly === 'true') {
       qb.andWhere('v.is_active = :active', { active: true });
@@ -48,14 +59,21 @@ export class VacanciesService {
       qb.andWhere('v.category = :category', { category });
     }
 
-    qb.andWhere('(v.closing_date IS NULL OR v.closing_date >= CURRENT_DATE)');
     qb.orderBy('v.is_featured', 'DESC').addOrderBy('v.posted_date', 'DESC');
 
-    const rows = await qb.getRawMany();
+    const entities = await qb.getMany();
+
+    const locationKeys = [...new Set(entities.map((e) => e.location).filter((l): l is string => !!l))];
+    const locationMap = await this.buildLocationMap(locationKeys, selectedLang);
+
+    const data: VacancyListRow[] = entities.map((e) =>
+      VacancyMapper.toListRow(e, selectedLang, this.resolveLocation(e.location, locationMap)),
+    );
+
     return {
       status: 'success',
-      data: rows,
-      total: rows.length,
+      data,
+      total: data.length,
       language: selectedLang,
       category: category || 'all',
     };
@@ -70,7 +88,7 @@ export class VacanciesService {
       .andWhere('(v.closing_date IS NULL OR v.closing_date >= CURRENT_DATE)')
       .groupBy('v.category')
       .orderBy('count', 'DESC')
-      .getRawMany();
+      .getRawMany<VacancyCategoryRow>();
 
     return { status: 'success', data: rows };
   }
@@ -78,32 +96,17 @@ export class VacanciesService {
   async getById(id: number, lang: string) {
     const selectedLang = resolveLanguage(lang);
 
-    const row = await this.vacancyRepo
-      .createQueryBuilder('v')
-      .select('v.id', 'id')
-      .addSelect('v.title', 'title')
-      .addSelect('v.category', 'category')
-      .addSelect('v.subcategory', 'subcategory')
-      .addSelect('v.location', 'location')
-      .addSelect('v.employment_type', 'employment_type')
-      .addSelect('v.salary_min', 'salary_min')
-      .addSelect('v.salary_max', 'salary_max')
-      .addSelect('v.salary_currency', 'salary_currency')
-      .addSelect(`v.description_${selectedLang}`, 'description')
-      .addSelect(`v.requirements_${selectedLang}`, 'requirements')
-      .addSelect(`v.benefits_${selectedLang}`, 'benefits')
-      .addSelect(`v.responsibilities_${selectedLang}`, 'responsibilities')
-      .addSelect(`v.nice_to_have_${selectedLang}`, 'nice_to_have')
-      .addSelect('v.is_featured', 'is_featured')
-      .addSelect('v.posted_date', 'posted_date')
-      .addSelect('v.closing_date', 'closing_date')
-      .addSelect('v.created_at', 'created_at')
-      .where('v.id = :id', { id })
-      .andWhere('v.is_active = :active', { active: true })
-      .getRawOne();
+    const entity = await this.vacancyRepo.findOne({
+      where: { id, is_active: true },
+    });
 
-    if (!row) throw new NotFoundException('Vacancy not found');
-    return { status: 'success', data: row, language: selectedLang };
+    if (!entity) throw new NotFoundException('Vacancy not found');
+
+    const locationKeys = entity.location ? [entity.location] : [];
+    const locationMap = await this.buildLocationMap(locationKeys, selectedLang);
+
+    const data = VacancyMapper.toDetailRow(entity, selectedLang, this.resolveLocation(entity.location, locationMap));
+    return { status: 'success', data, language: selectedLang };
   }
 
   async apply(
@@ -137,8 +140,8 @@ export class VacanciesService {
     if (!emailRegex.test(applicant_email))
       throw new BadRequestException('Invalid email format');
 
-    const phoneRegex = /^(\+?972|0)?[5-9]\d{8}$/;
-    if (!phoneRegex.test(applicant_phone.replace(/[-\s]/g, ''))) {
+    const phoneRegex = /^\+?[\d\s\-().]{7,20}$/;
+    if (!phoneRegex.test(applicant_phone.trim())) {
       throw new BadRequestException('Invalid phone number format');
     }
 

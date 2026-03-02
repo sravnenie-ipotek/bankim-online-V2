@@ -3,9 +3,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useContentApi } from '@hooks/useContentApi';
 import { useContentFetch } from '@/hooks/useContentFetch';
 import Container from '@/components/ui/Container/Container';
+import { VacancyTag } from '@/components/ui/VacancyTag';
+import { VacancyCategoryBadge } from '@/components/ui/VacancyCategoryBadge';
 import { trackClick } from '@/helpers/analytics';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import {
@@ -18,7 +21,9 @@ const CATEGORIES = ['all', 'development', 'marketing', 'support', 'management', 
 
 const EMPLOYMENT_LABELS: Record<string, string> = {
   fulltime: 'vacancy_employment_fulltime',
+  full_time: 'vacancy_employment_fulltime',
   parttime: 'vacancy_employment_parttime',
+  part_time: 'vacancy_employment_parttime',
   contract: 'vacancy_employment_contract',
   temporary: 'vacancy_employment_temporary',
 };
@@ -38,7 +43,7 @@ const Vacancies: React.FC = () => {
   const loading = useAppSelector(selectVacancyListLoading(lang, selectedCategory));
   const vacancies = useMemo(
     () => (Array.isArray(listEntry?.data) ? listEntry.data : []),
-    [listEntry?.data]
+    [listEntry]
   );
   const error = listEntry?.error ?? null;
 
@@ -65,20 +70,36 @@ const Vacancies: React.FC = () => {
           <p className="text-base text-textTheme-secondary">{getContent('vacancies_subtitle')}</p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex gap-2 flex-wrap">
-          {CATEGORIES.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setSelectedCategory(category)}
-              className={`tab-btn ${selectedCategory === category ? 'tab-btn-active' : 'tab-btn-inactive'}`}
-            >
-              {category === 'all'
-                ? getContent('all')
-                : getContent(`vacancies_category_${category}`)}
-            </button>
-          ))}
+        {/* Category tabs: horizontal scroll on mobile, wrap on larger screens */}
+        <div className="overflow-x-auto -mx-4 sm:mx-0 sm:overflow-visible scrollbar-thin">
+          <div
+            role="tablist"
+            aria-label={getContent('vacancies_title')}
+            className="flex flex-nowrap sm:flex-wrap gap-0 sm:gap-0 border-b border-base-stroke min-w-0"
+          >
+          {CATEGORIES.map((category) => {
+            const isSelected = selectedCategory === category;
+            return (
+              <button
+                key={category}
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
+                tabIndex={isSelected ? 0 : -1}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-3 font-medium transition-colors border-b-2 -mb-px text-[clamp(0.75rem,1.111vw,1rem)] ${
+                  isSelected
+                    ? 'border-accent-primary text-textTheme-primary'
+                    : 'border-transparent text-textTheme-secondary hover:text-textTheme-primary hover:border-base-stroke'
+                }`}
+              >
+                {category === 'all'
+                  ? getContent('all')
+                  : getContent(`vacancies_category_${category}`)}
+              </button>
+            );
+          })}
+          </div>
         </div>
 
         {/* Content */}
@@ -104,34 +125,56 @@ const Vacancies: React.FC = () => {
         )}
 
         {!loading && !error && filteredVacancies.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-6 items-center sm:items-stretch">
             {filteredVacancies.map((vacancy) => (
               <Link
                 key={vacancy.id}
                 href={`/vacancies/${vacancy.id}`}
                 onClick={() => trackClick('vacancy_card', vacancy.id)}
-                className="surface-card-hover flex flex-col gap-3 p-6"
+                className="surface-card-hover flex flex-col gap-3 p-6 w-[clamp(280px,93.33vw,350px)] min-h-[clamp(260px,91.2vw,342px)] sm:w-full sm:min-h-[clamp(180px,15.97vw,230px)] box-border"
               >
-                <h3 className="text-lg font-semibold text-textTheme-primary">{vacancy.title}</h3>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="px-2 py-1 text-xs rounded bg-base-base800 text-textTheme-secondary">
-                    {getContent(`vacancies_category_${vacancy.category}`)}
-                  </span>
-                  <span className="px-2 py-1 text-xs rounded bg-base-base800 text-textTheme-secondary">
-                    {getContent(
-                      EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type
+                {/* Mobile: category up, title mid, location below. Sm+: row with title+category and location */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
+                  <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-2 min-w-0 flex-1 rtl:justify-start order-1 sm:order-1 rtl:sm:order-1">
+                    {vacancy.category && (
+                      <span className="order-1 sm:order-2 rtl:sm:order-1">
+                        <VacancyCategoryBadge
+                          categoryLabel={getContent(`vacancies_category_${vacancy.category}`) || vacancy.category}
+                        />
+                      </span>
                     )}
-                  </span>
+                    <h3 className="text-[31px] font-semibold text-textTheme-primary min-w-0 order-2 sm:order-1 rtl:sm:order-2">{vacancy.title}</h3>
+                  </div>
+                  {vacancy.location && (
+                    <span className="inline-flex items-center gap-2 shrink-0 order-3 sm:order-2 rtl:sm:order-2">
+                      <span className="inline-flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-base-tagBg">
+                        <Image
+                          src="/static/tags/location-icon.svg"
+                          alt=""
+                          width={16}
+                          height={16}
+                          className="w-4 h-4 object-contain"
+                        />
+                      </span>
+                      <span className="text-textTheme-secondary text-sm">{vacancy.location}</span>
+                    </span>
+                  )}
                 </div>
-                {vacancy.salary_from && (
-                  <span className="text-accent-primary text-sm">
-                    {getContent('vacancy_salary_from')} ₪{vacancy.salary_from.toLocaleString()}
-                    {vacancy.salary_to ? ` - ₪${vacancy.salary_to.toLocaleString()}` : '+'}
-                  </span>
-                )}
-                <p className="text-sm text-textTheme-secondary line-clamp-2">
-                  {vacancy.description}
-                </p>
+                <div className="flex-1 flex items-center min-h-0 sm:items-stretch w-full max-w-[clamp(280px,73.89vw,1064px)]">
+                  <p className="text-[clamp(0.875rem,1.111vw,1rem)] text-textTheme-secondary line-clamp-2 w-full min-h-0 sm:flex-1">
+                    {vacancy.description}
+                  </p>
+                </div>
+                <div className="flex gap-4 flex-wrap mt-auto items-center">
+                  <VacancyTag showBackground={false} className="text-[clamp(0.875rem,1.25vw,1.125rem)]" iconSrc={getContent('vacancyDetail.applicationForm.icons.tag')}>
+                    {getContent(EMPLOYMENT_LABELS[vacancy.employment_type] || vacancy.employment_type)}
+                  </VacancyTag>
+                  {(vacancy.salary_from != null || vacancy.salary_min != null) && (
+                    <VacancyTag showBackground={false} className="text-[clamp(0.875rem,1.25vw,1.125rem)]" iconType="nis" iconSrc={getContent('vacancyDetail.applicationForm.icons.nis')}>
+                      {getContent('vacancy_salary_from')} ₪{Number(vacancy.salary_from ?? vacancy.salary_min).toLocaleString()}
+                    </VacancyTag>
+                  )}
+                </div>
               </Link>
             ))}
           </div>

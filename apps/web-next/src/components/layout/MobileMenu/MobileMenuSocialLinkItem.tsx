@@ -20,8 +20,7 @@ const MobileMenuSocialLinkItem: React.FC<MobileMenuSocialLinkItemProps> = ({ con
         src={config.icon}
         width={24}
         height={24}
-        className="object-contain w-6 h-6"
-        style={{ width: '24px', height: 'auto' }}
+        className="object-contain w-6 h-6 min-w-6 min-h-6"
       />
     </a>
   );

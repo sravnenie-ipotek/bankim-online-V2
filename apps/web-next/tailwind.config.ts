@@ -12,6 +12,8 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       tertiary: 'hsla(46, 93%, 95%, 1)',
       loginButton: '#f8E54d',
       forgotPasswordLink: '#FBE54D',
+      /** Yellow for file upload badge / highlighted UI (#FBE54D) */
+      fileBadge: '#FBE54D',
     },
     base: {
       border: '#161616',
@@ -37,6 +39,10 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       warningBaseStrokeAlternative: 'hsla(180, 2%, 38%, 1)',
       base900: 'hsla(231, 8%, 18%, 1)',
       tertiaryDisabledButton: 'hsla(231, 9%, 28%, 1)',
+      /** Vacancy tag background – #3F444D */
+      tagBg: '#3F444D',
+      /** Success card background (e.g. application received) – #2A2B31 */
+      successCard: '#2A2B31',
     },
     textTheme: {
       primary: 'hsla(0, 0%, 100%, 1)',
@@ -45,6 +51,8 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       secondaryIcons: 'hsla(0, 0%, 78%, 1)',
       darkPrimary: 'hsla(0, 0%, 9%, 1)',
       muted: 'hsla(0, 0%, 82%, 1)',
+      /** File size text (e.g. upload badge) – 12px Inter, #848484 */
+      fileSize: '#848484',
     },
     warning: {
       success100: 'hsla(169, 39%, 45%, 1)',
@@ -54,6 +62,10 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       error100: 'hsla(0, 68%, 52%, 1)',
       error500: 'hsla(0, 26%, 22%, 1)',
       validation: 'hsla(11, 77%, 58%, 1)',
+    },
+    /** Form validation error (border, text, icon) – #E76143 */
+    error: {
+      validation: '#E76143',
     },
   },
   screens: {
@@ -104,10 +116,10 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
     inter: ['var(--font-inter)', 'Inter', 'sans-serif'],
   },
   zIndex: {
-    dropdown: '50',
-    overlay: '60',
-    modal: '70',
-    toast: '80',
+    dropdown: '200',
+    overlay: '300',
+    modal: '400',
+    toast: '500',
   },
   maxWidth: {
     page: '1900px',

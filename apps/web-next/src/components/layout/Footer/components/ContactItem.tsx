@@ -12,10 +12,9 @@ const ContactItem: React.FC<ContactItemProps> = ({ icon, href, label, forceLtr, 
       <Image
         alt=""
         src={icon}
-        width={20}
-        height={20}
-        className="shrink-0 w-5 h-5 object-contain"
-        style={{ width: '20px', height: 'auto' }}
+        width={16}
+        height={16}
+        className="shrink-0 object-contain w-[clamp(12px,0.833vw,16px)] h-[clamp(12px,0.833vw,16px)]"
       />
       <a
         href={href}

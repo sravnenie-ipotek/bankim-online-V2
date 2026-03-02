@@ -1,5 +1,5 @@
 {
-  "navigation": { "home": "Главная" },
+  "navigation": { "home": "Главная страница" },
   "error_loading_vacancies": "Ошибка загрузки вакансий. Пожалуйста, попробуйте позже.",
   "retry": "Повторить",
   "vacancies": "Вакансии",
@@ -21,11 +21,11 @@
     "benefits": "Льготы и бонусы",
     "applicationForm": {
       "title": "Подать заявку на эту должность",
-      "fullName": "Полное имя",
+      "fullName": "Имя и Фамилия",
       "fullNamePlaceholder": "Введите ваше полное имя",
       "phone": "Номер телефона",
       "phonePlaceholder": "Введите ваш номер телефона",
-      "email": "Адрес электронной почты",
+      "email": "Email",
       "emailPlaceholder": "Введите ваш email",
       "city": "Город",
       "cityPlaceholder": "Введите ваш город",
@@ -39,7 +39,8 @@
       "resumeUpload": "Загрузить резюме",
       "resumeUploadText": "Перетащите ваше резюме сюда или нажмите для выбора файла",
       "resumeFormats": "Поддерживаемые форматы: PDF, DOC, DOCX (макс. 5МБ)",
-      "submitApplication": "Отправить заявку",
+      "fileInstruction": "Перетащите файл сюда или\nиспользуйте компьютер",
+      "submit": "Отправить заявку",
       "submitting": "Отправляем...",
       "success": "Заявка успешно отправлена!",
       "successMessage": "Спасибо за ваш интерес! Мы рассмотрим вашу заявку и свяжемся с вами в ближайшее время.",
@@ -52,13 +53,14 @@
       "uploadResume": "Загрузить резюме",
       "uploadResumeText": "Перетащите ваше резюме сюда или нажмите для просмотра",
       "allowedFiles": "Поддерживаемые форматы: PDF, DOC, DOCX (макс. 5МБ)",
-      "submit": "Отправить заявку",
+      "submitError": "Отправка не удалась. Проверьте данные и попробуйте снова.",
       "validation": {
-        "required": "Обязательное поле",
+        "required": "Заполните поле",
         "nameMinLength": "Имя должно содержать не менее 2 символов",
         "nameMaxLength": "Имя может содержать до 100 символов",
         "phoneFormat": "Номер телефона недействителен. Пожалуйста, введите номер в формате: 050-123-4567",
         "invalidEmail": "Неверный адрес электронной почты",
+        "invalidUrl": "Введите действительный URL",
         "cityMinLength": "Город должен содержать не менее 2 символов",
         "salaryMinValue": "Зарплата должна быть положительным числом",
         "salaryMaxValue": "Максимальная зарплата 100,000 ₪",
@@ -66,6 +68,11 @@
         "fileRequired": "Обязательно загрузите резюме",
         "fileSize": "Файл слишком большой. Максимальный размер: 5МБ",
         "fileType": "Неподдерживаемый тип файла. Пожалуйста, загрузите PDF, DOC или DOCX"
+      },
+      "icons": {
+        "tag": "/static/tags/tag-icon.svg",
+        "location": "/static/tags/location-icon.svg",
+        "nis": "/static/tags/nis-icon.svg"
       }
     }
   },
@@ -77,5 +84,7 @@
   "vacancy_not_found_description": "Вакансия, которую вы ищете, не существует или была удалена.",
   "vacancy_salary_from": "От",
   "vacancies_category_support": "Поддержка",
-  "all": "Все"
+  "all": "Все",
+  "search": "Поиск",
+  "nothing_found": "Результаты не найдены"
 }
