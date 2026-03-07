@@ -17,12 +17,14 @@ import { LoginButtonModeHelper } from './helpers/LoginButtonModeHelper';
 
 const LoginLanguage: React.FC = () => {
   const { getContent } = useContentApi('global_components');
+  const { getContent: getCooperationContent } = useContentApi('cooperation');
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector(isAuthenticatedSelector);
   const user = useAppSelector(authUserSelector);
   const pathMap = pathname.split('/');
   const isService = pathMap.includes('services');
+  const isCooperation = pathMap.includes('cooperation');
   const loginButtonMode = LoginButtonModeHelper.getMode(pathname);
   const { isDesktop } = useWindowResize();
 
@@ -34,7 +36,8 @@ const LoginLanguage: React.FC = () => {
     }
   };
 
-  const label = isAuthenticated ? (user?.name ?? getContent('account')) : getContent('account');
+  const defaultLabel = isAuthenticated ? (user?.name ?? getContent('account')) : getContent('account');
+  const label = isCooperation ? getCooperationContent('cooperation_partner_login') : defaultLabel;
 
   return (
     <div className="flex gap-[42px] items-center max-[1240px]:flex-nowrap max-[1240px]:flex-row">
@@ -48,7 +51,7 @@ const LoginLanguage: React.FC = () => {
                 isService
                   ? 'bg-transparent text-textTheme-primary border border-base-stroke hover:bg-base-secondaryHoveredButton'
                   : loginButtonMode === 'black'
-                    ? 'bg-black text-white hover:bg-neutral-800'
+                    ? 'bg-transparent text-white border border-white/30 hover:bg-white/10'
                     : 'bg-accent-loginButton text-base-primary hover:bg-accent-primaryActiveButton'
               }`}
             >
@@ -65,7 +68,7 @@ const LoginLanguage: React.FC = () => {
             isService
               ? 'bg-transparent text-textTheme-primary border-transparent'
               : loginButtonMode === 'black'
-                ? 'bg-black text-white'
+                ? 'bg-transparent text-white border border-white/30'
                 : 'text-base-primary !bg-accent-loginButton'
           }`}
         >

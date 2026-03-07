@@ -29,14 +29,14 @@ const Footer: React.FC = () => {
   return (
     <footer className="relative z-[10001] bg-base-secondary w-full pt-8 pb-4">
       {/* Same alignment as header/main: on mobile 20px gap, 350px max; desktop fluid */}
-      <div className="w-full min-[768px]:ps-[35px] md:ps-[46px] max-[767px]:px-[var(--mobile-content-gap)]">
-        <div className="layout-content-fluid w-full min-w-0 max-w-[var(--content-width-fluid)] mx-[var(--content-margin-fluid)] max-[767px]:w-[var(--mobile-content-width-fluid)] max-[767px]:mx-auto max-[767px]:px-0 flex flex-col justify-center rtl:justify-end items-start rtl:items-start gap-8 px-4 sm:px-5 md:px-0">
-          {/* LTR: start (left). RTL (Hebrew): entire container to the right (start) */}
-          <div className="w-full lg:w-[1130px] lg:min-h-[159px] flex flex-col md:flex-row items-start justify-start gap-4 md:gap-8 max-[767px]:gap-1 pt-0">
-            <div className="w-full md:w-[261px] md:min-w-[261px] md:max-w-[261px] mt-0 pt-0 ms-0 rtl:me-0 rtl:ms-0 shrink-0 self-start">
+      <div className="w-full min-[768px]:ps-[35px] md:ps-[46px] rtl:min-[768px]:ps-0 rtl:md:ps-0 rtl:min-[768px]:pe-[35px] rtl:md:pe-[46px] max-[767px]:px-[var(--mobile-content-gap)]">
+        <div className="layout-content-fluid w-full min-w-0 max-w-[var(--content-width-fluid)] mx-[var(--content-margin-fluid)] rtl:md:me-0 max-[767px]:w-[var(--mobile-content-width-fluid)] max-[767px]:mx-auto max-[767px]:px-0 flex flex-col justify-center rtl:justify-start items-start rtl:items-start gap-8 px-4 sm:px-5 md:px-0">
+          {/* One flex row: logo+social container 373px wide at 1440px (responsive) | space-between | links */}
+          <div className="w-full lg:w-[1130px] md:min-h-[clamp(120px,11.04vw,159px)] flex flex-col md:flex-row md:justify-between md:items-stretch gap-4 md:gap-0 max-[767px]:gap-1 pt-0">
+            <div className="w-full max-[767px]:w-full md:w-[clamp(192px,25.903vw,373px)] md:h-full md:min-w-0 md:min-h-0 shrink-0 self-start md:max-w-[373px] ms-0 rtl:me-0">
               <InfoBlock />
             </div>
-            <div className="flex w-full max-w-full justify-between flex-col md:flex-row md:w-full md:max-w-[48rem] mt-0 ms-0 rtl:me-0 rtl:ms-0 shrink-0">
+            <div className="flex w-full max-w-full flex-col md:flex-row md:flex-1 md:justify-between md:min-w-0 pt-0">
               <Company />
               <Contacts />
               <Documents />

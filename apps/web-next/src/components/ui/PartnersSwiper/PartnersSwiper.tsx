@@ -3,6 +3,7 @@
 import React, { useRef, useState } from 'react';
 import { useContentApi } from '@hooks/useContentApi';
 import type { BankSlide } from './interfaces/BankSlide';
+import type { PartnersSwiperProps } from './interfaces/PartnersSwiperProps';
 import PartnerSlide from './PartnerSlide';
 
 const BANK_SLIDES: BankSlide[] = [
@@ -60,11 +61,33 @@ const ChevronRightIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-const PartnersSwiper: React.FC = () => {
-  const { getContent } = useContentApi('home_page');
+const DEFAULT_BOX_CLASS = 'w-[140px] h-[80px] sm:w-[160px] sm:h-[90px] md:w-[180px] md:h-[95px] lg:w-[198px] lg:h-[100px] xl:w-[264px] xl:h-[133px]';
+const DEFAULT_ICON_CLASS = 'w-[100px] h-[30px] sm:w-[120px] sm:h-[36px] md:w-[140px] md:h-[40px] lg:w-[150px] lg:h-[42px] xl:w-[200px] xl:h-[56px]';
+
+const DEFAULT_TITLE_KEY = 'banks_partners';
+
+const PartnersSwiper: React.FC<PartnersSwiperProps> = ({
+  getContent: getContentProp,
+  titleKey,
+  titleClassName,
+  width,
+  height,
+  backgroundColor,
+  className = '',
+  boxClassName,
+  iconClassName,
+}) => {
+  const { getContent: internalGetContent } = useContentApi('home_page');
+  const getContent = getContentProp ?? internalGetContent;
+  const resolvedTitleKey = titleKey ?? DEFAULT_TITLE_KEY;
+  const title = getContent(resolvedTitleKey);
+
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLAnchorElement>(null);
+  const boxClass = boxClassName ?? DEFAULT_BOX_CLASS;
+  const iconClass = iconClassName ?? DEFAULT_ICON_CLASS;
+  const titleClass = titleClassName ?? '';
 
   const handleImageError = (name: string) => {
     setFailedImages((prev) => new Set(prev).add(name));
@@ -92,10 +115,18 @@ const PartnersSwiper: React.FC = () => {
     scrollRef.current.scrollBy({ left: isRtl ? -step : step, behavior: 'smooth' });
   };
 
+  const wrapperStyle: React.CSSProperties = {};
+  if (width !== undefined) wrapperStyle.width = width;
+  if (height !== undefined) wrapperStyle.height = height;
+  if (backgroundColor !== undefined) wrapperStyle.backgroundColor = backgroundColor;
+
   return (
-    <div className="relative flex flex-col gap-8 w-full text-[#e7e9ea] overflow-hidden px-0 text-[clamp(0.9rem,0.85rem+0.4vw,1.13rem)]">
-      <div className="flex items-center w-full justify-start text-left rtl:text-right font-medium text-[#e7e9ea] text-[clamp(0.9rem,0.85rem+0.35vw,1.125rem)]">
-        <span>{getContent('banks_partners')}</span>
+    <div
+      className={`relative flex flex-col gap-8 w-full text-[#e7e9ea] overflow-hidden px-0 text-[clamp(0.9rem,0.85rem+0.4vw,1.13rem)] ${className}`.trim()}
+      style={Object.keys(wrapperStyle).length > 0 ? wrapperStyle : undefined}
+    >
+      <div className={`flex items-center w-full justify-start text-left rtl:text-right font-medium text-[#e7e9ea] ${titleClass}`.trim()}>
+        <span>{title}</span>
       </div>
 
       <div className="relative w-full max-w-full mx-auto flex items-center justify-center gap-2 h-[100px] sm:h-[120px] md:h-[133px] lg:h-[145px] xl:h-[200px] w-full lg:max-w-[1128px] xl:max-w-[1504px]">
@@ -118,8 +149,8 @@ const PartnersSwiper: React.FC = () => {
                 partner={slide}
                 isFailed={failedImages.has(slide.name)}
                 onImageError={() => handleImageError(slide.name)}
-                boxClassName="w-[198px] h-[100px] sm:w-[198px] sm:h-[100px] lg:w-[198px] lg:h-[100px] xl:w-[264px] xl:h-[133px]"
-                iconClassName="w-[150px] h-[42px] sm:w-[150px] sm:h-[42px] lg:w-[150px] lg:h-[42px] xl:w-[200px] xl:h-[56px]"
+                boxClassName={boxClass}
+                iconClassName={iconClass}
                 innerRef={index === 0 ? firstCardRef : undefined}
               />
             ))}

@@ -14,6 +14,8 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       forgotPasswordLink: '#FBE54D',
       /** Yellow for file upload badge / highlighted UI (#FBE54D) */
       fileBadge: '#FBE54D',
+      /** Yellow for cooperation hero highlight (500₪) – #FBE54D */
+      cooperationHighlight: '#FBE54D',
     },
     base: {
       border: '#161616',
@@ -43,6 +45,8 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       tagBg: '#3F444D',
       /** Success card background (e.g. application received) – #2A2B31 */
       successCard: '#2A2B31',
+      /** Mortgage loans banner background – #41434E */
+      bannerBg: '#41434E',
     },
     textTheme: {
       primary: 'hsla(0, 0%, 100%, 1)',
@@ -71,7 +75,6 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
   screens: {
     xs: '375px',
     sm: '768px',
-    tablet: '890px',
     md: '1024px',
     lg: '1440px',
     xl: '1920px',

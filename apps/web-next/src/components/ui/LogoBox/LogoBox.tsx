@@ -35,7 +35,7 @@ const LogoBox: React.FC<LogoBoxProps> = ({ src, alt, href, className, loading })
 
   if (href) {
     return (
-      <Link href={href} className="cursor-pointer flex items-center rtl:justify-end">
+      <Link href={href} className="cursor-pointer flex items-center">
         {box}
       </Link>
     );

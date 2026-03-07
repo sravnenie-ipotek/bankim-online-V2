@@ -47,7 +47,7 @@ const FooterAccordion: React.FC<FooterAccordionProps> = ({ title, children }) =>
         </div>
       </div>
       <div
-        className={`flex flex-col gap-[0.8rem] transition-all duration-300 ease-in-out overflow-hidden [&>a]:block [&>a]:py-2 [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:text-[clamp(0.75rem,0.85rem+0.15vw,0.875rem)] [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:text-textTheme-primary [&>a:hover]:underline ${
+        className={`flex flex-col gap-[0.8rem] transition-all duration-300 ease-in-out overflow-hidden [&>a]:block [&>a]:py-2 [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:text-[clamp(0.75rem,1vw,0.875rem)] [&_a]:text-[clamp(0.75rem,1vw,0.875rem)] [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:text-textTheme-primary [&>a:hover]:underline ${
           opened
             ? 'opacity-100 h-auto p-6 pointer-events-auto'
             : 'opacity-0 h-0 px-6 py-0 pointer-events-none'

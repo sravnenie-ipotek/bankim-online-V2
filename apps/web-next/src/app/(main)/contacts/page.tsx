@@ -1,117 +1,68 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { CONTACT_SECTIONS, SOCIAL_LINKS } from './constants';
-import type { ContactSocialLink } from './constants';
-import type { TabId } from './interfaces/ContactSection';
+import { CONTACT_SECTIONS } from './constants/index';
+import { ContactTitleWithContacts } from './components/ContactTitleWithContacts';
 import Container from '@/components/ui/Container/Container';
+import { ContactSocial } from '@/components/ui/ContactSocial';
+import { SocialTitleLinks } from '@/components/ui/SocialTitleLinks';
 import { useContentApi } from '@hooks/useContentApi';
 import { useContentFetch } from '@/hooks/useContentFetch';
-import { trackClick } from '@/helpers/analytics';
-import { useSocialLink } from '@/hooks/useSocialLink';
+import { ContactEntriesBuilder } from './helpers/ContactEntriesBuilder';
 
-const ContactsPageSocialLinkItem: React.FC<{ link: ContactSocialLink }> = ({ link }) => {
-  const { href, onClick } = useSocialLink(link.platform);
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-12 h-12 flex items-center justify-center rounded-full bg-base-secondary hover:bg-base-base800 transition-colors"
-      aria-label={link.name}
-      onClick={(e) => {
-        onClick?.(e);
-        trackClick('contact_social', link.name);
-      }}
-    >
-      <img src={link.icon} alt={link.name} width={24} height={24} />
-    </a>
-  );
-};
-
-/**
- * Contacts page: main office address, tabbed sections (general, etc.), and social links.
- */
 const Contacts: React.FC = () => {
   useContentFetch('contacts');
   const { getContent } = useContentApi('contacts');
-  const [activeTab, setActiveTab] = useState<TabId>('general');
-
-  const activeSection = CONTACT_SECTIONS.find((s) => s.id === activeTab);
+  const { getContent: getGlobalContent } = useContentApi('global_components');
+  const { i18n } = useTranslation();
+  const direction = i18n.language?.startsWith('he') ? 'rtl' : 'ltr';
+  const contactEntries = ContactEntriesBuilder.build(CONTACT_SECTIONS, getContent);
 
   return (
     <Container>
       <div className="page-stack">
-        <h1 className="text-[clamp(1.9375rem,2rem+1vw,3rem)] font-medium text-textTheme-primary">
+        <h1 className="top-[clamp(48px,10.97vw,158px)] text-[clamp(1.9375rem,2rem+1vw,3rem)] font-medium text-textTheme-primary">
           {getContent('contacts_title')}
         </h1>
 
-        {/* Address */}
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-semibold text-textTheme-primary">
-            {getContent('contacts_main_office')}
-          </h2>
-          <p className="text-textTheme-secondary">{getContent('contacts_address')}</p>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex gap-2 flex-wrap">
-          {CONTACT_SECTIONS.map((section) => (
-            <button
-              key={section.id}
-              type="button"
-              onClick={() => setActiveTab(section.id)}
-              className={`tab-btn ${activeTab === section.id ? 'tab-btn-active' : 'tab-btn-inactive'}`}
-            >
-              {getContent(section.labelKey)}
-            </button>
-          ))}
-        </div>
-
-        {/* Active tab content */}
-        {activeSection && (
-          <div className="surface-card-p6 flex flex-col gap-4">
-            <h3 className="text-lg font-semibold text-textTheme-primary">
-              {getContent(activeSection.labelKey)}
-            </h3>
-            {activeSection.items.map((item) => {
-              const value = getContent(item.valueKey);
-              return (
-                <div key={item.valueKey} className="flex flex-col gap-1">
-                  <span className="text-sm text-textTheme-secondary">
-                    {getContent(item.labelKey)}
-                  </span>
-                  {item.type === 'phone' ? (
-                    <a
-                      href={`tel:${value}`}
-                      className="text-accent-primary hover:underline"
-                      onClick={() => trackClick('contact_phone', item.valueKey)}
-                    >
-                      {value}
-                    </a>
-                  ) : item.type === 'email' ? (
-                    <a
-                      href={`mailto:${value}`}
-                      className="text-accent-primary hover:underline"
-                      onClick={() => trackClick('contact_email', item.valueKey)}
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <span className="text-textTheme-primary">{value}</span>
-                  )}
-                </div>
-              );
-            })}
+        <div className="flex flex-col gap-[clamp(48px,7.111vh,64px)] w-full">
+          {/* Contact block: Main office + address, phone, email */}
+          <div className="mt-8 flex flex-col gap-[clamp(16px,2.222vw,32px)] box-border items-start rtl:items-start self-start rtl:self-start">
+            <h2 className="text-[clamp(1rem,2.153vw,1.9375rem)] font-semibold text-textTheme-primary text-left rtl:text-right">
+              {getContent('contacts_main_office')}
+            </h2>
+            <div className="w-full min-w-0">
+              <ContactSocial
+                getContent={getContent}
+                addressKey="contacts_address"
+                phoneKey="contacts_general_phone"
+                emailKey="contacts_general_email"
+                direction="column"
+              />
+            </div>
           </div>
-        )}
 
-        {/* Social Links */}
-        <div className="flex gap-4 mt-4">
-          {SOCIAL_LINKS.map((link) => (
-            <ContactsPageSocialLinkItem key={link.name} link={link} />
-          ))}
+          <ContactTitleWithContacts
+            title={getContent('contact_people')}
+            contacts={contactEntries}
+            direction={direction}
+          />
+
+          {/* Follow us: same container pattern as Main office */}
+          <div className="flex flex-col gap-[clamp(16px,2.222vw,32px)] box-border items-start rtl:items-start self-start rtl:self-start">
+            <h2 className="text-[clamp(1rem,2.153vw,1.9375rem)] font-semibold text-textTheme-primary text-left rtl:text-right">
+              {getGlobalContent('footer_social_follow')}
+            </h2>
+            <div className="w-full min-w-0">
+              <SocialTitleLinks
+                showTitle={false}
+                getContent={getGlobalContent}
+                className="items-start rtl:items-start"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </Container>

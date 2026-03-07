@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 import { ABOUT_FEATURES } from './constants';
 import Container from '@/components/ui/Container/Container';
+import { AboutBox } from '@/components/ui/AboutBox';
 import FeatureCard from '@/components/ui/FeatureCard/FeatureCard';
 import VideoPoster from '@/components/ui/VideoPoster/VideoPoster';
 import { useContentApi } from '@hooks/useContentApi';
@@ -13,6 +14,9 @@ import { useContentFetch } from '@/hooks/useContentFetch';
 const About: React.FC = () => {
   useContentFetch('about');
   const { getContent } = useContentApi('about');
+  const { i18n } = useTranslation();
+  const direction: 'ltr' | 'rtl' =
+    i18n.language?.startsWith('he') || i18n.language === 'iw' ? 'rtl' : 'ltr';
 
   return (
     <Container>
@@ -25,27 +29,11 @@ const About: React.FC = () => {
             {getContent('about_title')}
           </h1>
           <div className="w-full">
-            <div className="overflow-hidden bg-base-sidebarBg flex items-center justify-start py-[clamp(1rem,3vw,1.5rem)] min-h-[clamp(80px,9vw,130px)] relative rounded-[4px] w-full ps-4 pe-[10%] max-sm:flex-col max-sm:items-center max-sm:justify-center max-sm:p-[2.4375rem] max-sm:gap-[1.3125rem] max-sm:rounded-lg">
-            <Image
-              src="/static/about/about-banner-shapes.svg"
-              alt=""
-              aria-hidden
-              fill
-              sizes="(max-width: 640px) 0px, 50vw"
-              className="rtl:hidden max-sm:hidden object-contain object-right pointer-events-none"
+            <AboutBox
+              description={getContent('about_desc')}
+              variant="default"
+              direction={direction}
             />
-            <Image
-              src="/static/about/about-banner-shapes-he.svg"
-              alt=""
-              aria-hidden
-              fill
-              sizes="(max-width: 640px) 0px, 50vw"
-              className="ltr:hidden max-sm:hidden object-cover object-left pointer-events-none"
-            />
-            <p className="relative z-10 text-[clamp(14px,2.19vw,25px)] not-italic font-normal leading-[140%] text-white max-w-[48rem] text-start max-sm:w-full max-sm:max-w-full max-sm:font-inter max-sm:text-xs max-sm:leading-normal max-sm:text-center">
-              {getContent('about_desc')}
-            </p>
-          </div>
           </div>
         </div>
 

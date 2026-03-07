@@ -10,6 +10,15 @@ export class PhoneFormatHelper {
     return raw.replace(/\D/g, '');
   }
 
+  /** E.164-style digits for tel: links (Israeli 972 prefix). Same as footer phone link. */
+  static toTelDigits(raw: string): string {
+    const d = this.digitsOnly(raw);
+    if (!d) return '';
+    if (d.startsWith('972')) return d;
+    if (d.startsWith('0')) return '972' + d.slice(1);
+    return '972' + d;
+  }
+
   static formatWithDashes(digits: string): string {
     const d = this.digitsOnly(digits);
     if (d.length <= this.CITY_LEN) return d;

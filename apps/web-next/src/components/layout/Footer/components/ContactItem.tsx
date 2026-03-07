@@ -8,7 +8,7 @@ const ContactItem: React.FC<ContactItemProps> = ({ icon, href, label, forceLtr, 
   const isExternal = href.startsWith('http');
 
   return (
-    <div className="font-normal leading-[140%] text-textTheme-secondary flex gap-2 text-[clamp(0.8125rem,0.85rem+0.2vw,0.875rem)] [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:text-textTheme-primary [&>a:hover]:underline">
+    <div className="font-normal leading-[140%] text-textTheme-secondary flex gap-2 text-[clamp(0.75rem,1vw,0.875rem)] [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:text-textTheme-primary [&>a:hover]:underline">
       <Image
         alt=""
         src={icon}
