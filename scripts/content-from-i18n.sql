@@ -1655,6 +1655,58 @@ ON CONFLICT (screen_location, content_key) DO UPDATE SET
 
 INSERT INTO content_items (screen_location, content_key, component_type, is_active)
 VALUES
+('contacts', 'contact.support.title', 'text', true),
+('contacts', 'contact.general.support.title', 'text', true),
+('contacts', 'contact.phone', 'text', true),
+('contacts', 'contact.mail', 'text', true),
+('contacts', 'contact.support.phone', 'text', true),
+('contacts', 'contact.support.mail', 'text', true),
+('contacts', 'contact.support.whatsapp.phone', 'text', true),
+('contacts', 'contact.support.whatsapp.title', 'text', true),
+('contacts', 'contact.general.support.phone', 'text', true),
+('contacts', 'contact.general.support.mail', 'text', true),
+('contacts', 'contact.general.support.whatsapp.phone', 'text', true),
+('contacts', 'contact.general.support.whatsapp.title', 'text', true),
+('contacts', 'support.contact_people', 'text', true),
+('contacts', 'contact.generalinfo.title', 'text', true),
+('contacts', 'contact.generalinfo.phone', 'text', true),
+('contacts', 'contact.generalinfo.mail', 'text', true),
+('contacts', 'contact.generalinfo.whatsapp.title', 'text', true),
+('contacts', 'contact.general.info.title', 'text', true),
+('contacts', 'contact.general.info.phone', 'text', true),
+('contacts', 'contact.general.info.mail', 'text', true),
+('contacts', 'contact.general.info.whatsapp.phone', 'text', true),
+('contacts', 'contact.general.info.whatsapp.title', 'text', true),
+('contacts', 'contact.customersupport.title', 'text', true),
+('contacts', 'contact.customersupport.phone', 'text', true),
+('contacts', 'contact.customersupport.mail', 'text', true),
+('contacts', 'contact.customersupport.whatsapp.title', 'text', true),
+('contacts', 'contact.service.mashkanta.title', 'text', true),
+('contacts', 'contact.service.mashkanta.phone', 'text', true),
+('contacts', 'contact.service.mashkanta.mail', 'text', true),
+('contacts', 'contact.lown.title', 'text', true),
+('contacts', 'contact.lown.phone', 'text', true),
+('contacts', 'contact.lown.mail', 'text', true),
+('contacts', 'contact.service.lown.title', 'text', true),
+('contacts', 'contact.service.lown.phone', 'text', true),
+('contacts', 'contact.service.lown.mail', 'text', true),
+('contacts', 'contact.realestate.title', 'text', true),
+('contacts', 'contact.realestate.phone', 'text', true),
+('contacts', 'contact.realestate.mail', 'text', true),
+('contacts', 'contact.service.realestate.rental.title', 'text', true),
+('contacts', 'contact.service.realestate.rental.phone', 'text', true),
+('contacts', 'contact.service.realestate.rental.mail', 'text', true),
+('contacts', 'contact.cooperation.cooperationmanagement.title', 'text', true),
+('contacts', 'contact.cooperation.cooperationmanagement.phone', 'text', true),
+('contacts', 'contact.cooperation.cooperationmanagement.mail', 'text', true),
+('contacts', 'contact.cooperation.management.title', 'text', true),
+('contacts', 'contact.cooperation.management.phone', 'text', true),
+('contacts', 'contact.cooperation.management.mail', 'text', true),
+('contacts', 'contact.cooperation.accounting.title', 'text', true),
+('contacts', 'contact.cooperation.accounting.phone', 'text', true),
+('contacts', 'contact.cooperation.accounting.mail', 'text', true),
+('contacts', 'contact.cooperation.faxnumber.title', 'text', true),
+('contacts', 'contact.cooperation.faxnumber.phone', 'text', true),
 ('contacts', 'contacts_section', 'text', true),
 ('cooperation', 'cooperation_about_description_1', 'text', true),
 ('cooperation', 'cooperation_about_description_2', 'text', true),
@@ -1687,16 +1739,23 @@ VALUES
 ('cooperation', 'cooperation_steps_title', 'text', true),
 ('cooperation', 'cooperation_subtitle', 'text', true),
 ('cooperation', 'cooperation_title', 'text', true),
-('cooperation', 'feature_credit_calc', 'text', true),
-('cooperation', 'feature_credit_refinance', 'text', true),
-('cooperation', 'feature_mortgage_calc', 'text', true),
-('cooperation', 'feature_mortgage_refinance', 'text', true),
-('cooperation', 'marketplace_description', 'text', true),
-('cooperation', 'marketplace_title', 'text', true),
-('cooperation', 'one_click_mortgage', 'text', true),
-('cooperation', 'referral_description', 'text', true),
-('cooperation', 'referral_title', 'text', true),
-('cooperation', 'register_partner_program', 'text', true),
+('cooperation', 'cooperation_feature_credit_calc', 'text', true),
+('cooperation', 'cooperation_feature_credit_refinance', 'text', true),
+('cooperation', 'cooperation_feature_mortgage_calc', 'text', true),
+('cooperation', 'cooperation_feature_mortgage_refinance', 'text', true),
+('cooperation', 'cooperation_market_bankimonline_description', 'text', true),
+('cooperation', 'cooperation_market_bankimonline_title', 'text', true),
+('cooperation', 'cooperation_marketplace_description', 'text', true),
+('cooperation', 'cooperation_marketplace_title', 'text', true),
+('cooperation', 'cooperation_mortgage_loans_banner', 'text', true),
+('cooperation', 'cooperation_one_click_mortgage', 'text', true),
+('cooperation', 'cooperation_referral_description', 'text', true),
+('cooperation', 'cooperation_referral_title', 'text', true),
+('cooperation', 'cooperation_register_partner_program', 'text', true),
+('cooperation', 'cooperation_bullet_mortgage_calc', 'text', true),
+('cooperation', 'cooperation_bullet_loan_calc', 'text', true),
+('cooperation', 'cooperation_bullet_3', 'text', true),
+('cooperation', 'cooperation_bullet_4', 'text', true),
 ('legal', 'cookie_accept', 'text', true),
 ('legal', 'cookie_learn_more', 'text', true),
 ('legal', 'cookie_message', 'text', true),
@@ -1995,7 +2054,13 @@ VALUES
 ('vacancies', 'vacancyDetail.applicationForm.resumeUpload', 'text', true),
 ('vacancies', 'vacancyDetail.applicationForm.resumeUploadText', 'text', true),
 ('vacancies', 'vacancyDetail.applicationForm.resumeFormats', 'text', true),
-('vacancies', 'vacancies', 'text', true),
+('vacancies', 'vacancies', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('global_components', 'accept_conditions_login', 'text', true),
 ('global_components', 'accept_cookie', 'text', true),
 ('global_components', 'shared_component_cookie_accept_button', 'text', true),
@@ -2054,13 +2119,7 @@ VALUES
 ('global_components', 'bank_partner_create_password', 'text', true),
 ('global_components', 'bank_partner_full_name', 'text', true),
 ('global_components', 'bank_partner_full_name_placeholder', 'text', true),
-('global_components', 'bank_partner_password', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('global_components', 'bank_partner_password', 'text', true),
 ('global_components', 'bank_partner_password_placeholder', 'text', true),
 ('global_components', 'bank_partner_password_step', 'text', true),
 ('global_components', 'bank_partner_position', 'text', true),
@@ -2401,7 +2460,13 @@ VALUES
 ('global_components', 'calculate_mortgage_step2_title', 'text', true),
 ('global_components', 'calculate_mortgage_step3_ctx', 'text', true),
 ('global_components', 'calculate_mortgage_step3_title', 'text', true),
-('global_components', 'calculate_mortgage_stere', 'text', true),
+('global_components', 'calculate_mortgage_stere', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('global_components', 'calculate_mortgage_tax', 'text', true),
 ('global_components', 'calculate_mortgage_title', 'text', true),
 ('global_components', 'calculate_mortgage_type', 'text', true),
@@ -2460,13 +2525,7 @@ VALUES
 ('global_components', 'contact_form_submit', 'text', true),
 ('global_components', 'contact_form_success_message', 'text', true),
 ('global_components', 'contact_form_success_title', 'text', true),
-('global_components', 'contact_us', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('global_components', 'contact_us', 'text', true),
 ('global_components', 'continue', 'text', true),
 ('global_components', 'cookie', 'text', true),
 ('global_components', 'countries', 'text', true),
@@ -2807,7 +2866,13 @@ VALUES
 ('global_components', 'lawyers_step_4_title', 'text', true),
 ('global_components', 'lawyers_step_5_desc', 'text', true),
 ('global_components', 'lawyers_step_5_title', 'text', true),
-('global_components', 'lawyers_steps_title', 'text', true),
+('global_components', 'lawyers_steps_title', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('global_components', 'list_credits_title', 'text', true),
 ('global_components', 'loading', 'text', true),
 ('global_components', 'location', 'text', true),
@@ -2866,13 +2931,7 @@ VALUES
 ('global_components', 'name_min_length', 'text', true),
 ('global_components', 'name_placeholder', 'text', true),
 ('global_components', 'name_required', 'text', true),
-('global_components', 'name_surname_login', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('global_components', 'name_surname_login', 'text', true),
 ('global_components', 'nav_chat', 'text', true),
 ('global_components', 'nav_documents', 'text', true),
 ('global_components', 'nav_home', 'text', true),
@@ -3213,7 +3272,13 @@ VALUES
 ('global_components', '__MIGRATED_mortgage_credit_why', 'text', true),
 ('global_components', '__MIGRATED_credit_refinance_why_ph', 'text', true),
 ('global_components', '__MIGRATED_calculate_credit_why_option_1', 'text', true),
-('global_components', '__MIGRATED_calculate_credit_why_option_2', 'text', true),
+('global_components', '__MIGRATED_calculate_credit_why_option_2', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('global_components', '__MIGRATED_calculate_credit_why_option_3', 'text', true),
 ('global_components', '__MIGRATED_calculate_credit_why_option_4', 'text', true),
 ('global_components', '__MIGRATED_list_credits_title', 'text', true),
@@ -3272,13 +3337,7 @@ VALUES
 ('global_components', 'professions.nurse', 'text', true),
 ('global_components', 'professions.dentist', 'text', true),
 ('global_components', 'professions.architect', 'text', true),
-('global_components', 'professions.designer', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('global_components', 'professions.designer', 'text', true),
 ('global_components', 'app.refinance.step1.why_label', 'text', true),
 ('global_components', 'app.refinance.step1.property_type_label', 'text', true),
 ('global_components', 'app.refinance.step1.registered_label', 'text', true),
@@ -3619,7 +3678,13 @@ VALUES
 ('home_page', 'bank_worker_validation_bank_number_min', 'text', true),
 ('home_page', 'bank_worker_validation_bank_number_required', 'text', true),
 ('home_page', 'bank_worker_validation_bank_required', 'text', true),
-('home_page', 'bank_worker_validation_branch_required', 'text', true),
+('home_page', 'bank_worker_validation_branch_required', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('home_page', 'bank_worker_validation_email_invalid', 'text', true),
 ('home_page', 'bank_worker_validation_email_required', 'text', true),
 ('home_page', 'bank_worker_validation_name_max', 'text', true),
@@ -3678,13 +3743,7 @@ VALUES
 ('home_page', 'broker_questionnaire_error_agreement', 'text', true),
 ('home_page', 'broker_questionnaire_error_comments_max', 'text', true),
 ('home_page', 'broker_questionnaire_error_email_invalid', 'text', true),
-('home_page', 'broker_questionnaire_error_name_format', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('home_page', 'broker_questionnaire_error_name_format', 'text', true),
 ('home_page', 'broker_questionnaire_error_name_max', 'text', true),
 ('home_page', 'broker_questionnaire_error_name_min', 'text', true),
 ('home_page', 'broker_questionnaire_error_number_format', 'text', true),
@@ -4025,7 +4084,13 @@ VALUES
 ('home_page', 'enter', 'text', true),
 ('home_page', 'enter_account_number', 'text', true),
 ('home_page', 'enter_account_owner', 'text', true),
-('home_page', 'enter_bankimonline', 'text', true),
+('home_page', 'enter_bankimonline', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('home_page', 'enter_email', 'text', true),
 ('home_page', 'enter_mortgage_info', 'text', true),
 ('home_page', 'enter_password', 'text', true),
@@ -4084,13 +4149,7 @@ VALUES
 ('home_page', 'error_property_value_required', 'text', true),
 ('home_page', 'error_public_person_required', 'text', true),
 ('home_page', 'error_quantity_borrowers', 'text', true),
-('home_page', 'error_refinance_balance_greater_than_property', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('home_page', 'error_refinance_balance_greater_than_property', 'text', true),
 ('home_page', 'error_refinance_bank_required', 'text', true),
 ('home_page', 'error_refinance_mortgage_balance_mismatch', 'text', true),
 ('home_page', 'error_refinance_property_less_than_balance', 'text', true),
@@ -4431,7 +4490,13 @@ VALUES
 ('home_page', 'phone_invalid', 'text', true),
 ('home_page', 'phone_number', 'text', true),
 ('home_page', 'phone_placeholder', 'text', true),
-('home_page', 'phone_required', 'text', true),
+('home_page', 'phone_required', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('home_page', 'place_borrowers', 'text', true),
 ('home_page', 'plat', 'text', true),
 ('home_page', 'policy', 'text', true),
@@ -4490,13 +4555,7 @@ VALUES
 ('home_page', 'registration.fields.fullName.tooltip', 'text', true),
 ('home_page', 'registration.fields.position.label', 'text', true),
 ('home_page', 'registration.fields.position.placeholder', 'text', true),
-('home_page', 'registration.fields.position.tooltip', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('home_page', 'registration.fields.position.tooltip', 'text', true),
 ('home_page', 'registration.fields.branch.label', 'text', true),
 ('home_page', 'registration.fields.branch.placeholder', 'text', true),
 ('home_page', 'registration.fields.branch.tooltip', 'text', true),
@@ -4837,7 +4896,13 @@ VALUES
 ('home_page', 'refinance_step3_monthly_income_hint', 'text', true),
 ('home_page', 'refinance_step3_company_name', 'text', true),
 ('home_page', 'refinance_step3_profession', 'text', true),
-('home_page', 'refinance_step3_profession_ph', 'text', true),
+('home_page', 'refinance_step3_profession_ph', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('home_page', 'refinance_step3_field_activity', 'text', true),
 ('home_page', 'refinance_step3_start_date', 'text', true),
 ('home_page', 'refinance_step3_additional_income', 'text', true),
@@ -4896,13 +4961,7 @@ VALUES
 ('home_page', 'credit_step2_family_status_option_1', 'text', true),
 ('home_page', 'credit_step2_family_status_option_2', 'text', true),
 ('home_page', 'credit_step2_family_status_option_3', 'text', true),
-('home_page', 'credit_step2_family_status_option_4', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('home_page', 'credit_step2_family_status_option_4', 'text', true),
 ('home_page', 'credit_step2_family_status_option_5', 'text', true),
 ('home_page', 'credit_step2_family_status_option_6', 'text', true),
 ('home_page', 'credit_step2_id_number', 'text', true),
@@ -5243,7 +5302,13 @@ VALUES
 ('mortgage_step1', 'button_submit', 'text', true),
 ('mortgage_step1', 'calc_mortgage_subtext_1500,000', 'text', true),
 ('mortgage_step1', 'calc_mortgage_subtext_350', 'text', true),
-('mortgage_step1', 'calc_mortrage_subtext_1', 'text', true),
+('mortgage_step1', 'calc_mortrage_subtext_1', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step1', 'calc_mortrage_subtext_1500,000', 'text', true),
 ('mortgage_step1', 'calc_mortrage_subtext_3', 'text', true),
 ('mortgage_step1', 'calculate_amount', 'text', true),
@@ -5302,13 +5367,7 @@ VALUES
 ('mortgage_step1', 'calculate_mortgage_banner_subtext', 'text', true),
 ('mortgage_step1', 'calculate_mortgage_birth_date', 'text', true),
 ('mortgage_step1', 'calculate_mortgage_borrowers', 'text', true),
-('mortgage_step1', 'calculate_mortgage_calculator', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step1', 'calculate_mortgage_calculator', 'text', true),
 ('mortgage_step1', 'calculate_mortgage_children18', 'text', true),
 ('mortgage_step1', 'calculate_mortgage_citizenship', 'text', true),
 ('mortgage_step1', 'calculate_mortgage_citizenship_ph', 'text', true),
@@ -5649,7 +5708,13 @@ VALUES
 ('mortgage_step1', 'footer_social_follow', 'text', true),
 ('mortgage_step1', 'footer_support', 'text', true),
 ('mortgage_step1', 'footer_tenders_brokers', 'text', true),
-('mortgage_step1', 'footer_tenders_lawyers', 'text', true),
+('mortgage_step1', 'footer_tenders_lawyers', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step1', 'footer_terms', 'text', true),
 ('mortgage_step1', 'footer_user_agreement', 'text', true),
 ('mortgage_step1', 'footer_vacancies', 'text', true),
@@ -5708,13 +5773,7 @@ VALUES
 ('mortgage_step1', 'franchise_partnership_description', 'text', true),
 ('mortgage_step1', 'franchise_partnership_service_buy', 'text', true),
 ('mortgage_step1', 'franchise_partnership_service_lease', 'text', true),
-('mortgage_step1', 'franchise_partnership_service_rent', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step1', 'franchise_partnership_service_rent', 'text', true),
 ('mortgage_step1', 'franchise_partnership_service_sell', 'text', true),
 ('mortgage_step1', 'franchise_partnership_title', 'text', true),
 ('mortgage_step1', 'franchise_pricing_cta', 'text', true),
@@ -6055,7 +6114,13 @@ VALUES
 ('mortgage_step1', 'sidebar_company_6', 'text', true),
 ('mortgage_step1', 'real_estate_brokerage_title', 'text', true),
 ('mortgage_step1', 'real_estate_brokerage_subtitle', 'text', true),
-('mortgage_step1', 'franchise_about_title', 'text', true),
+('mortgage_step1', 'franchise_about_title', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step1', 'franchise_about_text', 'text', true),
 ('mortgage_step1', 'franchise_benefits_title', 'text', true),
 ('mortgage_step1', 'franchise_benefit_1', 'text', true),
@@ -6114,13 +6179,7 @@ VALUES
 ('mortgage_step1', 'table_date', 'text', true),
 ('mortgage_step1', 'table_service', 'text', true),
 ('mortgage_step1', 'table_status', 'text', true),
-('mortgage_step1', 'table_transaction_id', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step1', 'table_transaction_id', 'text', true),
 ('mortgage_step1', 'technical_support', 'text', true),
 ('mortgage_step1', 'tenders_about_desc', 'text', true),
 ('mortgage_step1', 'tenders_about_title', 'text', true),
@@ -6461,7 +6520,13 @@ VALUES
 ('mortgage_step1', 'refinance_results_savings_title', 'text', true),
 ('mortgage_step1', 'refinance_results_monthly_savings', 'text', true),
 ('mortgage_step1', 'refinance_results_total_savings', 'text', true),
-('mortgage_step1', 'refinance_results_new_rate', 'text', true),
+('mortgage_step1', 'refinance_results_new_rate', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step1', 'refinance_results_current_rate', 'text', true),
 ('mortgage_step1', 'refinance_results_break_even', 'text', true),
 ('mortgage_step1', 'refinance_results_recommendation', 'text', true),
@@ -6520,13 +6585,7 @@ VALUES
 ('mortgage_step1', 'uk', 'text', true),
 ('mortgage_step1', 'uk_english', 'text', true),
 ('mortgage_step1', 'upload_report_subtitle', 'text', true),
-('mortgage_step1', 'upload_report_title', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step1', 'upload_report_title', 'text', true),
 ('mortgage_step1', 'usa', 'text', true),
 ('mortgage_step1', 'usa_english', 'text', true),
 ('mortgage_step1', 'write_to_admin', 'text', true),
@@ -6867,7 +6926,13 @@ VALUES
 ('mortgage_step2', 'calculate_mortgage_has_additional_option_3', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_has_additional_option_4', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_has_additional_option_5', 'text', true),
-('mortgage_step2', 'calculate_mortgage_has_additional_option_6', 'text', true),
+('mortgage_step2', 'calculate_mortgage_has_additional_option_6', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step2', 'calculate_mortgage_has_additional_option_7', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_has_additional_ph', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_how_much_childrens', 'text', true),
@@ -6926,13 +6991,7 @@ VALUES
 ('mortgage_step2', 'calculate_mortgage_sphere_option_8', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_sphere_option_9', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_start_date', 'text', true),
-('mortgage_step2', 'calculate_mortgage_step2_title', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step2', 'calculate_mortgage_step2_title', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_step3_ctx', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_step3_title', 'text', true),
 ('mortgage_step2', 'calculate_mortgage_stere', 'text', true),
@@ -7273,7 +7332,13 @@ VALUES
 ('mortgage_step2', 'language_russian', 'text', true),
 ('mortgage_step2', 'last_name', 'text', true),
 ('mortgage_step2', 'lawyer_success_button', 'text', true),
-('mortgage_step2', 'lawyer_success_message', 'text', true),
+('mortgage_step2', 'lawyer_success_message', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step2', 'lawyer_success_title', 'text', true),
 ('mortgage_step2', 'lawyers_about_button', 'text', true),
 ('mortgage_step2', 'lawyers_about_description', 'text', true),
@@ -7332,13 +7397,7 @@ VALUES
 ('mortgage_step2', 'lawyers_step_3_desc', 'text', true),
 ('mortgage_step2', 'lawyers_step_3_title', 'text', true),
 ('mortgage_step2', 'lawyers_step_4_desc', 'text', true),
-('mortgage_step2', 'lawyers_step_4_title', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step2', 'lawyers_step_4_title', 'text', true),
 ('mortgage_step2', 'lawyers_step_5_desc', 'text', true),
 ('mortgage_step2', 'lawyers_step_5_title', 'text', true),
 ('mortgage_step2', 'lawyers_steps_title', 'text', true),
@@ -7679,7 +7738,13 @@ VALUES
 ('mortgage_step2', 'tenders_step2_desc', 'text', true),
 ('mortgage_step2', 'tenders_step2_title', 'text', true),
 ('mortgage_step2', 'tenders_step3', 'text', true),
-('mortgage_step2', 'tenders_step3_desc', 'text', true),
+('mortgage_step2', 'tenders_step3_desc', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step2', 'tenders_step3_title', 'text', true),
 ('mortgage_step2', 'tenders_step4', 'text', true),
 ('mortgage_step2', 'tenders_step4_desc', 'text', true),
@@ -7738,13 +7803,7 @@ VALUES
 ('mortgage_step2', 'common_button_submit', 'text', true),
 ('mortgage_step2', '__MIGRATED_credit_refinance_title', 'text', true),
 ('mortgage_step2', '__MIGRATED_credit_refinance_banner_subtext', 'text', true),
-('mortgage_step2', '__MIGRATED_mortgage_credit_why', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step2', '__MIGRATED_mortgage_credit_why', 'text', true),
 ('mortgage_step2', '__MIGRATED_credit_refinance_why_ph', 'text', true),
 ('mortgage_step2', '__MIGRATED_calculate_credit_why_option_1', 'text', true),
 ('mortgage_step2', '__MIGRATED_calculate_credit_why_option_2', 'text', true),
@@ -8085,7 +8144,13 @@ VALUES
 ('mortgage_step3', 'bank_offers_credit_total', 'text', true),
 ('mortgage_step3', 'bank_partner_accept_terms', 'text', true),
 ('mortgage_step3', 'bank_partner_already_registered', 'text', true),
-('mortgage_step3', 'bank_partner_complete_registration', 'text', true),
+('mortgage_step3', 'bank_partner_complete_registration', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step3', 'bank_partner_confirm_password', 'text', true),
 ('mortgage_step3', 'bank_partner_confirm_password_placeholder', 'text', true),
 ('mortgage_step3', 'bank_partner_create_password', 'text', true),
@@ -8144,13 +8209,7 @@ VALUES
 ('mortgage_step3', 'bank_worker_validation_email_invalid', 'text', true),
 ('mortgage_step3', 'bank_worker_validation_email_required', 'text', true),
 ('mortgage_step3', 'bank_worker_validation_name_max', 'text', true),
-('mortgage_step3', 'bank_worker_validation_name_min', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step3', 'bank_worker_validation_name_min', 'text', true),
 ('mortgage_step3', 'bank_worker_validation_name_required', 'text', true),
 ('mortgage_step3', 'bank_worker_validation_password_lowercase', 'text', true),
 ('mortgage_step3', 'bank_worker_validation_password_match', 'text', true),
@@ -8491,7 +8550,13 @@ VALUES
 ('mortgage_step3', 'contact_form_name_required', 'text', true),
 ('mortgage_step3', 'contact_form_phone', 'text', true),
 ('mortgage_step3', 'contact_form_phone_placeholder', 'text', true),
-('mortgage_step3', 'contact_form_phone_required', 'text', true),
+('mortgage_step3', 'contact_form_phone_required', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step3', 'contact_form_send_another', 'text', true),
 ('mortgage_step3', 'contact_form_sending', 'text', true),
 ('mortgage_step3', 'contact_form_submit', 'text', true),
@@ -8550,13 +8615,7 @@ VALUES
 ('mortgage_step3', 'enter_email', 'text', true),
 ('mortgage_step3', 'enter_mortgage_info', 'text', true),
 ('mortgage_step3', 'enter_password', 'text', true),
-('mortgage_step3', 'enter_phone_number', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step3', 'enter_phone_number', 'text', true),
 ('mortgage_step3', 'enter_phone_number_login', 'text', true),
 ('mortgage_step3', 'enter_work_address', 'text', true),
 ('mortgage_step3', 'error', 'text', true),
@@ -8897,7 +8956,13 @@ VALUES
 ('mortgage_step3', 'mortgage_select_bank', 'text', true),
 ('mortgage_step3', 'mortgage_term', 'text', true),
 ('mortgage_step3', 'mortgage_total', 'text', true),
-('mortgage_step3', 'mortgage_total_return', 'text', true),
+('mortgage_step3', 'mortgage_total_return', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step3', 'my_application', 'text', true),
 ('mortgage_step3', 'name_letters_only', 'text', true),
 ('mortgage_step3', 'name_min_length', 'text', true),
@@ -8956,13 +9021,7 @@ VALUES
 ('mortgage_step3', 'place_borrowers', 'text', true),
 ('mortgage_step3', 'plat', 'text', true),
 ('mortgage_step3', 'policy', 'text', true),
-('mortgage_step3', 'preliminary_selected_program', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step3', 'preliminary_selected_program', 'text', true),
 ('mortgage_step3', 'press_register', 'text', true),
 ('mortgage_step3', 'price', 'text', true),
 ('mortgage_step3', 'privacy_policy', 'text', true),
@@ -9303,7 +9362,13 @@ VALUES
 ('mortgage_step3', 'professions.teacher', 'text', true),
 ('mortgage_step3', 'professions.lawyer', 'text', true),
 ('mortgage_step3', 'professions.accountant', 'text', true),
-('mortgage_step3', 'professions.manager', 'text', true),
+('mortgage_step3', 'professions.manager', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step3', 'professions.sales', 'text', true),
 ('mortgage_step3', 'professions.developer', 'text', true),
 ('mortgage_step3', 'professions.nurse', 'text', true),
@@ -9362,13 +9427,7 @@ VALUES
 ('mortgage_step3', 'refinance_step3_field_activity', 'text', true),
 ('mortgage_step3', 'refinance_step3_start_date', 'text', true),
 ('mortgage_step3', 'refinance_step3_additional_income', 'text', true),
-('mortgage_step3', 'refinance_step3_additional_income_ph', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step3', 'refinance_step3_additional_income_ph', 'text', true),
 ('mortgage_step3', 'refinance_step3_additional_income_option_1', 'text', true),
 ('mortgage_step3', 'refinance_step3_additional_income_option_2', 'text', true),
 ('mortgage_step3', 'refinance_step3_additional_income_option_3', 'text', true),
@@ -9709,7 +9768,13 @@ VALUES
 ('mortgage_step4', 'broker_questionnaire_error_comments_max', 'text', true),
 ('mortgage_step4', 'broker_questionnaire_error_email_invalid', 'text', true),
 ('mortgage_step4', 'broker_questionnaire_error_name_format', 'text', true),
-('mortgage_step4', 'broker_questionnaire_error_name_max', 'text', true),
+('mortgage_step4', 'broker_questionnaire_error_name_max', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step4', 'broker_questionnaire_error_name_min', 'text', true),
 ('mortgage_step4', 'broker_questionnaire_error_number_format', 'text', true),
 ('mortgage_step4', 'broker_questionnaire_error_phone_format', 'text', true),
@@ -9768,13 +9833,7 @@ VALUES
 ('mortgage_step4', 'calc_mortrage_subtext_1500,000', 'text', true),
 ('mortgage_step4', 'calc_mortrage_subtext_3', 'text', true),
 ('mortgage_step4', 'calculate_amount', 'text', true),
-('mortgage_step4', 'calculate_credit', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step4', 'calculate_credit', 'text', true),
 ('mortgage_step4', 'calculate_credit_amount', 'text', true),
 ('mortgage_step4', 'calculate_credit_amount_ph', 'text', true),
 ('mortgage_step4', 'calculate_credit_banner_subtitle', 'text', true),
@@ -10115,7 +10174,13 @@ VALUES
 ('mortgage_step4', 'error_public_person_required', 'text', true),
 ('mortgage_step4', 'error_quantity_borrowers', 'text', true),
 ('mortgage_step4', 'error_refinance_balance_greater_than_property', 'text', true),
-('mortgage_step4', 'error_refinance_bank_required', 'text', true),
+('mortgage_step4', 'error_refinance_bank_required', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step4', 'error_refinance_mortgage_balance_mismatch', 'text', true),
 ('mortgage_step4', 'error_refinance_property_less_than_balance', 'text', true),
 ('mortgage_step4', 'error_refinance_registered_required', 'text', true),
@@ -10174,13 +10239,7 @@ VALUES
 ('mortgage_step4', 'footer_terms', 'text', true),
 ('mortgage_step4', 'footer_user_agreement', 'text', true),
 ('mortgage_step4', 'footer_vacancies', 'text', true),
-('mortgage_step4', 'footer_vacancy', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step4', 'footer_vacancy', 'text', true),
 ('mortgage_step4', 'footer_writeus', 'text', true),
 ('mortgage_step4', 'footer_social_tooltip_instagram', 'text', true),
 ('mortgage_step4', 'footer_social_tooltip_youtube', 'text', true),
@@ -10521,7 +10580,13 @@ VALUES
 ('mortgage_step4', 'registration.fields.position.label', 'text', true),
 ('mortgage_step4', 'registration.fields.position.placeholder', 'text', true),
 ('mortgage_step4', 'registration.fields.position.tooltip', 'text', true),
-('mortgage_step4', 'registration.fields.branch.label', 'text', true),
+('mortgage_step4', 'registration.fields.branch.label', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step4', 'registration.fields.branch.placeholder', 'text', true),
 ('mortgage_step4', 'registration.fields.branch.tooltip', 'text', true),
 ('mortgage_step4', 'registration.fields.bankNumber.label', 'text', true),
@@ -10580,13 +10645,7 @@ VALUES
 ('mortgage_step4', 'franchise_about_text', 'text', true),
 ('mortgage_step4', 'franchise_benefits_title', 'text', true),
 ('mortgage_step4', 'franchise_benefit_1', 'text', true),
-('mortgage_step4', 'franchise_benefit_2', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step4', 'franchise_benefit_2', 'text', true),
 ('mortgage_step4', 'franchise_benefit_3', 'text', true),
 ('mortgage_step4', 'franchise_benefit_4', 'text', true),
 ('mortgage_step4', 'franchise_cta_title', 'text', true),
@@ -10927,7 +10986,13 @@ VALUES
 ('mortgage_step4', 'credit_step2_family_status_option_2', 'text', true),
 ('mortgage_step4', 'credit_step2_family_status_option_3', 'text', true),
 ('mortgage_step4', 'credit_step2_family_status_option_4', 'text', true),
-('mortgage_step4', 'credit_step2_family_status_option_5', 'text', true),
+('mortgage_step4', 'credit_step2_family_status_option_5', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_step4', 'credit_step2_family_status_option_6', 'text', true),
 ('mortgage_step4', 'credit_step2_id_number', 'text', true),
 ('mortgage_step4', 'credit_step2_id_number_ph', 'text', true),
@@ -10986,13 +11051,7 @@ VALUES
 ('mortgage_step4', 'refinance_results_current_rate', 'text', true),
 ('mortgage_step4', 'refinance_results_break_even', 'text', true),
 ('mortgage_step4', 'refinance_results_recommendation', 'text', true),
-('mortgage_step4', 'refinance_results_apply_button', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_step4', 'refinance_results_apply_button', 'text', true),
 ('mortgage_step4', 'refinance_results_compare_button', 'text', true),
 ('mortgage_step4', '_comment_credit_results', 'text', true),
 ('mortgage_step4', 'credit_results_title', 'text', true),
@@ -11333,7 +11392,13 @@ VALUES
 ('mortgage_calculation', 'calculate_mortgage_birth_date', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_borrowers', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_calculator', 'text', true),
-('mortgage_calculation', 'calculate_mortgage_children18', 'text', true),
+('mortgage_calculation', 'calculate_mortgage_children18', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_calculation', 'calculate_mortgage_citizenship', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_citizenship_ph', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_citizenship_title', 'text', true),
@@ -11392,13 +11457,7 @@ VALUES
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_7', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_has_additional_ph', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_how_much_childrens', 'text', true),
-('mortgage_calculation', 'calculate_mortgage_income', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_calculation', 'calculate_mortgage_income', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_initial_fee', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_initial_payment', 'text', true),
 ('mortgage_calculation', 'calculate_mortgage_is_foreigner', 'text', true),
@@ -11739,7 +11798,13 @@ VALUES
 ('mortgage_calculation', 'franchise_partnership_service_buy', 'text', true),
 ('mortgage_calculation', 'franchise_partnership_service_lease', 'text', true),
 ('mortgage_calculation', 'franchise_partnership_service_rent', 'text', true),
-('mortgage_calculation', 'franchise_partnership_service_sell', 'text', true),
+('mortgage_calculation', 'franchise_partnership_service_sell', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_calculation', 'franchise_partnership_title', 'text', true),
 ('mortgage_calculation', 'franchise_pricing_cta', 'text', true),
 ('mortgage_calculation', 'franchise_pricing_income', 'text', true),
@@ -11798,13 +11863,7 @@ VALUES
 ('mortgage_calculation', 'lawyer_success_title', 'text', true),
 ('mortgage_calculation', 'lawyers_about_button', 'text', true),
 ('mortgage_calculation', 'lawyers_about_description', 'text', true),
-('mortgage_calculation', 'lawyers_about_title', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_calculation', 'lawyers_about_title', 'text', true),
 ('mortgage_calculation', 'lawyers_advantage_client_management', 'text', true),
 ('mortgage_calculation', 'lawyers_advantage_digital_crm', 'text', true),
 ('mortgage_calculation', 'lawyers_advantage_digital_marketing', 'text', true),
@@ -12145,7 +12204,13 @@ VALUES
 ('mortgage_calculation', 'table_service', 'text', true),
 ('mortgage_calculation', 'table_status', 'text', true),
 ('mortgage_calculation', 'table_transaction_id', 'text', true),
-('mortgage_calculation', 'technical_support', 'text', true),
+('mortgage_calculation', 'technical_support', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_calculation', 'tenders_about_desc', 'text', true),
 ('mortgage_calculation', 'tenders_about_title', 'text', true),
 ('mortgage_calculation', 'tenders_clients_subtitle', 'text', true),
@@ -12204,13 +12269,7 @@ VALUES
 ('mortgage_calculation', 'tenders_step3_title', 'text', true),
 ('mortgage_calculation', 'tenders_step4', 'text', true),
 ('mortgage_calculation', 'tenders_step4_desc', 'text', true),
-('mortgage_calculation', 'tenders_step4_title', 'text', true)
-ON CONFLICT (screen_location, content_key) DO UPDATE SET
-  updated_at = NOW(),
-  is_active = true;
-
-INSERT INTO content_items (screen_location, content_key, component_type, is_active)
-VALUES
+('mortgage_calculation', 'tenders_step4_title', 'text', true),
 ('mortgage_calculation', 'tenders_step5', 'text', true),
 ('mortgage_calculation', 'tenders_step5_desc', 'text', true),
 ('mortgage_calculation', 'tenders_step5_title', 'text', true),
@@ -12551,7 +12610,13 @@ VALUES
 ('mortgage_calculation', 'uk_english', 'text', true),
 ('mortgage_calculation', 'upload_report_subtitle', 'text', true),
 ('mortgage_calculation', 'upload_report_title', 'text', true),
-('mortgage_calculation', 'usa', 'text', true),
+('mortgage_calculation', 'usa', 'text', true)
+ON CONFLICT (screen_location, content_key) DO UPDATE SET
+  updated_at = NOW(),
+  is_active = true;
+
+INSERT INTO content_items (screen_location, content_key, component_type, is_active)
+VALUES
 ('mortgage_calculation', 'usa_english', 'text', true),
 ('mortgage_calculation', 'write_to_admin', 'text', true),
 ('mortgage_step1', 'TITLE_COMPARE', 'text', true),
@@ -14392,9 +14457,9 @@ FROM (VALUES
 ('common', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('common', 'footer_return_policy', 'en', 'Return policy'),
 ('common', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('common', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('common', 'footer_social_follow', 'en', 'Follow us'),
-('common', 'footer_social_follow', 'ru', 'Следите за нами'),
+('common', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('common', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('common', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('common', 'footer_support', 'he', 'תמיכה טכנית'),
 ('common', 'footer_support', 'en', 'Technical support'),
 ('common', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -16747,7 +16812,7 @@ FROM (VALUES
 ('contacts', 'contacts_login_cabinet', 'he', 'כניסה לחשבון'),
 ('contacts', 'contacts_login_cabinet', 'en', 'Login to Account'),
 ('contacts', 'contacts_login_cabinet', 'ru', 'Вход в личный кабинет'),
-('contacts', 'contacts_main_office', 'he', 'המשרד הראשי'),
+('contacts', 'contacts_main_office', 'he', 'משרד ראשי'),
 ('contacts', 'contacts_main_office', 'en', 'Main office'),
 ('contacts', 'contacts_main_office', 'ru', 'Главный офис'),
 ('contacts', 'contacts_management', 'he', 'הנהלה'),
@@ -16881,6 +16946,162 @@ FROM (VALUES
 ('contacts', 'contacts_working_hours', 'he', 'שעות פעילות: א''-ה'' 09:00-18:00'),
 ('contacts', 'contacts_working_hours', 'en', 'Business Hours: Mon-Fri 09:00-18:00'),
 ('contacts', 'contacts_working_hours', 'ru', 'Часы работы: Пн-Пт 09:00-18:00'),
+('contacts', 'contact.support.title', 'he', 'תמיכה'),
+('contacts', 'contact.support.title', 'en', 'Support'),
+('contacts', 'contact.support.title', 'ru', 'Техподдержка'),
+('contacts', 'contact.general.support.title', 'he', 'תמיכה'),
+('contacts', 'contact.general.support.title', 'en', 'Support'),
+('contacts', 'contact.general.support.title', 'ru', 'Техподдержка'),
+('contacts', 'contact.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.mail', 'he', 'support@bankimonline.com'),
+('contacts', 'contact.mail', 'en', 'support@bankimonline.com'),
+('contacts', 'contact.mail', 'ru', 'support@bankimonline.com'),
+('contacts', 'contact.support.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.support.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.support.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.support.mail', 'he', 'support@bankimonline.com'),
+('contacts', 'contact.support.mail', 'en', 'support@bankimonline.com'),
+('contacts', 'contact.support.mail', 'ru', 'support@bankimonline.com'),
+('contacts', 'contact.support.whatsapp.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.support.whatsapp.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.support.whatsapp.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.support.whatsapp.title', 'he', 'כתוב לתמיכה הטכנית'),
+('contacts', 'contact.support.whatsapp.title', 'en', 'Write to technical support'),
+('contacts', 'contact.support.whatsapp.title', 'ru', 'Напишите в техподдержку'),
+('contacts', 'contact.general.support.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.general.support.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.general.support.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.general.support.mail', 'he', 'support@bankimonline.com'),
+('contacts', 'contact.general.support.mail', 'en', 'support@bankimonline.com'),
+('contacts', 'contact.general.support.mail', 'ru', 'support@bankimonline.com'),
+('contacts', 'contact.general.support.whatsapp.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.general.support.whatsapp.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.general.support.whatsapp.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.general.support.whatsapp.title', 'he', 'כתוב לתמיכה הטכנית'),
+('contacts', 'contact.general.support.whatsapp.title', 'en', 'Write to technical support'),
+('contacts', 'contact.general.support.whatsapp.title', 'ru', 'Напишите в техподдержку'),
+('contacts', 'support.contact_people', 'he', 'אנשי קשר'),
+('contacts', 'support.contact_people', 'en', 'contacts'),
+('contacts', 'support.contact_people', 'ru', 'Напишите в техподдержку'),
+('contacts', 'contact.generalinfo.title', 'he', 'מידע כללי'),
+('contacts', 'contact.generalinfo.title', 'en', 'General Information'),
+('contacts', 'contact.generalinfo.title', 'ru', 'Секретарь'),
+('contacts', 'contact.generalinfo.phone', 'he', '+972 4-623-2280'),
+('contacts', 'contact.generalinfo.phone', 'en', '+972 4-623-2280'),
+('contacts', 'contact.generalinfo.phone', 'ru', '+972 4-623-2280'),
+('contacts', 'contact.generalinfo.mail', 'he', 'info@bankimonline.com'),
+('contacts', 'contact.generalinfo.mail', 'en', 'info@bankimonline.com'),
+('contacts', 'contact.generalinfo.mail', 'ru', 'info@bankimonline.com'),
+('contacts', 'contact.generalinfo.whatsapp.title', 'he', 'כתוב להנהלה'),
+('contacts', 'contact.generalinfo.whatsapp.title', 'en', 'Write to management'),
+('contacts', 'contact.generalinfo.whatsapp.title', 'ru', 'Напишите в администрацию'),
+('contacts', 'contact.general.info.title', 'he', 'מידע כללי'),
+('contacts', 'contact.general.info.title', 'en', 'General Info'),
+('contacts', 'contact.general.info.title', 'ru', 'Секретарь'),
+('contacts', 'contact.general.info.phone', 'he', '+972 4-623-2280'),
+('contacts', 'contact.general.info.phone', 'en', '+972 4-623-2280'),
+('contacts', 'contact.general.info.phone', 'ru', '+972 4-623-2280'),
+('contacts', 'contact.general.info.mail', 'he', 'info@bankimonline.com'),
+('contacts', 'contact.general.info.mail', 'en', 'info@bankimonline.com'),
+('contacts', 'contact.general.info.mail', 'ru', 'info@bankimonline.com'),
+('contacts', 'contact.general.info.whatsapp.phone', 'he', '+972 4-623-2280'),
+('contacts', 'contact.general.info.whatsapp.phone', 'en', '+972 4-623-2280'),
+('contacts', 'contact.general.info.whatsapp.phone', 'ru', '+972 4-623-2280'),
+('contacts', 'contact.general.info.whatsapp.title', 'he', 'כתוב להנהלה'),
+('contacts', 'contact.general.info.whatsapp.title', 'en', 'Write to management'),
+('contacts', 'contact.general.info.whatsapp.title', 'ru', 'Напишите в администрацию'),
+('contacts', 'contact.customersupport.title', 'he', 'שירות לקוחות'),
+('contacts', 'contact.customersupport.title', 'en', 'Customer Support'),
+('contacts', 'contact.customersupport.title', 'ru', 'Обслуживание клиентов'),
+('contacts', 'contact.customersupport.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.customersupport.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.customersupport.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.customersupport.mail', 'he', 'support@bankimonline.com'),
+('contacts', 'contact.customersupport.mail', 'en', 'support@bankimonline.com'),
+('contacts', 'contact.customersupport.mail', 'ru', 'support@bankimonline.com'),
+('contacts', 'contact.customersupport.whatsapp.title', 'he', 'כתוב להנהלה בעברית'),
+('contacts', 'contact.customersupport.whatsapp.title', 'en', 'Write to management'),
+('contacts', 'contact.customersupport.whatsapp.title', 'ru', 'Напишите в администрацию'),
+('contacts', 'contact.service.mashkanta.title', 'he', 'השוואת משכנתאות מימון מחדש של משכנתא'),
+('contacts', 'contact.service.mashkanta.title', 'en', 'Mortgage Comparison & Mortgage Refinancing'),
+('contacts', 'contact.service.mashkanta.title', 'ru', 'Купля-продажа частной и коммерческой недвижимости'),
+('contacts', 'contact.service.mashkanta.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.service.mashkanta.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.service.mashkanta.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.service.mashkanta.mail', 'he', 'mortgage@bankimonline.com'),
+('contacts', 'contact.service.mashkanta.mail', 'en', 'mortgage@bankimonline.com'),
+('contacts', 'contact.service.mashkanta.mail', 'ru', 'mortgage@bankimonline.com'),
+('contacts', 'contact.lown.title', 'he', 'חישוב אשראי מימון מחדש של הלוואות'),
+('contacts', 'contact.lown.title', 'en', 'Refinancing Calculation'),
+('contacts', 'contact.lown.title', 'ru', 'Расчет Кредита & Рефинансирование Кредита'),
+('contacts', 'contact.lown.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.lown.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.lown.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.lown.mail', 'he', 'loans@bankimonline.com'),
+('contacts', 'contact.lown.mail', 'en', 'loans@bankimonline.com'),
+('contacts', 'contact.lown.mail', 'ru', 'loans@bankimonline.com'),
+('contacts', 'contact.service.lown.title', 'he', 'חישוב אשראי מימון מחדש של הלוואות'),
+('contacts', 'contact.service.lown.title', 'en', 'Refinancing Calculation'),
+('contacts', 'contact.service.lown.title', 'ru', 'Расчет Кредита & Рефинансирование Кредита'),
+('contacts', 'contact.service.lown.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.service.lown.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.service.lown.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.service.lown.mail', 'he', 'loans@bankimonline.com'),
+('contacts', 'contact.service.lown.mail', 'en', 'loans@bankimonline.com'),
+('contacts', 'contact.service.lown.mail', 'ru', 'loans@bankimonline.com'),
+('contacts', 'contact.realestate.title', 'he', 'רכישה ומכירה של פרטי ונדלן מסחרי'),
+('contacts', 'contact.realestate.title', 'en', 'Commercial Real Estate'),
+('contacts', 'contact.realestate.title', 'ru', 'Коммерческая недвижимость'),
+('contacts', 'contact.realestate.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.realestate.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.realestate.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.realestate.mail', 'he', 'realestate@bankimonline.com'),
+('contacts', 'contact.realestate.mail', 'en', 'realestate@bankimonline.com'),
+('contacts', 'contact.realestate.mail', 'ru', 'realestate@bankimonline.com'),
+('contacts', 'contact.service.realestate.rental.title', 'he', 'השכרת נדל״ן פרטי ומסחרי'),
+('contacts', 'contact.service.realestate.rental.title', 'en', 'Private and Commercial Real Estate Rental'),
+('contacts', 'contact.service.realestate.rental.title', 'ru', 'Аренда частной и коммерческой недвижимости'),
+('contacts', 'contact.service.realestate.rental.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.service.realestate.rental.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.service.realestate.rental.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.service.realestate.rental.mail', 'he', 'info@eitanmortgage.com'),
+('contacts', 'contact.service.realestate.rental.mail', 'en', 'info@eitanmortgage.com'),
+('contacts', 'contact.service.realestate.rental.mail', 'ru', 'info@eitanmortgage.com'),
+('contacts', 'contact.cooperation.cooperationmanagement.title', 'he', 'שיתוף פעולה וניהול'),
+('contacts', 'contact.cooperation.cooperationmanagement.title', 'en', 'Cooperation and Management'),
+('contacts', 'contact.cooperation.cooperationmanagement.title', 'ru', 'Сотрудничество и Менеджмент'),
+('contacts', 'contact.cooperation.cooperationmanagement.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.cooperationmanagement.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.cooperationmanagement.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.cooperationmanagement.mail', 'he', 'partnerships@bankimonline.com'),
+('contacts', 'contact.cooperation.cooperationmanagement.mail', 'en', 'partnerships@bankimonline.com'),
+('contacts', 'contact.cooperation.cooperationmanagement.mail', 'ru', 'partnerships@bankimonline.com'),
+('contacts', 'contact.cooperation.management.title', 'he', 'הנהלה'),
+('contacts', 'contact.cooperation.management.title', 'en', 'Management'),
+('contacts', 'contact.cooperation.management.title', 'ru', 'Контакты руководителя'),
+('contacts', 'contact.cooperation.management.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.management.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.management.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.management.mail', 'he', 'founder@bankimonline.com'),
+('contacts', 'contact.cooperation.management.mail', 'en', 'founder@bankimonline.com'),
+('contacts', 'contact.cooperation.management.mail', 'ru', 'founder@bankimonline.com'),
+('contacts', 'contact.cooperation.accounting.title', 'he', 'חשבונאות'),
+('contacts', 'contact.cooperation.accounting.title', 'en', 'Accounting'),
+('contacts', 'contact.cooperation.accounting.title', 'ru', 'Бухгалтерия'),
+('contacts', 'contact.cooperation.accounting.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.accounting.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.accounting.phone', 'ru', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.accounting.mail', 'he', 'accountant@bankimonline.com'),
+('contacts', 'contact.cooperation.accounting.mail', 'en', 'accountant@bankimonline.com'),
+('contacts', 'contact.cooperation.accounting.mail', 'ru', 'accountant@bankimonline.com'),
+('contacts', 'contact.cooperation.faxnumber.title', 'he', 'מספר פקס'),
+('contacts', 'contact.cooperation.faxnumber.title', 'en', 'Fax Number'),
+('contacts', 'contact.cooperation.faxnumber.title', 'ru', 'Номер факса'),
+('contacts', 'contact.cooperation.faxnumber.phone', 'he', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.faxnumber.phone', 'en', '+972 53-716-2235'),
+('contacts', 'contact.cooperation.faxnumber.phone', 'ru', '+972 53-716-2235'),
 ('contacts', 'contacts_section', 'ru', 'Контакты'),
 ('cooperation', 'cooperation_about_description_1', 'he', 'Bankimonline הוא הפלטפורמה המובילה להשוואת משכנתאות ומוצרים פיננסיים בישראל.'),
 ('cooperation', 'cooperation_about_description_1', 'en', 'Bankimonline is the leading platform for comparing mortgages and financial products in Israel.'),
@@ -16924,18 +17145,27 @@ FROM (VALUES
 ('cooperation', 'cooperation_email', 'he', 'cooperation@bankimonline.com'),
 ('cooperation', 'cooperation_email', 'en', 'cooperation@bankimonline.com'),
 ('cooperation', 'cooperation_email', 'ru', 'cooperation@bankimonline.com'),
-('cooperation', 'cooperation_partner_login', 'he', 'כניסה כשותף'),
-('cooperation', 'cooperation_partner_login', 'en', 'Partner login'),
-('cooperation', 'cooperation_partner_login', 'ru', 'Вход как партнер'),
-('cooperation', 'cooperation_partners_title', 'he', 'השותפים הבנקאיים שלנו'),
+('cooperation', 'cooperation_partner_login', 'he', 'התחברות כשותף'),
+('cooperation', 'cooperation_partner_login', 'en', 'Connect as partner'),
+('cooperation', 'cooperation_partner_login', 'ru', 'Подключиться как партнер'),
+('cooperation', 'cooperation_partners_title', 'he', 'השותפים הבנקאיים שלנו')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('cooperation', 'cooperation_partners_title', 'en', 'Our banking partners'),
 ('cooperation', 'cooperation_partners_title', 'ru', 'Наши банковские партнеры'),
 ('cooperation', 'cooperation_phone', 'he', '03-5371622'),
 ('cooperation', 'cooperation_phone', 'en', '03-5371622'),
 ('cooperation', 'cooperation_phone', 'ru', '03-5371622'),
-('cooperation', 'cooperation_register', 'he', 'הרשמה לתכנית השותפים'),
-('cooperation', 'cooperation_register', 'en', 'Register for partner program'),
-('cooperation', 'cooperation_register', 'ru', 'Регистрация в партнерской программе'),
+('cooperation', 'cooperation_register', 'he', 'הרשמה'),
+('cooperation', 'cooperation_register', 'en', 'Register'),
+('cooperation', 'cooperation_register', 'ru', 'Зарегистрироваться'),
 ('cooperation', 'cooperation_step1_desc', 'he', 'הגישו בקשה לתכנית השותפים דרך האתר שלנו'),
 ('cooperation', 'cooperation_step1_desc', 'en', 'Submit an application for the partner program through our website'),
 ('cooperation', 'cooperation_step1_desc', 'ru', 'Подайте заявку на партнерскую программу через наш сайт'),
@@ -16969,42 +17199,65 @@ FROM (VALUES
 ('cooperation', 'cooperation_steps_title', 'he', '5 שלבים פשוטים לשותפות'),
 ('cooperation', 'cooperation_steps_title', 'en', '5 simple steps to partnership'),
 ('cooperation', 'cooperation_steps_title', 'ru', '5 простых шагов к партнерству'),
-('cooperation', 'cooperation_subtitle', 'he', 'הרוויחו ‎₪500 עבור כל לקוח שאתם מפנים אלינו ומשלם על השירותים. הירשמו עכשיו!'),
+('cooperation', 'cooperation_subtitle', 'he', 'עבור כל לקוח שתפנה, המשלם עבור השירותים באתר שלנו, תקבל 500₪.
+הירשם עכשיו!'),
 ('cooperation', 'cooperation_subtitle', 'en', 'Earn 500₪ for every customer you refer who purchases our services. Register now!'),
-('cooperation', 'cooperation_subtitle', 'ru', 'Зарабатывайте ₪500 за каждого клиента, которого вы направите к нам и который оплатит услуги. Регистрируйтесь сейчас!'),
+('cooperation', 'cooperation_subtitle', 'ru', 'За каждого привлеченного вами клиента, который оплатит услуги на нашем сайте, вы получите 500₪.
+Регистрируйтесь сейчас!'),
 ('cooperation', 'cooperation_title', 'he', 'תוכנית הפניות לשותפים'),
 ('cooperation', 'cooperation_title', 'en', 'Referral Program for Partners'),
 ('cooperation', 'cooperation_title', 'ru', 'Реферальная программа для партнеров'),
-('cooperation', 'feature_credit_calc', 'he', 'מחשבון הלוואה'),
-('cooperation', 'feature_credit_calc', 'en', 'Credit Calculator'),
-('cooperation', 'feature_credit_calc', 'ru', 'Расчёт Кредита'),
-('cooperation', 'feature_credit_refinance', 'he', 'מיחזור הלוואה'),
-('cooperation', 'feature_credit_refinance', 'en', 'Credit Refinancing'),
-('cooperation', 'feature_credit_refinance', 'ru', 'Рефинансирование кредита'),
-('cooperation', 'feature_mortgage_calc', 'he', 'מחשבון משכנתא'),
-('cooperation', 'feature_mortgage_calc', 'en', 'Mortgage Calculator'),
-('cooperation', 'feature_mortgage_calc', 'ru', 'Расчёт Ипотеки'),
-('cooperation', 'feature_mortgage_refinance', 'he', 'מיחזור משכנתא'),
-('cooperation', 'feature_mortgage_refinance', 'en', 'Mortgage Refinancing'),
-('cooperation', 'feature_mortgage_refinance', 'ru', 'Рефинансирование Ипотеки'),
-('cooperation', 'marketplace_description', 'he', 'Bankimonline מספקת ללקוחותיה ולשותפיה שירות דיגיטלי אחד לכל סוגי המימון'),
-('cooperation', 'marketplace_description', 'en', 'Bankimonline provides its clients and partners with a single digital service for all types of lending'),
-('cooperation', 'marketplace_description', 'ru', 'Bankimonline предоставляет своим клиентам и партнёрам единый цифровой сервис по всем видам кредитования'),
-('cooperation', 'marketplace_title', 'he', 'Bankimonline - שוק משכנתאות והלוואות'),
-('cooperation', 'marketplace_title', 'en', 'Bankimonline – mortgage & credit marketplace'),
-('cooperation', 'marketplace_title', 'ru', 'Bankimonline - маркетплейс ипотек и кредитов'),
-('cooperation', 'one_click_mortgage', 'he', 'בחרו משכנתא בלחיצה אחת'),
-('cooperation', 'one_click_mortgage', 'en', 'Pick a mortgage in one click'),
-('cooperation', 'one_click_mortgage', 'ru', 'Подберите ипотеки в один клик'),
-('cooperation', 'referral_description', 'he', 'קבלו עמלה על כל לקוח שרוכש את השירותים שלנו'),
-('cooperation', 'referral_description', 'en', 'Earn a commission for every client who purchases our services'),
-('cooperation', 'referral_description', 'ru', 'Получайте процент с каждого клиента, который покупает наши услуги'),
-('cooperation', 'referral_title', 'he', 'הביאו לקוח וקבלו תגמול 500 ₪'),
-('cooperation', 'referral_title', 'en', 'Bring a client and get 500 ₪ reward'),
-('cooperation', 'referral_title', 'ru', 'Приведите клиента и получите вознаграждение 500 ₪'),
-('cooperation', 'register_partner_program', 'he', 'הרשמה לתכנית השותפים'),
-('cooperation', 'register_partner_program', 'en', 'Register for Partner Program'),
-('cooperation', 'register_partner_program', 'ru', 'Регистрация в партнерской программе'),
+('cooperation', 'cooperation_feature_credit_calc', 'he', 'מחשבון הלוואה'),
+('cooperation', 'cooperation_feature_credit_calc', 'en', 'Credit Calculator'),
+('cooperation', 'cooperation_feature_credit_calc', 'ru', 'Расчёт Кредита'),
+('cooperation', 'cooperation_feature_credit_refinance', 'he', 'מיחזור הלוואה'),
+('cooperation', 'cooperation_feature_credit_refinance', 'en', 'Credit Refinancing'),
+('cooperation', 'cooperation_feature_credit_refinance', 'ru', 'Рефинансирование кредита'),
+('cooperation', 'cooperation_feature_mortgage_calc', 'he', 'מחשבון משכנתא'),
+('cooperation', 'cooperation_feature_mortgage_calc', 'en', 'Mortgage Calculator'),
+('cooperation', 'cooperation_feature_mortgage_calc', 'ru', 'Расчёт Ипотеки'),
+('cooperation', 'cooperation_feature_mortgage_refinance', 'he', 'מיחזור משכנתא'),
+('cooperation', 'cooperation_feature_mortgage_refinance', 'en', 'Mortgage Refinancing'),
+('cooperation', 'cooperation_feature_mortgage_refinance', 'ru', 'Рефинансирование Ипотеки'),
+('cooperation', 'cooperation_market_bankimonline_description', 'he', 'Bankimonline מספקת ללקוחותיה ולשותפיה שירות דיגיטלי אחד לכל סוגי ההלוואות'),
+('cooperation', 'cooperation_market_bankimonline_description', 'en', 'Bankimonline provides its clients and partners with a single digital service for all types of loans'),
+('cooperation', 'cooperation_market_bankimonline_description', 'ru', 'Bankimonline предоставляет своим клиентам и партнёрам единый цифровой сервис для всех видов займов'),
+('cooperation', 'cooperation_market_bankimonline_title', 'he', 'Bankimonline - שוק למשכנתאות והלוואות'),
+('cooperation', 'cooperation_market_bankimonline_title', 'en', 'Bankimonline – Mortgage and Loan Marketplace'),
+('cooperation', 'cooperation_market_bankimonline_title', 'ru', 'Bankimonline – маркетплейс ипотек и кредитов'),
+('cooperation', 'cooperation_marketplace_description', 'he', 'Bankimonline מספקת ללקוחותיה ולשותפיה שירות דיגיטלי אחד לכל סוגי המימון'),
+('cooperation', 'cooperation_marketplace_description', 'en', 'Bankimonline provides its clients and partners with a single digital service for all types of lending'),
+('cooperation', 'cooperation_marketplace_description', 'ru', 'Bankimonline предоставляет своим клиентам и партнёрам единый цифровой сервис по всем видам кредитования'),
+('cooperation', 'cooperation_marketplace_title', 'he', 'Bankimonline - שוק משכנתאות והלוואות'),
+('cooperation', 'cooperation_marketplace_title', 'en', 'Bankimonline – mortgage & credit marketplace'),
+('cooperation', 'cooperation_marketplace_title', 'ru', 'Bankimonline - маркетплейс ипотек и кредитов'),
+('cooperation', 'cooperation_mortgage_loans_banner', 'he', 'בחרו משכנתאות בקליק אחד'),
+('cooperation', 'cooperation_mortgage_loans_banner', 'en', 'Choose mortgages in one click'),
+('cooperation', 'cooperation_mortgage_loans_banner', 'ru', 'Подберите ипотеку в один клик'),
+('cooperation', 'cooperation_one_click_mortgage', 'he', 'בחרו משכנתא בלחיצה אחת'),
+('cooperation', 'cooperation_one_click_mortgage', 'en', 'Pick a mortgage in one click'),
+('cooperation', 'cooperation_one_click_mortgage', 'ru', 'Подберите ипотеки в один клик'),
+('cooperation', 'cooperation_referral_description', 'he', 'קבלו עמלה על כל לקוח שרוכש את השירותים שלנו'),
+('cooperation', 'cooperation_referral_description', 'en', 'Earn a commission for every client who purchases our services'),
+('cooperation', 'cooperation_referral_description', 'ru', 'Получайте процент с каждого клиента, который покупает наши услуги'),
+('cooperation', 'cooperation_referral_title', 'he', 'הביאו לקוח וקבלו תגמול 500 ₪'),
+('cooperation', 'cooperation_referral_title', 'en', 'Bring a client and get 500 ₪ reward'),
+('cooperation', 'cooperation_referral_title', 'ru', 'Приведите клиента и получите вознаграждение 500 ₪'),
+('cooperation', 'cooperation_register_partner_program', 'he', 'הרשמה לתכנית השותפים'),
+('cooperation', 'cooperation_register_partner_program', 'en', 'Register for Partner Program'),
+('cooperation', 'cooperation_register_partner_program', 'ru', 'Регистрация в партнерской программе'),
+('cooperation', 'cooperation_bullet_mortgage_calc', 'he', 'חישוב משכנתא'),
+('cooperation', 'cooperation_bullet_mortgage_calc', 'en', 'Mortgage calculation'),
+('cooperation', 'cooperation_bullet_mortgage_calc', 'ru', 'Расчёт ипотеки'),
+('cooperation', 'cooperation_bullet_loan_calc', 'he', 'מימון מחדש של משכנתא'),
+('cooperation', 'cooperation_bullet_loan_calc', 'en', 'Mortgage refinancing'),
+('cooperation', 'cooperation_bullet_loan_calc', 'ru', 'Рефинансирование ипотеки'),
+('cooperation', 'cooperation_bullet_3', 'he', 'מיחזור הלוואה'),
+('cooperation', 'cooperation_bullet_3', 'en', 'Loan refinancing'),
+('cooperation', 'cooperation_bullet_3', 'ru', 'Рефинансирование кредита'),
+('cooperation', 'cooperation_bullet_4', 'he', 'מחשבון הלוואה'),
+('cooperation', 'cooperation_bullet_4', 'en', 'Loan calculator'),
+('cooperation', 'cooperation_bullet_4', 'ru', 'Калькулятор кредита'),
 ('legal', 'cookie_accept', 'he', 'אשר שימוש בעוגיות'),
 ('legal', 'cookie_accept', 'en', 'Accept Cookies'),
 ('legal', 'cookie_accept', 'ru', 'Принять Cookie'),
@@ -17333,16 +17586,7 @@ Your rights under GDPR:
 כל ספק חיצוני מחויב:
 • לעמוד בתקני אבטחת מידע גבוהים
 • להשתמש במידע רק למטרות שהוגדרו
-• למחוק מידע כשאינו נדרש עוד')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+• למחוק מידע כשאינו נדרש עוד'),
 ('legal', 'cookie_policy_sharing_text', 'en', 'We may share information with external service providers for the following purposes:
 
 • Website traffic analysis (Google Analytics)
@@ -17766,7 +18010,16 @@ Bankimonline обязуется защищать вашу конфиденциа
 ('legal', 'privacy_policy_section_5_15', 'en', '**5.15 Communication Retention:** All communication regarding your rights will be retained for 7 years.'),
 ('legal', 'privacy_policy_section_5_15', 'ru', '**5.15 Хранение переписки:** Вся переписка касательно ваших прав будет храниться в течение 7 лет.'),
 ('legal', 'privacy_policy_section_5_2', 'he', '**5.2 זכות תיקון:** יש לכם זכות לבקש תיקון או עדכון של מידע שגוי או לא מדויק.'),
-('legal', 'privacy_policy_section_5_2', 'en', '**5.2 Right of Correction:** You have the right to request correction or updating of incorrect or inaccurate information.'),
+('legal', 'privacy_policy_section_5_2', 'en', '**5.2 Right of Correction:** You have the right to request correction or updating of incorrect or inaccurate information.')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('legal', 'privacy_policy_section_5_2', 'ru', '**5.2 Право исправления:** У вас есть право запросить исправление или обновление неверной или неточной информации.'),
 ('legal', 'privacy_policy_section_5_3', 'he', '**5.3 זכות מחיקה:** יש לכם זכות לבקש מחיקת המידע האישי שלכם, בכפוף להגבלות חוקיות.'),
 ('legal', 'privacy_policy_section_5_3', 'en', '**5.3 Right of Deletion:** You have the right to request deletion of your personal information, subject to legal limitations.'),
@@ -18157,16 +18410,7 @@ Last update: July 2025'),
 
 Последнее обновление: Июль 2025'),
 ('legal', 'terms_title', 'he', 'הסכם המשתמש'),
-('legal', 'terms_title', 'en', 'User Agreement')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('legal', 'terms_title', 'en', 'User Agreement'),
 ('legal', 'terms_title', 'ru', 'Пользовательское соглашение'),
 ('legal', 'cookie_policy', 'ru', 'Использование файлов cookie'),
 ('legal', 'privacy_policy_footer', 'ru', 'Политика конфиденциальности'),
@@ -18389,7 +18633,16 @@ FROM (VALUES
 ('vacancies', 'vacancyDetail.applicationForm.title', 'en', 'Apply for this Position'),
 ('vacancies', 'vacancyDetail.applicationForm.title', 'ru', 'Подать заявку на эту должность'),
 ('vacancies', 'vacancyDetail.applicationForm.fullName', 'he', 'שם פרטי ושם משפחה'),
-('vacancies', 'vacancyDetail.applicationForm.fullName', 'en', 'First Name and Last Name'),
+('vacancies', 'vacancyDetail.applicationForm.fullName', 'en', 'First Name and Last Name')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('vacancies', 'vacancyDetail.applicationForm.fullName', 'ru', 'Имя и Фамилия'),
 ('vacancies', 'vacancyDetail.applicationForm.fullNamePlaceholder', 'he', 'הכנס את שמך המלא'),
 ('vacancies', 'vacancyDetail.applicationForm.fullNamePlaceholder', 'en', 'Enter your full name'),
@@ -18567,16 +18820,7 @@ FROM (VALUES
 ('global_components', 'shared_component_cookie_message', 'he', 'אתר זה משתמש בעוגיות כדי לשפר את החוויה שלך. המשך הגלישה מהווה הסכמה לשימוש בעוגיות.'),
 ('global_components', 'shared_component_cookie_message', 'en', 'This website uses cookies to improve your experience. Continuing to browse constitutes consent to the use of cookies.'),
 ('global_components', 'shared_component_cookie_message', 'ru', 'Этот веб-сайт использует файлы cookie для улучшения вашего опыта. Продолжение просмотра означает согласие на использование cookie.'),
-('global_components', 'accept_phone', 'he', 'אמת טלפון')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'accept_phone', 'he', 'אמת טלפון'),
 ('global_components', 'accept_phone', 'en', 'Verify phone'),
 ('global_components', 'accept_phone', 'ru', 'Подтвердить телефон'),
 ('global_components', 'accept_you_profile_for_enter', 'he', 'הפרופיל שלך התקבל במערכת בהצלחה'),
@@ -18799,7 +19043,16 @@ FROM (VALUES
 ('global_components', 'bank_worker_continue', 'ru', 'Продолжить'),
 ('global_components', 'bank_worker_demo_description', 'he', 'זוהי הדגמה. נתוני הרשמה נשמרים מקומית למטרות בדיקה.'),
 ('global_components', 'bank_worker_demo_description', 'en', 'This is a demonstration. Registration data is saved locally for testing purposes.'),
-('global_components', 'bank_worker_demo_description', 'ru', 'Это демонстрация. Данные регистрации сохраняются локально для тестирования.'),
+('global_components', 'bank_worker_demo_description', 'ru', 'Это демонстрация. Данные регистрации сохраняются локально для тестирования.')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'bank_worker_demo_notice', 'he', 'מצב הדגמה'),
 ('global_components', 'bank_worker_demo_notice', 'en', 'Demo Mode'),
 ('global_components', 'bank_worker_demo_notice', 'ru', 'Демо режим'),
@@ -18976,16 +19229,7 @@ FROM (VALUES
 ('global_components', '__MIGRATED_4_to_30_years', 'ru', '4-30 лет'),
 ('global_components', '__MIGRATED_prime_rate_structure', 'he', 'ריבית משתנה + קבועה'),
 ('global_components', '__MIGRATED_prime_rate_structure', 'en', 'Variable + Fixed'),
-('global_components', '__MIGRATED_prime_rate_structure', 'ru', 'Переменная + фиксированная ставка')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', '__MIGRATED_prime_rate_structure', 'ru', 'Переменная + фиксированная ставка'),
 ('global_components', 'borrower', 'he', 'לווה'),
 ('global_components', 'borrower', 'en', 'Borrower'),
 ('global_components', 'borrower', 'ru', 'Заемщик'),
@@ -19208,7 +19452,16 @@ FROM (VALUES
 ('global_components', 'calculate_credit_prolong_ph', 'ru', 'Выберите период погашения'),
 ('global_components', 'calculate_credit_target', 'he', 'מטרת האשראי'),
 ('global_components', 'calculate_credit_target', 'en', 'Credit purpose'),
-('global_components', 'calculate_credit_target', 'ru', 'Цель кредита'),
+('global_components', 'calculate_credit_target', 'ru', 'Цель кредита')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'calculate_credit_target_option_1', 'he', 'רכישת רכב'),
 ('global_components', 'calculate_credit_target_option_1', 'en', 'Vehicle purchase'),
 ('global_components', 'calculate_credit_target_option_1', 'ru', 'Покупка автомобиля'),
@@ -19385,16 +19638,7 @@ FROM (VALUES
 ('global_components', 'calculate_mortgage_family_status', 'ru', 'Семейное положение'),
 ('global_components', 'calculate_mortgage_family_status_option_1', 'he', 'רווק/רווקה'),
 ('global_components', 'calculate_mortgage_family_status_option_1', 'en', 'Single'),
-('global_components', 'calculate_mortgage_family_status_option_1', 'ru', 'Холост/не замужем')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'calculate_mortgage_family_status_option_1', 'ru', 'Холост/не замужем'),
 ('global_components', 'calculate_mortgage_family_status_option_2', 'he', 'נשוי/נשואה'),
 ('global_components', 'calculate_mortgage_family_status_option_2', 'en', 'Married'),
 ('global_components', 'calculate_mortgage_family_status_option_2', 'ru', 'Женат/замужем'),
@@ -19617,7 +19861,16 @@ FROM (VALUES
 ('global_components', 'calculate_mortgage_sphere_option_6', 'ru', 'Инженерия и строительство'),
 ('global_components', 'calculate_mortgage_sphere_option_7', 'he', 'מכירות ושיווק'),
 ('global_components', 'calculate_mortgage_sphere_option_7', 'en', 'Sales and Marketing'),
-('global_components', 'calculate_mortgage_sphere_option_7', 'ru', 'Продажи и маркетинг'),
+('global_components', 'calculate_mortgage_sphere_option_7', 'ru', 'Продажи и маркетинг')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'calculate_mortgage_sphere_option_8', 'he', 'שירותים ואירוח'),
 ('global_components', 'calculate_mortgage_sphere_option_8', 'en', 'Services and Hospitality'),
 ('global_components', 'calculate_mortgage_sphere_option_8', 'ru', 'Услуги и гостеприимство'),
@@ -19794,16 +20047,7 @@ FROM (VALUES
 ('global_components', 'contact_form_phone_placeholder', 'ru', 'Введите номер телефона'),
 ('global_components', 'contact_form_phone_required', 'he', 'טלפון הוא חובה'),
 ('global_components', 'contact_form_phone_required', 'en', 'Phone is required'),
-('global_components', 'contact_form_phone_required', 'ru', 'Телефон обязателен')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'contact_form_phone_required', 'ru', 'Телефон обязателен'),
 ('global_components', 'contact_form_send_another', 'he', 'שלח הודעה נוספת'),
 ('global_components', 'contact_form_send_another', 'en', 'Send Another Message'),
 ('global_components', 'contact_form_send_another', 'ru', 'Отправить еще одно сообщение'),
@@ -20026,7 +20270,16 @@ FROM (VALUES
 ('global_components', 'error_credit_data_required', 'he', 'יש להוסיף לפחות אשראי אחד'),
 ('global_components', 'error_credit_data_required', 'en', 'Please add at least one credit'),
 ('global_components', 'error_credit_data_required', 'ru', 'Добавьте хотя бы один кредит'),
-('global_components', 'error_credit_early_payment_positive', 'he', 'סכום הפירעון המוקדם חייב להיות חיובי'),
+('global_components', 'error_credit_early_payment_positive', 'he', 'סכום הפירעון המוקדם חייב להיות חיובי')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'error_credit_early_payment_positive', 'en', 'Early repayment amount must be positive'),
 ('global_components', 'error_credit_early_payment_positive', 'ru', 'Сумма досрочного погашения должна быть положительной'),
 ('global_components', 'error_credit_early_payment_required', 'he', 'יש למלא סכום פירעון מוקדם'),
@@ -20203,16 +20456,7 @@ FROM (VALUES
 ('global_components', 'errors.invalidWorkerId', 'he', 'מזהה עובד לא תקין'),
 ('global_components', 'errors.invalidWorkerId', 'en', 'Invalid worker ID'),
 ('global_components', 'errors.invalidWorkerId', 'ru', 'Недействительный ID сотрудника'),
-('global_components', 'errors.failedToLoadStatus', 'he', 'נכשלה טעינת מידע הסטטוס')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'errors.failedToLoadStatus', 'he', 'נכשלה טעינת מידע הסטטוס'),
 ('global_components', 'errors.failedToLoadStatus', 'en', 'Failed to load status information'),
 ('global_components', 'errors.failedToLoadStatus', 'ru', 'Не удалось загрузить информацию о статусе'),
 ('global_components', 'fallback_greeting', 'he', 'אירעה שגיאה במערכת'),
@@ -20309,9 +20553,9 @@ FROM (VALUES
 ('global_components', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('global_components', 'footer_return_policy', 'en', 'Return policy'),
 ('global_components', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('global_components', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('global_components', 'footer_social_follow', 'en', 'Follow us'),
-('global_components', 'footer_social_follow', 'ru', 'Следите за нами'),
+('global_components', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('global_components', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('global_components', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('global_components', 'footer_support', 'he', 'תמיכה טכנית'),
 ('global_components', 'footer_support', 'en', 'Technical support'),
 ('global_components', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -20435,7 +20679,16 @@ FROM (VALUES
 ('global_components', 'franchise_includes_info_card_manager', 'en', 'Professional office manager'),
 ('global_components', 'franchise_includes_info_card_manager', 'ru', 'Профессиональный менеджер офиса'),
 ('global_components', 'franchise_includes_info_card_office', 'he', 'משרד מאובזר לחלוטין'),
-('global_components', 'franchise_includes_info_card_office', 'en', 'Fully equipped office'),
+('global_components', 'franchise_includes_info_card_office', 'en', 'Fully equipped office')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'franchise_includes_info_card_office', 'ru', 'Полностью оборудованный офис'),
 ('global_components', 'franchise_includes_support_consultation', 'he', 'ייעוץ עסקי מתמשך'),
 ('global_components', 'franchise_includes_support_consultation', 'en', 'Ongoing business consultation'),
@@ -20612,16 +20865,7 @@ FROM (VALUES
 ('global_components', 'home', 'en', 'Home'),
 ('global_components', 'home', 'ru', 'Главная страница'),
 ('global_components', 'how_it_works_text', 'he', 'מחשבון משכנתא שלנו מאפשר לך לחשב את המשכנתא המתאימה ביותר לך בזמן אמת. כל מה שאתה צריך לעשות הוא להזין את הפרטים הנדרשים ולחץ על כפתור החישוב. מחשבון משכנתא שלנו מספק מגוון תכניות משכנתא משופרות מהספקים המובילים בשוק.'),
-('global_components', 'how_it_works_text', 'en', 'Our mortgage calculator allows you to calculate the most suitable mortgage for you in real time. All you need to do is enter the required details and click the calculate button. Our mortgage calculator provides various enhanced mortgage programs from leading market providers.')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'how_it_works_text', 'en', 'Our mortgage calculator allows you to calculate the most suitable mortgage for you in real time. All you need to do is enter the required details and click the calculate button. Our mortgage calculator provides various enhanced mortgage programs from leading market providers.'),
 ('global_components', 'how_it_works_text', 'ru', 'Наш ипотечный калькулятор позволяет вам рассчитать наиболее подходящую ипотеку в режиме реального времени. Все, что вам нужно сделать, это ввести необходимые данные и нажать кнопку расчета. Наш ипотечный калькулятор предоставляет различные улучшенные ипотечные программы от ведущих поставщиков на рынке.'),
 ('global_components', 'id_document_placeholder', 'he', 'הזן מספר תעודת זהות'),
 ('global_components', 'id_document_placeholder', 'en', 'Enter ID document number'),
@@ -20855,7 +21099,16 @@ FROM (VALUES
 ('global_components', 'lawyers_step_5_title', 'he', 'תשלום חודשי עבור השירותים שלנו'),
 ('global_components', 'lawyers_step_5_title', 'en', 'Monthly Payment for Our Services'),
 ('global_components', 'lawyers_step_5_title', 'ru', 'Ежемесячная оплата за наши услуги'),
-('global_components', 'lawyers_steps_title', 'he', 'איך זה עובד'),
+('global_components', 'lawyers_steps_title', 'he', 'איך זה עובד')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'lawyers_steps_title', 'en', 'How It Works'),
 ('global_components', 'lawyers_steps_title', 'ru', 'Как это работает'),
 ('global_components', 'list_credits_title', 'he', 'התחייבויות אשראי עומדות'),
@@ -21032,16 +21285,7 @@ FROM (VALUES
 ('global_components', 'name_required', 'he', 'שם מלא הוא חובה'),
 ('global_components', 'name_required', 'en', 'Full name is required'),
 ('global_components', 'name_required', 'ru', 'Полное имя обязательно'),
-('global_components', 'name_surname_login', 'he', 'שם מלא')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'name_surname_login', 'he', 'שם מלא'),
 ('global_components', 'name_surname_login', 'en', 'Full Name'),
 ('global_components', 'name_surname_login', 'ru', 'Полное имя'),
 ('global_components', 'nav_chat', 'he', 'צ''אט תמיכה'),
@@ -21264,7 +21508,16 @@ FROM (VALUES
 ('global_components', 'refinance_credit_final_title', 'ru', 'Результаты рефинансирования кредита'),
 ('global_components', 'refinance_credit_final_warning', 'he', 'התוצאות המפורטות לעיל הן הערכה בלבד למחזור אשראי קיים ואינן מהוות התחייבות. לקבלת הצעות מחייבות מהבנקים, נדרש להשלים את תהליך הרישום.'),
 ('global_components', 'refinance_credit_final_warning', 'en', 'The results above are estimates only for refinancing existing credit and do not constitute a commitment. To receive binding offers from banks, you must complete the registration process.'),
-('global_components', 'refinance_credit_final_warning', 'ru', 'Приведенные выше результаты являются только оценкой рефинансирования существующего кредита и не являются обязательством. Для получения обязывающих предложений от банков необходимо завершить процесс регистрации.'),
+('global_components', 'refinance_credit_final_warning', 'ru', 'Приведенные выше результаты являются только оценкой рефинансирования существующего кредита и не являются обязательством. Для получения обязывающих предложений от банков необходимо завершить процесс регистрации.')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'refinance_credit_monthly_saving', 'he', 'חיסכון חודשי'),
 ('global_components', 'refinance_credit_monthly_saving', 'en', 'Monthly savings'),
 ('global_components', 'refinance_credit_monthly_saving', 'ru', 'Ежемесячная экономия'),
@@ -21441,16 +21694,7 @@ FROM (VALUES
 ('global_components', 'search', 'ru', 'Поиск'),
 ('global_components', 'sel_cntr', 'he', 'בחר מדינה'),
 ('global_components', 'sel_cntr', 'en', 'Select country'),
-('global_components', 'sel_cntr', 'ru', 'Выберите страну')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'sel_cntr', 'ru', 'Выберите страну'),
 ('global_components', 'select_answer', 'he', 'בחר תשובה'),
 ('global_components', 'select_answer', 'en', 'Select Answer'),
 ('global_components', 'select_answer', 'ru', 'Выберите ответ'),
@@ -21673,7 +21917,16 @@ FROM (VALUES
 ('global_components', 'status.inactive', 'he', 'לא פעיל'),
 ('global_components', 'status.inactive', 'en', 'Inactive'),
 ('global_components', 'status.inactive', 'ru', 'Неактивный'),
-('global_components', 'status.error.title', 'he', 'שגיאת סטטוס'),
+('global_components', 'status.error.title', 'he', 'שגיאת סטטוס')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'status.error.title', 'en', 'Status Error'),
 ('global_components', 'status.error.title', 'ru', 'Ошибка статуса'),
 ('global_components', 'status.fields.position', 'he', 'תפקיד'),
@@ -21850,16 +22103,7 @@ FROM (VALUES
 ('global_components', 'tenders_metrics_payback_title', 'ru', 'Окупаемость'),
 ('global_components', 'tenders_metrics_payback_value', 'he', '12 חודשים'),
 ('global_components', 'tenders_metrics_payback_value', 'en', '12 months'),
-('global_components', 'tenders_metrics_payback_value', 'ru', '12 месяцев')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'tenders_metrics_payback_value', 'ru', '12 месяцев'),
 ('global_components', 'tenders_metrics_prospects_label', 'he', 'קבצים מצרופים'),
 ('global_components', 'tenders_metrics_prospects_label', 'en', 'Prospects Received'),
 ('global_components', 'tenders_metrics_prospects_label', 'ru', 'Получено клиентов'),
@@ -22082,7 +22326,16 @@ FROM (VALUES
 ('global_components', '__MIGRATED_bank_apply_credit', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_apply_credit'),
 ('global_components', '__MIGRATED_bank_apply_credit', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_apply_credit'),
 ('global_components', '__MIGRATED_bank_apply_credit', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_apply_credit'),
-('global_components', '__MIGRATED_bank_hapoalim', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_hapoalim'),
+('global_components', '__MIGRATED_bank_hapoalim', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_hapoalim')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', '__MIGRATED_bank_hapoalim', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_hapoalim'),
 ('global_components', '__MIGRATED_bank_hapoalim', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_hapoalim'),
 ('global_components', '__MIGRATED_bank_leumi', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_leumi'),
@@ -22259,16 +22512,7 @@ FROM (VALUES
 ('global_components', 'app.refinance.step1.current_bank_label', 'he', 'בנק נוכחי'),
 ('global_components', 'app.refinance.step1.current_bank_label', 'en', 'Current Bank'),
 ('global_components', 'app.refinance.step1.current_bank_label', 'ru', 'Текущий банк'),
-('global_components', 'app.refinance.step1.title', 'he', 'בקשה למחזור משכנתא')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('global_components', 'app.refinance.step1.title', 'he', 'בקשה למחזור משכנתא'),
 ('global_components', 'app.refinance.step1.title', 'en', 'Mortgage Refinancing Application'),
 ('global_components', 'app.refinance.step1.title', 'ru', 'Заявка на рефинансирование ипотеки'),
 ('global_components', 'mortgage_refinance_balance', 'he', 'יתרת משכנתא נוכחית'),
@@ -22491,7 +22735,16 @@ FROM (VALUES
 ('global_components', 'phone_contact', 'ru', '+972-50-123-4567'),
 ('global_components', 'refinance_credit_card', 'ru', 'Рефинансировать Кредит'),
 ('global_components', 'refinance_mortgage_card', 'ru', 'Рефинансировать Ипотеку'),
-('global_components', 'russia', 'ru', 'Россия'),
+('global_components', 'russia', 'ru', 'Россия')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('global_components', 'russia_russian', 'ru', 'Русский'),
 ('global_components', 'select_co_borrowers_for_program', 'ru', 'Выберите созаемщиков для программы'),
 ('global_components', 'select_country', 'ru', 'Выберите страну'),
@@ -22668,16 +22921,7 @@ FROM (VALUES
 ('home_page', 'bank_offers_credit_amount', 'ru', 'Сумма кредита'),
 ('home_page', 'bank_offers_credit_payment', 'he', 'תשלום חודשי'),
 ('home_page', 'bank_offers_credit_payment', 'en', 'Monthly payment'),
-('home_page', 'bank_offers_credit_payment', 'ru', 'Ежемесячный платеж')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'bank_offers_credit_payment', 'ru', 'Ежемесячный платеж'),
 ('home_page', 'bank_offers_credit_rate', 'he', 'ריבית'),
 ('home_page', 'bank_offers_credit_rate', 'en', 'Interest rate'),
 ('home_page', 'bank_offers_credit_rate', 'ru', 'Процентная ставка'),
@@ -22900,7 +23144,16 @@ FROM (VALUES
 ('home_page', 'bank_worker_validation_password_uppercase', 'he', 'הסיסמה חייבת להכיל לפחות אות גדולה אחת'),
 ('home_page', 'bank_worker_validation_password_uppercase', 'en', 'Password must contain at least one uppercase letter'),
 ('home_page', 'bank_worker_validation_password_uppercase', 'ru', 'Пароль должен содержать хотя бы одну заглавную букву'),
-('home_page', 'bank_worker_validation_position_max', 'he', 'תפקיד חייב להכיל לכל היותר 100 תווים'),
+('home_page', 'bank_worker_validation_position_max', 'he', 'תפקיד חייב להכיל לכל היותר 100 תווים')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'bank_worker_validation_position_max', 'en', 'Position must be at most 100 characters'),
 ('home_page', 'bank_worker_validation_position_max', 'ru', 'Должность должна содержать максимум 100 символов'),
 ('home_page', 'bank_worker_validation_position_min', 'he', 'תפקיד חייב להכיל לפחות 2 תווים'),
@@ -23077,16 +23330,7 @@ FROM (VALUES
 ('home_page', 'calc_mortrage_subtext_3', 'en', 'Financing Percentage:'),
 ('home_page', 'calc_mortrage_subtext_3', 'ru', 'Процент финансирования:'),
 ('home_page', 'calculate_amount', 'he', 'סכום האשראי'),
-('home_page', 'calculate_amount', 'en', 'Credit amount')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'calculate_amount', 'en', 'Credit amount'),
 ('home_page', 'calculate_amount', 'ru', 'Сумма кредита'),
 ('home_page', 'calculate_credit', 'he', 'חישוב אשראי'),
 ('home_page', 'calculate_credit', 'en', 'Calculate Credit'),
@@ -23309,7 +23553,16 @@ FROM (VALUES
 ('home_page', 'calculate_mortgage_debt_types', 'he', ' האם יש לכם חובות בנקאיים או התחייבויות פיננסיות קיימות?'),
 ('home_page', 'calculate_mortgage_debt_types', 'en', 'Do you have bank debts or existing financial obligations?'),
 ('home_page', 'calculate_mortgage_debt_types', 'ru', 'Имеете ли вы банковские долги или существующие финансовые обязательства?'),
-('home_page', 'calculate_mortgage_debt_types_option_1', 'he', 'אין התחייבות'),
+('home_page', 'calculate_mortgage_debt_types_option_1', 'he', 'אין התחייבות')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'calculate_mortgage_debt_types_option_1', 'en', 'No obligations'),
 ('home_page', 'calculate_mortgage_debt_types_option_1', 'ru', 'Нет обязательств'),
 ('home_page', 'calculate_mortgage_debt_types_option_2', 'he', 'הלוואה בנקאית'),
@@ -23486,16 +23739,7 @@ FROM (VALUES
 ('home_page', 'calculate_mortgage_monthly_income_ph', 'en', 'Enter monthly net income'),
 ('home_page', 'calculate_mortgage_monthly_income_ph', 'ru', 'Введите чистый ежемесячный доход'),
 ('home_page', 'calculate_mortgage_monthly_income_year_hint', 'he', 'הזן את ההכנסה השנתית הברוטו'),
-('home_page', 'calculate_mortgage_monthly_income_year_hint', 'en', 'Enter gross annual income')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'calculate_mortgage_monthly_income_year_hint', 'en', 'Enter gross annual income'),
 ('home_page', 'calculate_mortgage_monthly_income_year_hint', 'ru', 'Введите валовой годовой доход'),
 ('home_page', 'calculate_mortgage_monthly_payment', 'he', 'תשלום חודשי'),
 ('home_page', 'calculate_mortgage_monthly_payment', 'en', 'Monthly payment'),
@@ -23718,7 +23962,16 @@ FROM (VALUES
 ('home_page', 'complete_application', 'he', 'השלם בקשה'),
 ('home_page', 'complete_application', 'en', 'Complete Application'),
 ('home_page', 'complete_application', 'ru', 'Завершить заявку'),
-('home_page', 'complete_application_message', 'he', 'השלם את הבקשה ותן לבנקים להתחרות עבורך'),
+('home_page', 'complete_application_message', 'he', 'השלם את הבקשה ותן לבנקים להתחרות עבורך')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'complete_application_message', 'en', 'Complete the application, let banks compete for you'),
 ('home_page', 'complete_application_message', 'ru', 'Завершите заявку и позвольте банкам конкурировать за вас'),
 ('home_page', 'confirm', 'he', 'אישור'),
@@ -23895,16 +24148,7 @@ FROM (VALUES
 ('home_page', 'document_issue_date_placeholder', 'he', 'יום/חודש/שנה'),
 ('home_page', 'document_issue_date_placeholder', 'en', 'DD/MM/YY'),
 ('home_page', 'document_issue_date_placeholder', 'ru', 'День/месяц/год'),
-('home_page', 'document_issue_date_title', 'he', 'תאריך הוצאת התעודה')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'document_issue_date_title', 'he', 'תאריך הוצאת התעודה'),
 ('home_page', 'document_issue_date_title', 'en', 'Document Issue Date'),
 ('home_page', 'document_issue_date_title', 'ru', 'Дата выдачи документа'),
 ('home_page', 'document_title', 'he', 'בנקימונליין'),
@@ -24127,7 +24371,16 @@ FROM (VALUES
 ('home_page', 'error_refinance_bank_required', 'en', 'Please select your current bank'),
 ('home_page', 'error_refinance_bank_required', 'ru', 'Пожалуйста, выберите ваш текущий банк'),
 ('home_page', 'error_refinance_mortgage_balance_mismatch', 'he', 'סכום יתרות המשכנתאות לא תואם לערך שהוזן'),
-('home_page', 'error_refinance_mortgage_balance_mismatch', 'en', 'The sum of mortgage balances does not match the specified value'),
+('home_page', 'error_refinance_mortgage_balance_mismatch', 'en', 'The sum of mortgage balances does not match the specified value')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'error_refinance_mortgage_balance_mismatch', 'ru', 'Сумма балансов ипотек не соответствует заданному значению'),
 ('home_page', 'error_refinance_property_less_than_balance', 'he', 'ערך הנכס המלא לא יכול להיות קטן מיתרת המשכנתא'),
 ('home_page', 'error_refinance_property_less_than_balance', 'en', 'Full property value cannot be less than mortgage balance'),
@@ -24277,9 +24530,9 @@ FROM (VALUES
 ('home_page', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('home_page', 'footer_return_policy', 'en', 'Return policy'),
 ('home_page', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('home_page', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('home_page', 'footer_social_follow', 'en', 'Follow us'),
-('home_page', 'footer_social_follow', 'ru', 'Следите за нами'),
+('home_page', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('home_page', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('home_page', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('home_page', 'footer_support', 'he', 'תמיכה טכנית'),
 ('home_page', 'footer_support', 'en', 'Technical support'),
 ('home_page', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -24304,16 +24557,7 @@ FROM (VALUES
 ('home_page', 'footer_writeus', 'en', 'Write to us'),
 ('home_page', 'footer_writeus', 'ru', 'Напишите нам'),
 ('home_page', 'footer_social_tooltip_instagram', 'he', 'עקבו אחרינו באינסטגרם'),
-('home_page', 'footer_social_tooltip_instagram', 'en', 'Follow us on Instagram')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'footer_social_tooltip_instagram', 'en', 'Follow us on Instagram'),
 ('home_page', 'footer_social_tooltip_instagram', 'ru', 'Подписывайтесь на нас в Instagram'),
 ('home_page', 'footer_social_tooltip_youtube', 'he', 'צפו בנו ביוטיוב'),
 ('home_page', 'footer_social_tooltip_youtube', 'en', 'Watch us on YouTube'),
@@ -24536,7 +24780,16 @@ FROM (VALUES
 ('home_page', 'franchise_step_5_description', 'ru', 'Официальное открытие офиса с полной поддержкой в маркетинге и поиске первых клиентов.'),
 ('home_page', 'franchise_step_5_title', 'he', 'פתיחה והשקה'),
 ('home_page', 'franchise_step_5_title', 'en', 'Opening and Launch'),
-('home_page', 'franchise_step_5_title', 'ru', 'Открытие и запуск'),
+('home_page', 'franchise_step_5_title', 'ru', 'Открытие и запуск')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'gender_female', 'he', 'נקבה'),
 ('home_page', 'gender_female', 'en', 'Female'),
 ('home_page', 'gender_female', 'ru', 'Женский'),
@@ -24724,16 +24977,7 @@ FROM (VALUES
 ('home_page', 'lawyers_collaboration_advantages_title', 'ru', 'Преимущества сотрудничества с нами'),
 ('home_page', 'lawyers_collaboration_cta_button', 'he', 'התחלת שותפות'),
 ('home_page', 'lawyers_collaboration_cta_button', 'en', 'Begin Partnership'),
-('home_page', 'lawyers_collaboration_floating_crm', 'he', 'ניהול דיגיטלי של עבודה עם לקוחות דרך מערכת CRM')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'lawyers_collaboration_floating_crm', 'he', 'ניהול דיגיטלי של עבודה עם לקוחות דרך מערכת CRM'),
 ('home_page', 'lawyers_collaboration_floating_crm', 'en', 'Digital Client Management through CRM System'),
 ('home_page', 'lawyers_collaboration_floating_crm', 'ru', 'Цифровое управление работой с клиентами через CRM-систему'),
 ('home_page', 'lawyers_collaboration_floating_platform', 'he', 'גישה ותמיכה בפלטפורמה דיגיטלית'),
@@ -24956,7 +25200,16 @@ FROM (VALUES
 ('home_page', 'mortgage_refinance_type', 'en', 'Property Type'),
 ('home_page', 'mortgage_refinance_type', 'ru', 'Тип недвижимости'),
 ('home_page', 'mortgage_refinance_type_ph', 'he', 'בחר סוג נכס'),
-('home_page', 'mortgage_refinance_type_ph', 'en', 'Select property type'),
+('home_page', 'mortgage_refinance_type_ph', 'en', 'Select property type')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'mortgage_refinance_type_ph', 'ru', 'Выберите тип недвижимости'),
 ('home_page', 'mortgage_refinance_why', 'he', 'למה אתה מבצע מחזור?'),
 ('home_page', 'mortgage_refinance_why', 'en', 'Why are you refinancing?'),
@@ -25133,16 +25386,7 @@ FROM (VALUES
 ('home_page', 'pension', 'en', 'Pension'),
 ('home_page', 'pension', 'ru', 'Пенсионер'),
 ('home_page', 'period', 'he', 'תקופה'),
-('home_page', 'period', 'en', 'Period')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'period', 'en', 'Period'),
 ('home_page', 'period', 'ru', 'Период'),
 ('home_page', 'personal_cabinet', 'he', 'אזור אישי'),
 ('home_page', 'personal_cabinet', 'en', 'Personal cabinet'),
@@ -25365,7 +25609,16 @@ FROM (VALUES
 ('home_page', 'registration.fields.terms.link', 'he', 'כללי הפלטפורמה'),
 ('home_page', 'registration.fields.terms.link', 'en', 'platform rules'),
 ('home_page', 'registration.fields.terms.link', 'ru', 'правилами платформы'),
-('home_page', 'registration.submit', 'he', 'השלמת רישום'),
+('home_page', 'registration.submit', 'he', 'השלמת רישום')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'registration.submit', 'en', 'Complete Registration'),
 ('home_page', 'registration.submit', 'ru', 'Завершить регистрацию'),
 ('home_page', 'registration.success.title', 'he', 'רישום הושלם בהצלחה'),
@@ -25542,16 +25795,7 @@ FROM (VALUES
 ('home_page', 'sidebar_franchise_realtors', 'he', 'זיכיון למתווכים'),
 ('home_page', 'sidebar_franchise_realtors', 'en', 'Realtor franchise'),
 ('home_page', 'sidebar_franchise_realtors', 'ru', 'Франшиза для риэлторов'),
-('home_page', 'sidebar_our_services', 'he', 'השירותים שלנו')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'sidebar_our_services', 'he', 'השירותים שלנו'),
 ('home_page', 'sidebar_our_services', 'en', 'Our services'),
 ('home_page', 'sidebar_our_services', 'ru', 'Наши услуги'),
 ('home_page', 'sidebar_partnership_lawyers', 'he', 'תוכנית שותפים לעורכי דין'),
@@ -25774,7 +26018,16 @@ FROM (VALUES
 ('home_page', 'tenders_license_feature3_p2', 'en', 'Dedicated success manager'),
 ('home_page', 'tenders_license_feature3_p2', 'ru', 'Персональный менеджер успеха'),
 ('home_page', 'tenders_license_feature3_p3', 'he', 'סיוע משפטי וציות'),
-('home_page', 'tenders_license_feature3_p3', 'en', 'Legal & compliance help'),
+('home_page', 'tenders_license_feature3_p3', 'en', 'Legal & compliance help')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'tenders_license_feature3_p3', 'ru', 'Юридическая и комплаенс поддержка'),
 ('home_page', 'tenders_license_feature3_title', 'he', 'הדרכה ותמיכה'),
 ('home_page', 'tenders_license_feature3_title', 'en', 'Training & Support'),
@@ -25951,16 +26204,7 @@ FROM (VALUES
 ('home_page', 'validation.bankNumber.format', 'he', 'מספר בנק חייב להכיל רק ספרות'),
 ('home_page', 'validation.bankNumber.format', 'en', 'Bank number must contain only digits'),
 ('home_page', 'validation.bankNumber.format', 'ru', 'Номер банка должен содержать только цифры'),
-('home_page', 'validation.bankNumber.min', 'he', 'מספר בנק חייב להכיל לפחות 3 ספרות')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'validation.bankNumber.min', 'he', 'מספר בנק חייב להכיל לפחות 3 ספרות'),
 ('home_page', 'validation.bankNumber.min', 'en', 'Bank number must be at least 3 digits'),
 ('home_page', 'validation.bankNumber.min', 'ru', 'Номер банка должен содержать минимум 3 цифры'),
 ('home_page', 'validation.bankNumber.max', 'he', 'מספר בנק לא יכול לחרוג מ-10 ספרות'),
@@ -26183,7 +26427,16 @@ FROM (VALUES
 ('home_page', 'regions.haifa', 'en', 'Haifa District'),
 ('home_page', 'regions.haifa', 'ru', 'Хайфский округ'),
 ('home_page', 'regions.south', 'he', 'מחוז הדרום'),
-('home_page', 'regions.south', 'en', 'Southern District'),
+('home_page', 'regions.south', 'en', 'Southern District')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('home_page', 'regions.south', 'ru', 'Южный округ'),
 ('home_page', 'regions.north', 'he', 'מחוז הצפון'),
 ('home_page', 'regions.north', 'en', 'Northern District'),
@@ -26360,16 +26613,7 @@ FROM (VALUES
 ('home_page', 'credit_step2_family_status_option_4', 'en', 'Widowed'),
 ('home_page', 'credit_step2_family_status_option_5', 'en', 'Common-law marriage'),
 ('home_page', 'credit_step2_family_status_option_6', 'en', 'Other'),
-('home_page', 'credit_step2_id_number', 'en', 'ID Number')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('home_page', 'credit_step2_id_number', 'en', 'ID Number'),
 ('home_page', 'credit_step2_id_number_ph', 'en', 'Enter ID number'),
 ('home_page', 'credit_step2_phone_number', 'en', 'Phone Number'),
 ('home_page', 'credit_step2_phone_number_ph', 'en', 'Enter phone number'),
@@ -26592,7 +26836,16 @@ FROM (VALUES
 ('mortgage_step1', 'back_to_vacancies', 'he', 'חזרה למשרות'),
 ('mortgage_step1', 'back_to_vacancies', 'en', 'Back to Vacancies'),
 ('mortgage_step1', 'back_to_vacancies', 'ru', 'Назад к вакансиям'),
-('mortgage_step1', 'balance', 'he', 'יתרה'),
+('mortgage_step1', 'balance', 'he', 'יתרה')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'balance', 'en', 'Balance'),
 ('mortgage_step1', 'balance', 'ru', 'Остаток'),
 ('mortgage_step1', 'bank_accounts', 'he', 'חשבונות בנק'),
@@ -26769,16 +27022,7 @@ FROM (VALUES
 ('mortgage_step1', 'bank_worker_registration_success', 'he', 'ההרשמה הושלמה בהצלחה! מעבר לעמוד הסטטוס...'),
 ('mortgage_step1', 'bank_worker_registration_success', 'en', 'Registration completed successfully! Redirecting to status page...'),
 ('mortgage_step1', 'bank_worker_registration_success', 'ru', 'Регистрация успешно завершена! Перенаправление на страницу статуса...'),
-('mortgage_step1', 'bank_worker_repeat_password', 'he', 'חזרו על הסיסמה')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'bank_worker_repeat_password', 'he', 'חזרו על הסיסמה'),
 ('mortgage_step1', 'bank_worker_repeat_password', 'en', 'Repeat Password'),
 ('mortgage_step1', 'bank_worker_repeat_password', 'ru', 'Повторите пароль'),
 ('mortgage_step1', 'bank_worker_search_banks', 'he', 'חיפוש בנקים...'),
@@ -27001,7 +27245,16 @@ FROM (VALUES
 ('mortgage_step1', 'button_close', 'ru', 'Закрыть'),
 ('mortgage_step1', 'button_confirm', 'he', 'אשר'),
 ('mortgage_step1', 'button_confirm', 'en', 'Confirm'),
-('mortgage_step1', 'button_confirm', 'ru', 'Подтвердить'),
+('mortgage_step1', 'button_confirm', 'ru', 'Подтвердить')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'button_continue', 'he', 'המשך'),
 ('mortgage_step1', 'button_continue', 'en', 'Continue'),
 ('mortgage_step1', 'button_continue', 'ru', 'Продолжить'),
@@ -27178,16 +27431,7 @@ FROM (VALUES
 ('mortgage_step1', 'calculate_mortgage', 'he', 'חישוב משכנתא'),
 ('mortgage_step1', 'calculate_mortgage', 'en', 'Calculate Mortgage'),
 ('mortgage_step1', 'calculate_mortgage', 'ru', 'Рассчитать ипотеку'),
-('mortgage_step1', 'calculate_mortgage_add_partner', 'he', 'הוסף שותף')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'calculate_mortgage_add_partner', 'he', 'הוסף שותף'),
 ('mortgage_step1', 'calculate_mortgage_add_partner', 'en', 'Add partner'),
 ('mortgage_step1', 'calculate_mortgage_add_partner', 'ru', 'Добавить партнера'),
 ('mortgage_step1', 'calculate_mortgage_add_partner_title', 'he', 'הוסף'),
@@ -27410,7 +27654,16 @@ FROM (VALUES
 ('mortgage_step1', 'calculate_mortgage_main_source', 'ru', 'Основной источник дохода'),
 ('mortgage_step1', 'calculate_mortgage_main_source_option_1', 'he', 'עובד שכיר'),
 ('mortgage_step1', 'calculate_mortgage_main_source_option_1', 'en', 'Employee'),
-('mortgage_step1', 'calculate_mortgage_main_source_option_1', 'ru', 'Наемный работник'),
+('mortgage_step1', 'calculate_mortgage_main_source_option_1', 'ru', 'Наемный работник')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'calculate_mortgage_main_source_option_2', 'he', 'עצמאי'),
 ('mortgage_step1', 'calculate_mortgage_main_source_option_2', 'en', 'Self-employed'),
 ('mortgage_step1', 'calculate_mortgage_main_source_option_2', 'ru', 'Самозанятый'),
@@ -27587,16 +27840,7 @@ FROM (VALUES
 ('mortgage_step1', 'calculate_mortgage_type_options_5', 'ru', 'Другое'),
 ('mortgage_step1', 'calculate_mortgage_type_ph', 'he', 'בחר סוג משכנתא'),
 ('mortgage_step1', 'calculate_mortgage_type_ph', 'en', 'Select mortgage type'),
-('mortgage_step1', 'calculate_mortgage_type_ph', 'ru', 'Выберите тип ипотеки')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'calculate_mortgage_type_ph', 'ru', 'Выберите тип ипотеки'),
 ('mortgage_step1', 'calculate_mortgage_warning', 'he', 'התוצאות המפורטות לעיל הן בגדר הערכה בלבד ואינן מהוות התחייבות כלשהי. לקבלת הצעות מותאמות ומחייבות מהמוסדות הפיננסיים, נדרש להשלים את תהליך הרישום הרשמי.'),
 ('mortgage_step1', 'calculate_mortgage_warning', 'ru', 'Приведенные выше результаты являются только предварительной оценкой и не являются обязательством. Для получения персонализированных и обязывающих предложений от финансовых учреждений необходимо завершить официальный процесс регистрации.'),
 ('mortgage_step1', 'calculate_mortgage_when', 'he', 'מתי תזדקק למשכנתא?'),
@@ -27819,7 +28063,16 @@ FROM (VALUES
 ('mortgage_step1', 'credit_total_return', 'en', 'Total to Repay'),
 ('mortgage_step1', 'credit_total_return', 'ru', 'Всего к возврату'),
 ('mortgage_step1', 'currency', 'he', 'מטבע'),
-('mortgage_step1', 'currency', 'en', 'Currency'),
+('mortgage_step1', 'currency', 'en', 'Currency')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'currency', 'ru', 'Валюта'),
 ('mortgage_step1', 'currency_eur', 'he', 'יורו (€)'),
 ('mortgage_step1', 'currency_eur', 'en', 'Euro (€)'),
@@ -27996,16 +28249,7 @@ FROM (VALUES
 ('mortgage_step1', 'error_initial_fee', 'en', 'Down payment must be at least 25% of property value'),
 ('mortgage_step1', 'error_initial_fee', 'ru', 'Первоначальный взнос должен составлять не менее 25% от стоимости недвижимости'),
 ('mortgage_step1', 'error_initial_payment_required', 'he', 'יש להזין את ההון העצמי'),
-('mortgage_step1', 'error_initial_payment_required', 'en', 'Please enter down payment')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'error_initial_payment_required', 'en', 'Please enter down payment'),
 ('mortgage_step1', 'error_initial_payment_required', 'ru', 'Пожалуйста, введите первоначальный взнос'),
 ('mortgage_step1', 'error_loan_of_amount_credit_max_200000', 'he', 'סכום האשראי המקסימלי הינו 200,000 ₪'),
 ('mortgage_step1', 'error_loan_of_amount_credit_max_200000', 'en', 'Maximum credit amount is ₪200,000'),
@@ -28228,14 +28472,23 @@ FROM (VALUES
 ('mortgage_step1', 'footer_privacy_policy', 'he', 'מדיניות פרטיות'),
 ('mortgage_step1', 'footer_privacy_policy', 'en', 'Privacy policy'),
 ('mortgage_step1', 'footer_privacy_policy', 'ru', 'Политика конфиденциальности'),
-('mortgage_step1', 'footer_refund', 'he', 'מדיניות החזרות'),
+('mortgage_step1', 'footer_refund', 'he', 'מדיניות החזרות')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'footer_refund', 'ru', 'Политика возвратов'),
 ('mortgage_step1', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('mortgage_step1', 'footer_return_policy', 'en', 'Return policy'),
 ('mortgage_step1', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('mortgage_step1', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('mortgage_step1', 'footer_social_follow', 'en', 'Follow us'),
-('mortgage_step1', 'footer_social_follow', 'ru', 'Следите за нами'),
+('mortgage_step1', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('mortgage_step1', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('mortgage_step1', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('mortgage_step1', 'footer_support', 'he', 'תמיכה טכנית'),
 ('mortgage_step1', 'footer_support', 'en', 'Technical support'),
 ('mortgage_step1', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -28405,16 +28658,7 @@ FROM (VALUES
 ('mortgage_step1', 'franchise_main_hero_cta', 'ru', 'Запросить информацию'),
 ('mortgage_step1', 'franchise_main_hero_title', 'he', 'הזדמנות עסקית בתחום הנדל"ן'),
 ('mortgage_step1', 'franchise_main_hero_title', 'en', 'Strategic Business Opportunity in Real Estate'),
-('mortgage_step1', 'franchise_main_hero_title', 'ru', 'Стратегическая бизнес-возможность в сфере недвижимости')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'franchise_main_hero_title', 'ru', 'Стратегическая бизнес-возможность в сфере недвижимости'),
 ('mortgage_step1', 'franchise_partnership_cta', 'he', 'הצטרפות לשותפות'),
 ('mortgage_step1', 'franchise_partnership_cta', 'en', 'Join Partnership'),
 ('mortgage_step1', 'franchise_partnership_cta', 'ru', 'Присоединиться к партнерству'),
@@ -28648,7 +28892,16 @@ FROM (VALUES
 ('mortgage_step1', 'lawyers_benefit_expansion_desc', 'he', 'גישה ללקוחות חדשים דרך הפלטפורמה שלנו'),
 ('mortgage_step1', 'lawyers_benefit_expansion_desc', 'en', 'Access to new clients through our professional platform'),
 ('mortgage_step1', 'lawyers_benefit_expansion_desc', 'ru', 'Доступ к новым клиентам через нашу платформу'),
-('mortgage_step1', 'lawyers_benefit_expansion_title', 'he', 'הרחבת בסיס לקוחות'),
+('mortgage_step1', 'lawyers_benefit_expansion_title', 'he', 'הרחבת בסיס לקוחות')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'lawyers_benefit_expansion_title', 'en', 'Clientele Expansion'),
 ('mortgage_step1', 'lawyers_benefit_expansion_title', 'ru', 'Расширение клиентской базы'),
 ('mortgage_step1', 'lawyers_benefit_leads_desc', 'he', 'לקוחות מוכשרים מראש עם צרכים משפטיים אמיתיים'),
@@ -28825,16 +29078,7 @@ FROM (VALUES
 ('mortgage_step1', 'mortgage_calculator', 'en', 'Mortgage calculator'),
 ('mortgage_step1', 'mortgage_calculator', 'ru', 'Рассчитайте ипотеку или кредит'),
 ('mortgage_step1', 'mortgage_calculator_text', 'he', 'חישבו את המשכנתא או האשראי שלכם באמצעות המחשבון המתקדם שלנו'),
-('mortgage_step1', 'mortgage_calculator_text', 'en', 'Calculate your mortgage or credit using our advanced calculator')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'mortgage_calculator_text', 'en', 'Calculate your mortgage or credit using our advanced calculator'),
 ('mortgage_step1', 'mortgage_calculator_text', 'ru', 'Рассчитайте свою ипотеку или кредит с помощью нашего усовершенствованного калькулятора'),
 ('mortgage_step1', 'mortgage_credit_why', 'he', 'מטרת מחזור האשראי'),
 ('mortgage_step1', 'mortgage_credit_why', 'en', 'Goal of credit refinancing'),
@@ -29057,7 +29301,16 @@ FROM (VALUES
 ('mortgage_step1', 'not_received_sms', 'ru', 'Не получили SMS?'),
 ('mortgage_step1', 'nothing_found', 'he', 'לא נמצאו תוצאות'),
 ('mortgage_step1', 'nothing_found', 'en', 'Nothing found'),
-('mortgage_step1', 'nothing_found', 'ru', 'Результаты не найдены'),
+('mortgage_step1', 'nothing_found', 'ru', 'Результаты не найдены')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'notifications', 'he', 'התראות'),
 ('mortgage_step1', 'notifications', 'en', 'Notifications'),
 ('mortgage_step1', 'notifications', 'ru', 'Уведомления'),
@@ -29234,16 +29487,7 @@ FROM (VALUES
 ('mortgage_step1', 'refinance_mortgage_final_title', 'ru', 'Результаты рефинансирования ипотеки'),
 ('mortgage_step1', 'refinance_mortgage_final_warning', 'he', 'ההצעות המוצגות הן הערכות ראשוניות למחזור משכנתא. התנאים הסופיים כפופים לאישור הבנק על בסיס הפרופיל הפיננסי המלא שלך והערכת הנכס.'),
 ('mortgage_step1', 'refinance_mortgage_final_warning', 'en', 'The displayed offers are preliminary estimates for mortgage refinancing. Final terms are subject to bank approval based on your complete financial profile and property valuation.'),
-('mortgage_step1', 'refinance_mortgage_final_warning', 'ru', 'Представленные предложения являются предварительными оценками для рефинансирования ипотеки. Окончательные условия подлежат одобрению банка на основе вашего полного финансового профиля и оценки недвижимости.')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'refinance_mortgage_final_warning', 'ru', 'Представленные предложения являются предварительными оценками для рефинансирования ипотеки. Окончательные условия подлежат одобрению банка на основе вашего полного финансового профиля и оценки недвижимости.'),
 ('mortgage_step1', 'refinance_mortgage_new_rate', 'he', 'ריבית חדשה'),
 ('mortgage_step1', 'refinance_mortgage_new_rate', 'en', 'New interest rate'),
 ('mortgage_step1', 'refinance_mortgage_new_rate', 'ru', 'Новая процентная ставка'),
@@ -29466,7 +29710,16 @@ FROM (VALUES
 ('mortgage_step1', 'franchise_about_title', 'en', 'About the Franchise'),
 ('mortgage_step1', 'franchise_about_title', 'ru', 'О франшизе'),
 ('mortgage_step1', 'franchise_about_text', 'he', 'זיכיון מתווכי הנדל"ן שלנו מציע מערכות מוכחות, תמיכה במיתוג והדרכה להצלחה בשוק.'),
-('mortgage_step1', 'franchise_about_text', 'en', 'Our real estate brokerage franchise offers proven systems, brand support, and training to help you succeed in the market.'),
+('mortgage_step1', 'franchise_about_text', 'en', 'Our real estate brokerage franchise offers proven systems, brand support, and training to help you succeed in the market.')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'franchise_about_text', 'ru', 'Наша франшиза агентства недвижимости предлагает проверенные системы, поддержку бренда и обучение для успеха на рынке.'),
 ('mortgage_step1', 'franchise_benefits_title', 'he', 'יתרונות'),
 ('mortgage_step1', 'franchise_benefits_title', 'en', 'Benefits'),
@@ -29643,16 +29896,7 @@ FROM (VALUES
 ('mortgage_step1', 'table_transaction_id', 'en', 'Transaction ID'),
 ('mortgage_step1', 'table_transaction_id', 'ru', 'ID транзакции'),
 ('mortgage_step1', 'technical_support', 'he', 'תמיכה טכנית'),
-('mortgage_step1', 'technical_support', 'en', 'Technical Support')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', 'technical_support', 'en', 'Technical Support'),
 ('mortgage_step1', 'technical_support', 'ru', 'Техническая поддержка'),
 ('mortgage_step1', 'tenders_about_desc', 'he', 'אנחנו מספקים טכנולוגיה, לידים ותמיכה מלאה כדי שתצמחו במהירות.'),
 ('mortgage_step1', 'tenders_about_desc', 'en', 'We provide technology, leads, and full support so you can grow your brokerage fast.'),
@@ -29875,7 +30119,16 @@ FROM (VALUES
 ('mortgage_step1', 'upload_report_progress', 'en', 'Report upload'),
 ('mortgage_step1', 'upload_report_progress', 'ru', 'Рефинансировать ипотеку'),
 ('mortgage_step1', 'user_agreement', 'he', 'הסכם המשתמש'),
-('mortgage_step1', 'user_agreement', 'en', 'User Agreement'),
+('mortgage_step1', 'user_agreement', 'en', 'User Agreement')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'user_agreement', 'ru', 'Пользовательское соглашение'),
 ('mortgage_step1', 'user_profile_placeholder', 'he', 'פרופיל משתמש'),
 ('mortgage_step1', 'user_profile_placeholder', 'en', 'User Profile'),
@@ -30052,16 +30305,7 @@ FROM (VALUES
 ('mortgage_step1', '__MIGRATED_calculate_mortgage_period_units_min', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_period_units_min'),
 ('mortgage_step1', '__MIGRATED_calculate_mortgage_period_units_min', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_period_units_min'),
 ('mortgage_step1', '__MIGRATED_date_ph', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: date_ph'),
-('mortgage_step1', '__MIGRATED_date_ph', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: date_ph')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step1', '__MIGRATED_date_ph', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: date_ph'),
 ('mortgage_step1', '__MIGRATED_date_ph', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: date_ph'),
 ('mortgage_step1', '__MIGRATED_calculate_mortgage_first_ph', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_first_ph'),
 ('mortgage_step1', '__MIGRATED_calculate_mortgage_first_ph', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_first_ph'),
@@ -30284,7 +30528,16 @@ FROM (VALUES
 ('mortgage_step1', 'refinance_step4_parameters_period', 'en', 'Refinancing period'),
 ('mortgage_step1', 'refinance_step4_parameters_months', 'en', 'months'),
 ('mortgage_step1', 'refinance_step4_profile_title', 'en', 'Personal Profile Details'),
-('mortgage_step1', 'refinance_step4_filter_title', 'en', 'Refinancing Filter'),
+('mortgage_step1', 'refinance_step4_filter_title', 'en', 'Refinancing Filter')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step1', 'refinance_step4_filter_option_1', 'en', 'All refinancing programs'),
 ('mortgage_step1', 'refinance_step4_filter_option_2', 'en', 'Prime rate refinancing'),
 ('mortgage_step1', 'refinance_step4_filter_option_3', 'en', 'Fixed rate refinancing'),
@@ -30461,16 +30714,7 @@ FROM (VALUES
 ('mortgage_step2', 'account', 'ru', 'Вход в аккаунт'),
 ('mortgage_step2', 'account_number', 'he', 'מספר חשבון'),
 ('mortgage_step2', 'account_number', 'en', 'Account Number'),
-('mortgage_step2', 'account_number', 'ru', 'Номер счета')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'account_number', 'ru', 'Номер счета'),
 ('mortgage_step2', 'account_owner', 'he', 'בעל החשבון'),
 ('mortgage_step2', 'account_owner', 'en', 'Account Owner'),
 ('mortgage_step2', 'account_owner', 'ru', 'Владелец счета'),
@@ -30693,7 +30937,16 @@ FROM (VALUES
 ('mortgage_step2', 'bank_worker_full_name_placeholder', 'en', 'Enter your full name'),
 ('mortgage_step2', 'bank_worker_full_name_placeholder', 'ru', 'Введите полное имя'),
 ('mortgage_step2', 'bank_worker_loading_banks', 'he', 'טוען בנקים...'),
-('mortgage_step2', 'bank_worker_loading_banks', 'en', 'Loading banks...'),
+('mortgage_step2', 'bank_worker_loading_banks', 'en', 'Loading banks...')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'bank_worker_loading_banks', 'ru', 'Загрузка банков...'),
 ('mortgage_step2', 'bank_worker_loading_branches', 'he', 'טוען סניפים...'),
 ('mortgage_step2', 'bank_worker_loading_branches', 'en', 'Loading branches...'),
@@ -30870,16 +31123,7 @@ FROM (VALUES
 ('mortgage_step2', 'broker_questionnaire_agreement', 'he', 'הנני מסכים/ה לתנאי השימוש ולמדיניות הפרטיות של החברה, ומאשר/ת עיבוד הנתונים האישיים שלי לצורכי הליך הקבלה והליכים עסקיים עתידיים בהתאם למדיניות הפרטיות'),
 ('mortgage_step2', 'broker_questionnaire_average_clients_month', 'he', 'כמות לקוחות ממוצעת לחודש'),
 ('mortgage_step2', 'broker_questionnaire_average_clients_month_placeholder', 'he', 'הזינו מספר לקוחות פעילים בממוצע'),
-('mortgage_step2', 'broker_questionnaire_back', 'he', 'חזרה לעמוד שיתוף פעולה עם ברוקרים')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'broker_questionnaire_back', 'he', 'חזרה לעמוד שיתוף פעולה עם ברוקרים'),
 ('mortgage_step2', 'broker_questionnaire_city', 'he', 'עיר מגורים נוכחית'),
 ('mortgage_step2', 'broker_questionnaire_city_placeholder', 'he', 'בחרו עיר מתוך הרשימה המאושרת'),
 ('mortgage_step2', 'broker_questionnaire_comments', 'he', 'הערות והארות נוספות'),
@@ -31102,7 +31346,16 @@ FROM (VALUES
 ('mortgage_step2', 'calculate_credit_target_option_4', 'en', 'Business investment'),
 ('mortgage_step2', 'calculate_credit_target_option_4', 'ru', 'Бизнес-инвестиции'),
 ('mortgage_step2', 'calculate_credit_target_option_5', 'he', 'שיפור זכאות אשראי עתידית'),
-('mortgage_step2', 'calculate_credit_target_option_5', 'en', 'Improve future credit eligibility'),
+('mortgage_step2', 'calculate_credit_target_option_5', 'en', 'Improve future credit eligibility')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'calculate_credit_target_option_5', 'ru', 'Улучшение будущей кредитоспособности'),
 ('mortgage_step2', 'calculate_credit_target_option_6', 'he', 'אחר'),
 ('mortgage_step2', 'calculate_credit_target_option_6', 'en', 'Other'),
@@ -31279,16 +31532,7 @@ FROM (VALUES
 ('mortgage_step2', 'calculate_mortgage_family_status_option_5', 'en', 'Common-law partner'),
 ('mortgage_step2', 'calculate_mortgage_family_status_option_5', 'ru', 'Гражданский брак'),
 ('mortgage_step2', 'calculate_mortgage_family_status_option_6', 'he', 'אחר'),
-('mortgage_step2', 'calculate_mortgage_family_status_option_6', 'en', 'Other')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'calculate_mortgage_family_status_option_6', 'en', 'Other'),
 ('mortgage_step2', 'calculate_mortgage_family_status_option_6', 'ru', 'Другое'),
 ('mortgage_step2', 'calculate_mortgage_family_status_ph', 'he', 'בחר מצב משפחתי'),
 ('mortgage_step2', 'calculate_mortgage_family_status_ph', 'en', 'Select marital status'),
@@ -31511,7 +31755,16 @@ FROM (VALUES
 ('mortgage_step2', 'calculate_mortgage_step2_title', 'ru', 'Личные данные'),
 ('mortgage_step2', 'calculate_mortgage_step3_ctx', 'he', 'אם אתה עובד פחות מ-3 חודשים במקום העבודה הנוכחי, ציין את מקום העבודה הקודם'),
 ('mortgage_step2', 'calculate_mortgage_step3_ctx', 'en', 'If you have been working at your current workplace for less than 3 months, specify your previous workplace'),
-('mortgage_step2', 'calculate_mortgage_step3_ctx', 'ru', 'Если вы работаете менее 3 месяцев на текущем месте работы, укажите предыдущее место работы'),
+('mortgage_step2', 'calculate_mortgage_step3_ctx', 'ru', 'Если вы работаете менее 3 месяцев на текущем месте работы, укажите предыдущее место работы')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'calculate_mortgage_step3_title', 'he', 'פרטי הכנסה'),
 ('mortgage_step2', 'calculate_mortgage_step3_title', 'ru', 'Сведения о доходах'),
 ('mortgage_step2', 'calculate_mortgage_stere', 'he', 'תחום פעילות'),
@@ -31688,16 +31941,7 @@ FROM (VALUES
 ('mortgage_step2', 'contact_form_success_message', 'en', 'Thank you for contacting us. We''ll get back to you as soon as possible.'),
 ('mortgage_step2', 'contact_form_success_message', 'ru', 'Спасибо за обращение к нам. Мы свяжемся с вами как можно скорее.'),
 ('mortgage_step2', 'contact_form_success_title', 'he', 'ההודעה נשלחה בהצלחה!'),
-('mortgage_step2', 'contact_form_success_title', 'en', 'Message sent successfully!')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'contact_form_success_title', 'en', 'Message sent successfully!'),
 ('mortgage_step2', 'contact_form_success_title', 'ru', 'Сообщение успешно отправлено!'),
 ('mortgage_step2', 'contact_us', 'he', 'צור קשר'),
 ('mortgage_step2', 'contact_us', 'en', 'Contact Us'),
@@ -31920,7 +32164,16 @@ FROM (VALUES
 ('mortgage_step2', 'error_credit_end_date_validation', 'ru', 'Дата окончания должна быть позже даты начала'),
 ('mortgage_step2', 'error_credit_payment_positive', 'he', 'התשלום החודשי חייב להיות חיובי'),
 ('mortgage_step2', 'error_credit_payment_positive', 'en', 'Monthly payment must be positive'),
-('mortgage_step2', 'error_credit_payment_positive', 'ru', 'Ежемесячный платеж должен быть положительным'),
+('mortgage_step2', 'error_credit_payment_positive', 'ru', 'Ежемесячный платеж должен быть положительным')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'error_credit_payment_required', 'he', 'יש למלא תשלום חודשי'),
 ('mortgage_step2', 'error_credit_payment_required', 'en', 'Please enter monthly payment'),
 ('mortgage_step2', 'error_credit_payment_required', 'ru', 'Введите ежемесячный платеж'),
@@ -32097,16 +32350,7 @@ FROM (VALUES
 ('mortgage_step2', 'fill_form_text', 'ru', 'Заполните свои данные для получения персонализированных ипотечных предложений'),
 ('mortgage_step2', 'fill_form_text_tablet', 'he', 'מלאו פרטים לקבלת הצעות מותאמות'),
 ('mortgage_step2', 'fill_form_text_tablet', 'en', 'Complete your details to receive offers'),
-('mortgage_step2', 'fill_form_text_tablet', 'ru', 'Заполните данные для получения предложений')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'fill_form_text_tablet', 'ru', 'Заполните данные для получения предложений'),
 ('mortgage_step2', 'calculator_description', 'he', 'חישבו את המשכנתא או האשראי שלכם באמצעות המחשבון המתקדם שלנו'),
 ('mortgage_step2', 'calculator_description', 'en', 'Calculate your mortgage or credit using our advanced calculator'),
 ('mortgage_step2', 'calculator_description', 'ru', 'Сделайте предварительный расчет, используя наш Калькулятор'),
@@ -32189,9 +32433,9 @@ FROM (VALUES
 ('mortgage_step2', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('mortgage_step2', 'footer_return_policy', 'en', 'Return policy'),
 ('mortgage_step2', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('mortgage_step2', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('mortgage_step2', 'footer_social_follow', 'en', 'Follow us'),
-('mortgage_step2', 'footer_social_follow', 'ru', 'Следите за нами'),
+('mortgage_step2', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('mortgage_step2', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('mortgage_step2', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('mortgage_step2', 'footer_support', 'he', 'תמיכה טכנית'),
 ('mortgage_step2', 'footer_support', 'en', 'Technical support'),
 ('mortgage_step2', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -32329,7 +32573,16 @@ FROM (VALUES
 ('mortgage_step2', 'franchise_includes_support_training', 'he', 'הכשרה מקצועית מלאה'),
 ('mortgage_step2', 'franchise_includes_support_training', 'en', 'Complete professional training'),
 ('mortgage_step2', 'franchise_includes_support_training', 'ru', 'Полное профессиональное обучение'),
-('mortgage_step2', 'franchise_includes_title', 'he', 'מה כולל החבילה שלנו?'),
+('mortgage_step2', 'franchise_includes_title', 'he', 'מה כולל החבילה שלנו?')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'franchise_includes_title', 'en', 'What Does Our Package Include?'),
 ('mortgage_step2', 'franchise_includes_title', 'ru', 'Что включает в себя наш пакет?'),
 ('mortgage_step2', 'franchise_includes_turnkey_benefit_brand', 'he', 'זכויות שימוש במותג המוכר'),
@@ -32506,16 +32759,7 @@ FROM (VALUES
 ('mortgage_step2', 'income_hint', 'he', 'הסכום מוצג לאחר ניכוי מיסים כפי שמאושר על ידי רואה חשבון'),
 ('mortgage_step2', 'income_hint', 'en', 'Amount specified after tax deduction confirmed by accountant'),
 ('mortgage_step2', 'income_hint', 'ru', 'Сумма указывается после вычета налогов, подтвержденная бухгалтером'),
-('mortgage_step2', 'income_last_month', 'he', 'הכנסה בחודש האחרון')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'income_last_month', 'he', 'הכנסה בחודש האחרון'),
 ('mortgage_step2', 'income_last_month', 'en', 'Income Last Month'),
 ('mortgage_step2', 'income_last_month', 'ru', 'Доход за последний месяц'),
 ('mortgage_step2', 'income_month_before_last', 'he', 'הכנסה בחודש שלפני האחרון'),
@@ -32749,7 +32993,16 @@ FROM (VALUES
 ('mortgage_step2', 'location', 'ru', 'Местоположение'),
 ('mortgage_step2', 'login', 'he', 'התחברות'),
 ('mortgage_step2', 'login', 'en', 'Login'),
-('mortgage_step2', 'login', 'ru', 'Вход'),
+('mortgage_step2', 'login', 'ru', 'Вход')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'login_here', 'he', 'כאן'),
 ('mortgage_step2', 'login_here', 'en', 'here'),
 ('mortgage_step2', 'login_here', 'ru', 'здесь'),
@@ -32926,16 +33179,7 @@ FROM (VALUES
 ('mortgage_step2', 'nav_home', 'ru', 'Главная страница'),
 ('mortgage_step2', 'nav_payments', 'he', 'תשלומים'),
 ('mortgage_step2', 'nav_payments', 'en', 'Payments'),
-('mortgage_step2', 'nav_payments', 'ru', 'Платежи')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'nav_payments', 'ru', 'Платежи'),
 ('mortgage_step2', 'nav_profile', 'he', 'פרופיל אישי'),
 ('mortgage_step2', 'nav_profile', 'en', 'Personal profile'),
 ('mortgage_step2', 'nav_profile', 'ru', 'Личный профиль'),
@@ -33158,7 +33402,16 @@ FROM (VALUES
 ('mortgage_step2', 'refinance_credit_start_date', 'en', 'Credit start date'),
 ('mortgage_step2', 'refinance_credit_start_date', 'ru', 'Дата начала кредита'),
 ('mortgage_step2', 'refinance_credit_total_saving', 'he', 'חיסכון כולל'),
-('mortgage_step2', 'refinance_credit_total_saving', 'en', 'Total savings'),
+('mortgage_step2', 'refinance_credit_total_saving', 'en', 'Total savings')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'refinance_credit_total_saving', 'ru', 'Общая экономия'),
 ('mortgage_step2', 'refinance_credit_warning', 'he', 'התוצאות המפורטות לעיל הן הערכה בלבד למחזור אשראי קיים ואינן מהוות התחייבות. לקבלת הצעות מחייבות מהבנקים, נדרש להשלים את תהליך הרישום.'),
 ('mortgage_step2', 'refinance_credit_warning', 'ru', 'Приведенные выше результаты являются только оценкой рефинансирования существующего кредита и не являются обязательством. Для получения обязывающих предложений от банков необходимо завершить процесс регистрации.'),
@@ -33335,16 +33588,7 @@ FROM (VALUES
 ('mortgage_step2', 'select_card', 'en', 'Select Card'),
 ('mortgage_step2', 'select_card', 'ru', 'Выберите карту'),
 ('mortgage_step2', 'select_currency', 'he', 'בחר מטבע'),
-('mortgage_step2', 'select_currency', 'en', 'Select currency')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'select_currency', 'en', 'Select currency'),
 ('mortgage_step2', 'select_currency', 'ru', 'Выберите валюту'),
 ('mortgage_step2', 'self_employed', 'he', 'עצמאי'),
 ('mortgage_step2', 'self_employed', 'en', 'Self-Employed'),
@@ -33567,7 +33811,16 @@ FROM (VALUES
 ('mortgage_step2', 'status.fields.branch', 'ru', 'Филиал'),
 ('mortgage_step2', 'status.fields.registrationDate', 'he', 'תאריך רישום'),
 ('mortgage_step2', 'status.fields.registrationDate', 'en', 'Registration Date'),
-('mortgage_step2', 'status.fields.registrationDate', 'ru', 'Дата регистрации'),
+('mortgage_step2', 'status.fields.registrationDate', 'ru', 'Дата регистрации')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'status.timeline.systemAccess', 'he', 'גישה למערכת'),
 ('mortgage_step2', 'status.timeline.systemAccess', 'en', 'System Access'),
 ('mortgage_step2', 'status.timeline.systemAccess', 'ru', 'Доступ к системе'),
@@ -33744,16 +33997,7 @@ FROM (VALUES
 ('mortgage_step2', 'tenders_step1', 'en', 'Fill out the form on the website'),
 ('mortgage_step2', 'tenders_step1', 'ru', 'Заполните форму на сайте'),
 ('mortgage_step2', 'tenders_step1_desc', 'he', 'מוכן מילא טופס קצר באתר שלנו כדי להצטרף למערכת שלנו'),
-('mortgage_step2', 'tenders_step1_desc', 'en', 'Ready to fill out a short form on our website to join our system')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'tenders_step1_desc', 'en', 'Ready to fill out a short form on our website to join our system'),
 ('mortgage_step2', 'tenders_step1_desc', 'ru', 'Готовы заполнить короткую форму на нашем сайте, чтобы присоединиться к нашей системе'),
 ('mortgage_step2', 'tenders_step1_title', 'he', 'מלא את הטופס באתר שלנו'),
 ('mortgage_step2', 'tenders_step1_title', 'en', 'Fill out the form on our website'),
@@ -33976,7 +34220,16 @@ FROM (VALUES
 ('mortgage_step2', '__MIGRATED_bank_massad', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_massad'),
 ('mortgage_step2', '__MIGRATED_bank_israel', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_israel'),
 ('mortgage_step2', '__MIGRATED_bank_israel', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_israel'),
-('mortgage_step2', '__MIGRATED_bank_israel', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_israel'),
+('mortgage_step2', '__MIGRATED_bank_israel', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: bank_israel')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', '__MIGRATED_amount_credit_title', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: amount_credit_title'),
 ('mortgage_step2', '__MIGRATED_amount_credit_title', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: amount_credit_title'),
 ('mortgage_step2', '__MIGRATED_amount_credit_title', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: amount_credit_title'),
@@ -34153,16 +34406,7 @@ FROM (VALUES
 ('mortgage_step2', 'auth_modal_continue', 'ru', 'Продолжить'),
 ('mortgage_step2', 'registration_success_message', 'he', 'ברוכים הבאים! נכנסת בהצלחה למערכת.'),
 ('mortgage_step2', 'registration_success_message', 'en', 'Welcome! You have successfully logged in.'),
-('mortgage_step2', 'registration_success_message', 'ru', 'Добро пожаловать! Вы успешно вошли в систему.')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step2', 'registration_success_message', 'ru', 'Добро пожаловать! Вы успешно вошли в систему.'),
 ('mortgage_step2', 'registration_error_message', 'he', 'שגיאה ברישום. אנא נסה שוב.'),
 ('mortgage_step2', 'registration_error_message', 'en', 'Registration error. Please try again.'),
 ('mortgage_step2', 'registration_error_message', 'ru', 'Ошибка при регистрации. Попробуйте еще раз.'),
@@ -34385,7 +34629,16 @@ FROM (VALUES
 ('mortgage_step2', 'uk_english', 'ru', 'English'),
 ('mortgage_step2', 'upload_report_subtitle', 'ru', 'Не знаете как получить отчет о текущей ипотеке? Посмотрите видео инструкцию ниже или перейдите по ссылке'),
 ('mortgage_step2', 'upload_report_title', 'ru', 'Загрузите отчет о текущей ипотеке'),
-('mortgage_step2', 'usa', 'ru', 'США'),
+('mortgage_step2', 'usa', 'ru', 'США')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'usa_english', 'ru', 'Английский'),
 ('mortgage_step2', 'write_to_admin', 'ru', 'Написать в администрацию'),
 ('mortgage_step3', 'accept_conditions_login', 'he', 'בלחיצה על "המשך" אני מקבל את תנאי'),
@@ -34562,16 +34815,7 @@ FROM (VALUES
 ('mortgage_step3', 'bank_partner_full_name_placeholder', 'en', 'Enter your full name'),
 ('mortgage_step3', 'bank_partner_full_name_placeholder', 'ru', 'Введите ваше полное имя'),
 ('mortgage_step3', 'bank_partner_password', 'he', 'סיסמה'),
-('mortgage_step3', 'bank_partner_password', 'en', 'Password')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'bank_partner_password', 'en', 'Password'),
 ('mortgage_step3', 'bank_partner_password', 'ru', 'Пароль'),
 ('mortgage_step3', 'bank_partner_password_placeholder', 'he', 'הכנס סיסמה'),
 ('mortgage_step3', 'bank_partner_password_placeholder', 'en', 'Enter your password'),
@@ -34794,7 +35038,16 @@ FROM (VALUES
 ('mortgage_step3', 'benefit_revenue', 'ru', 'Привлекательный доход'),
 ('mortgage_step3', 'benefit_revenue_desc', 'he', 'קבלו עמלות תחרותיות עבור כל לקוח שמבצע עסקה דרככם'),
 ('mortgage_step3', 'benefit_revenue_desc', 'en', 'Earn competitive commissions for every client you refer. Commission rates vary by transaction type and volume.'),
-('mortgage_step3', 'benefit_revenue_desc', 'ru', 'Получайте конкурентоспособные комиссии за каждого клиента, который совершает сделку через вас'),
+('mortgage_step3', 'benefit_revenue_desc', 'ru', 'Получайте конкурентоспособные комиссии за каждого клиента, который совершает сделку через вас')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'bid', 'he', 'אחוז ריבית'),
 ('mortgage_step3', 'bid', 'en', 'Interest Rate'),
 ('mortgage_step3', 'bid', 'ru', 'Процентная ставка'),
@@ -34971,16 +35224,7 @@ FROM (VALUES
 ('mortgage_step3', 'calculate_credit_filter_title', 'en', 'Filter Banks'),
 ('mortgage_step3', 'calculate_credit_filter_title', 'ru', 'Фильтр банков'),
 ('mortgage_step3', 'calculate_credit_final', 'he', 'סיכום בקשת אשראי'),
-('mortgage_step3', 'calculate_credit_final', 'en', 'Credit Calculation Results')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'calculate_credit_final', 'en', 'Credit Calculation Results'),
 ('mortgage_step3', 'calculate_credit_final', 'ru', 'Итоги заявки на кредит'),
 ('mortgage_step3', 'calculate_credit_monthly_payment', 'he', 'תשלום חודשי משוער'),
 ('mortgage_step3', 'calculate_credit_monthly_payment', 'en', 'Estimated monthly payment'),
@@ -35203,7 +35447,16 @@ FROM (VALUES
 ('mortgage_step3', 'calculate_mortgage_education_option_4', 'ru', 'Послесреднее образование'),
 ('mortgage_step3', 'calculate_mortgage_education_option_5', 'he', 'תואר ראשון'),
 ('mortgage_step3', 'calculate_mortgage_education_option_5', 'en', 'Bachelor''s degree'),
-('mortgage_step3', 'calculate_mortgage_education_option_5', 'ru', 'Высшее образование (бакалавриат)'),
+('mortgage_step3', 'calculate_mortgage_education_option_5', 'ru', 'Высшее образование (бакалавриат)')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'calculate_mortgage_education_option_6', 'he', 'תואר שני'),
 ('mortgage_step3', 'calculate_mortgage_education_option_6', 'en', 'Master''s degree'),
 ('mortgage_step3', 'calculate_mortgage_education_option_6', 'ru', 'Высшее образование (магистратура)'),
@@ -35380,16 +35633,7 @@ FROM (VALUES
 ('mortgage_step3', 'calculate_mortgage_period', 'he', 'תקופת משכנתא רצויה'),
 ('mortgage_step3', 'calculate_mortgage_period', 'en', 'Desired mortgage period'),
 ('mortgage_step3', 'calculate_mortgage_period', 'ru', 'Желаемый срок ипотеки'),
-('mortgage_step3', 'calculate_mortgage_period_units_max', 'he', 'שנים')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'calculate_mortgage_period_units_max', 'he', 'שנים'),
 ('mortgage_step3', 'calculate_mortgage_period_units_max', 'en', 'years'),
 ('mortgage_step3', 'calculate_mortgage_period_units_max', 'ru', 'лет'),
 ('mortgage_step3', 'calculate_mortgage_period_units_min', 'he', 'שנים'),
@@ -35612,7 +35856,16 @@ FROM (VALUES
 ('mortgage_step3', 'contact_form_message_placeholder', 'ru', 'Напишите ваше сообщение здесь'),
 ('mortgage_step3', 'contact_form_message_required', 'he', 'הודעה היא חובה'),
 ('mortgage_step3', 'contact_form_message_required', 'en', 'Message is required'),
-('mortgage_step3', 'contact_form_message_required', 'ru', 'Сообщение обязательно'),
+('mortgage_step3', 'contact_form_message_required', 'ru', 'Сообщение обязательно')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'contact_form_name', 'he', 'שם מלא'),
 ('mortgage_step3', 'contact_form_name', 'en', 'Full Name'),
 ('mortgage_step3', 'contact_form_name', 'ru', 'Полное имя'),
@@ -35789,16 +36042,7 @@ FROM (VALUES
 ('mortgage_step3', 'enter', 'ru', 'Введите'),
 ('mortgage_step3', 'enter_account_number', 'he', 'הזן מספר חשבון'),
 ('mortgage_step3', 'enter_account_number', 'en', 'Enter Account Number'),
-('mortgage_step3', 'enter_account_number', 'ru', 'Введите номер счета')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'enter_account_number', 'ru', 'Введите номер счета'),
 ('mortgage_step3', 'enter_account_owner', 'he', 'הזן שם בעל החשבון'),
 ('mortgage_step3', 'enter_account_owner', 'en', 'Specify Account Owner'),
 ('mortgage_step3', 'enter_account_owner', 'ru', 'Введите имя владельца счета'),
@@ -36021,7 +36265,16 @@ FROM (VALUES
 ('mortgage_step3', 'error_taxes_required', 'he', 'יש לבחור סטטוס מס הכנסה'),
 ('mortgage_step3', 'error_taxes_required', 'en', 'Please select income tax status'),
 ('mortgage_step3', 'error_taxes_required', 'ru', 'Пожалуйста, выберите статус подоходного налога'),
-('mortgage_step3', 'error_when_need_mortgage', 'he', 'יש לבחור מתי תזדקק למשכנתא'),
+('mortgage_step3', 'error_when_need_mortgage', 'he', 'יש לבחור מתי תזדקק למשכנתא')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'error_when_need_mortgage', 'en', 'Please select when you need the mortgage'),
 ('mortgage_step3', 'error_when_need_mortgage', 'ru', 'Пожалуйста, выберите когда вам нужна ипотека'),
 ('mortgage_step3', 'errors.invalidToken', 'he', 'אסימון הזמנה לא תקין או שפג תוקפו'),
@@ -36136,9 +36389,9 @@ FROM (VALUES
 ('mortgage_step3', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('mortgage_step3', 'footer_return_policy', 'en', 'Return policy'),
 ('mortgage_step3', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('mortgage_step3', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('mortgage_step3', 'footer_social_follow', 'en', 'Follow us'),
-('mortgage_step3', 'footer_social_follow', 'ru', 'Следите за нами'),
+('mortgage_step3', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('mortgage_step3', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('mortgage_step3', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('mortgage_step3', 'footer_support', 'he', 'תמיכה טכנית'),
 ('mortgage_step3', 'footer_support', 'en', 'Technical support'),
 ('mortgage_step3', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -36198,16 +36451,7 @@ FROM (VALUES
 ('mortgage_step3', 'franchise_alt_real_estate_keys', 'he', 'מפתחות נדל"ן'),
 ('mortgage_step3', 'franchise_alt_real_estate_keys', 'en', 'Real Estate Keys'),
 ('mortgage_step3', 'franchise_alt_real_estate_keys', 'ru', 'Ключи от недвижимости'),
-('mortgage_step3', 'franchise_alt_techrealt_logo', 'he', 'לוגו טכריאלט')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'franchise_alt_techrealt_logo', 'he', 'לוגו טכריאלט'),
 ('mortgage_step3', 'franchise_alt_techrealt_logo', 'en', 'TechRealt Logo'),
 ('mortgage_step3', 'franchise_alt_techrealt_logo', 'ru', 'Логотип TechRealt'),
 ('mortgage_step3', 'franchise_client_service_credit_calc', 'he', 'מחשבון אשראי'),
@@ -36430,7 +36674,16 @@ FROM (VALUES
 ('mortgage_step3', 'has_account', 'en', 'Do you have an existing account? '),
 ('mortgage_step3', 'has_account', 'ru', 'У вас есть существующий аккаунт? '),
 ('mortgage_step3', 'has_other_property_question', 'he', 'האם בבעלותך נכס נוסף מלבד זה שנרכש במשכנתא?'),
-('mortgage_step3', 'has_other_property_question', 'en', 'Do you have other property besides what was purchased with mortgage/credit?'),
+('mortgage_step3', 'has_other_property_question', 'en', 'Do you have other property besides what was purchased with mortgage/credit?')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'has_other_property_question', 'ru', 'Владеете ли вы дополнительной недвижимостью помимо приобретаемой по ипотеке?'),
 ('mortgage_step3', 'has_savings_question', 'he', 'האם קיים חיסכון שאינו כלול בהון העצמי למשכנתא?'),
 ('mortgage_step3', 'has_savings_question', 'en', 'Do you have savings that are not included in the mortgage down payment?'),
@@ -36618,16 +36871,7 @@ FROM (VALUES
 ('mortgage_step3', 'lawyers_fill_form_button', 'ru', 'Заполнить форму'),
 ('mortgage_step3', 'lawyers_get_consultation_button', 'he', 'קבלת ייעוץ'),
 ('mortgage_step3', 'lawyers_get_consultation_button', 'en', 'Get Consultation'),
-('mortgage_step3', 'lawyers_get_consultation_button', 'ru', 'Получить консультацию')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'lawyers_get_consultation_button', 'ru', 'Получить консультацию'),
 ('mortgage_step3', 'lawyers_hero_title', 'he', 'הרחבת בסיס הלקוחות שלכם: שותפות עם TechRealt עבור <span class="highlighted-text">עורכי דין ויועצים משפטיים!</span>'),
 ('mortgage_step3', 'lawyers_hero_title', 'en', 'Expand Your Clientele: Strategic Partnership with Techrealt for <span class="highlighted-text">Legal Practitioners</span>'),
 ('mortgage_step3', 'lawyers_hero_title', 'ru', 'Расширьте свою клиентскую базу: Партнерство с Techrealt для <span class="highlighted-text">Адвокатов и Юристов!</span>'),
@@ -36850,7 +37094,16 @@ FROM (VALUES
 ('mortgage_step3', 'mortgage_total', 'he', 'סכום כולל'),
 ('mortgage_step3', 'mortgage_total', 'en', 'Total amount'),
 ('mortgage_step3', 'mortgage_total', 'ru', 'Общая сумма'),
-('mortgage_step3', 'mortgage_total_return', 'he', 'סך החזר'),
+('mortgage_step3', 'mortgage_total_return', 'he', 'סך החזר')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'mortgage_total_return', 'en', 'Total repayment'),
 ('mortgage_step3', 'mortgage_total_return', 'ru', 'Общая выплата'),
 ('mortgage_step3', 'my_application', 'he', 'הבקשה שלי'),
@@ -37027,16 +37280,7 @@ FROM (VALUES
 ('mortgage_step3', 'policy', 'he', 'מדיניות הפרטיות'),
 ('mortgage_step3', 'policy', 'en', 'Privacy Policy'),
 ('mortgage_step3', 'policy', 'ru', 'Политика конфиденциальности'),
-('mortgage_step3', 'preliminary_selected_program', 'he', 'תכנית שנבחרה מראש')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'preliminary_selected_program', 'he', 'תכנית שנבחרה מראש'),
 ('mortgage_step3', 'preliminary_selected_program', 'en', 'Preliminary Selected Program'),
 ('mortgage_step3', 'preliminary_selected_program', 'ru', 'Предварительно выбранная программа'),
 ('mortgage_step3', 'press_register', 'he', ' הרשם למערכת '),
@@ -37259,7 +37503,16 @@ FROM (VALUES
 ('mortgage_step3', 'remove_mortgage_program_subtitle', 'ru', 'При нажатии на подтвердить все детали этой ипотечной программы будут удалены'),
 ('mortgage_step3', 'required_field', 'he', 'שדה חובה'),
 ('mortgage_step3', 'required_field', 'en', 'This field is required'),
-('mortgage_step3', 'required_field', 'ru', 'Обязательное поле'),
+('mortgage_step3', 'required_field', 'ru', 'Обязательное поле')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'russian', 'he', 'רוסית'),
 ('mortgage_step3', 'russian', 'en', 'Russian'),
 ('mortgage_step3', 'russian', 'ru', 'Русский'),
@@ -37436,16 +37689,7 @@ FROM (VALUES
 ('mortgage_step3', 'sidebar_sub_calculate_mortgage', 'ru', 'Расчет ипотеки'),
 ('mortgage_step3', 'sidebar_sub_refinance_credit', 'he', 'מחזור אשראי'),
 ('mortgage_step3', 'sidebar_sub_refinance_credit', 'en', 'Credit Refinancing'),
-('mortgage_step3', 'sidebar_sub_refinance_credit', 'ru', 'Рефинансирование кредита')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'sidebar_sub_refinance_credit', 'ru', 'Рефинансирование кредита'),
 ('mortgage_step3', 'sidebar_sub_refinance_mortgage', 'he', 'מחזור משכנתא'),
 ('mortgage_step3', 'sidebar_sub_refinance_mortgage', 'en', 'Mortgage Refinancing'),
 ('mortgage_step3', 'sidebar_sub_refinance_mortgage', 'ru', 'Рефинансирование ипотеки'),
@@ -37668,7 +37912,16 @@ FROM (VALUES
 ('mortgage_step3', 'tenders_metrics_investment_display', 'ru', 'До 30 000 ₪'),
 ('mortgage_step3', 'tenders_metrics_investment_label', 'he', 'הכנסה'),
 ('mortgage_step3', 'tenders_metrics_investment_label', 'en', 'Income'),
-('mortgage_step3', 'tenders_metrics_investment_label', 'ru', 'Доход'),
+('mortgage_step3', 'tenders_metrics_investment_label', 'ru', 'Доход')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'tenders_metrics_investment_title', 'he', 'השקעה'),
 ('mortgage_step3', 'tenders_metrics_investment_title', 'en', 'Investment'),
 ('mortgage_step3', 'tenders_metrics_investment_title', 'ru', 'Инвестиции'),
@@ -37845,16 +38098,7 @@ FROM (VALUES
 ('mortgage_step3', 'yes', 'ru', 'Да'),
 ('mortgage_step3', 'refinance_step2_name_surname', 'he', 'שם מלא'),
 ('mortgage_step3', 'refinance_step2_name_surname', 'en', 'Full Name'),
-('mortgage_step3', 'refinance_step2_name_surname', 'ru', 'Полное имя')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'refinance_step2_name_surname', 'ru', 'Полное имя'),
 ('mortgage_step3', 'refinance_step2_education', 'he', 'השכלה'),
 ('mortgage_step3', 'refinance_step2_education', 'en', 'Education'),
 ('mortgage_step3', 'refinance_step2_education_ph', 'he', 'בחר רמת השכלה'),
@@ -38077,7 +38321,16 @@ FROM (VALUES
 ('mortgage_step3', 'professions.dentist', 'he', 'רופא שיניים'),
 ('mortgage_step3', 'professions.dentist', 'en', 'Dentist'),
 ('mortgage_step3', 'professions.dentist', 'ru', 'Стоматолог'),
-('mortgage_step3', 'professions.architect', 'he', 'אדריכל'),
+('mortgage_step3', 'professions.architect', 'he', 'אדריכל')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step3', 'professions.architect', 'en', 'Architect'),
 ('mortgage_step3', 'professions.architect', 'ru', 'Архитектор'),
 ('mortgage_step3', 'professions.designer', 'he', 'מעצב'),
@@ -38254,16 +38507,7 @@ FROM (VALUES
 ('mortgage_step3', 'credit_step4_parameters_amount', 'en', 'Requested credit amount'),
 ('mortgage_step3', 'credit_step4_parameters_period', 'en', 'Credit period'),
 ('mortgage_step3', 'credit_step4_parameters_purpose', 'en', 'Credit purpose'),
-('mortgage_step3', 'credit_step4_profile_title', 'en', 'Personal Profile')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step3', 'credit_step4_profile_title', 'en', 'Personal Profile'),
 ('mortgage_step3', 'credit_step4_filter_title', 'en', 'Credit Options Filter'),
 ('mortgage_step3', 'credit_step4_filter_option_1', 'en', 'All credit options'),
 ('mortgage_step3', 'credit_step4_filter_option_2', 'en', 'Bank loans'),
@@ -38486,7 +38730,16 @@ FROM (VALUES
 ('mortgage_step4', 'bank_offers_credit_payment', 'ru', 'Ежемесячный платеж'),
 ('mortgage_step4', 'bank_offers_credit_rate', 'he', 'ריבית'),
 ('mortgage_step4', 'bank_offers_credit_rate', 'en', 'Interest rate'),
-('mortgage_step4', 'bank_offers_credit_rate', 'ru', 'Процентная ставка'),
+('mortgage_step4', 'bank_offers_credit_rate', 'ru', 'Процентная ставка')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'bank_offers_credit_register', 'he', 'רישום בקשת אשראי'),
 ('mortgage_step4', 'bank_offers_credit_register', 'en', 'Credit application registration'),
 ('mortgage_step4', 'bank_offers_credit_register', 'ru', 'Регистрация заявки на кредит'),
@@ -38663,16 +38916,7 @@ FROM (VALUES
 ('mortgage_step4', 'bank_worker_validation_bank_number_required', 'ru', 'Номер банка обязателен'),
 ('mortgage_step4', 'bank_worker_validation_bank_required', 'he', 'אנא בחרו בנק'),
 ('mortgage_step4', 'bank_worker_validation_bank_required', 'en', 'Please select a bank'),
-('mortgage_step4', 'bank_worker_validation_bank_required', 'ru', 'Пожалуйста, выберите банк')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'bank_worker_validation_bank_required', 'ru', 'Пожалуйста, выберите банк'),
 ('mortgage_step4', 'bank_worker_validation_branch_required', 'he', 'אנא בחרו סניף'),
 ('mortgage_step4', 'bank_worker_validation_branch_required', 'en', 'Please select a branch'),
 ('mortgage_step4', 'bank_worker_validation_branch_required', 'ru', 'Пожалуйста, выберите филиал'),
@@ -38895,7 +39139,16 @@ FROM (VALUES
 ('mortgage_step4', 'calculate_amount', 'en', 'Credit amount'),
 ('mortgage_step4', 'calculate_amount', 'ru', 'Сумма кредита'),
 ('mortgage_step4', 'calculate_credit', 'he', 'חישוב אשראי'),
-('mortgage_step4', 'calculate_credit', 'en', 'Calculate Credit'),
+('mortgage_step4', 'calculate_credit', 'en', 'Calculate Credit')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'calculate_credit', 'ru', 'Рассчитать кредит'),
 ('mortgage_step4', 'calculate_credit_amount', 'he', 'סכום האשראי הרצוי'),
 ('mortgage_step4', 'calculate_credit_amount', 'en', 'Desired credit amount'),
@@ -39072,16 +39325,7 @@ FROM (VALUES
 ('mortgage_step4', 'calculate_mortgage_citizenship_ph', 'ru', 'Выберите гражданство'),
 ('mortgage_step4', 'calculate_mortgage_citizenship_title', 'he', 'אזרחות'),
 ('mortgage_step4', 'calculate_mortgage_citizenship_title', 'en', 'Citizenship'),
-('mortgage_step4', 'calculate_mortgage_citizenship_title', 'ru', 'Гражданство')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'calculate_mortgage_citizenship_title', 'ru', 'Гражданство'),
 ('mortgage_step4', 'calculate_mortgage_citizenship_option_1', 'he', 'ישראל'),
 ('mortgage_step4', 'calculate_mortgage_citizenship_option_1', 'en', 'Israel'),
 ('mortgage_step4', 'calculate_mortgage_citizenship_option_1', 'ru', 'Израиль'),
@@ -39304,7 +39548,16 @@ FROM (VALUES
 ('mortgage_step4', 'calculate_mortgage_monthly_income_year_hint', 'en', 'Enter gross annual income'),
 ('mortgage_step4', 'calculate_mortgage_monthly_income_year_hint', 'ru', 'Введите валовой годовой доход'),
 ('mortgage_step4', 'calculate_mortgage_monthly_payment', 'he', 'תשלום חודשי'),
-('mortgage_step4', 'calculate_mortgage_monthly_payment', 'en', 'Monthly payment'),
+('mortgage_step4', 'calculate_mortgage_monthly_payment', 'en', 'Monthly payment')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'calculate_mortgage_monthly_payment', 'ru', 'Ежемесячный платеж'),
 ('mortgage_step4', 'calculate_mortgage_monthy_income_title', 'he', 'הכנסה חודשית'),
 ('mortgage_step4', 'calculate_mortgage_monthy_income_title', 'en', 'Monthly Income'),
@@ -39481,16 +39734,7 @@ FROM (VALUES
 ('mortgage_step4', 'calculate_why', 'ru', 'Зачем вам нужен кредит?'),
 ('mortgage_step4', 'cancel', 'he', 'ביטול'),
 ('mortgage_step4', 'cancel', 'en', 'Cancel'),
-('mortgage_step4', 'cancel', 'ru', 'Отмена')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'cancel', 'ru', 'Отмена'),
 ('mortgage_step4', 'cards_tab', 'he', 'כרטיסי אשראי'),
 ('mortgage_step4', 'cards_tab', 'en', 'Payment Cards'),
 ('mortgage_step4', 'cards_tab', 'ru', 'Кредитные карты'),
@@ -39713,7 +39957,16 @@ FROM (VALUES
 ('mortgage_step4', 'document_issue_date_title', 'he', 'תאריך הוצאת התעודה'),
 ('mortgage_step4', 'document_issue_date_title', 'en', 'Document Issue Date'),
 ('mortgage_step4', 'document_issue_date_title', 'ru', 'Дата выдачи документа'),
-('mortgage_step4', 'document_title', 'he', 'בנקימונליין'),
+('mortgage_step4', 'document_title', 'he', 'בנקימונליין')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'document_title', 'en', 'Bankimonline'),
 ('mortgage_step4', 'document_title', 'ru', 'Банкимонлайн'),
 ('mortgage_step4', 'down_payment', 'he', 'הון עצמי'),
@@ -39890,16 +40143,7 @@ FROM (VALUES
 ('mortgage_step4', 'error_mortgage_balance_required', 'he', 'יש למלא יתרה'),
 ('mortgage_step4', 'error_mortgage_balance_required', 'en', 'Please fill in balance'),
 ('mortgage_step4', 'error_mortgage_balance_required', 'ru', 'Пожалуйста, укажите остаток'),
-('mortgage_step4', 'error_mortgage_bid_positive', 'he', 'הריבית חייבת להיות חיובית')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'error_mortgage_bid_positive', 'he', 'הריבית חייבת להיות חיובית'),
 ('mortgage_step4', 'error_mortgage_bid_positive', 'en', 'Interest rate must be positive'),
 ('mortgage_step4', 'error_mortgage_bid_positive', 'ru', 'Процентная ставка должна быть положительной'),
 ('mortgage_step4', 'error_mortgage_bid_required', 'he', 'יש למלא ריבית'),
@@ -40092,9 +40336,9 @@ FROM (VALUES
 ('mortgage_step4', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('mortgage_step4', 'footer_return_policy', 'en', 'Return policy'),
 ('mortgage_step4', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('mortgage_step4', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('mortgage_step4', 'footer_social_follow', 'en', 'Follow us'),
-('mortgage_step4', 'footer_social_follow', 'ru', 'Следите за нами'),
+('mortgage_step4', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('mortgage_step4', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('mortgage_step4', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('mortgage_step4', 'footer_support', 'he', 'תמיכה טכנית'),
 ('mortgage_step4', 'footer_support', 'en', 'Technical support'),
 ('mortgage_step4', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -40122,7 +40366,16 @@ FROM (VALUES
 ('mortgage_step4', 'footer_social_tooltip_instagram', 'en', 'Follow us on Instagram'),
 ('mortgage_step4', 'footer_social_tooltip_instagram', 'ru', 'Подписывайтесь на нас в Instagram'),
 ('mortgage_step4', 'footer_social_tooltip_youtube', 'he', 'צפו בנו ביוטיוב'),
-('mortgage_step4', 'footer_social_tooltip_youtube', 'en', 'Watch us on YouTube'),
+('mortgage_step4', 'footer_social_tooltip_youtube', 'en', 'Watch us on YouTube')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'footer_social_tooltip_youtube', 'ru', 'Смотрите нас на YouTube'),
 ('mortgage_step4', 'footer_social_tooltip_facebook', 'he', 'עקבו אחרינו בפייסבוק'),
 ('mortgage_step4', 'footer_social_tooltip_facebook', 'en', 'Follow us on Facebook'),
@@ -40299,16 +40552,7 @@ FROM (VALUES
 ('mortgage_step4', 'franchise_pricing_investments', 'en', 'Initial Investment'),
 ('mortgage_step4', 'franchise_pricing_investments', 'ru', 'Первоначальные инвестиции'),
 ('mortgage_step4', 'franchise_pricing_investments_value', 'he', '₪150,000'),
-('mortgage_step4', 'franchise_pricing_investments_value', 'en', '₪150,000')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'franchise_pricing_investments_value', 'en', '₪150,000'),
 ('mortgage_step4', 'franchise_pricing_investments_value', 'ru', '₪150,000'),
 ('mortgage_step4', 'franchise_pricing_note', 'he', 'המחירים כוללים ציוד מלא, הכשרה ותמיכה שוטפת'),
 ('mortgage_step4', 'franchise_pricing_note', 'en', 'Prices include full equipment, training, and ongoing support'),
@@ -40542,7 +40786,16 @@ FROM (VALUES
 ('mortgage_step4', 'lawyers_collaboration_floating_crm', 'he', 'ניהול דיגיטלי של עבודה עם לקוחות דרך מערכת CRM'),
 ('mortgage_step4', 'lawyers_collaboration_floating_crm', 'en', 'Digital Client Management through CRM System'),
 ('mortgage_step4', 'lawyers_collaboration_floating_crm', 'ru', 'Цифровое управление работой с клиентами через CRM-систему'),
-('mortgage_step4', 'lawyers_collaboration_floating_platform', 'he', 'גישה ותמיכה בפלטפורמה דיגיטלית'),
+('mortgage_step4', 'lawyers_collaboration_floating_platform', 'he', 'גישה ותמיכה בפלטפורמה דיגיטלית')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'lawyers_collaboration_floating_platform', 'en', 'Digital Platform Access and Support'),
 ('mortgage_step4', 'lawyers_collaboration_floating_platform', 'ru', 'Доступ и поддержка Цифровой платформы'),
 ('mortgage_step4', 'lawyers_collaboration_get_consultation', 'he', 'קבלת ייעוץ'),
@@ -40719,16 +40972,7 @@ FROM (VALUES
 ('mortgage_step4', 'mortgage_refinance_bank_leumi', 'he', 'בנק לאומי'),
 ('mortgage_step4', 'mortgage_refinance_bank_leumi', 'en', 'Bank Leumi'),
 ('mortgage_step4', 'mortgage_refinance_bank_leumi', 'ru', 'Банк Леуми'),
-('mortgage_step4', 'mortgage_refinance_bank_massad', 'he', 'בנק מסד')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'mortgage_refinance_bank_massad', 'he', 'בנק מסד'),
 ('mortgage_step4', 'mortgage_refinance_bank_massad', 'en', 'Massad Bank'),
 ('mortgage_step4', 'mortgage_refinance_bank_massad', 'ru', 'Банк Масад'),
 ('mortgage_step4', 'mortgage_refinance_bank_ph', 'he', 'בחר את הבנק הנוכחי'),
@@ -40951,7 +41195,16 @@ FROM (VALUES
 ('mortgage_step4', 'period', 'en', 'Period'),
 ('mortgage_step4', 'period', 'ru', 'Период'),
 ('mortgage_step4', 'personal_cabinet', 'he', 'אזור אישי'),
-('mortgage_step4', 'personal_cabinet', 'en', 'Personal cabinet'),
+('mortgage_step4', 'personal_cabinet', 'en', 'Personal cabinet')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'personal_cabinet', 'ru', 'Личный кабинет'),
 ('mortgage_step4', 'phone', 'he', 'מספר טלפון'),
 ('mortgage_step4', 'phone', 'en', 'Phone'),
@@ -41128,16 +41381,7 @@ FROM (VALUES
 ('mortgage_step4', 'registration.tooltip', 'ru', 'Завершите регистрацию для доступа к банковской платформе'),
 ('mortgage_step4', 'registration.error.title', 'he', 'שגיאת רישום'),
 ('mortgage_step4', 'registration.error.title', 'en', 'Registration Error'),
-('mortgage_step4', 'registration.error.title', 'ru', 'Ошибка регистрации')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'registration.error.title', 'ru', 'Ошибка регистрации'),
 ('mortgage_step4', 'registration.fields.fullName.label', 'he', 'שם מלא'),
 ('mortgage_step4', 'registration.fields.fullName.label', 'en', 'Full Name'),
 ('mortgage_step4', 'registration.fields.fullName.label', 'ru', 'Имя Фамилия'),
@@ -41360,7 +41604,16 @@ FROM (VALUES
 ('mortgage_step4', 'sidebar_our_services', 'he', 'השירותים שלנו'),
 ('mortgage_step4', 'sidebar_our_services', 'en', 'Our services'),
 ('mortgage_step4', 'sidebar_our_services', 'ru', 'Наши услуги'),
-('mortgage_step4', 'sidebar_partnership_lawyers', 'he', 'תוכנית שותפים לעורכי דין'),
+('mortgage_step4', 'sidebar_partnership_lawyers', 'he', 'תוכנית שותפים לעורכי דין')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'sidebar_partnership_lawyers', 'en', 'Lawyer partnership program'),
 ('mortgage_step4', 'sidebar_partnership_lawyers', 'ru', 'Партнерская программа для юристов'),
 ('mortgage_step4', 'sidebar_referral_program', 'he', 'תכנית הפניות'),
@@ -41537,16 +41790,7 @@ FROM (VALUES
 ('mortgage_step4', 'tenders_hero_cta', 'he', 'מלאו טופס'),
 ('mortgage_step4', 'tenders_hero_cta', 'en', 'Fill in the form'),
 ('mortgage_step4', 'tenders_hero_cta', 'ru', 'Заполнить анкету'),
-('mortgage_step4', 'tenders_hero_headline', 'he', 'Bankimonline מזמינה מתווכי משכנתאות: פתחו היום את המשרד המצליח שלכם!')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'tenders_hero_headline', 'he', 'Bankimonline מזמינה מתווכי משכנתאות: פתחו היום את המשרד המצליח שלכם!'),
 ('mortgage_step4', 'tenders_hero_headline', 'en', 'Bankimonline invites mortgage brokers: open your successful office today!'),
 ('mortgage_step4', 'tenders_hero_headline', 'ru', 'Bankimonline приглашает ипотечных брокеров: откройте успешный офис уже сегодня!'),
 ('mortgage_step4', 'tenders_hero_subtitle', 'he', 'פתחו סוכנות משכנתאות רווחית עם התמיכה של Bankimonline'),
@@ -41769,7 +42013,16 @@ FROM (VALUES
 ('mortgage_step4', 'validation.bankNumber.min', 'he', 'מספר בנק חייב להכיל לפחות 3 ספרות'),
 ('mortgage_step4', 'validation.bankNumber.min', 'en', 'Bank number must be at least 3 digits'),
 ('mortgage_step4', 'validation.bankNumber.min', 'ru', 'Номер банка должен содержать минимум 3 цифры'),
-('mortgage_step4', 'validation.bankNumber.max', 'he', 'מספר בנק לא יכול לחרוג מ-10 ספרות'),
+('mortgage_step4', 'validation.bankNumber.max', 'he', 'מספר בנק לא יכול לחרוג מ-10 ספרות')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'validation.bankNumber.max', 'en', 'Bank number cannot exceed 10 digits'),
 ('mortgage_step4', 'validation.bankNumber.max', 'ru', 'Номер банка не может превышать 10 цифр'),
 ('mortgage_step4', 'validation.bankNumber.required', 'he', 'מספר בנק נדרש'),
@@ -41946,16 +42199,7 @@ FROM (VALUES
 ('mortgage_step4', 'cities.bat_yam', 'he', 'בת ים'),
 ('mortgage_step4', 'cities.bat_yam', 'en', 'Bat Yam'),
 ('mortgage_step4', 'cities.bat_yam', 'ru', 'Бат-Ям'),
-('mortgage_step4', 'cities.ramat_gan', 'he', 'רמת גן')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_step4', 'cities.ramat_gan', 'he', 'רמת גן'),
 ('mortgage_step4', 'cities.ramat_gan', 'en', 'Ramat Gan'),
 ('mortgage_step4', 'cities.ramat_gan', 'ru', 'Рамат-Ган'),
 ('mortgage_step4', 'cities.herzliya', 'he', 'הרצליה'),
@@ -42178,7 +42422,16 @@ FROM (VALUES
 ('mortgage_step4', 'credit_step2_id_number', 'en', 'ID Number'),
 ('mortgage_step4', 'credit_step2_id_number_ph', 'en', 'Enter ID number'),
 ('mortgage_step4', 'credit_step2_phone_number', 'en', 'Phone Number'),
-('mortgage_step4', 'credit_step2_phone_number_ph', 'en', 'Enter phone number'),
+('mortgage_step4', 'credit_step2_phone_number_ph', 'en', 'Enter phone number')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step4', 'credit_step2_email', 'en', 'Email Address'),
 ('mortgage_step4', 'credit_step2_email_ph', 'en', 'Enter email address'),
 ('mortgage_step4', 'credit_step2_address', 'en', 'Current Address'),
@@ -42355,16 +42608,7 @@ FROM (VALUES
 ('mortgage_calculation', 'add_programm', 'ru', 'Добавить программу'),
 ('mortgage_calculation', 'address_placeholder', 'he', 'הזן כתובת מגורים מלאה'),
 ('mortgage_calculation', 'address_placeholder', 'en', 'Enter residential address'),
-('mortgage_calculation', 'address_placeholder', 'ru', 'Введите полный адрес проживания')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'address_placeholder', 'ru', 'Введите полный адрес проживания'),
 ('mortgage_calculation', 'address_title', 'he', 'כתובת מגורים'),
 ('mortgage_calculation', 'address_title', 'en', 'Residential Address'),
 ('mortgage_calculation', 'address_title', 'ru', 'Адрес проживания'),
@@ -42587,7 +42831,16 @@ FROM (VALUES
 ('mortgage_calculation', 'bank_worker_repeat_password', 'he', 'חזרו על הסיסמה'),
 ('mortgage_calculation', 'bank_worker_repeat_password', 'en', 'Repeat Password'),
 ('mortgage_calculation', 'bank_worker_repeat_password', 'ru', 'Повторите пароль'),
-('mortgage_calculation', 'bank_worker_search_banks', 'he', 'חיפוש בנקים...'),
+('mortgage_calculation', 'bank_worker_search_banks', 'he', 'חיפוש בנקים...')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'bank_worker_search_banks', 'en', 'Search banks...'),
 ('mortgage_calculation', 'bank_worker_search_banks', 'ru', 'Поиск банков...'),
 ('mortgage_calculation', 'bank_worker_search_branches', 'he', 'חיפוש סניפים...'),
@@ -42764,16 +43017,7 @@ FROM (VALUES
 ('mortgage_calculation', 'broker_questionnaire_full_name', 'he', 'שם מלא של איש הקשר המוסמך'),
 ('mortgage_calculation', 'broker_questionnaire_full_name_placeholder', 'he', 'דוגמה: אלכסנדר פושקין'),
 ('mortgage_calculation', 'broker_questionnaire_has_client_cases', 'he', 'האם ניהלתם בעבר תיקי לקוחות בתחום הפיננסי?'),
-('mortgage_calculation', 'broker_questionnaire_has_debt_cases', 'he', 'האם מתנהלים נגדכם הליכים משפטיים או תיקי חוב?')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'broker_questionnaire_has_debt_cases', 'he', 'האם מתנהלים נגדכם הליכים משפטיים או תיקי חוב?'),
 ('mortgage_calculation', 'broker_questionnaire_income_0_5000', 'he', 'עד ₪5,000 לחודש'),
 ('mortgage_calculation', 'broker_questionnaire_income_10000_20000', 'he', '₪10,000 - ₪20,000 לחודש'),
 ('mortgage_calculation', 'broker_questionnaire_income_20000_50000', 'he', '₪20,000 - ₪50,000 לחודש'),
@@ -42996,7 +43240,16 @@ FROM (VALUES
 ('mortgage_calculation', 'calculate_mortgage_add_partner', 'he', 'הוסף שותף'),
 ('mortgage_calculation', 'calculate_mortgage_add_partner', 'en', 'Add partner'),
 ('mortgage_calculation', 'calculate_mortgage_add_partner', 'ru', 'Добавить партнера'),
-('mortgage_calculation', 'calculate_mortgage_add_partner_title', 'he', 'הוסף'),
+('mortgage_calculation', 'calculate_mortgage_add_partner_title', 'he', 'הוסף')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'calculate_mortgage_add_partner_title', 'en', 'Add'),
 ('mortgage_calculation', 'calculate_mortgage_add_partner_title', 'ru', 'Добавить'),
 ('mortgage_calculation', 'calculate_mortgage_anketa', 'he', 'מידע אישי'),
@@ -43173,16 +43426,7 @@ FROM (VALUES
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_2', 'en', 'Additional Salary'),
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_2', 'ru', 'Дополнительная зарплата'),
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_3', 'he', 'עבודה נוספת'),
-('mortgage_calculation', 'calculate_mortgage_has_additional_option_3', 'en', 'Additional Work')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'calculate_mortgage_has_additional_option_3', 'en', 'Additional Work'),
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_3', 'ru', 'Дополнительная работа'),
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_4', 'he', 'הכנסה מהשכרת נכסים'),
 ('mortgage_calculation', 'calculate_mortgage_has_additional_option_4', 'en', 'Property Rental'),
@@ -43405,7 +43649,16 @@ FROM (VALUES
 ('mortgage_calculation', 'calculate_mortgage_type_ph', 'ru', 'Выберите тип ипотеки'),
 ('mortgage_calculation', 'calculate_mortgage_warning', 'he', 'התוצאות המפורטות לעיל הן בגדר הערכה בלבד ואינן מהוות התחייבות כלשהי. לקבלת הצעות מותאמות ומחייבות מהמוסדות הפיננסיים, נדרש להשלים את תהליך הרישום הרשמי.'),
 ('mortgage_calculation', 'calculate_mortgage_warning', 'ru', 'Приведенные выше результаты являются только предварительной оценкой и не являются обязательством. Для получения персонализированных и обязывающих предложений от финансовых учреждений необходимо завершить официальный процесс регистрации.'),
-('mortgage_calculation', 'calculate_mortgage_when', 'he', 'מתי תזדקק למשכנתא?'),
+('mortgage_calculation', 'calculate_mortgage_when', 'he', 'מתי תזדקק למשכנתא?')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'calculate_mortgage_when', 'en', 'When do you need the mortgage?'),
 ('mortgage_calculation', 'calculate_mortgage_when', 'ru', 'Когда вам нужна ипотека?'),
 ('mortgage_calculation', 'calculate_mortgage_when_options_1', 'he', 'תוך 3 חודשים'),
@@ -43582,16 +43835,7 @@ FROM (VALUES
 ('mortgage_calculation', 'credit_float_percent', 'he', 'אשראי בריבית משתנה צמוד מדד'),
 ('mortgage_calculation', 'credit_float_percent', 'en', 'Variable interest credit indexed to inflation'),
 ('mortgage_calculation', 'credit_float_percent', 'ru', 'Кредит с переменной ставкой привязанной к индексу'),
-('mortgage_calculation', 'credit_loan_period', 'he', 'תקופת חודשים רצויה')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'credit_loan_period', 'he', 'תקופת חודשים רצויה'),
 ('mortgage_calculation', 'credit_loan_period', 'en', 'Desired loan period'),
 ('mortgage_calculation', 'credit_loan_period', 'ru', 'Желаемый срок кредита'),
 ('mortgage_calculation', 'credit_monthly', 'he', 'תשלום חודשי'),
@@ -43814,7 +44058,16 @@ FROM (VALUES
 ('mortgage_calculation', 'error_initial_payment_required', 'en', 'Please enter down payment'),
 ('mortgage_calculation', 'error_initial_payment_required', 'ru', 'Пожалуйста, введите первоначальный взнос'),
 ('mortgage_calculation', 'error_loan_of_amount_credit_max_200000', 'he', 'סכום האשראי המקסימלי הינו 200,000 ₪'),
-('mortgage_calculation', 'error_loan_of_amount_credit_max_200000', 'en', 'Maximum credit amount is ₪200,000'),
+('mortgage_calculation', 'error_loan_of_amount_credit_max_200000', 'en', 'Maximum credit amount is ₪200,000')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'error_loan_of_amount_credit_max_200000', 'ru', 'Максимальная сумма кредита составляет 200,000 ₪'),
 ('mortgage_calculation', 'error_max_credit_period', 'he', 'תקופת החזר המקסימלית הינה 60 חודשים'),
 ('mortgage_calculation', 'error_max_credit_period', 'en', 'Maximum repayment period is 60 months'),
@@ -43991,16 +44244,7 @@ FROM (VALUES
 ('mortgage_calculation', 'footer_contacts_title', 'en', 'Contacts'),
 ('mortgage_calculation', 'footer_contacts_title', 'ru', 'Контакты'),
 ('mortgage_calculation', 'footer_cookie_policy', 'he', 'מדיניות עוגיות'),
-('mortgage_calculation', 'footer_cookie_policy', 'en', 'Cookie policy')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'footer_cookie_policy', 'en', 'Cookie policy'),
 ('mortgage_calculation', 'footer_cookie_policy', 'ru', 'Политика файлов cookie'),
 ('mortgage_calculation', 'footer_cookies', 'he', 'מדיניות עוגיות'),
 ('mortgage_calculation', 'footer_cookies', 'en', 'Cookie policy'),
@@ -44048,9 +44292,9 @@ FROM (VALUES
 ('mortgage_calculation', 'footer_return_policy', 'he', 'מדיניות החזרות'),
 ('mortgage_calculation', 'footer_return_policy', 'en', 'Return policy'),
 ('mortgage_calculation', 'footer_return_policy', 'ru', 'Политика возвратов'),
-('mortgage_calculation', 'footer_social_follow', 'he', 'עקבו אחרינו'),
-('mortgage_calculation', 'footer_social_follow', 'en', 'Follow us'),
-('mortgage_calculation', 'footer_social_follow', 'ru', 'Следите за нами'),
+('mortgage_calculation', 'footer_social_follow', 'he', 'עקבו אחרינו ברשתות החברתיות'),
+('mortgage_calculation', 'footer_social_follow', 'en', 'Follow us in Social Networks'),
+('mortgage_calculation', 'footer_social_follow', 'ru', 'Следите за нами в социальных сетях'),
 ('mortgage_calculation', 'footer_support', 'he', 'תמיכה טכנית'),
 ('mortgage_calculation', 'footer_support', 'en', 'Technical support'),
 ('mortgage_calculation', 'footer_support', 'ru', 'Техническая поддержка'),
@@ -44223,7 +44467,16 @@ FROM (VALUES
 ('mortgage_calculation', 'franchise_main_hero_title', 'ru', 'Стратегическая бизнес-возможность в сфере недвижимости'),
 ('mortgage_calculation', 'franchise_partnership_cta', 'he', 'הצטרפות לשותפות'),
 ('mortgage_calculation', 'franchise_partnership_cta', 'en', 'Join Partnership'),
-('mortgage_calculation', 'franchise_partnership_cta', 'ru', 'Присоединиться к партнерству'),
+('mortgage_calculation', 'franchise_partnership_cta', 'ru', 'Присоединиться к партнерству')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'franchise_partnership_description', 'he', 'שותפות עם טכריאלט מספקת פלטפורמה מקצועית ומתקדמת לניהול עסקי הנדל"ן. אנו מציעים מגוון שירותים:'),
 ('mortgage_calculation', 'franchise_partnership_description', 'en', 'Partnership with TechRealt provides a professional and advanced platform for managing real estate businesses. We offer a variety of services:'),
 ('mortgage_calculation', 'franchise_partnership_description', 'ru', 'Партнерство с TechRealt предоставляет профессиональную и передовую платформу для управления бизнесом в сфере недвижимости. Мы предлагаем разнообразные услуги:'),
@@ -44411,16 +44664,7 @@ FROM (VALUES
 ('mortgage_calculation', 'last_name', 'ru', 'Фамилия'),
 ('mortgage_calculation', 'lawyer_success_button', 'he', 'חזרה לעמוד הבית'),
 ('mortgage_calculation', 'lawyer_success_button', 'en', 'Back to Home Page'),
-('mortgage_calculation', 'lawyer_success_button', 'ru', 'Вернуться на главную страницу')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'lawyer_success_button', 'ru', 'Вернуться на главную страницу'),
 ('mortgage_calculation', 'lawyer_success_message', 'he', 'תודה לך על הפנייה. קיבלנו את פרטיך ונציגנו יצור עמך קשר בהקדם'),
 ('mortgage_calculation', 'lawyer_success_message', 'en', 'Thank you for your submission. We have received your details and our representative will contact you shortly'),
 ('mortgage_calculation', 'lawyer_success_message', 'ru', 'Спасибо за обращение. Мы получили ваши данные и наш представитель свяжется с вами в ближайшее время'),
@@ -44643,7 +44887,16 @@ FROM (VALUES
 ('mortgage_calculation', 'mortgage_calculator_text', 'en', 'Calculate your mortgage or credit using our advanced calculator'),
 ('mortgage_calculation', 'mortgage_calculator_text', 'ru', 'Рассчитайте свою ипотеку или кредит с помощью нашего усовершенствованного калькулятора'),
 ('mortgage_calculation', 'mortgage_credit_why', 'he', 'מטרת מחזור האשראי'),
-('mortgage_calculation', 'mortgage_credit_why', 'en', 'Goal of credit refinancing'),
+('mortgage_calculation', 'mortgage_credit_why', 'en', 'Goal of credit refinancing')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'mortgage_credit_why', 'ru', 'Цель рефинансирования кредита'),
 ('mortgage_calculation', 'mortgage_fix_percent', 'he', 'משכנתא בריבית קבועה צמודה מדד'),
 ('mortgage_calculation', 'mortgage_fix_percent', 'en', 'Fixed Rate Mortgage'),
@@ -44820,16 +45073,7 @@ FROM (VALUES
 ('mortgage_calculation', 'nextSteps.approved.accessSystem', 'en', 'Access System'),
 ('mortgage_calculation', 'nextSteps.approved.accessSystem', 'ru', 'Доступ к системе'),
 ('mortgage_calculation', 'nextSteps.rejected.title', 'he', 'נדרשת בדיקה נוספת של הרישום'),
-('mortgage_calculation', 'nextSteps.rejected.title', 'en', 'Registration Review Required')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'nextSteps.rejected.title', 'en', 'Registration Review Required'),
 ('mortgage_calculation', 'nextSteps.rejected.title', 'ru', 'Требуется проверка регистрации'),
 ('mortgage_calculation', 'nextSteps.rejected.description', 'he', 'הרישום שלכם דורש בדיקה נוספת. אנא צרו קשר עם התמיכה.'),
 ('mortgage_calculation', 'nextSteps.rejected.description', 'en', 'Your registration requires additional review. Please contact support.'),
@@ -45052,7 +45296,16 @@ FROM (VALUES
 ('mortgage_calculation', 'refinance_mortgage_final_warning', 'ru', 'Представленные предложения являются предварительными оценками для рефинансирования ипотеки. Окончательные условия подлежат одобрению банка на основе вашего полного финансового профиля и оценки недвижимости.'),
 ('mortgage_calculation', 'refinance_mortgage_new_rate', 'he', 'ריבית חדשה'),
 ('mortgage_calculation', 'refinance_mortgage_new_rate', 'en', 'New interest rate'),
-('mortgage_calculation', 'refinance_mortgage_new_rate', 'ru', 'Новая процентная ставка'),
+('mortgage_calculation', 'refinance_mortgage_new_rate', 'ru', 'Новая процентная ставка')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'refinance_mortgage_promo_text', 'he', 'קבל תנאי משכנתא משופרים'),
 ('mortgage_calculation', 'refinance_mortgage_promo_text', 'en', 'Get improved mortgage terms'),
 ('mortgage_calculation', 'refinance_mortgage_promo_text', 'ru', 'Получите улучшенные условия ипотеки'),
@@ -45229,16 +45482,7 @@ FROM (VALUES
 ('mortgage_calculation', 'sidebar_business', 'he', 'עסקים'),
 ('mortgage_calculation', 'sidebar_business', 'en', 'Business'),
 ('mortgage_calculation', 'sidebar_business', 'ru', 'Бизнес'),
-('mortgage_calculation', 'sidebar_business_1', 'he', 'מוסדות פיננסיים שותפים')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'sidebar_business_1', 'he', 'מוסדות פיננסיים שותפים'),
 ('mortgage_calculation', 'sidebar_business_1', 'en', 'Partner financial institutions'),
 ('mortgage_calculation', 'sidebar_business_1', 'ru', 'Финансовые учреждения-партнеры'),
 ('mortgage_calculation', 'sidebar_business_2', 'he', 'תכנית שותפים'),
@@ -45461,7 +45705,16 @@ FROM (VALUES
 ('mortgage_calculation', 'technical_support', 'en', 'Technical Support'),
 ('mortgage_calculation', 'technical_support', 'ru', 'Техническая поддержка'),
 ('mortgage_calculation', 'tenders_about_desc', 'he', 'אנחנו מספקים טכנולוגיה, לידים ותמיכה מלאה כדי שתצמחו במהירות.'),
-('mortgage_calculation', 'tenders_about_desc', 'en', 'We provide technology, leads, and full support so you can grow your brokerage fast.'),
+('mortgage_calculation', 'tenders_about_desc', 'en', 'We provide technology, leads, and full support so you can grow your brokerage fast.')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', 'tenders_about_desc', 'ru', 'Мы предоставим технологию, лидов и полную поддержку для быстрого роста вашего бизнеса.'),
 ('mortgage_calculation', 'tenders_about_title', 'he', 'למה לשתף פעולה איתנו?'),
 ('mortgage_calculation', 'tenders_about_title', 'en', 'Why partner with us?'),
@@ -45638,16 +45891,7 @@ FROM (VALUES
 ('mortgage_calculation', 'tenders_step5', 'he', 'התחילו להרוויח הכנסה יציבה'),
 ('mortgage_calculation', 'tenders_step5', 'en', 'Start earning stable income'),
 ('mortgage_calculation', 'tenders_step5', 'ru', 'Начните получать стабильный доход'),
-('mortgage_calculation', 'tenders_step5_desc', 'he', 'אנחנו מקבל הכנסה יציבה בחודשים לזמנים הראשונים. קירוב')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'tenders_step5_desc', 'he', 'אנחנו מקבל הכנסה יציבה בחודשים לזמנים הראשונים. קירוב'),
 ('mortgage_calculation', 'tenders_step5_desc', 'en', 'We receive stable income in the initial months. Approximately'),
 ('mortgage_calculation', 'tenders_step5_desc', 'ru', 'Мы получаем стабильный доход в первые месяцы. Приблизительно'),
 ('mortgage_calculation', 'tenders_step5_title', 'he', 'קבל הכנסה יציבה בחודשים הראשונים'),
@@ -45870,7 +46114,16 @@ FROM (VALUES
 ('mortgage_calculation', '__MIGRATED_date_ph', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: date_ph'),
 ('mortgage_calculation', '__MIGRATED_date_ph', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: date_ph'),
 ('mortgage_calculation', '__MIGRATED_calculate_mortgage_first_ph', 'he', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_first_ph'),
-('mortgage_calculation', '__MIGRATED_calculate_mortgage_first_ph', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_first_ph'),
+('mortgage_calculation', '__MIGRATED_calculate_mortgage_first_ph', 'en', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_first_ph')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_calculation', '__MIGRATED_calculate_mortgage_first_ph', 'ru', 'MIGRATED to database - screen_location: refinance_credit_1, content_key: calculate_mortgage_first_ph'),
 ('mortgage_calculation', 'cities.tel_aviv', 'he', 'תל אביב'),
 ('mortgage_calculation', 'cities.tel_aviv', 'en', 'Tel Aviv'),
@@ -46047,16 +46300,7 @@ FROM (VALUES
 ('mortgage_calculation', 'refinance_step2_tax_obligations', 'en', 'Are you liable for tax in foreign countries or additional countries beyond Israel?'),
 ('mortgage_calculation', '_comment_refinance_step3', 'en', '=== REFINANCE STEP 3 - Income Details ==='),
 ('mortgage_calculation', 'refinance_step3_main_source_income', 'en', 'Main source of income'),
-('mortgage_calculation', 'refinance_step3_main_source_income_ph', 'en', 'Select main source of income')
-) AS v(screen_location, content_key, lang, content_value)
-JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
-ON CONFLICT (content_item_id, language_code) DO UPDATE SET
-  content_value = EXCLUDED.content_value,
-  status = EXCLUDED.status;
-
-INSERT INTO content_translations (content_item_id, language_code, content_value, status)
-SELECT ci.id, v.lang, v.content_value, 'approved'
-FROM (VALUES
+('mortgage_calculation', 'refinance_step3_main_source_income_ph', 'en', 'Select main source of income'),
 ('mortgage_calculation', 'refinance_step3_main_source_income_option_1', 'en', 'Employee'),
 ('mortgage_calculation', 'refinance_step3_main_source_income_option_2', 'en', 'Self-employed'),
 ('mortgage_calculation', 'refinance_step3_main_source_income_option_3', 'en', 'Pensioner'),
@@ -46279,7 +46523,16 @@ FROM (VALUES
 ('mortgage_step2', 'compare_in_5mins', 'ru', 'Сравните ипотеки за 5 минут'),
 ('mortgage_step2', 'compare_in_5minutes', 'he', 'בחר משכנתא תוך 5 דקות'),
 ('mortgage_step2', 'compare_in_5minutes', 'en', 'Find your optimal mortgage in 5 minutes'),
-('mortgage_step2', 'compare_in_5minutes', 'ru', 'Выберите ипотеку за 5 минут'),
+('mortgage_step2', 'compare_in_5minutes', 'ru', 'Выберите ипотеку за 5 минут')
+) AS v(screen_location, content_key, lang, content_value)
+JOIN content_items ci ON ci.screen_location = v.screen_location AND ci.content_key = v.content_key
+ON CONFLICT (content_item_id, language_code) DO UPDATE SET
+  content_value = EXCLUDED.content_value,
+  status = EXCLUDED.status;
+
+INSERT INTO content_translations (content_item_id, language_code, content_value, status)
+SELECT ci.id, v.lang, v.content_value, 'approved'
+FROM (VALUES
 ('mortgage_step2', 'how_it_works', 'he', 'איך זה עובד?'),
 ('mortgage_step2', 'how_it_works', 'en', 'How does it work?'),
 ('mortgage_step2', 'how_it_works', 'ru', 'Как это работает?'),

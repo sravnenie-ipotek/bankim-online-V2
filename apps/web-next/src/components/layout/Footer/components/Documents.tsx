@@ -25,7 +25,7 @@ const Documents: React.FC = () => {
         <div className="font-medium leading-normal text-textTheme-primary mb-6 text-left text-[clamp(0.9rem,0.9rem+0.2vw,1rem)]">
           {getContent('footer_legal')}
         </div>
-        <div className="font-normal leading-[140%] text-textTheme-secondary gap-[0.8rem] flex flex-col text-[clamp(0.8125rem,0.85rem+0.2vw,0.875rem)] [&>a]:cursor-pointer [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:underline [&>a:hover]:text-textTheme-primary">
+        <div className="font-normal leading-[140%] text-textTheme-secondary gap-[0.8rem] flex flex-col text-[clamp(0.75rem,1vw,0.875rem)] [&>a]:cursor-pointer [&>a]:text-textTheme-secondary [&>a]:no-underline [&>a]:transition-colors [&>a]:duration-200 [&>a:hover]:underline [&>a:hover]:text-textTheme-primary">
           {DOCUMENT_LINKS.map((link) => (
             <Link key={link.key} href={link.href} className="cursor-pointer hover:underline">
               {getContent(link.key)}

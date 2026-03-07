@@ -5,6 +5,7 @@ export const CONTACT_SECTIONS: ContactSection[] = [
   {
     id: 'general',
     labelKey: 'contacts_general_questions',
+    icon: '/static/contacts/general-questions-icon.svg',
     items: [
       { labelKey: 'contacts_phone_label', valueKey: 'contacts_general_phone', type: 'phone' },
       { labelKey: 'contacts_email_label', valueKey: 'contacts_general_email', type: 'email' },
@@ -13,6 +14,7 @@ export const CONTACT_SECTIONS: ContactSection[] = [
   {
     id: 'service',
     labelKey: 'contacts_service_questions',
+    icon: '/static/contacts/service-questions-icon.svg',
     items: [
       { labelKey: 'contacts_phone_label', valueKey: 'contacts_service_phone', type: 'phone' },
       { labelKey: 'contacts_email_label', valueKey: 'contacts_service_email', type: 'email' },
@@ -21,6 +23,7 @@ export const CONTACT_SECTIONS: ContactSection[] = [
   {
     id: 'real_estate',
     labelKey: 'contacts_real_estate_questions',
+    icon: '/static/contacts/real-estate-questions-icon.svg',
     items: [
       { labelKey: 'contacts_phone_label', valueKey: 'contacts_real_estate_phone', type: 'phone' },
       { labelKey: 'contacts_email_label', valueKey: 'contacts_real_estate_email', type: 'email' },
@@ -29,6 +32,7 @@ export const CONTACT_SECTIONS: ContactSection[] = [
   {
     id: 'cooperation',
     labelKey: 'contacts_cooperation',
+    icon: '/static/contacts/cooperation-icon.svg',
     items: [
       { labelKey: 'contacts_phone_label', valueKey: 'contacts_cooperation_phone', type: 'phone' },
       { labelKey: 'contacts_email_label', valueKey: 'contacts_cooperation_email', type: 'email' },

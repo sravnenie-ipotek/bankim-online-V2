@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotFoundException } from '@nestjs/common';
 import { ContentController } from './content.controller';
 import { ContentService } from './content.service';
 import { DropdownService } from './dropdown.service';
@@ -269,18 +268,30 @@ describe('ContentController', () => {
     });
   });
 
-  describe('negative – getContentByKey throws NotFoundException', () => {
-    it('propagates NotFoundException when content item not found', async () => {
-      contentService.getContentByKey.mockRejectedValue(
-        new NotFoundException('Content item not found'),
-      );
+  describe('getContentByKey when content key missing in DB', () => {
+    it('returns success with empty content (no exception, aligned with cache-aside)', async () => {
+      const emptyContentPayload = {
+        status: 'success' as const,
+        content_key: 'missing_key',
+        requested_language: 'he',
+        actual_language: 'he',
+        fallback_used: false,
+        content: {
+          value: '',
+          component_type: '',
+          category: '',
+          screen_location: '',
+        },
+      };
+      contentService.getContentByKey.mockResolvedValue(emptyContentPayload);
 
-      await expect(
-        controller.getContentByKey('missing_key', 'he'),
-      ).rejects.toThrow(NotFoundException);
-      await expect(
-        controller.getContentByKey('missing_key', 'he'),
-      ).rejects.toThrow('Content item not found');
+      const result = await controller.getContentByKey('missing_key', 'he');
+
+      expect(result).toEqual(emptyContentPayload);
+      expect(contentService.getContentByKey).toHaveBeenCalledWith(
+        'missing_key',
+        'he',
+      );
     });
   });
 

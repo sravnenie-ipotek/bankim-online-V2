@@ -40,25 +40,15 @@ export const useContentApi = (screenLocation: string) => {
     };
   }, [screenLocation, loading, contentLoadingContext]);
 
-  /** Resolves content from API/DB only. Does not fall back to i18n. */
+  /** Resolves content from API/DB only. No fallback. Missing keys return [Missing: key]. */
   const getContent = useCallback(
     (key: string): string => {
-      if (content[key]) return content[key];
-      const shortKey = ContentMapHelper.getShortKey(key);
-      const value = content[shortKey];
+      const value = content[key];
       if (value !== undefined && value !== '') return value;
       if (loading && Object.keys(content).length === 0) {
         return '\u00A0';
       }
-      if (!loading && Object.keys(content).length > 0) {
-        if (typeof console !== 'undefined' && console.error) {
-          console.error(
-            `[useContentApi] Content key not found in API/DB: "${key}". Add it to content (SQL/i18n) or fix the key.`
-          );
-        }
-        return `[Missing: ${key}]`;
-      }
-      return value ?? '';
+      return `[Missing: ${key}]`;
     },
     [content, loading]
   );

@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotFoundException } from '@nestjs/common';
 import { ContentService } from './content.service';
 import type { GetContentByScreenResult } from './tests/interfaces/get-content-by-screen-result.interface';
 import type { GetLanguagesResult } from './tests/interfaces/get-languages-result.interface';
@@ -190,15 +189,25 @@ describe('ContentService', () => {
       });
     });
 
-    it('throws NotFoundException when item not found (negative)', async () => {
+    it('returns success with empty content when item not found; does not cache (cache only real DB data)', async () => {
       contentItemRepo.findOne.mockResolvedValueOnce(null);
 
-      await expect(
-        service.getContentByKey('missing_key', 'he'),
-      ).rejects.toThrow(NotFoundException);
-      await expect(
-        service.getContentByKey('missing_key', 'he'),
-      ).rejects.toThrow('Content item not found');
+      const result = await service.getContentByKey('missing_key', 'he');
+
+      expect(result).toMatchObject({
+        status: 'success',
+        content_key: 'missing_key',
+        requested_language: 'he',
+        actual_language: 'he',
+        fallback_used: false,
+        content: {
+          value: '',
+          component_type: '',
+          category: '',
+          screen_location: '',
+        },
+      });
+      expect(cache.set).not.toHaveBeenCalled();
     });
 
     it('uses English fallback when requested language has no translation', async () => {

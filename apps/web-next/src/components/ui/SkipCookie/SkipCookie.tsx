@@ -11,10 +11,12 @@ import { COOKIE_CONSENT_ACCEPTED_EVENT } from '@/components/analytics/GoogleAnal
 import type { SkipCookieState } from './interfaces/SkipCookieState';
 
 const INITIAL_STATE: SkipCookieState = { mounted: false, isVisible: false };
+const PORTAL_CONTAINER_ID = 'skip-cookie-portal-root';
 
 const SkipCookie: React.FC = () => {
   const { getContent } = useContentApi('global_components');
   const [state, setState] = useState<SkipCookieState>(INITIAL_STATE);
+  const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const cookieValue = StorageHelper.getItem('cookie');
@@ -24,6 +26,21 @@ const SkipCookie: React.FC = () => {
     }, 0);
     return () => clearTimeout(id);
   }, []);
+
+  useEffect(() => {
+    if (!state.mounted || typeof document === 'undefined') return;
+    const el = document.createElement('div');
+    el.id = PORTAL_CONTAINER_ID;
+    document.body.appendChild(el);
+    const id = setTimeout(() => setPortalContainer(el), 0);
+    return () => {
+      clearTimeout(id);
+      if (el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+      setPortalContainer(null);
+    };
+  }, [state.mounted]);
 
   const handleAccept = () => {
     setState((prev) => ({ ...prev, isVisible: false }));
@@ -37,7 +54,7 @@ const SkipCookie: React.FC = () => {
     setState((prev) => ({ ...prev, isVisible: false }));
   };
 
-  if (!state.mounted || !state.isVisible) return null;
+  if (!state.mounted || !state.isVisible || !portalContainer) return null;
 
   return createPortal(
     <div className="fixed inset-0 flex justify-center items-center z-toast max-sm:z-[10002] px-4 max-sm:px-[5%] sm:px-6 md:px-8">
@@ -47,17 +64,19 @@ const SkipCookie: React.FC = () => {
           <button
             type="button"
             onClick={handleClose}
-            className="shrink-0 w-8 h-8 p-0 border-0 bg-transparent cursor-pointer flex items-center justify-center sm:hidden"
+            className="shrink-0 w-8 h-8 p-0 border-0 bg-transparent cursor-pointer flex items-center justify-center text-textTheme-secondary hover:text-textTheme-primary transition-colors sm:hidden"
             aria-label="Close cookie notice"
           >
-            <Image
-              src={getImagePath(getContent, 'close_icon', '/static/x.svg')}
-              width={32}
-              height={32}
-              alt=""
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="w-8 h-8"
               aria-hidden
-              className="w-8 h-8 object-contain"
-            />
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
           </button>
           <div className="relative shrink-0 w-[52px] h-[52px]">
             <Image
@@ -94,22 +113,24 @@ const SkipCookie: React.FC = () => {
           <button
             type="button"
             onClick={handleClose}
-            className="hidden sm:flex shrink-0 w-8 h-8 p-0 border-0 bg-transparent cursor-pointer items-center justify-center"
+            className="hidden sm:flex shrink-0 w-8 h-8 p-0 border-0 bg-transparent cursor-pointer items-center justify-center text-textTheme-secondary hover:text-textTheme-primary transition-colors"
             aria-label="Close cookie notice"
           >
-            <Image
-              src={getImagePath(getContent, 'close_icon', '/static/x.svg')}
-              width={32}
-              height={32}
-              alt=""
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="w-8 h-8"
               aria-hidden
-              className="w-8 h-8 object-contain"
-            />
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
           </button>
         </div>
       </div>
     </div>,
-    document.body
+    portalContainer
   );
 };
 

@@ -1,4 +1,4 @@
-import { Injectable, Inject, NotFoundException } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import type { Cache } from 'cache-manager';
 import { ConfigService } from '@nestjs/config';
@@ -19,7 +19,9 @@ const SUPPORTED_LANGUAGES = ['en', 'he', 'ru'] as const;
 
 function normalizeLanguage(lang: string): string {
   const base = lang.split('-')[0].toLowerCase();
-  return (SUPPORTED_LANGUAGES as readonly string[]).includes(base) ? base : 'en';
+  return (SUPPORTED_LANGUAGES as readonly string[]).includes(base)
+    ? base
+    : 'en';
 }
 
 @Injectable()
@@ -47,11 +49,7 @@ export class ContentService {
     console.log(
       `[ContentService] Cache miss for ${screen}:${lang} - reading from SQL`,
     );
-    const response = await this.loadContentByScreenFromDb(
-      screen,
-      lang,
-      type,
-    );
+    const response = await this.loadContentByScreenFromDb(screen, lang, type);
     const ttl = this.config.get<number>('REDIS_TTL_CONTENT') ?? DEFAULT_TTL_MS;
     await this.cache.set(cacheKey, { ...response, cached: true }, ttl);
     return response;
@@ -223,17 +221,27 @@ export class ContentService {
       where: { content_key: key, is_active: true },
     });
 
+    // No cache when key missing in DB: cache only real data loaded from DB
     if (!item) {
-      throw new NotFoundException('Content item not found');
+      return {
+        status: 'success',
+        content_key: key,
+        requested_language: language,
+        actual_language: lang,
+        fallback_used: false,
+        content: {
+          value: '',
+          component_type: '',
+          category: '',
+          screen_location: '',
+        },
+      };
     }
 
-    const translation = await this.findTranslationWithFallback(
-      item.id,
-      lang,
-    );
+    const translation = await this.findTranslationWithFallback(item.id, lang);
 
-    const response = {
-      status: 'success' as const,
+    const response: GetContentByKeyResponse = {
+      status: 'success',
       content_key: key,
       requested_language: language,
       actual_language: translation?.language_code ?? language,
@@ -516,7 +524,7 @@ export class ContentService {
     };
   }
 
-  async getCacheStats() {
+  getCacheStats() {
     return {
       status: 'success',
       cache_stats: { message: 'Cache is managed by Nest CacheModule' },

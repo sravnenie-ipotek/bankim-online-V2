@@ -7,16 +7,34 @@ import { useContentApi } from '@hooks/useContentApi';
 import { MarkdownHelper } from '@/helpers/MarkdownHelper';
 import type { CookiePolicyModalProps } from './interfaces/CookiePolicyModalProps';
 
+const COOKIE_MODAL_PORTAL_ID = 'cookie-policy-modal-portal-root';
+
 const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ isOpen, onClose }) => {
   const { getContent } = useContentApi('legal');
   const [mounted, setMounted] = useState(false);
+  const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const id = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(id);
   }, []);
 
-  if (!isOpen || !mounted) return null;
+  useEffect(() => {
+    if (!mounted || !isOpen || typeof document === 'undefined') return;
+    const el = document.createElement('div');
+    el.id = COOKIE_MODAL_PORTAL_ID;
+    document.body.appendChild(el);
+    const id = setTimeout(() => setPortalContainer(el), 0);
+    return () => {
+      clearTimeout(id);
+      if (el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+      setPortalContainer(null);
+    };
+  }, [mounted, isOpen]);
+
+  if (!isOpen || !mounted || !portalContainer) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose();
@@ -145,7 +163,7 @@ const CookiePolicyModal: React.FC<CookiePolicyModalProps> = ({ isOpen, onClose }
         </div>
       </div>
     </div>,
-    document.body
+    portalContainer
   );
 };
 

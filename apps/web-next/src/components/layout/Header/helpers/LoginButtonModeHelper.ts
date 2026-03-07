@@ -1,11 +1,14 @@
 import type { LoginButtonMode } from '../interfaces/LoginButtonMode';
 
+const BLACK_MODE_PATH_SEGMENTS = ['vacancies', 'contacts', 'cooperation'];
+
 /**
  * Resolves header login button visual mode from the current path.
- * Vacancies section uses black mode; all other pages use normal (accent) mode.
+ * Vacancies and contacts pages use black mode; all other pages use normal (accent) mode.
  */
 export class LoginButtonModeHelper {
   static getMode(pathname: string): LoginButtonMode {
-    return pathname.split('/').includes('vacancies') ? 'black' : 'normal';
+    const segments = pathname.split('/');
+    return BLACK_MODE_PATH_SEGMENTS.some((seg) => segments.includes(seg)) ? 'black' : 'normal';
   }
 }
