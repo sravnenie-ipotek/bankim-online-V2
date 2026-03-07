@@ -24,10 +24,11 @@ const Cooperation: React.FC = () => {
   const bankimTopOffset = 'clamp(29px, 2.847vw, 54px)';
 
   return (
-    <div className="pb-[clamp(96px,6.667vw,127px)]">
+    <div className="pb-[clamp(56px,8vw,80px)] lg:pb-[96px]">
       <PartnershipProgramHero getContent={getContent} direction={direction} />
+      {/* Program (hero) → Market: 96px at 1440, clamp up to 127px at 1920, desktop (lg/xl) only. Mortgage ↔ program+loans: 96px at 1440, clamp for xl. */}
       <div
-        className="flex flex-col md:flex-row items-start w-full mt-[clamp(56px,14.36vw,96px)] pt-0 gap-[clamp(16px,2.222vw,32px)] max-md:gap-[clamp(56px,14.36vw,96px)]"
+        className="flex flex-col md:flex-row items-start w-full mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(137px,9.514vw,181px)] pt-0 gap-[clamp(16px,2.222vw,32px)] max-md:gap-[clamp(56px,14.36vw,96px)] lg:gap-[clamp(96px,6.67vw,127px)]"
         dir={direction}
       >
         <div className="order-2 shrink-0 max-md:w-full max-md:flex max-md:justify-center" style={{ marginTop: `calc(-1 * ${bankimTopOffset})` }}>
@@ -59,13 +60,15 @@ const Cooperation: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mt-[clamp(56px,14.36vw,96px)]">
+      {/* Market/loans → Yellow (Reward): 104px at lg (1440), clamp for xl (1920) — desktop only */}
+      <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(104px,7.22vw,139px)]">
         <Reward getContent={getContent} direction={direction} />
       </div>
-      <div className="mt-[clamp(56px,14.36vw,96px)]">
+      <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(96px,6.67vw,127px)]">
         <HowItWorksSection getContent={getContent} direction={direction} />
       </div>
-      <div className="relative w-full min-h-[200px] lg:h-[clamp(266px,18.472vw,351px)] mt-[clamp(56px,14.36vw,96px)] py-[clamp(24px,2vw,0px)] lg:py-0">
+      {/* How it works → Partners swiper: 96px vertical on desktop (lg/xl) */}
+      <div className="relative w-full min-h-[200px] lg:h-[clamp(266px,18.472vw,351px)] mt-[clamp(56px,14.36vw,80px)] lg:mt-[96px] py-[clamp(24px,2vw,0px)] lg:py-0">
         <div
           className="absolute inset-y-0 bg-base-sidebarBg"
           style={{
@@ -83,7 +86,8 @@ const Cooperation: React.FC = () => {
           />
         </div>
       </div>
-      <div className="mt-[clamp(56px,14.36vw,96px)]">
+      {/* Partners swiper → Cooperation about: 96px vertical on desktop (lg/xl) */}
+      <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[96px]">
         <CooperationAbout
           title={getContent('cooperation_about_box_title')}
           buttonLabel={getContent('cooperation_register')}

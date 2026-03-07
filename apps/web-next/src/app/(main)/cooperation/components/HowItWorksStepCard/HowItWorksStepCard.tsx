@@ -33,7 +33,7 @@ const HowItWorksStepCard: React.FC<HowItWorksStepCardProps> = ({
       <h3 className="text-[clamp(16px,1.667vw,24px)] font-medium text-white leading-tight mb-[clamp(8px,0.833vw,12px)]">
         {title}
       </h3>
-      <p className="text-[clamp(14px,1.111vw,16px)] text-white/85 leading-relaxed flex-1">
+      <p className="text-[clamp(14px,1.111vw,16px)] text-white/85 leading-relaxed flex-1 whitespace-pre-line">
         {description}
       </p>
       <span
