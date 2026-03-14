@@ -37,7 +37,7 @@ const STEPS: StepConfig[] = [
 
 /** Outer section wrapper — full width, stacked column; children at logical start (LTR left, RTL right). */
 const SECTION_CLASS =
-  'relative flex flex-col w-full mb-[clamp(32px,3.75vw,54px)] text-[#e7e9ea] items-start';
+  'relative flex flex-col w-full mb-[clamp(16px,3.75vw,54px)] text-[#e7e9ea] items-start';
 
 /** Section heading — flush at position 0; LTR left, RTL right (logical start). */
 const TITLE_CLASS = [
@@ -56,17 +56,15 @@ const TITLE_CLASS = [
  */
 const CARDS_ROW_CLASS = [
   'w-full',
-  'max-sm:w-screen max-sm:relative max-sm:left-1/2 max-sm:-translate-x-1/2',
   'flex flex-col sm:flex-row sm:flex-wrap',
   'sm:justify-between rtl:sm:justify-between',
-  'gap-2 sm:gap-[10px] md:gap-[12.6px] lg:gap-0',
-  'xs:pe-[50px] sm:pe-0',
+  'gap-3 sm:gap-[10px] md:gap-[12.6px] lg:gap-0',
 ].join(' ');
 
-/** Per-card wrapper — fixed size per breakpoint; xl cards grow to fill remaining space equally. */
+/** Per-card wrapper — full width on mobile; fixed size per breakpoint; xl cards grow equally. */
 const CARD_WRAPPER_CLASS = [
-  'min-w-0 shrink-0 w-full max-w-[333px]',
-  'sm:w-[333px] sm:flex-none sm:h-[222px]',
+  'min-w-0 shrink-0 w-full max-w-full',
+  'sm:max-w-[333px] sm:w-[333px] sm:flex-none sm:h-[222px]',
   'md:h-[222px]',
   'lg:w-[364px] lg:flex-none lg:h-[222px]',
   'xl:flex-1 xl:w-auto xl:h-[296px]',

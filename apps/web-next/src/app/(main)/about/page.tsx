@@ -19,7 +19,7 @@ const About: React.FC = () => {
     i18n.language?.startsWith('he') || i18n.language === 'iw' ? 'rtl' : 'ltr';
 
   return (
-    <Container>
+    <Container className="max-[1240px]:px-0 max-[890px]:!pb-4">
       <div className="flex flex-col gap-16 items-start w-full my-8">
         {/* Hero Section */}
         <div className="flex flex-col gap-4 w-full">

@@ -30,11 +30,11 @@ const SubSidebar: React.FC<SubSidebarProps> = ({
 
   return (
     <nav
-      className={`max-w-[430px] w-full h-full min-w-[320px] p-10 border border-base-stroke bg-base-secondary absolute top-0 z-10
+      className={`max-w-[clamp(320px,29.861vw,567px)] w-full h-full min-w-[320px] p-[clamp(24px,2.778vw,52px)] border border-base-stroke bg-base-secondary absolute top-0 z-10
         ltr:left-full rtl:right-full
         transition-all duration-300 ease-in-out ${hideTransformClass} ${opacityClass} ${pointerEventsClass}`}
     >
-      <ul className="pt-[100px] flex flex-col text-[clamp(1.25rem,1.2rem+0.5vw,1.5625rem)]">
+      <ul className="pt-[clamp(70px,6.944vw,132px)] flex flex-col text-[clamp(1.25rem,1.2rem+0.5vw,1.5625rem)]">
         {items.map((item, index) => (
           <li
             key={item.path || `submenu-${index}`}

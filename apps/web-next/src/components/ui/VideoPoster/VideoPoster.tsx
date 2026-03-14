@@ -242,8 +242,8 @@ const VideoPoster: React.FC<VideoPosterProps> = ({ title, subtitle, text, size =
       <div
         className={
           isSmall
-            ? 'mt-[2px] max-sm:mb-0 sm:my-[2.4rem] sm:mb-[-0.2rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
-            : 'mt-[2px] sm:mt-[2.6rem] relative w-full px-0 sm:px-5 md:px-0 max-w-full md:max-w-[1024px] lg:max-w-[1130px] xl:max-w-[1507px] mx-auto rtl:ms-auto'
+            ? 'mt-[2px] max-sm:mb-0 sm:my-[2.4rem] sm:mb-[-0.2rem] relative w-full rtl:ms-auto'
+            : 'mt-[2px] sm:mt-[2.6rem] relative w-full rtl:ms-auto'
         }
         style={
           isPlayerOpen ? { position: 'relative', zIndex: 10001, pointerEvents: 'none' } : undefined

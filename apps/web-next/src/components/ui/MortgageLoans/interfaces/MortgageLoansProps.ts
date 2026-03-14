@@ -12,4 +12,6 @@ export interface MortgageLoansProps {
   className?: string;
   /** Banner link URL. If set, the banner is clickable. */
   bannerHref?: string;
+  /** Optional banner icon image src. When not set, OneClickBanner uses default hand-pointer icon. */
+  bannerIconSrc?: string;
 }

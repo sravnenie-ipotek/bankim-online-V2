@@ -3,18 +3,18 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { TextWithHighlight } from '@/components/ui/TextWithHighlight';
 import type { PartnershipProgramHeroProps } from './interfaces/PartnershipProgramHeroProps';
-
-const SUBTITLE_HIGHLIGHT = '500₪';
 
 /** Clamps tuned for 1440px (target) and 1920px (max); 1900px scales correctly within caps. */
 
 const PartnershipProgramHero: React.FC<PartnershipProgramHeroProps> = ({
   getContent,
   direction,
+  highlightPart,
+  highlightColorClassName,
 }) => {
   const subtitle = getContent('cooperation_subtitle');
-  const subtitleParts = subtitle.split(SUBTITLE_HIGHLIGHT);
 
   return (
   <div
@@ -39,17 +39,13 @@ const PartnershipProgramHero: React.FC<PartnershipProgramHeroProps> = ({
         <h1 className="w-full max-w-[clamp(320px,40.625vw,772px)] text-[clamp(20px,3.333vw,63px)] font-medium text-white leading-tight text-center flex items-center justify-center">
           {getContent('cooperation_title')}
         </h1>
-        <p className="text-[clamp(14px,1.111vw,20px)] text-white/80 leading-relaxed text-center w-full min-h-[clamp(36px,4.583vw,88px)] whitespace-pre-line break-words">
-          {subtitleParts.length > 1 ? (
-            <>
-              {subtitleParts[0]}
-              <span style={{ color: '#FBE54D' }}>{SUBTITLE_HIGHLIGHT}</span>
-              {subtitleParts[1]}
-            </>
-          ) : (
-            subtitle
-          )}
-        </p>
+        <TextWithHighlight
+          text={subtitle}
+          highlightPart={highlightPart}
+          highlightColorClassName={highlightColorClassName}
+          fontSizeClassName="text-[clamp(14px,1.111vw,20px)]"
+          className="text-white/80 leading-relaxed text-center w-full min-h-[clamp(36px,4.583vw,88px)] whitespace-pre-line break-words"
+        />
         <button
           type="button"
           className="mt-[clamp(4px,0.833vw,16px)] bg-accent-cooperationHighlight hover:bg-[#f5df3a] text-black font-semibold rounded-[clamp(4px,0.556vw,10px)] px-[clamp(20px,4.444vw,85px)] py-[clamp(8px,1.111vw,21px)] text-[clamp(13px,1.111vw,21px)] transition-colors whitespace-nowrap"

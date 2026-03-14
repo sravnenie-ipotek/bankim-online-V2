@@ -78,7 +78,7 @@ i18n
       he: { translation: heTranslation },
       ru: { translation: ruTranslation },
     },
-    fallbackLng: 'he',
+    fallbackLng: false,
     load: 'languageOnly',
     debug: false,
 

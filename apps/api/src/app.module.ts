@@ -16,6 +16,7 @@ import { ContentModule } from './modules/content/content.module';
 import { MortgageModule } from './modules/mortgage/mortgage.module';
 import { CustomerModule } from './modules/customer/customer.module';
 import { BanksModule } from './modules/banks/banks.module';
+import { BrokersModule } from './modules/brokers/brokers.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { VacanciesModule } from './modules/vacancies/vacancies.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -44,6 +45,7 @@ import { AdminModule } from './modules/admin/admin.module';
     MortgageModule,
     CustomerModule,
     BanksModule,
+    BrokersModule,
     LocationsModule,
     VacanciesModule,
     AuthModule,

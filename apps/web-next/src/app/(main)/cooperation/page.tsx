@@ -6,13 +6,17 @@ import { useTranslation } from 'react-i18next';
 import { HowItWorksSection } from './components/HowItWorksSection';
 import { PartnershipProgramHero } from './components/PartnershipProgramHero';
 import { Reward } from './components/Reward';
-import { BulletItem } from '@/components/ui/BulletItem';
+import { BulletsSection } from '@/components/ui/BulletsSection';
 import { MarketBankimonline } from '@/components/ui/MarketBankimonline';
 import { MortgageLoans } from '@/components/ui/MortgageLoans';
+import Container from '@/components/ui/Container/Container';
 import { useContentApi } from '@hooks/useContentApi';
 import { useContentFetch } from '@/hooks/useContentFetch';
-import { CooperationAbout } from './components/CooperationAbout';
+import { FormCtaBanner } from '@/components/ui/FormCtaBanner';
 import PartnersSwiper from '@/components/ui/PartnersSwiper/PartnersSwiper';
+
+const COOPERATION_HIGHLIGHT_PART = '500₪';
+const COOPERATION_HIGHLIGHT_COLOR_CLASS = 'text-[#FBE54D]';
 
 const Cooperation: React.FC = () => {
   useContentFetch('cooperation');
@@ -24,79 +28,74 @@ const Cooperation: React.FC = () => {
   const bankimTopOffset = 'clamp(29px, 2.847vw, 54px)';
 
   return (
-    <div className="pb-[clamp(56px,8vw,80px)] lg:pb-[96px]">
-      <PartnershipProgramHero getContent={getContent} direction={direction} />
-      {/* Program (hero) → Market: 96px at 1440, clamp up to 127px at 1920, desktop (lg/xl) only. Mortgage ↔ program+loans: 96px at 1440, clamp for xl. */}
-      <div
-        className="flex flex-col md:flex-row items-start w-full mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(137px,9.514vw,181px)] pt-0 gap-[clamp(16px,2.222vw,32px)] max-md:gap-[clamp(56px,14.36vw,96px)] lg:gap-[clamp(96px,6.67vw,127px)]"
-        dir={direction}
-      >
-        <div className="order-2 shrink-0 max-md:w-full max-md:flex max-md:justify-center" style={{ marginTop: `calc(-1 * ${bankimTopOffset})` }}>
-          <MortgageLoans getContent={getContent} direction={direction} />
-        </div>
-        <div className="order-1 flex-1 flex flex-col gap-[clamp(8px,1.111vw,21px)] max-md:w-full">
-          <MarketBankimonline getContent={getContent} direction={direction} />
-          <div className="flex flex-row flex-wrap gap-[clamp(12px,2vw,38px)] items-start w-full md:w-[clamp(320px,31.667vw,601px)] min-h-[clamp(40px,4.167vw,79px)]">
-            <div className="flex flex-col gap-[clamp(8px,1.111vw,21px)]">
-              <BulletItem
-                description={getContent('cooperation_bullet_mortgage_calc')}
-                direction={direction}
-              />
-              <BulletItem
-                description={getContent('cooperation_bullet_loan_calc')}
-                direction={direction}
-              />
-            </div>
-            <div className="flex flex-col gap-[clamp(8px,1.111vw,21px)]">
-              <BulletItem
-                description={getContent('cooperation_bullet_3')}
-                direction={direction}
-              />
-              <BulletItem
-                description={getContent('cooperation_bullet_4')}
-                direction={direction}
-              />
-            </div>
+    <Container className="max-[1240px]:px-0 max-[890px]:!pb-4">
+      <div className="pb-[clamp(56px,8vw,80px)] lg:pb-[96px]">
+        <PartnershipProgramHero
+          getContent={getContent}
+          direction={direction}
+          highlightPart={COOPERATION_HIGHLIGHT_PART}
+          highlightColorClassName={COOPERATION_HIGHLIGHT_COLOR_CLASS}
+        />
+        {/* Program (hero) → Market: 96px at 1440, clamp up to 127px at 1920, desktop (lg/xl) only. Mortgage ↔ program+loans: 96px at 1440, clamp for xl. */}
+        <div
+          className="flex flex-col md:flex-row items-start w-full mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(137px,9.514vw,181px)] pt-0 gap-[clamp(16px,2.222vw,32px)] max-md:gap-[clamp(56px,14.36vw,96px)] lg:gap-[clamp(96px,6.67vw,127px)]"
+          dir={direction}
+        >
+          <div className="order-2 shrink-0 max-md:w-full max-md:flex max-md:justify-center" style={{ marginTop: `calc(-1 * ${bankimTopOffset})` }}>
+            <MortgageLoans getContent={getContent} direction={direction} />
+          </div>
+          <div className="order-1 flex-1 flex flex-col gap-[clamp(8px,1.111vw,21px)] max-md:w-full">
+            <MarketBankimonline getContent={getContent} direction={direction} />
+            <BulletsSection
+              bulletsText={[
+                getContent('cooperation_bullet_mortgage_calc'),
+                getContent('cooperation_bullet_loan_calc'),
+                getContent('cooperation_bullet_3'),
+                getContent('cooperation_bullet_4'),
+              ]}
+              direction={direction}
+              layout="horizontal"
+            />
           </div>
         </div>
-      </div>
-      {/* Market/loans → Yellow (Reward): 104px at lg (1440), clamp for xl (1920) — desktop only */}
-      <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(104px,7.22vw,139px)]">
-        <Reward getContent={getContent} direction={direction} />
-      </div>
-      <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(96px,6.67vw,127px)]">
-        <HowItWorksSection getContent={getContent} direction={direction} />
-      </div>
-      {/* How it works → Partners swiper: 96px vertical on desktop (lg/xl) */}
-      <div className="relative w-full min-h-[200px] lg:h-[clamp(266px,18.472vw,351px)] mt-[clamp(56px,14.36vw,80px)] lg:mt-[96px] py-[clamp(24px,2vw,0px)] lg:py-0">
-        <div
-          className="absolute inset-y-0 bg-base-sidebarBg"
-          style={{
-            left: 'calc(-50vw + 50%)',
-            right: 'calc(-50vw + 50%)',
-          }}
-          aria-hidden
-        />
-        <div className="relative z-10 w-full h-full flex items-center">
-          <PartnersSwiper
-            getContent={getContent}
-            titleKey="cooperation_partners_title"
-            width="100%"
-            titleClassName="text-[clamp(22px,2.708vw,51px)]"
+        {/* Market/loans → Yellow (Reward): 104px at lg (1440), clamp for xl (1920) — desktop only */}
+        <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(104px,7.22vw,139px)]">
+          <Reward getContent={getContent} direction={direction} />
+        </div>
+        {/* Reward → Partners swiper: 96px vertical on desktop (lg/xl) */}
+        <div className="relative w-full min-h-[200px] lg:h-[clamp(266px,18.472vw,351px)] mt-[clamp(56px,14.36vw,80px)] lg:mt-[96px] py-[clamp(24px,2vw,0px)] lg:py-0">
+          <div
+            className="absolute inset-y-0 bg-base-sidebarBg"
+            style={{
+              left: 'calc(-50vw + 50%)',
+              right: 'calc(-50vw + 50%)',
+            }}
+            aria-hidden
+          />
+          <div className="relative z-10 w-full h-full flex items-center">
+            <PartnersSwiper
+              getContent={getContent}
+              titleKey="cooperation_partners_title"
+              width="100%"
+              titleClassName="text-[clamp(22px,2.708vw,51px)]"
+            />
+          </div>
+        </div>
+        <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[clamp(96px,6.67vw,127px)]">
+          <HowItWorksSection getContent={getContent} direction={direction} />
+        </div>
+        {/* How it works → Cooperation about: 96px vertical on desktop (lg/xl) */}
+        <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[96px]">
+          <FormCtaBanner
+            title={getContent('cooperation_about_box_title')}
+            buttonLabel={getContent('cooperation_register')}
+            buttonLabelMobile={getContent('cooperation_fill_form')}
+            buttonHref="/registration"
+            direction={direction}
           />
         </div>
       </div>
-      {/* Partners swiper → Cooperation about: 96px vertical on desktop (lg/xl) */}
-      <div className="mt-[clamp(56px,14.36vw,80px)] lg:mt-[96px]">
-        <CooperationAbout
-          title={getContent('cooperation_about_box_title')}
-          buttonLabel={getContent('cooperation_register')}
-          buttonLabelMobile={getContent('cooperation_fill_form')}
-          buttonHref="/registration"
-          direction={direction}
-        />
-      </div>
-    </div>
+    </Container>
   );
 };
 

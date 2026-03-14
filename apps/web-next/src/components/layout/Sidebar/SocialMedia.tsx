@@ -39,7 +39,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ variant = 'vertical' }) => {
   return (
     <nav
       aria-label={getContent('footer_social_follow')}
-      className="flex flex-col items-center w-[30px] h-full pt-[calc(47.1px*(100vw/1440))] xl:pt-[47.1px]"
+      className="flex flex-col items-center w-[30px] h-full pt-[clamp(33px,3.271vw,62px)]"
     >
       {socialPlatforms.map((config) => (
         <SidebarSocialLinkItem key={config.platform} config={config} getContent={getContent} />

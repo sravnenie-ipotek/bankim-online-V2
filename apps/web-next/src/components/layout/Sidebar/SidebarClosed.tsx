@@ -59,8 +59,8 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
 
   return (
     <div
-      className={`w-[468px] h-screen max-h-[100dvh] absolute top-0 z-[10000] transition-all duration-300 ease-in-out
-          ltr:left-[-422px] rtl:right-[-422px]
+      className={`w-[clamp(360px,32.5vw,617px)] h-[clamp(780px,56.25vw,1080px)] max-h-[100dvh] absolute top-0 z-[10000] transition-all duration-300 ease-in-out
+          ltr:left-[calc(clamp(360px,32.5vw,617px)*-1+clamp(38px,3.194vw,61px))] rtl:right-[calc(clamp(360px,32.5vw,617px)*-1+clamp(38px,3.194vw,61px))]
           ${isOpen ? 'ltr:!left-0 rtl:!right-0' : ''}`}
       >
         <div
@@ -78,7 +78,7 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
           {/* Toggle handle (hidden when submenus are open) */}
           {!isSubMenusOpen && (
             <div
-              className={`absolute w-10 h-[220px] bg-base-sidebarBg border border-base-stroke ltr:border-l-0 rtl:border-l-0 top-1/2 -translate-y-1/2 rounded-none flex items-center overflow-hidden cursor-pointer transition-all duration-300 ease-in-out sm:max-md:w-[35px] sm:max-md:h-[180px]
+              className={`absolute w-10 h-[clamp(180px,15.278vw,290px)] bg-base-sidebarBg border border-base-stroke ltr:border-l-0 rtl:border-l-0 top-1/2 -translate-y-1/2 rounded-none flex items-center overflow-hidden cursor-pointer transition-all duration-300 ease-in-out sm:max-md:w-[35px] sm:max-md:h-[180px]
                 ltr:right-0 ltr:translate-x-full justify-center
                 rtl:left-0 rtl:-translate-x-full rtl:scale-x-[-1]
                 ${isOpen ? 'translate-x-1/2 shadow-[1px_0_1px_rgba(255,255,255,0.1)] sm:max-md:translate-x-[30%] rtl:-translate-x-1/2' : ''}`}
@@ -98,7 +98,7 @@ const SidebarClosed: React.FC<SidebarClosedProps> = ({
 
           {/* Menu content */}
           <nav className="flex-1 min-h-0 overflow-auto px-4">
-            <section className="pt-[108px] flex flex-col justify-start gap-10 w-full sm:max-md:pt-20 sm:max-md:gap-8 max-[480px]:pt-[60px] max-[480px]:gap-6">
+            <section className="pt-[clamp(76px,7.5vw,142px)] flex flex-col justify-start gap-[clamp(24px,2.778vw,40px)] w-full sm:max-md:pt-20 sm:max-md:gap-8 max-[480px]:pt-[60px] max-[480px]:gap-6">
               <DesktopMenuList
                 title={getContent('sidebar_company')}
                 items={menuItems}

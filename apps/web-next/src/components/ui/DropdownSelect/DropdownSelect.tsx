@@ -19,6 +19,8 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
   nothingFoundText = 'Nothing found',
   error,
   disabled = false,
+  className,
+  triggerClassName,
   ...rest
 }) => {
   const searchInputId = useId();
@@ -91,7 +93,7 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
   ));
 
   return (
-    <div ref={wrapperRef} className="flex flex-col gap-1 w-full relative">
+    <div ref={wrapperRef} className={`flex flex-col gap-1 w-full relative ${className || ''}`}>
       {title ? (
         <label className="text-[0.875rem] not-italic font-normal leading-[140%] text-textTheme-secondary">
           {title}
@@ -99,7 +101,7 @@ const DropdownSelect: React.FC<DropdownSelectProps> = ({
       ) : null}
 
       <div
-        className={`flex items-center justify-between h-[clamp(2.75rem,3.89vw,4.5rem)] rounded-lg border bg-base-inputs px-4 cursor-pointer transition-colors ${triggerBorderClass} ${disabledClass}`}
+        className={`flex items-center justify-between h-[clamp(48px,3.333vw,64px)] rounded-lg border bg-base-inputs px-4 cursor-pointer transition-colors ${triggerBorderClass} ${disabledClass} ${triggerClassName || ''}`}
         onClick={handleToggle}
         role="button"
         tabIndex={0}

@@ -21,7 +21,7 @@ const Contacts: React.FC = () => {
   const contactEntries = ContactEntriesBuilder.build(CONTACT_SECTIONS, getContent);
 
   return (
-    <Container>
+    <Container className="max-[890px]:!pb-4">
       <div className="page-stack">
         <h1 className="top-[clamp(48px,10.97vw,158px)] text-[clamp(1.9375rem,2rem+1vw,3rem)] font-medium text-textTheme-primary">
           {getContent('contacts_title')}
