@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useContentApi } from '@hooks/useContentApi';
 import { useContentFetch } from '@/hooks/useContentFetch';
+import Container from '@/components/ui/Container/Container';
 import FormLabel from '@/components/ui/LoginDialog/FormLabel/FormLabel';
 import PhoneInput from '@/components/ui/LoginDialog/PhoneInput/PhoneInput';
 import EnvelopeIcon from '@/components/icons/EnvelopeIcon';
@@ -52,22 +53,23 @@ const RegistrationPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center w-full py-[clamp(40px,5.556vw,96px)]" dir={direction}>
-      <div
-        className="relative w-full rounded-xl bg-base-secondary shadow-lg flex flex-col mx-auto"
-        style={{
-          maxWidth: 'clamp(320px, 52.63vw, 600px)',
-          padding: 'clamp(16px, 2.11vw, 24px)',
-        }}
-      >
-        <h1
-          className="w-full text-[clamp(18px,1.74vw,25px)] font-medium text-textTheme-primary text-left rtl:text-right border-b border-base-stroke"
+    <Container className="max-[1240px]:px-0">
+      <div className="flex justify-center w-full py-[clamp(40px,5.556vw,96px)]" dir={direction}>
+        <div
+          className="relative w-full rounded-xl bg-base-secondary shadow-lg flex flex-col mx-auto"
           style={{
-            paddingBottom: 'clamp(12px, 1.56vh, 16px)',
+            maxWidth: 'clamp(320px, 52.63vw, 600px)',
+            padding: 'clamp(16px, 2.11vw, 24px)',
           }}
         >
-          {getContent('registration_title')}
-        </h1>
+          <h1
+            className="w-full text-[clamp(18px,1.74vw,25px)] font-medium text-textTheme-primary text-left rtl:text-right border-b border-base-stroke"
+            style={{
+              paddingBottom: 'clamp(12px, 1.56vh, 16px)',
+            }}
+          >
+            {getContent('registration_title')}
+          </h1>
 
         <div
           className="w-full text-left rtl:text-right"
@@ -302,8 +304,9 @@ const RegistrationPage: React.FC = () => {
             </Link>
           </p>
         </div>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

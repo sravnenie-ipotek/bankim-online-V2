@@ -25,6 +25,7 @@ const LoginLanguage: React.FC = () => {
   const pathMap = pathname.split('/');
   const isService = pathMap.includes('services');
   const isCooperation = pathMap.includes('cooperation');
+  const isTenders = pathMap.includes('tenders-for-brokers');
   const loginButtonMode = LoginButtonModeHelper.getMode(pathname);
   const { isDesktop } = useWindowResize();
 
@@ -37,7 +38,12 @@ const LoginLanguage: React.FC = () => {
   };
 
   const defaultLabel = isAuthenticated ? (user?.name ?? getContent('account')) : getContent('account');
-  const label = isCooperation ? getCooperationContent('cooperation_partner_login') : defaultLabel;
+  const tendersLabel = getContent('header_login_personal_account');
+  const label = isCooperation
+    ? getCooperationContent('cooperation_partner_login')
+    : isTenders && !isAuthenticated
+      ? tendersLabel
+      : defaultLabel;
 
   return (
     <div className="flex gap-[42px] items-center max-[1240px]:flex-nowrap max-[1240px]:flex-row">

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '@/store';
 import type { ContentResponse } from '@/interfaces/ContentResponse';
-import { getContentCached } from '@/helpers/contentApiCache';
+import { getContentCached, isCacheValid } from '@/helpers/contentApiCache';
 
 export type ContentEntry = { data: ContentResponse | null; error: string | null };
 
@@ -30,7 +30,10 @@ export const fetchContent = createAsyncThunk<
       const state = getState();
       const key = contentKey(payload.screenLocation, payload.language);
       if (state.content.loadingByKey[key]) return false;
-      if (state.content.byKey[key]?.data?.content) return false;
+      const hasReduxData = !!state.content.byKey[key]?.data?.content;
+      if (hasReduxData && isCacheValid(payload.screenLocation, payload.language)) {
+        return false;
+      }
       return true;
     },
   }

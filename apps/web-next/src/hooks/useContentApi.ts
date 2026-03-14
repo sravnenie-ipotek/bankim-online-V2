@@ -45,12 +45,9 @@ export const useContentApi = (screenLocation: string) => {
     (key: string): string => {
       const value = content[key];
       if (value !== undefined && value !== '') return value;
-      if (loading && Object.keys(content).length === 0) {
-        return '\u00A0';
-      }
       return `[Missing: ${key}]`;
     },
-    [content, loading]
+    [content]
   );
 
   return {

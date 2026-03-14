@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 148 215 185" fill="none">
+  <defs>
+    <filter id="windowShadow" x="-20%" y="-15%" width="150%" height="145%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="4" dy="6"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="btnShadow" x="-10%" y="-20%" width="120%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="3"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0F0F4"/>
+      <stop offset="100%" stop-color="#D8D8DD"/>
+    </linearGradient>
+    <linearGradient id="loginGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3A3A42"/>
+      <stop offset="100%" stop-color="#242529"/>
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDE872"/>
+      <stop offset="50%" stop-color="#FBE54D"/>
+      <stop offset="100%" stop-color="#D4C030"/>
+    </linearGradient>
+    <linearGradient id="glossy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="white" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="white" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="frameClip">
+      <rect x="41" y="170" width="171" height="142" rx="10"/>
+    </clipPath>
+  </defs>
+
+  <g filter="url(#windowShadow)">
+    <!-- Blue border frame: surrounds entire window -->
+    <rect x="41" y="170" width="171" height="142" rx="10" fill="#5AAFE8"/>
+
+    <g clip-path="url(#frameClip)">
+      <!-- Title bar: 162.94×18.2 at (45, 175), fill #242529 -->
+      <path d="M50 175 H203 Q208 175 208 180 V193.2 H45 V180 Q45 175 50 175 Z" fill="#242529"/>
+
+      <!-- Window body: 159.16×114.52 at (46.92, 192.85), rounded bottom -->
+      <path d="M46.92 192.85 H206.08 V302.37 Q206.08 307.37 201.08 307.37 H51.92 Q46.92 307.37 46.92 302.37 Z" fill="url(#bodyGrad)"/>
+
+      <!-- Window dots: 27.96×5.93 at (52.91, 180.93), fill #A7A7A7 -->
+      <circle cx="57.57" cy="183.9" r="2.5" fill="#A7A7A7"/>
+      <circle cx="66.89" cy="183.9" r="2.5" fill="#A7A7A7"/>
+      <circle cx="76.21" cy="183.9" r="2.5" fill="#A7A7A7"/>
+
+      <!-- LOGIN pill: 122.6×36.86 at (66.22, 204.82), rx=18.43, fill #242529 -->
+      <g filter="url(#btnShadow)">
+        <rect x="66.22" y="204.82" width="122.6" height="36.86" rx="18.43" fill="url(#loginGrad)"/>
+      </g>
+      <!-- LOGIN text: 85.69×16.28 at (84.41, 214.64), fill white -->
+      <text x="127.26" y="227" font-family="'Arial Black', 'Impact', sans-serif" font-weight="900" font-size="13" fill="white" text-anchor="middle" letter-spacing="3">LOGIN</text>
+
+      <!-- Password pill: 122.6×36.8 at (66.22, 253.88), rx=18.4, fill #FBE54D -->
+      <g filter="url(#btnShadow)">
+        <rect x="66.22" y="253.88" width="122.6" height="36.8" rx="18.4" fill="url(#yellowGrad)"/>
+      </g>
+      <!-- Password text: 92.95×18.54 at (80.98, 262.49), fill white -->
+      <text x="127.46" y="276" font-family="'Arial Black', 'Impact', sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" letter-spacing="5">****</text>
+
+      <!-- Glossy overlay: mix-blend-mode screen -->
+      <rect x="45.06" y="175" width="162.94" height="132.36" fill="url(#glossy)" style="mix-blend-mode:screen"/>
+    </g>
+  </g>
+</svg>

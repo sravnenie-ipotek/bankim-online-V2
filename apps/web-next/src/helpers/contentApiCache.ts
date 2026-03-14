@@ -2,11 +2,22 @@ import type { ContentResponse } from '../interfaces/ContentResponse';
 
 type ContentCacheEntry = { data: ContentResponse | null; error: string | null };
 
-const contentCache = new Map<string, ContentCacheEntry>();
+interface TimedCacheEntry {
+  entry: ContentCacheEntry;
+  cachedAt: number;
+}
+
+const CACHE_TTL_MS = 5 * 60 * 1000;
+
+const contentCache = new Map<string, TimedCacheEntry>();
 const inFlight = new Map<string, Promise<ContentCacheEntry>>();
 
 function cacheKey(screenLocation: string, language: string): string {
   return `${screenLocation}:${language}`;
+}
+
+function isExpired(timedEntry: TimedCacheEntry): boolean {
+  return Date.now() - timedEntry.cachedAt > CACHE_TTL_MS;
 }
 
 /**
@@ -42,7 +53,7 @@ export async function getContentFromServer(
 }
 
 /**
- * Returns the cached content for (screenLocation, language), or null if not cached.
+ * Returns the cached content for (screenLocation, language), or null if not cached / expired.
  * @param screenLocation - API screen location (e.g. 'common', 'vacancies').
  * @param language - Language code.
  * @returns Cached entry or null.
@@ -52,13 +63,31 @@ export function getCached(
   language: string
 ): ContentCacheEntry | null {
   const key = cacheKey(screenLocation, language);
-  return contentCache.get(key) ?? null;
+  const timed = contentCache.get(key);
+  if (!timed || isExpired(timed)) {
+    if (timed) contentCache.delete(key);
+    return null;
+  }
+  return timed.entry;
+}
+
+/**
+ * Returns true if the cached entry for (screenLocation, language) exists and has not expired.
+ */
+export function isCacheValid(
+  screenLocation: string,
+  language: string
+): boolean {
+  const key = cacheKey(screenLocation, language);
+  const timed = contentCache.get(key);
+  return !!timed && !isExpired(timed);
 }
 
 /**
  * Returns content for (screenLocation, language): from cache, from in-flight request, or by fetching.
  * Deduplicates concurrent requests for the same key. Only caches successful results.
  * Errors are NOT cached so the next call retries automatically.
+ * Cached entries expire after 5 minutes.
  * @param screenLocation - API screen location.
  * @param language - Language code.
  * @returns Promise of { data, error }.
@@ -68,10 +97,12 @@ export async function getContentCached(
   language: string
 ): Promise<ContentCacheEntry> {
   const key = cacheKey(screenLocation, language);
-  const cached = contentCache.get(key);
-  if (cached !== undefined) {
-    return cached;
+  const timed = contentCache.get(key);
+  if (timed && !isExpired(timed)) {
+    return timed.entry;
   }
+  if (timed) contentCache.delete(key);
+
   const existing = inFlight.get(key);
   if (existing !== undefined) {
     return existing;
@@ -79,7 +110,7 @@ export async function getContentCached(
   const promise = getContentFromServer(screenLocation, language)
     .then((result) => {
       if (result.data) {
-        contentCache.set(key, result);
+        contentCache.set(key, { entry: result, cachedAt: Date.now() });
       }
       return result;
     })

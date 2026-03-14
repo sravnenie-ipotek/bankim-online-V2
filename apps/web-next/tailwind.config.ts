@@ -16,6 +16,8 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       fileBadge: '#FBE54D',
       /** Yellow for cooperation hero highlight (500₪) – #FBE54D */
       cooperationHighlight: '#FBE54D',
+      /** Icon tint for banner (e.g. IconBanner) – #FB5E4D */
+      bannerIcon: '#FB5E4D',
     },
     base: {
       border: '#161616',
@@ -47,6 +49,12 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
       successCard: '#2A2B31',
       /** Mortgage loans banner background – #41434E */
       bannerBg: '#41434E',
+      /** Tenders map offices banner background – #414344 */
+      tendersOfficesBanner: '#414344',
+      /** Wizard frame submit button background – #84848484 (with alpha) */
+      wizardSubmitButton: '#84848484',
+      /** Icon badge / banner background (e.g. TextWithBigPicture) – #F5F5F5 */
+      badgeBg: '#F5F5F5',
     },
     textTheme: {
       primary: 'hsla(0, 0%, 100%, 1)',
@@ -71,6 +79,25 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
     error: {
       validation: '#E76143',
     },
+    /** Techrealt theme tokens (tenders-for-lawyers: highlight, button, banner background, containers, text) */
+    techrealt: {
+      red: '#FF4B49',
+      bg: '#f9fafb',
+      containers: '#f5f5f5',
+      /** Earnings block title text color – #2E2E2E */
+      titleText: '#2E2E2E',
+      /** Earnings block description text color – #565656 */
+      descriptionText: '#565656',
+      /** Button text color (e.g. CTA on white background) – white */
+      buttonFontColor: '#ffffff',
+      /** Button border color (e.g. FormCtaBanner CTA) – #161616 */
+      buttonBorder: '#161616',
+    },
+  },
+  /** Filter for tinting icon to techrealt red (#FF4B49) */
+  filter: {
+    'techrealt-red-icon':
+      'invert(32%) sepia(98%) saturate(5000%) hue-rotate(347deg) brightness(100%) contrast(101%)',
   },
   screens: {
     xs: '375px',
@@ -97,6 +124,31 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
     'hero-subtitle': '31px',
     form: '16px',
     formLabel: 'clamp(12px, 2.5vw, 16px)',
+    /** Tenders-for-brokers page: hero title; 25px min, 39px at 1440 (lg), clamp for xl */
+    'tenders-brokers-title': 'clamp(25px, 2.708vw, 39px)',
+    /** Tenders-for-brokers page: description text, 16px clamp till lg */
+    'tenders-brokers-description': 'clamp(16px, 1.03vw, 18px)',
+    /** Tenders-for-brokers page: bullet description, 16px clamp till lg */
+    'tenders-brokers-bullets': 'clamp(16px, 4.103vw, 20px)',
+    /** Tenders-for-brokers page: list box titles; 20px on desktop (1440), clamp for xl */
+    'tenders-brokers-list-title': 'clamp(18px, 1.389vw, 20px)',
+    /** Tenders-for-brokers page: list fonts – 16px on mobile (350px), clamp till md */
+    'tenders-brokers-list-mobile': 'clamp(16px, 4.571vw, 16px)',
+    /** Broker questionnaire: page and section titles – 31px at 390px viewport, clamp till md */
+    'broker-questionnaire-title': 'clamp(31px, 7.95vw, 48px)',
+    /** Broker questionnaire: field labels – 18px at 390px viewport, clamp till md */
+    /** Broker questionnaire: field labels – 16px at 390px viewport, clamp till md */
+    'broker-questionnaire-label': 'clamp(16px, 4.1vw, 20px)',
+    /** Broker questionnaire: field values (input/select/textarea text) – 16px at 390px viewport, clamp till md */
+    'broker-questionnaire-field': 'clamp(16px, 4.1vw, 18px)',
+    /** Tenders-for-lawyers: desktop title – fixed 25px */
+    'techrealt-title': '25px',
+    /** Tenders-for-lawyers: earnings block description */
+    'techrealt-description': '16px',
+    /** Techrealt mobile font size: 16px max, clamp up to md */
+    'techrealt-mobile-font': 'clamp(12px, 3.5vw, 16px)',
+    /** Techrealt mobile title: 20px – use as base, override with md:text-techrealt-title */
+    'techrealt-mobile-title': '20px',
   },
   lineHeight: {
     cookie: '140%',
@@ -134,6 +186,10 @@ const themeExtend: NonNullable<NonNullable<Config['theme']>['extend']> = {
   },
   spacing: {
     fluid: 'clamp(16px, 12vw, 230px)',
+    /** Broker questionnaire: gap between field title and input – 12px at 350px viewport, clamp till md */
+    'broker-questionnaire-label-gap': 'clamp(12px, 3.43vw, 16px)',
+    /** Vertical space between red banner and next section – 96px at xl (1920) */
+    'techrealt-section-gap': 'clamp(48px, 5vw, 96px)',
   },
   width: {
     'sidebar-closed': '46px',
@@ -217,6 +273,11 @@ const config: Config = {
   ],
   safelist: [
     { pattern: /^font-(inter|he|ru)$/ }, // ensure font utilities are always generated
+    { pattern: /^bg-techrealt-/, variants: ['hover'] }, // CompanyBanner backgroundClassName (dynamic)
+    { pattern: /^text-techrealt-/ }, // highlight, etc.
+    { pattern: /^border-techrealt-/ }, // FormCtaBanner button border
+    { pattern: /^filter-techrealt-/ }, // icon tint (e.g. filter-techrealt-red-icon)
+    { pattern: /^(mt|pt|mb|pb|gap)-techrealt-section-gap$/ }, // section spacing and gap between stacked blocks
   ],
   theme: {
     extend: themeExtend,

@@ -11,10 +11,10 @@ interface ContainerProps extends React.HTMLProps<HTMLDivElement> {
  * @param props.children - Page content to wrap.
  * @param props - Rest passed to the underlying div (e.g. className, style).
  */
-const Container: React.FC<ContainerProps> = ({ children, ...rest }) => {
+const Container: React.FC<ContainerProps> = ({ children, className = '', ...rest }) => {
   return (
     <div
-      className="w-full max-[1280px]:px-5 lg:max-w-[1130px] xl:max-w-page mx-auto max-[890px]:pb-[calc(120px+env(safe-area-inset-bottom,0))]"
+      className={`w-full max-[1280px]:px-5 lg:max-w-[1130px] xl:max-w-page mx-auto max-[890px]:pb-[calc(120px+env(safe-area-inset-bottom,0))] ${className}`.trim()}
       {...rest}
     >
       {children}

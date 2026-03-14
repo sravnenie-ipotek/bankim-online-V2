@@ -61,7 +61,7 @@ const Vacancies: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container className="max-[890px]:!pb-4">
       <div className="page-stack">
         <div className="flex flex-col gap-2">
           <h1 className="text-[clamp(1.9375rem,2rem+1vw,3rem)] font-medium text-textTheme-primary">

@@ -12,5 +12,7 @@ export interface DropdownSelectProps {
   nothingFoundText?: string;
   error?: boolean | string;
   disabled?: boolean;
+  className?: string;
+  triggerClassName?: string;
   'data-testid'?: string;
 }

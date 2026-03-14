@@ -39,7 +39,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label, onClick, var
   }
 
   return (
-    <div className="w-[30px] flex-1 max-h-[270px] flex items-center justify-center overflow-visible">
+    <div className="w-[30px] flex-1 max-h-[clamp(200px,18.75vw,356px)] flex items-center justify-center overflow-visible">
       <a
         href={href}
         target="_blank"
@@ -47,7 +47,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label, onClick, var
         aria-label={label}
         dir="ltr"
         onClick={onClick}
-        className="flex flex-row items-center gap-2 w-[calc((100vh-47.1px)/4)] max-w-[270px] h-[30px] shrink-0 opacity-70 hover:opacity-100 transition-opacity rotate-90 origin-center"
+        className="flex flex-row items-center gap-2 w-[clamp(200px,18.75vw,356px)] h-[30px] shrink-0 opacity-70 hover:opacity-100 transition-opacity rotate-90 origin-center"
       >
         <Image
           src={icon}
@@ -57,7 +57,7 @@ const SocialItem: React.FC<SocialItemProps> = ({ href, icon, label, onClick, var
           className="shrink-0 object-contain w-[clamp(20px,2.22vw,24px)] h-[clamp(20px,2.22vw,24px)]"
           sizes="24px"
         />
-        <span className="text-[calc(20px*(100vw/1440))] xl:text-[20px] font-normal leading-none tracking-normal capitalize text-white whitespace-nowrap">
+        <span className="text-[clamp(14px,1.389vw,26px)] font-normal leading-none tracking-normal capitalize text-white whitespace-nowrap">
           {label}
         </span>
       </a>
